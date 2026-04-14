@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "smartjuku-lp",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd /tmp/smartjuku-lp && /usr/bin/python3 -m http.server ${PORT:-8080}"],
+      "port": 8080,
+      "autoPort": true
+    }
+  ]
+}

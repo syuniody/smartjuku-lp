@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>スマ塾| 学習塾専用ホームページ制作 — 月額ゼロ・買い切り5万円〜</title>
+  <meta name="description" content="学習塾に特化したホームページ制作サービス。制作費5万円〜、月額費用ゼロ。300校以上の塾を支援したプロが作る、スマホ対応・SEO対策済みの塾専用HP。先着10塾限定キャンペーン中。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="スマ塾| 学習塾専用ホームページ制作">
+  <meta property="og:description" content="制作費5万円〜、月額費用ゼロ。300校以上の塾を支援したプロが作る、学習塾専用ホームページ。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <!-- ★差替え：OGP画像URL -->
+  <meta property="og:image" content="images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css?v=4">
+
+  <!-- 構造化データ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "スマ塾",
+    "description": "学習塾に特化したホームページ制作サービス。買い切り・月額ゼロで提供。",
+    "provider": {
+      "@type": "Organization",
+      "name": "合同会社SyUNi",
+      "url": ""
+    },
+    "serviceType": "ホームページ制作",
+    "areaServed": "JP",
+    "offers": {
+      "@type": "Offer",
+      "price": "50000",
+      "priceCurrency": "JPY",
+      "description": "先着10塾限定キャンペーン価格（税別）"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ========================================
+       ヘッダー（最小限・sticky）
+       ======================================== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="#" class="header__logo">
+        <img src="images/logo.png" alt="スマ塾" class="header__logo-img header__logo-img--light"><img src="images/logo-dark.png" alt="スマ塾" class="header__logo-img header__logo-img--dark">
+      </a>
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li><a href="#solution" class="header__nav-link">特徴</a></li>
+          <li><a href="#demo" class="header__nav-link">制作実績</a></li>
+          <li><a href="#pricing" class="header__nav-link">料金</a></li>
+          <li><a href="#faq" class="header__nav-link">FAQ</a></li>
+        </ul>
+        <a href="#contact" class="header__cta btn btn--accent btn--sm">無料で相談する</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========================================
+         セクション 1: ファーストビュー
+         ======================================== -->
+    <section class="hero" id="hero">
+      <div class="hero__inner container">
+        <div class="hero__content">
+          <!-- ★差替え：キャンペーン残数 -->
+          <span class="hero__badge">先着10塾限定 5万円〜</span>
+          <h1 class="hero__title">塾のHP、<br>もっとスマートに。</h1>
+          <p class="hero__subtitle">制作費5万円〜、月額ゼロ。<br>300校以上の塾を支援したプロが作る、学習塾専用ホームページ。</p>
+          <a href="#contact" class="btn btn--accent btn--lg hero__cta">無料で相談する <span class="btn__arrow">&rarr;</span></a>
+          <div class="hero__trust">
+            <div class="hero__trust-card">
+              <div class="hero__trust-num-row">
+                <span class="hero__trust-num">300</span><span class="hero__trust-unit">校以上</span>
+              </div>
+              <span class="hero__trust-label">の塾を支援</span>
+            </div>
+            <div class="hero__trust-card">
+              <div class="hero__trust-num-row">
+                <span class="hero__trust-num">0</span><span class="hero__trust-unit">円</span>
+              </div>
+              <span class="hero__trust-label">月額費用</span>
+            </div>
+            <div class="hero__trust-card">
+              <div class="hero__trust-num-row">
+                <span class="hero__trust-num">2</span><span class="hero__trust-unit">週間〜</span>
+              </div>
+              <span class="hero__trust-label">最短納品</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <!-- ★差替え：デモサイトスクリーンショット -->
+          <div class="hero__mockup">
+            <div class="hero__mockup-pc">
+              <div class="mockup-browser">
+                <div class="mockup-browser__bar">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="mockup-browser__screen">
+                  <img src="images/demo-screenshot.png" alt="スマ塾で制作した塾HPのデモサイト（PC表示）" width="1280" height="800" loading="eager">
+                </div>
+              </div>
+            </div>
+            <div class="hero__mockup-sp">
+              <div class="mockup-phone">
+                <div class="mockup-phone__screen">
+                  <img src="images/demo-sp.png" alt="スマ塾で制作した塾HPのデモサイト（スマホ表示）" width="375" height="812" loading="eager">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         セクション 2: こんなお悩みありませんか？
+         ======================================== -->
+    <section class="pain" id="pain">
+      <div class="container">
+        <p class="pain__scene">保護者がスマホで「○○市 学習塾」と検索したとき——<br>あなたの塾のHP、<strong>自信を持って見せられますか？</strong></p>
+        <h2 class="section-title">塾のHP、こんな状態になっていませんか？<span class="section-title__underline"></span></h2>
+        <div class="pain__grid">
+          <div class="pain__card">
+            <div class="pain__icon">
+              <!-- スマホで崩れた塾HP -->
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="12" y="4" width="24" height="40" rx="4" stroke="currentColor" stroke-width="2.5"/>
+                <line x1="12" y1="10" x2="36" y2="10" stroke="currentColor" stroke-width="1.5"/>
+                <!-- 崩れたコンテンツ -->
+                <rect x="15" y="14" width="18" height="4" rx="1" fill="currentColor" opacity="0.2" transform="rotate(2 24 16)"/>
+                <rect x="15" y="20" width="12" height="3" rx="1" fill="currentColor" opacity="0.15" transform="rotate(-1 21 22)"/>
+                <rect x="14" y="26" width="20" height="8" rx="1" stroke="#E53E3E" stroke-width="1" stroke-dasharray="2 1"/>
+                <text x="17" y="32" font-size="5" fill="#E53E3E" opacity="0.7">崩れ</text>
+                <line x1="20" y1="38" x2="28" y2="38" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <p class="pain__text">保護者がスマホで見たら<br>レイアウトが崩れていた…</p>
+            <p class="pain__sub">近隣の塾はきれいなHPなのに、<br>うちだけ古いまま。</p>
+          </div>
+          <div class="pain__card">
+            <div class="pain__icon">
+              <!-- 合格実績が更新できない -->
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="6" width="32" height="36" rx="3" stroke="currentColor" stroke-width="2.5"/>
+                <line x1="14" y1="14" x2="34" y2="14" stroke="currentColor" stroke-width="2"/>
+                <text x="14" y="13" font-size="5" fill="currentColor" opacity="0.6">合格実績</text>
+                <line x1="14" y1="20" x2="30" y2="20" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+                <line x1="14" y1="25" x2="28" y2="25" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+                <line x1="14" y1="30" x2="26" y2="30" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+                <!-- 2022のまま -->
+                <rect x="22" y="33" width="18" height="10" rx="3" fill="#FFF5F5" stroke="#E53E3E" stroke-width="1.5"/>
+                <text x="24" y="40" font-size="5.5" fill="#E53E3E" font-weight="700">2022年</text>
+              </svg>
+            </div>
+            <p class="pain__text">合格実績もテスト結果も、<br>何年も前の情報のまま…</p>
+            <p class="pain__sub">更新したいのに、制作会社に<br>毎回お金を払うのがつらい。</p>
+          </div>
+          <div class="pain__card">
+            <div class="pain__icon">
+              <!-- 問い合わせが来ない -->
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6" y="8" width="36" height="24" rx="3" stroke="currentColor" stroke-width="2.5"/>
+                <line x1="6" y1="16" x2="42" y2="16" stroke="currentColor" stroke-width="1.5"/>
+                <!-- 空の受信トレイ -->
+                <rect x="12" y="20" width="24" height="8" rx="2" fill="currentColor" opacity="0.05" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2"/>
+                <text x="16" y="26" font-size="5" fill="currentColor" opacity="0.3">0件</text>
+                <!-- 下向き矢印（入塾問い合わせ） -->
+                <rect x="14" y="34" width="20" height="8" rx="2" stroke="#E53E3E" stroke-width="1.5"/>
+                <text x="16" y="40" font-size="4.5" fill="#E53E3E">入塾問合せ 0</text>
+              </svg>
+            </div>
+            <p class="pain__text">HPからの入塾問い合わせが<br>ほとんど来ない…</p>
+            <p class="pain__sub">チラシや口コミ頼みから<br>抜け出せない。</p>
+          </div>
+          <div class="pain__card">
+            <div class="pain__icon">
+              <!-- 講習情報が発信できない -->
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="6" y="6" width="36" height="28" rx="3" stroke="currentColor" stroke-width="2.5"/>
+                <line x1="6" y1="14" x2="42" y2="14" stroke="currentColor" stroke-width="1.5"/>
+                <!-- ブログ/お知らせ -->
+                <text x="10" y="12" font-size="4.5" fill="currentColor" opacity="0.5">お知らせ</text>
+                <line x1="10" y1="20" x2="34" y2="20" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                <line x1="10" y1="25" x2="30" y2="25" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+                <line x1="10" y1="30" x2="26" y2="30" stroke="currentColor" stroke-width="1" opacity="0.15"/>
+                <!-- 蜘蛛の巣イメージ（放置） -->
+                <path d="M30 18 Q38 22 36 30" stroke="#E53E3E" stroke-width="0.8" opacity="0.4" fill="none"/>
+                <path d="M34 16 Q40 24 36 32" stroke="#E53E3E" stroke-width="0.8" opacity="0.3" fill="none"/>
+                <!-- 最終更新 -->
+                <rect x="10" y="36" width="28" height="8" rx="2" fill="#FFF5F5" stroke="#E53E3E" stroke-width="1"/>
+                <text x="12" y="42" font-size="4" fill="#E53E3E">最終更新：1年以上前</text>
+              </svg>
+            </div>
+            <p class="pain__text">夏期講習・冬期講習の告知を<br>HPで発信できていない…</p>
+            <p class="pain__sub">WordPressの管理画面が難しくて<br>更新が完全に止まっている。</p>
+          </div>
+        </div>
+        <p class="pain__cta-text">一つでも当てはまる方は、ぜひ続きをお読みください。</p>
+      </div>
+    </section>
+
+    <!-- ========================================
+         セクション 3: その悩み、すべて解決します
+         ======================================== -->
+    <section class="solution" id="solution">
+      <div class="container">
+        <p class="section-label">SOLUTION</p>
+        <h2 class="section-title">その悩み、<span class="text-accent">スマ塾</span>がすべて解決します。<span class="section-title__underline"></span></h2>
+        <p class="section-subtitle">塾に必要なページ構成・コンテンツを熟知したプロが、保護者に「信頼される」HPを作ります。</p>
+        <div class="solution__grid">
+
+          <!-- 1. デザインが古い → モダンデザイン -->
+          <div class="solution__card">
+            <div class="solution__card-icon">
+              <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Before: 古い塾HP（スマホで崩れ） -->
+                <rect x="8" y="12" width="44" height="80" rx="6" stroke="#B85050" stroke-width="2.5"/>
+                <line x1="8" y1="24" x2="52" y2="24" stroke="#B85050" stroke-width="2"/>
+                <rect x="14" y="30" width="32" height="6" rx="2" fill="#B85050" opacity="0.15" transform="rotate(2 30 33)"/>
+                <rect x="14" y="42" width="24" height="14" rx="2" stroke="#B85050" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.4"/>
+                <text x="18" y="52" font-size="8" fill="#B85050" opacity="0.5">画像崩れ</text>
+                <line x1="14" y1="64" x2="42" y2="64" stroke="#B85050" stroke-width="1.5" opacity="0.3"/>
+                <line x1="14" y1="72" x2="36" y2="72" stroke="#B85050" stroke-width="1.5" opacity="0.2"/>
+                <text x="12" y="88" font-size="7" fill="#E53E3E" opacity="0.7">スマホで崩壊…</text>
+                <!-- 矢印 -->
+                <path d="M64 56h18" stroke="#FF6B35" stroke-width="3" stroke-linecap="round"/>
+                <path d="M78 48l8 8-8 8" stroke="#FF6B35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- After: モダン塾HP（PC+スマホ） -->
+                <rect x="96" y="8" width="72" height="50" rx="5" stroke="#2E8B57" stroke-width="2.5"/>
+                <rect x="96" y="8" width="72" height="14" rx="5" fill="#1B2A4A"/>
+                <text x="104" y="19" font-size="8" fill="#fff" font-weight="700">○○学習塾</text>
+                <!-- ナビ -->
+                <text x="100" y="32" font-size="5.5" fill="#FF6B35" font-weight="500">コース</text>
+                <text x="122" y="32" font-size="5.5" fill="#1B2A4A" opacity="0.6">料金</text>
+                <text x="138" y="32" font-size="5.5" fill="#1B2A4A" opacity="0.6">講師紹介</text>
+                <!-- コンテンツ -->
+                <rect x="100" y="38" width="24" height="14" rx="2" fill="#2E8B57" opacity="0.1"/>
+                <text x="104" y="48" font-size="5" fill="#2E8B57">合格実績</text>
+                <line x1="130" y1="40" x2="160" y2="40" stroke="#1B2A4A" stroke-width="1.5" opacity="0.4"/>
+                <line x1="130" y1="46" x2="155" y2="46" stroke="#1B2A4A" stroke-width="1" opacity="0.3"/>
+                <line x1="130" y1="52" x2="150" y2="52" stroke="#1B2A4A" stroke-width="1" opacity="0.2"/>
+                <!-- スマホ -->
+                <rect x="158" y="62" width="30" height="50" rx="5" stroke="#2E8B57" stroke-width="2"/>
+                <rect x="158" y="62" width="30" height="8" rx="5" fill="#1B2A4A"/>
+                <text x="162" y="69" font-size="5" fill="#fff">○○塾</text>
+                <line x1="162" y1="76" x2="184" y2="76" stroke="#2E8B57" stroke-width="1.5" opacity="0.5"/>
+                <line x1="162" y1="82" x2="180" y2="82" stroke="#2E8B57" stroke-width="1" opacity="0.3"/>
+                <line x1="162" y1="88" x2="176" y2="88" stroke="#2E8B57" stroke-width="1" opacity="0.2"/>
+                <circle cx="173" cy="107" r="2" fill="#2E8B57"/>
+              </svg>
+            </div>
+            <div class="solution__card-body">
+              <div class="solution__card-labels">
+                <span class="solution__label solution__label--before">Before</span>
+                <span class="solution__label solution__label--after">After</span>
+              </div>
+              <p class="solution__card-before">スマホで見ると崩れて、保護者が離脱</p>
+              <p class="solution__card-after">コース・料金・講師紹介まで揃った<strong>保護者が「信頼できる」と感じるデザイン。</strong>スマホ完全対応。</p>
+            </div>
+          </div>
+
+          <!-- 2. 制作費が高い → 買い切り5万円 -->
+          <div class="solution__card">
+            <div class="solution__card-icon">
+              <svg viewBox="0 0 280 168" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Before: 高額の請求書 -->
+                <rect x="8" y="8" width="80" height="92" rx="5" stroke="#B85050" stroke-width="2.5"/>
+                <text x="16" y="28" font-size="10" fill="#B85050" opacity="0.6">HP制作 見積書</text>
+                <line x1="14" y1="34" x2="82" y2="34" stroke="#B85050" stroke-width="1.5" opacity="0.3"/>
+                <text x="18" y="58" font-size="20" fill="#B85050" font-weight="700">¥50万</text>
+                <text x="16" y="76" font-size="9" fill="#B85050" opacity="0.6">+ 月額保守 ¥1万</text>
+                <line x1="10" y1="14" x2="84" y2="96" stroke="#E53E3E" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+                <!-- 矢印 -->
+                <path d="M102 52h22" stroke="#FF6B35" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M120 44l8 8-8 8" stroke="#FF6B35" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- After: お得な価格カード -->
+                <rect x="142" y="8" width="130" height="92" rx="6" stroke="#2E8B57" stroke-width="2.5"/>
+                <rect x="142" y="8" width="130" height="22" rx="6" fill="#2E8B57" opacity="0.08"/>
+                <text x="154" y="24" font-size="12" fill="#2E8B57" font-weight="500">スマ塾</text>
+                <line x1="148" y1="34" x2="266" y2="34" stroke="#2E8B57" stroke-width="1" opacity="0.3"/>
+                <text x="154" y="64" font-size="26" fill="#2E8B57" font-weight="700">¥5万〜</text>
+                <text x="154" y="86" font-size="13" fill="#2E8B57" font-weight="500">月額ゼロ・買い切り</text>
+                <!-- 星 -->
+                <path d="M260 14l2.5 5 5.5 1-4 4 1 5.5-5-2.5-5 2.5 1-5.5-4-4 5.5-1z" fill="#FF6B35" opacity="0.7"/>
+              </svg>
+            </div>
+            <div class="solution__card-body">
+              <div class="solution__card-labels">
+                <span class="solution__label solution__label--before">Before</span>
+                <span class="solution__label solution__label--after">After</span>
+              </div>
+              <p class="solution__card-before">HP制作に30〜50万円。塾の経営を圧迫</p>
+              <p class="solution__card-after"><strong>買い切り5万円〜、月額ゼロ。</strong>浮いた費用を教材や広告に回せます。</p>
+            </div>
+          </div>
+
+          <!-- 3. 更新できない → 管理画面で自分で更新 -->
+          <div class="solution__card">
+            <div class="solution__card-icon">
+              <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Before: 止まった合格実績ページ -->
+                <rect x="8" y="10" width="70" height="80" rx="4" stroke="#B85050" stroke-width="2.5"/>
+                <rect x="8" y="10" width="70" height="14" rx="4" fill="#B85050" opacity="0.06"/>
+                <text x="16" y="21" font-size="8" fill="#B85050" opacity="0.6">合格実績ページ</text>
+                <line x1="14" y1="30" x2="72" y2="30" stroke="#B85050" stroke-width="1.5" opacity="0.3"/>
+                <text x="16" y="42" font-size="7" fill="#B85050" opacity="0.5">○○高校 …2022年</text>
+                <text x="16" y="54" font-size="7" fill="#B85050" opacity="0.4">△△高校 …2021年</text>
+                <text x="16" y="66" font-size="7" fill="#B85050" opacity="0.3">□□高校 …2020年</text>
+                <rect x="16" y="74" width="50" height="12" rx="3" fill="#FFF5F5" stroke="#E53E3E" stroke-width="1.5"/>
+                <text x="22" y="83" font-size="7" fill="#E53E3E" font-weight="500">更新停止中…</text>
+                <!-- 矢印 -->
+                <path d="M88 50h18" stroke="#FF6B35" stroke-width="3" stroke-linecap="round"/>
+                <path d="M102 42l8 8-8 8" stroke="#FF6B35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- After: 最新の合格実績 -->
+                <rect x="118" y="6" width="74" height="56" rx="5" stroke="#2E8B57" stroke-width="2.5"/>
+                <rect x="118" y="6" width="74" height="14" rx="5" fill="#2E8B57" opacity="0.08"/>
+                <text x="126" y="17" font-size="8" fill="#2E8B57" font-weight="700">合格実績 2025</text>
+                <text x="126" y="32" font-size="7" fill="#2E8B57">○○高校 3名合格!</text>
+                <text x="126" y="44" font-size="7" fill="#2E8B57" opacity="0.8">△△高校 5名合格!</text>
+                <text x="126" y="56" font-size="7" fill="#2E8B57" opacity="0.6">□□高校 2名合格!</text>
+                <!-- AIチャット吹き出し -->
+                <rect x="118" y="70" width="74" height="36" rx="8" fill="#FF6B35" opacity="0.06" stroke="#FF6B35" stroke-width="1.5"/>
+                <circle cx="132" cy="88" r="8" fill="#FF6B35" opacity="0.15"/>
+                <text x="127" y="92" font-size="10" fill="#FF6B35" font-weight="700">AI</text>
+                <text x="144" y="84" font-size="7" fill="#FF6B35">「合格実績を</text>
+                <text x="144" y="96" font-size="7" fill="#FF6B35">追加して」→ 完了!</text>
+              </svg>
+            </div>
+            <div class="solution__card-body">
+              <div class="solution__card-labels">
+                <span class="solution__label solution__label--before">Before</span>
+                <span class="solution__label solution__label--after">After</span>
+              </div>
+              <p class="solution__card-before">合格実績・季節講習の告知を更新できない</p>
+              <p class="solution__card-after"><strong>管理画面から自分で即更新。</strong>テスト結果もブログも料金表も、思い立ったその日に無料で発信できます。</p>
+            </div>
+          </div>
+
+          <!-- 4. HPがない → 最短2週間で完成 -->
+          <div class="solution__card">
+            <div class="solution__card-icon">
+              <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Before: HPがない（チラシだけ） -->
+                <rect x="12" y="14" width="60" height="44" rx="4" stroke="#B85050" stroke-width="2.5"/>
+                <line x1="12" y1="26" x2="72" y2="26" stroke="#B85050" stroke-width="2"/>
+                <circle cx="20" cy="20" r="2.5" fill="#B85050" opacity="0.4"/>
+                <circle cx="28" cy="20" r="2.5" fill="#B85050" opacity="0.4"/>
+                <text x="24" y="44" font-size="16" fill="#B85050" opacity="0.3">404</text>
+                <!-- チラシ -->
+                <rect x="18" y="68" width="44" height="32" rx="3" stroke="#B85050" stroke-width="2" transform="rotate(-5 40 84)"/>
+                <text x="24" y="82" font-size="6" fill="#B85050" opacity="0.5">チラシ</text>
+                <text x="24" y="92" font-size="6" fill="#B85050" opacity="0.4">配布中…</text>
+                <!-- 矢印 -->
+                <path d="M82 56h18" stroke="#FF6B35" stroke-width="3" stroke-linecap="round"/>
+                <path d="M96 48l8 8-8 8" stroke="#FF6B35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- After: 完成した塾HP -->
+                <rect x="112" y="8" width="76" height="52" rx="5" stroke="#2E8B57" stroke-width="2.5"/>
+                <rect x="112" y="8" width="76" height="14" rx="5" fill="#1B2A4A"/>
+                <circle cx="120" cy="15" r="2.5" fill="#28c840"/>
+                <circle cx="128" cy="15" r="2.5" fill="#febc2e"/>
+                <text x="136" y="18" font-size="6" fill="#fff" opacity="0.7">○○学習塾</text>
+                <!-- HP内容 -->
+                <rect x="118" y="28" width="30" height="8" rx="2" fill="#1B2A4A" opacity="0.1"/>
+                <text x="120" y="34" font-size="5.5" fill="#1B2A4A" opacity="0.5">コース・料金</text>
+                <rect x="152" y="28" width="30" height="8" rx="2" fill="#2E8B57" opacity="0.1"/>
+                <text x="155" y="34" font-size="5.5" fill="#2E8B57" opacity="0.5">講師紹介</text>
+                <rect x="118" y="42" width="64" height="12" rx="3" fill="#FF6B35" opacity="0.1"/>
+                <text x="124" y="51" font-size="7" fill="#FF6B35" font-weight="500">無料体験 お申込み →</text>
+                <!-- カレンダー＋2週間 -->
+                <rect x="118" y="68" width="34" height="28" rx="4" stroke="#FF6B35" stroke-width="2"/>
+                <line x1="118" y1="78" x2="152" y2="78" stroke="#FF6B35" stroke-width="1.5"/>
+                <text x="122" y="76" font-size="6" fill="#FF6B35" opacity="0.6">納品</text>
+                <text x="122" y="92" font-size="12" fill="#FF6B35" font-weight="700">2週間</text>
+                <!-- チェックマーク -->
+                <path d="M162 76l6 6 12-14" stroke="#2E8B57" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <text x="160" y="98" font-size="7" fill="#2E8B57" font-weight="500">公開完了!</text>
+              </svg>
+            </div>
+            <div class="solution__card-body">
+              <div class="solution__card-labels">
+                <span class="solution__label solution__label--before">Before</span>
+                <span class="solution__label solution__label--after">After</span>
+              </div>
+              <p class="solution__card-before">HPがなく、口コミとチラシだけで集客</p>
+              <p class="solution__card-after">塾名・コース・写真を伝えるだけで<strong>最短2週間</strong>で完成。<strong>HPからの入塾問い合わせ</strong>が始まります。</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         セクション 3.5: 情報発信の鮮度が集客を変える
+         ======================================== -->
+    <section class="freshness" id="freshness">
+      <div class="container">
+        <div class="freshness__header">
+          <span class="freshness__label">スマ塾だからできること</span>
+          <h2 class="freshness__title">塾のHPは<br>「鮮度」が命。</h2>
+          <p class="freshness__lead">保護者が塾のHPで最も見ているのは、<strong>最新の情報が更新されているかどうか</strong>です。<br>スマ塾なら、<strong>専用の管理画面</strong>から塾長自身でかんたんに更新できます。</p>
+        </div>
+        <div class="freshness__inner">
+          <div class="freshness__visual">
+            <!-- ブログ/お知らせの更新イメージイラスト -->
+            <svg class="freshness__illustration" viewBox="0 0 400 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- メインブラウザ -->
+              <rect x="40" y="20" width="240" height="170" rx="8" fill="#fff" stroke="#E0E4E8" stroke-width="2"/>
+              <rect x="40" y="20" width="240" height="28" rx="8" fill="#F8F9FB"/>
+              <rect x="40" y="40" width="240" height="8" rx="0" fill="#F8F9FB"/>
+              <circle cx="56" cy="34" r="5" fill="#ff5f57"/>
+              <circle cx="70" cy="34" r="5" fill="#febc2e"/>
+              <circle cx="84" cy="34" r="5" fill="#28c840"/>
+              <!-- ブログ記事リスト -->
+              <rect x="56" y="60" width="100" height="10" rx="3" fill="#1B2A4A" opacity="0.8"/>
+              <rect x="56" y="78" width="200" height="50" rx="6" fill="#F8F9FB" stroke="#E0E4E8" stroke-width="1"/>
+              <rect x="64" y="86" width="60" height="6" rx="2" fill="#1B2A4A" opacity="0.6"/>
+              <rect x="64" y="96" width="170" height="4" rx="2" fill="#999" opacity="0.4"/>
+              <rect x="64" y="104" width="140" height="4" rx="2" fill="#999" opacity="0.3"/>
+              <circle cx="240" cy="96" r="8" fill="#2E8B57" opacity="0.15"/>
+              <text x="236" y="100" font-size="8" fill="#2E8B57" font-weight="700">NEW</text>
+              <rect x="56" y="136" width="200" height="42" rx="6" fill="#F8F9FB" stroke="#E0E4E8" stroke-width="1"/>
+              <rect x="64" y="144" width="80" height="6" rx="2" fill="#1B2A4A" opacity="0.5"/>
+              <rect x="64" y="154" width="170" height="4" rx="2" fill="#999" opacity="0.3"/>
+              <rect x="64" y="162" width="120" height="4" rx="2" fill="#999" opacity="0.2"/>
+              <!-- 「今日更新」吹き出し -->
+              <rect x="200" y="2" width="96" height="28" rx="14" fill="#FF6B35"/>
+              <text x="214" y="20" font-size="9" fill="#fff" font-weight="700">今日更新!</text>
+              <polygon points="240,30 248,30 244,38" fill="#FF6B35"/>
+              <!-- 成績アップのカード（右上） -->
+              <rect x="296" y="40" width="96" height="80" rx="8" fill="#fff" stroke="#2E8B57" stroke-width="2" stroke-dasharray="0"/>
+              <rect x="296" y="40" width="96" height="24" rx="8" fill="#2E8B57" opacity="0.1"/>
+              <rect x="296" y="56" width="96" height="8" rx="0" fill="#2E8B57" opacity="0.1"/>
+              <text x="312" y="56" font-size="8" fill="#2E8B57" font-weight="700">成績UP!</text>
+              <!-- グラフ（上昇線） -->
+              <polyline points="310,108 324,100 338,104 352,92 366,80 380,72" stroke="#FF6B35" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="380" cy="72" r="3" fill="#FF6B35"/>
+              <text x="308" y="76" font-size="7" fill="#1B2A4A" opacity="0.6">数学 45→78点</text>
+              <!-- お知らせカード（右下） -->
+              <rect x="296" y="138" width="96" height="60" rx="8" fill="#fff" stroke="#1B2A4A" stroke-width="1.5" opacity="0.9"/>
+              <rect x="304" y="148" width="36" height="10" rx="3" fill="#1B2A4A" opacity="0.7"/>
+              <text x="308" y="156" font-size="6" fill="#fff" font-weight="500">お知らせ</text>
+              <rect x="304" y="164" width="78" height="4" rx="2" fill="#999" opacity="0.4"/>
+              <rect x="304" y="172" width="60" height="4" rx="2" fill="#999" opacity="0.3"/>
+              <rect x="304" y="180" width="70" height="4" rx="2" fill="#999" opacity="0.3"/>
+              <!-- 下部：スマホ表示 -->
+              <rect x="100" y="210" width="72" height="110" rx="10" fill="#fff" stroke="#E0E4E8" stroke-width="2"/>
+              <rect x="106" y="224" width="60" height="6" rx="2" fill="#1B2A4A" opacity="0.6"/>
+              <rect x="106" y="236" width="56" height="28" rx="4" fill="#F8F9FB"/>
+              <rect x="110" y="240" width="30" height="4" rx="1" fill="#1B2A4A" opacity="0.4"/>
+              <rect x="110" y="248" width="46" height="3" rx="1" fill="#999" opacity="0.3"/>
+              <rect x="110" y="254" width="38" height="3" rx="1" fill="#999" opacity="0.2"/>
+              <rect x="106" y="270" width="56" height="20" rx="4" fill="#2E8B57" opacity="0.1"/>
+              <text x="112" y="284" font-size="6" fill="#2E8B57" font-weight="500">期末結果UP!</text>
+              <!-- 更新フロー矢印 -->
+              <path d="M200 240 L200 260 Q200 270 210 270 L260 270" stroke="#FF6B35" stroke-width="2" stroke-dasharray="4 3" fill="none" marker-end="url(#arrowhead)"/>
+              <defs>
+                <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                  <polygon points="0 0, 8 3, 0 6" fill="#FF6B35"/>
+                </marker>
+              </defs>
+              <!-- 管理画面から更新吹き出し -->
+              <rect x="264" y="250" width="120" height="44" rx="10" fill="#FF6B35" opacity="0.08" stroke="#FF6B35" stroke-width="1.5"/>
+              <text x="274" y="268" font-size="7.5" fill="#FF6B35" font-weight="500">管理画面から</text>
+              <text x="274" y="280" font-size="7.5" fill="#FF6B35" font-weight="500">自分で更新！無料</text>
+            </svg>
+          </div>
+          <div class="freshness__content">
+            <div class="freshness__cards">
+              <div class="freshness__card">
+                <div class="freshness__card-icon">
+                  <svg viewBox="0 0 32 32" fill="none"><path d="M6 8h20M6 16h14M6 24h18" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round"/></svg>
+                </div>
+                <h4 class="freshness__card-title">ブログ・お知らせ更新</h4>
+                <p class="freshness__card-text">季節講習や入塾キャンペーンの告知を管理画面からすぐに投稿。追加費用なし・自分のタイミングで更新できるから、週1発信が続けられます。</p>
+              </div>
+              <div class="freshness__card">
+                <div class="freshness__card-icon">
+                  <svg viewBox="0 0 32 32" fill="none"><polyline points="4,24 10,16 16,20 22,10 28,6" stroke="#FF6B35" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="28" cy="6" r="2.5" fill="#FF6B35"/></svg>
+                </div>
+                <h4 class="freshness__card-title">合格実績・テスト結果</h4>
+                <p class="freshness__card-text">「○○高校合格！」「数学45→78点！」リアルな成果を即発信。保護者の入塾意欲を高める最強のコンテンツです。</p>
+              </div>
+              <div class="freshness__card">
+                <div class="freshness__card-icon">
+                  <svg viewBox="0 0 32 32" fill="none"><rect x="4" y="6" width="24" height="20" rx="3" stroke="#FF6B35" stroke-width="2"/><path d="M4 12h24M12 12v14M20 12v14" stroke="#FF6B35" stroke-width="1.5"/></svg>
+                </div>
+                <h4 class="freshness__card-title">料金表・コース情報</h4>
+                <p class="freshness__card-text">新コース追加や料金改定もかんたん操作で即反映。制作会社に依頼する手間も追加費用も不要です。</p>
+              </div>
+              <div class="freshness__card freshness__card--accent">
+                <div class="freshness__card-icon">
+                  <svg viewBox="0 0 32 32" fill="none"><rect x="4" y="4" width="24" height="24" rx="4" stroke="#FF6B35" stroke-width="2"/><path d="M10 16l4 4 8-8" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h4 class="freshness__card-title">すべて無料・追加費用ゼロ</h4>
+                <p class="freshness__card-text">管理画面から<strong>いつでも・何度でも・無料で</strong>更新可能。専用プロンプト集でブログ作成もスピードアップ。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="freshness__warning">
+          <svg viewBox="0 0 20 20" fill="none"><path d="M10 2l8.66 15H1.34L10 2z" stroke="#E53E3E" stroke-width="1.5" fill="#FFF5F5"/><text x="8.5" y="14" font-size="10" fill="#E53E3E" font-weight="700">!</text></svg>
+          <p>実は多くの塾で、HPの最終更新が<strong>1年以上前</strong>のまま放置されています。保護者はそれを見て「この塾、大丈夫かな…」と不安になっています。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         セクション 4: 選ばれる3つの理由
+         ======================================== -->
+    <section class="reasons" id="reasons">
+      <div class="container">
+        <p class="section-label">WHY SMARTJUKU</p>
+        <h2 class="section-title">スマ塾が選ばれる<span class="text-accent">3つの理由</span><span class="section-title__underline"></span></h2>
+        <div class="reasons__grid">
+          <div class="reasons__card">
+            <div class="reasons__num">01</div>
+            <div class="reasons__icon">
+              <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="28" cy="28" r="24" stroke="#FF6B35" stroke-width="2.5"/><path d="M20 30l4-12h8l4 12" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="19" y1="30" x2="37" y2="30" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round"/><line x1="22" y1="35" x2="34" y2="35" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/><line x1="28" y1="30" x2="28" y2="18" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h3 class="reasons__card-title">圧倒的コストパフォーマンス</h3>
+            <p class="reasons__card-text">制作費5万円〜、月額費用ゼロ。他社の制作費30〜50万＋月額保守1万円と比較して圧倒的に安い。買い切りなので、HPを持ち続ける限りずっと追加費用なし。</p>
+          </div>
+          <div class="reasons__card">
+            <div class="reasons__num">02</div>
+            <div class="reasons__icon">
+              <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="10" width="40" height="30" rx="4" stroke="#FF6B35" stroke-width="2.5"/><line x1="8" y1="18" x2="48" y2="18" stroke="#FF6B35" stroke-width="2"/><rect x="14" y="24" width="12" height="10" rx="2" stroke="#FF6B35" stroke-width="2"/><line x1="32" y1="24" x2="42" y2="24" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/><line x1="32" y1="30" x2="40" y2="30" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/><line x1="32" y1="34" x2="38" y2="34" stroke="#FF6B35" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <h3 class="reasons__card-title">塾専門のプロが作るデザイン</h3>
+            <p class="reasons__card-text">学習塾に特化したテンプレートを3種類用意。複数ページの本格HP型と、1ページ完結のLP型から選択可能。保護者が「信頼できる」と感じるデザインを追求しています。</p>
+          </div>
+          <div class="reasons__card">
+            <div class="reasons__num">03</div>
+            <div class="reasons__icon">
+              <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="28" cy="24" r="12" stroke="#FF6B35" stroke-width="2.5"/><path d="M24 24l3 3 6-7" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 38c0-5.5 4.5-10 10-10s10 4.5 10 10" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round"/><circle cx="42" cy="18" r="6" stroke="#FF6B35" stroke-width="2"/><text x="39" y="22" font-size="10" fill="#FF6B35" font-weight="700">AI</text></svg>
+            </div>
+            <h3 class="reasons__card-title">管理画面で自分で更新できる</h3>
+            <p class="reasons__card-text">ChatGPTやClaudeに「この部分をこう変えて」と伝えるだけ。更新のたびに制作会社に依頼する必要なし。よく使うプロンプト例付きマニュアルに加え、<strong>ブログ記事を自動生成できる専用プロンプト集</strong>も提供。忙しい日々でもHPの情報発信が止まりません。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         セクション 5: 代表プロフィール・実績
+         ======================================== -->
+    <section class="profile" id="profile">
+      <div class="container">
+        <p class="section-label">PROFILE</p>
+        <h2 class="section-title">300校以上の塾を支援してきたプロが、<br>あなたの塾のHPを作ります<span class="section-title__underline"></span></h2>
+        <div class="profile__inner">
+          <div class="profile__photo">
+            <img src="images/profile-oda.jpg" alt="小田 - 合同会社SyUNi 代表" width="400" height="400" loading="lazy">
+          </div>
+          <div class="profile__body">
+            <!-- ★差替え：代表名 -->
+            <h3 class="profile__name">小田 一勲<span class="profile__role">合同会社SyUNi 代表</span></h3>
+            <div class="profile__stats">
+              <div class="profile__stat">
+                <span class="profile__stat-num">10</span>
+                <span class="profile__stat-unit">年間</span>
+                <span class="profile__stat-label">の塾支援実績</span>
+              </div>
+              <div class="profile__stat">
+                <span class="profile__stat-num">300</span>
+                <span class="profile__stat-unit">校以上</span>
+                <span class="profile__stat-label">の塾をサポート</span>
+              </div>
+            </div>
+            <ul class="profile__career">
+              <li>株式会社すららネットの学習塾部門にて全国の個人塾・中小塾へICT教材の導入を支援</li>
+              <li>10年間で300校以上の学習塾の開校・運営サポートを実施</li>
+              <li>AIを活用した学習塾の運営・集客支援など、教育×テクノロジー事業を展開</li>
+              <li>学習塾向け情報発信YouTubeチャンネル「Edu-NEWS」を運営（登録者1,000名以上）
+                <a href="https://www.youtube.com/channel/UCYS6zWMZwBGCISTYcUFjqZg" target="_blank" rel="noopener noreferrer" class="profile__yt-link">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="5" fill="#FF0000"/><path d="M19.6 8.2a2 2 0 0 0-1.4-1.4C16.9 6.5 12 6.5 12 6.5s-4.9 0-6.2.3A2 2 0 0 0 4.4 8.2C4.1 9.5 4.1 12 4.1 12s0 2.5.3 3.8a2 2 0 0 0 1.4 1.4c1.3.3 6.2.3 6.2.3s4.9 0 6.2-.3a2 2 0 0 0 1.4-1.4c.3-1.3.3-3.8.3-3.8s0-2.5-.3-3.8z" fill="white"/><path d="M10.2 14.5l4.1-2.5-4.1-2.5v5z" fill="#FF0000"/></svg>
+                  Edu-NEWS チャンネルを見る
+                </a>
+              </li>
+            </ul>
+            <!-- ★差替え：代表経歴テキスト -->
+            <blockquote class="profile__story">
+              <p>全国の塾を訪問する中で、「HPが10年前のまま」「WordPressが触れない」「制作費が高すぎる」という声を何度も聞いてきました。</p>
+              <p>素晴らしい指導をしているのに、HPのせいで生徒が集まらない。そんな塾をたくさん見てきました。</p>
+              <p>「テンプレート型で安く、月額ゼロで、自分で更新できるHP」があれば——。そう考えて立ち上げたのがスマ塾です。</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         セクション 6: 制作実績・デモサイト
+         ======================================== -->
+    <section class="demo" id="demo">
+      <div class="container">
+        <p class="section-label">WORKS</p>
+        <h2 class="section-title">実際に制作した塾HPをご覧ください<span class="section-title__underline"></span></h2>
+        <div class="demo__showcase">
+          <!-- ★差替え：デモサイトスクリーンショット -->
+          <div class="demo__mockup">
+            <div class="mockup-browser mockup-browser--lg">
+              <div class="mockup-browser__bar">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="mockup-browser__screen">
+                <img src="images/demo-screenshot.png" alt="制作した塾HPのデモサイト（PC表示）" width="1280" height="800" loading="lazy">
+              </div>
+            </div>
+            <div class="mockup-phone mockup-phone--float">
+              <div class="mockup-phone__screen">
+                <img src="images/demo-sp.png" alt="制作した塾HPのデモサイト（スマホ表示）" width="375" height="812" loading="lazy">
+              </div>
+            </div>
+          </div>
+          <!-- ★差替え：デモサイトURL -->
+          <a href="#" class="btn btn--outline" target="_blank" rel="noopener noreferrer">デモサイトを見る →</a>
+        </div>
+
+        <h3 class="demo__template-title">3種類のテンプレートから選べます</h3>
+        <div class="demo__templates">
+          <div class="demo__template-card">
+            <img src="images/template-01.jpg" alt="プロ テンプレート — 複数ページ構成の本格HP" width="1280" height="800" loading="lazy" class="demo__template-img">
+            <h4>プロ</h4>
+            <p>複数ページ構成。コース紹介・講師紹介・教室案内・ブログなど、本格的なHP。情報量が多い塾に最適。</p>
+            <div class="demo__template-tags">
+              <span class="demo__tag">複数ページ</span>
+              <span class="demo__tag">コース別</span>
+              <span class="demo__tag">講師紹介</span>
+            </div>
+          </div>
+          <div class="demo__template-card">
+            <img src="images/template-02.jpg" alt="ベーシックA テンプレート — LP型・問い合わせ特化" width="1280" height="800" loading="lazy" class="demo__template-img">
+            <h4>ベーシックA</h4>
+            <p>1ページ完結のLP型。問い合わせ・体験申込に特化したシンプル構成。すぐに集客を始めたい塾に最適。</p>
+            <div class="demo__template-tags">
+              <span class="demo__tag">1ページ完結</span>
+              <span class="demo__tag">問い合わせ特化</span>
+            </div>
+          </div>
+          <div class="demo__template-card">
+            <img src="images/template-03.jpg" alt="ベーシックB テンプレート — LP型・ビジュアル重視" width="1280" height="800" loading="lazy" class="demo__template-img">
+            <h4>ベーシックB</h4>
+            <p>1ページ完結のLP型。ベーシックAとは異なるレイアウトで、写真やビジュアルを活かしたデザイン。</p>
+            <div class="demo__template-tags">
+              <span class="demo__tag">1ページ完結</span>
+              <span class="demo__tag">ビジュアル重視</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 中間CTA 1 -->
+    <section class="mid-cta">
+      <div class="container">
+        <span class="mid-cta__badge">先着10塾限定</span>
+        <p class="mid-cta__text">まずはお気軽にご相談ください</p>
+        <p class="mid-cta__sub">無料相談は約30分。オンラインで完結します。</p>
+        <a href="#contact" class="btn btn--accent btn--lg">まずは無料で相談する <span class="btn__arrow">&rarr;</span></a>
+      </div>
+    </section>
+
+    <!-- ========================================
+         セクション 7: 他社との比較表
+         ======================================== -->
+    <section class="compare" id="compare">
+      <div class="container">
+        <p class="section-label">COMPARISON</p>
+        <h2 class="section-title">他社サービスとの比較<span class="section-title__underline"></span></h2>
+        <div class="compare__table-wrapper">
+          <table class="compare__table">
+            <thead>
+              <tr>
+                <th>項目</th>
+                <th>一般的なHP制作会社</th>
+                <th>サブスク型CMS</th>
+                <th class="compare__highlight">スマ塾</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>制作費</td>
+                <td>30〜50万円</td>
+                <td>0円</td>
+                <td class="compare__highlight"><strong>5万円〜</strong></td>
+              </tr>
+              <tr>
+                <td>月額費用</td>
+                <td>1〜3万円</td>
+                <td>5,000〜1万円</td>
+                <td class="compare__highlight"><strong>0円</strong></td>
+              </tr>
+              <tr class="compare__emphasis">
+                <td>3年間の総コスト</td>
+                <td>66〜86万円</td>
+                <td>18〜36万円</td>
+                <td class="compare__highlight"><strong>5〜8万円</strong></td>
+              </tr>
+              <tr>
+                <td>デザイン自由度</td>
+                <td><span class="compare__icon compare__icon--good">◎</span> 完全オリジナル</td>
+                <td><span class="compare__icon compare__icon--fair">△</span> テンプレート固定</td>
+                <td class="compare__highlight"><span class="compare__icon compare__icon--ok">○</span> 塾専用テンプレート3種<br>＋配色カスタム</td>
+              </tr>
+              <tr>
+                <td>更新の自由度</td>
+                <td><span class="compare__icon compare__icon--bad">×</span> 制作会社に依頼</td>
+                <td><span class="compare__icon compare__icon--ok">○</span> 管理画面あり</td>
+                <td class="compare__highlight"><strong><span class="compare__icon compare__icon--good">◎</span> 管理画面で自分で即時更新</strong></td>
+              </tr>
+              <tr>
+                <td>塾業界の知見</td>
+                <td><span class="compare__icon compare__icon--bad">×</span> 一般的</td>
+                <td><span class="compare__icon compare__icon--fair">△</span> 塾向けもあり</td>
+                <td class="compare__highlight"><strong><span class="compare__icon compare__icon--good">◎</span> 300校以上の支援実績</strong></td>
+              </tr>
+              <tr>
+                <td>解約リスク</td>
+                <td>サイト喪失の場合あり</td>
+                <td>解約で非公開</td>
+                <td class="compare__highlight"><span class="badge badge--accent">買い切りで永久に自分のもの</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         セクション 8: サービス内容・流れ
+         ======================================== -->
+    <section class="steps" id="steps">
+      <div class="container">
+        <p class="section-label">FLOW</p>
+        <h2 class="section-title">お申し込みから納品まで、<br>かんたん<span class="text-accent">3ステップ</span><span class="section-title__underline"></span></h2>
+        <div class="steps__grid">
+          <div class="steps__card">
+            <div class="steps__num">STEP 1</div>
+            <div class="steps__icon">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="24" r="10" stroke="#FF6B35" stroke-width="2.5"/><path d="M18 48c0-7.7 6.3-14 14-14s14 6.3 14 14" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round"/><path d="M42 20h10M47 15v10" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round"/></svg>
+            </div>
+            <h3 class="steps__card-title">無料相談・ヒアリング</h3>
+            <p class="steps__card-text">お問い合わせフォームからご連絡。オンラインで塾の情報をヒアリングし、3種類のテンプレート（プロ・ベーシックA・ベーシックB）からお好みの構成を選択。</p>
+          </div>
+          <div class="steps__arrow">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="steps__card">
+            <div class="steps__num">STEP 2</div>
+            <div class="steps__icon">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="12" y="8" width="40" height="48" rx="4" stroke="#FF6B35" stroke-width="2.5"/><line x1="20" y1="20" x2="44" y2="20" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/><line x1="20" y1="28" x2="40" y2="28" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/><line x1="20" y1="36" x2="36" y2="36" stroke="#FF6B35" stroke-width="2" stroke-linecap="round"/><path d="M36 44l4 4 8-10" stroke="#2E8B57" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 class="steps__card-title">HP制作・確認</h3>
+            <p class="steps__card-text">ヒアリング内容をもとにHPを制作（最短2週間）。完成イメージをお見せし、修正点があれば調整します。</p>
+          </div>
+          <div class="steps__arrow">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="steps__card">
+            <div class="steps__num">STEP 3</div>
+            <div class="steps__icon">
+              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 36V16a4 4 0 014-4h24a4 4 0 014 4v32a4 4 0 01-4 4H20a4 4 0 01-4-4v-4" stroke="#FF6B35" stroke-width="2.5"/><path d="M8 36l8 8 8-8" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="16" y1="44" x2="16" y2="28" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round"/><path d="M26 24l4 4 8-10" stroke="#2E8B57" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 class="steps__card-title">納品・公開</h3>
+            <p class="steps__card-text">完成したHP一式をお渡し。サーバーセットアップガイド＋更新マニュアル付き。既存サーバーがある場合はそのまま公開設定をサポート。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         セクション 9: 料金プラン
+         ======================================== -->
+    <section class="pricing" id="pricing">
+      <div class="container">
+        <p class="section-label">PRICING</p>
+        <h2 class="section-title">料金プラン<span class="section-title__underline"></span></h2>
+        <div class="pricing__card">
+          <div class="pricing__header">
+            <!-- ★差替え：キャンペーン残数 -->
+            <span class="badge badge--red">先着10塾限定キャンペーン</span>
+            <div class="pricing__prices">
+              <span class="pricing__original">通常価格 <s>80,000円</s>（税別）</span>
+              <span class="pricing__campaign">50,000<span class="pricing__yen">円</span><span class="pricing__tax">（税別）</span></span>
+            </div>
+            <p class="pricing__note">※ 月額費用ゼロ。買い切り価格です。</p>
+          </div>
+          <div class="pricing__body">
+            <h3 class="pricing__includes-title">含まれるもの</h3>
+            <ul class="pricing__list">
+              <li>塾専用HP（6ページ構成：トップ/コース・料金/講師紹介/教室案内/お問い合わせ/ブログ）</li>
+              <li>レスポンシブ対応（PC・タブレット・スマホ）</li>
+              <li>SEO基本設定（meta・OGP・構造化データ）</li>
+              <li>お問い合わせフォーム設置</li>
+              <li>Google Maps埋め込み</li>
+              <li>ブログ機能（自分で記事追加可能）</li>
+              <li>AIセルフ更新マニュアル</li>
+              <li>ブログ記事AI生成プロンプト集（成績報告・季節講習告知・教室紹介など）</li>
+              <li>サーバーセットアップガイド</li>
+              <li>配色カスタマイズ（塾のブランドカラーに対応）</li>
+            </ul>
+            <p class="pricing__server-note">※ サーバー代は別途。Netlify無料プラン等で月額0円運用が可能です。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 中間CTA 2 -->
+    <section class="mid-cta mid-cta--dark">
+      <div class="container">
+        <span class="mid-cta__badge">キャンペーン中</span>
+        <p class="mid-cta__text">今だけの限定価格をお見逃しなく</p>
+        <p class="mid-cta__sub" style="color: rgba(255,255,255,0.7);">制作費5万円〜 / 月額費用ゼロ / 最短2週間で納品</p>
+        <a href="#contact" class="btn btn--accent btn--lg">今すぐ無料相談する <span class="btn__arrow">&rarr;</span></a>
+      </div>
+    </section>
+
+    <!-- ========================================
+         セクション 10: よくある質問（FAQ）
+         ======================================== -->
+    <section class="faq" id="faq">
+      <div class="container">
+        <p class="section-label">FAQ</p>
+        <h2 class="section-title">よくある質問<span class="section-title__underline"></span></h2>
+        <div class="faq__list">
+          <div class="faq__item">
+            <button class="faq__question" type="button" aria-expanded="false">
+              <span>ホームページの知識がなくても大丈夫ですか？</span>
+              <svg class="faq__chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq__answer">
+              <p>はい、大丈夫です。必要な情報（塾名、コース、料金、写真など）をいただくだけで、制作はすべてこちらで行います。納品後の更新も、AIを使えば専門知識なしで修正できます。</p>
+            </div>
+          </div>
+          <div class="faq__item">
+            <button class="faq__question" type="button" aria-expanded="false">
+              <span>納品後に内容を修正したい場合はどうすればいいですか？</span>
+              <svg class="faq__chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq__answer">
+              <p>ブログ・合格実績・料金表などは、専用の管理画面からいつでも無料で更新できます。さらにChatGPTやClaude等のAIツールと組み合わせれば、文章作成もスピードアップ。よく使うプロンプト例付きのマニュアルもお渡しします。</p>
+            </div>
+          </div>
+          <div class="faq__item">
+            <button class="faq__question" type="button" aria-expanded="false">
+              <span>サーバーはどうすればいいですか？</span>
+              <svg class="faq__chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq__answer">
+              <p>既にお持ちのサーバーがあればそのまま使えます。サーバーがない場合は、Netlifyなどの無料サービスで十分です。セットアップ手順はマニュアルでご案内します。</p>
+            </div>
+          </div>
+          <div class="faq__item">
+            <button class="faq__question" type="button" aria-expanded="false">
+              <span>今使っているURLやドメインは変わりますか？</span>
+              <svg class="faq__chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq__answer">
+              <p>現在お使いのドメイン（例：○○juku.com）をそのまま引き継ぐことができます。DNS設定の変更作業はこちらでサポートしますので、お客様側での作業は不要です。新規でドメインを取得する場合も、ご希望のドメインを一緒に選ぶことができます。</p>
+            </div>
+          </div>
+          <div class="faq__item">
+            <button class="faq__question" type="button" aria-expanded="false">
+              <span>制作期間はどのくらいですか？</span>
+              <svg class="faq__chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq__answer">
+              <p>素材（テキスト・写真）をいただいてから最短2週間で納品可能です。確認・修正のやりとりを含めると、通常3〜4週間程度です。</p>
+            </div>
+          </div>
+          <div class="faq__item">
+            <button class="faq__question" type="button" aria-expanded="false">
+              <span>デザインのカスタマイズはどこまでできますか？</span>
+              <svg class="faq__chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq__answer">
+              <p>3種類のテンプレート（プロ／ベーシックA／ベーシックB）から構成を選んでいただき、配色を塾のブランドカラーに合わせて調整します。「プロ」は複数ページの本格HP、「ベーシック」は1ページ完結のLP型です。</p>
+            </div>
+          </div>
+          <div class="faq__item">
+            <button class="faq__question" type="button" aria-expanded="false">
+              <span>ブログの更新は簡単にできますか？</span>
+              <svg class="faq__chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq__answer">
+              <p>はい。管理画面からかんたんに追加できます。手順はマニュアルに記載しています。また、ChatGPT等を使えばブログの下書きも効率よく作成できます。専用プロンプト集もお渡しします。</p>
+            </div>
+          </div>
+          <div class="faq__item">
+            <button class="faq__question" type="button" aria-expanded="false">
+              <span>月額費用は本当にゼロですか？</span>
+              <svg class="faq__chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="faq__answer">
+              <p>はい、スマ塾への月額費用は一切かかりません。制作費の買い切りです。サーバー代も無料プランを利用すれば0円で運用できます。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         セクション 11: お問い合わせフォーム
+         ======================================== -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <p class="section-label section-label--light">CONTACT</p>
+        <h2 class="section-title section-title--light">無料相談・お問い合わせ<span class="section-title__underline"></span></h2>
+        <p class="contact__subtitle">まずはお気軽にご相談ください。塾のHP制作について、無料でご相談いただけます。</p>
+        <div class="contact__form-wrapper">
+          <!-- ★差替え：フォーム送信先URL -->
+          <form class="contact__form" id="contactForm" action="" method="POST" novalidate>
+            <div class="form-group">
+              <label for="juku-name" class="form-label">塾名 <span class="form-required">必須</span></label>
+              <input type="text" id="juku-name" name="juku-name" class="form-input" required placeholder="例：○○学習塾">
+            </div>
+            <div class="form-group">
+              <label for="name" class="form-label">お名前 <span class="form-required">必須</span></label>
+              <input type="text" id="name" name="name" class="form-input" required placeholder="例：山田 太郎">
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">メールアドレス <span class="form-required">必須</span></label>
+              <input type="email" id="email" name="email" class="form-input" required placeholder="例：info@example.com">
+            </div>
+            <div class="form-group">
+              <label for="tel" class="form-label">電話番号</label>
+              <input type="tel" id="tel" name="tel" class="form-input" placeholder="例：090-1234-5678">
+            </div>
+            <div class="form-group">
+              <label for="url" class="form-label">現在のHP URL <span class="form-optional">お持ちの場合</span></label>
+              <input type="url" id="url" name="url" class="form-input" placeholder="例：https://www.example.com">
+            </div>
+            <div class="form-group">
+              <label for="message" class="form-label">ご相談内容</label>
+              <textarea id="message" name="message" class="form-textarea" rows="5" placeholder="例：現在HPを持っていません。テンプレートを見て検討したいです。"></textarea>
+            </div>
+            <div class="form-group form-group--checkbox">
+              <label class="form-checkbox">
+                <input type="checkbox" id="privacy" name="privacy" required>
+                <span class="form-checkbox__mark"></span>
+                <span class="form-checkbox__text"><a href="#" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>に同意する</span>
+              </label>
+            </div>
+            <button type="submit" class="btn btn--accent btn--lg btn--full" id="submitBtn">無料で相談する</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================
+       フッター
+       ======================================== -->
+  <footer class="footer">
+    <div class="footer__inner container">
+      <div class="footer__logo">
+        <img src="images/logo.png" alt="スマ塾" class="footer__logo-img">
+        <p class="footer__tagline">学習塾専用ホームページ制作サービス</p>
+      </div>
+      <div class="footer__info">
+        <p>運営：合同会社SyUNi</p>
+        <a href="#" class="footer__link">プライバシーポリシー</a>
+      </div>
+      <p class="footer__copyright">&copy; 2026 スマ塾 by SyUNi LLC.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
