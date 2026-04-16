@@ -1402,26 +1402,28 @@ table {
 
 .demo__admin-banner__label {
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: #7B9FC4;
-  margin-bottom: 8px;
+  color: #fff;
+  opacity: 0.75;
+  margin-bottom: 10px;
   text-transform: uppercase;
 }
 
 .demo__admin-banner__title {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 800;
   color: #fff;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   line-height: 1.3;
 }
 
 .demo__admin-banner__desc {
-  font-size: 0.9375rem;
-  color: #A0B8D0;
-  line-height: 1.7;
+  font-size: 1.0625rem;
+  color: #fff;
+  opacity: 0.85;
+  line-height: 1.8;
 }
 
 .demo__admin-banner__btn {
