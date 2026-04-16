@@ -1895,6 +1895,24 @@ thead .compare__highlight {
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
 }
 
+.contact__thanks {
+  text-align: center;
+  padding: 24px 0;
+}
+
+.contact__thanks h3 {
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+}
+
+.contact__thanks p {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  line-height: 1.8;
+}
+
 .form-group {
   margin-bottom: 20px;
 }

@@ -153,20 +153,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!isValid) {
       e.preventDefault();
-      // 最初のエラーにスクロール
       const firstError = form.querySelector('.is-error');
       if (firstError) {
         firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
         firstError.focus();
       }
+      return;
     }
-    // action が空の場合は送信を止める（プレースホルダー状態）
-    if (!form.action || form.action === window.location.href) {
-      e.preventDefault();
-      if (isValid) {
-        alert('お問い合わせありがとうございます。\n（※現在テスト表示です。フォーム送信先は未設定です。）');
+
+    // Formspree へ AJAX送信
+    e.preventDefault();
+    const submitBtn = form.querySelector('[type="submit"]');
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '送信中…'; }
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' }
+    })
+    .then(res => {
+      if (res.ok) {
+        // サンクスメッセージ表示
+        form.innerHTML = [
+          '<div class="contact__thanks">',
+            '<svg viewBox="0 0 56 56" fill="none" style="width:56px;height:56px;margin-bottom:16px">',
+              '<circle cx="28" cy="28" r="28" fill="#FF6B35" opacity="0.12"/>',
+              '<path d="M16 28l8 8 16-16" stroke="#FF6B35" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>',
+            '</svg>',
+            '<h3>お問い合わせありがとうございます！</h3>',
+            '<p>内容を確認のうえ、<strong>1〜2営業日以内</strong>にご連絡いたします。<br>しばらくお待ちください。</p>',
+          '</div>'
+        ].join('');
+      } else {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '無料相談を申し込む'; }
+        alert('送信に失敗しました。時間をおいて再度お試しください。');
       }
-    }
+    })
+    .catch(() => {
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '無料相談を申し込む'; }
+      alert('通信エラーが発生しました。時間をおいて再度お試しください。');
+    });
   });
 
 });
