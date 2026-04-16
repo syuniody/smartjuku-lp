@@ -173,6 +173,9 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(res => {
       if (res.ok) {
+        // Meta Pixel: Lead イベント（コンバージョン計測）
+        if (typeof fbq !== 'undefined') { fbq('track', 'Lead'); }
+
         // サンクスメッセージ表示
         form.innerHTML = [
           '<div class="contact__thanks">',
