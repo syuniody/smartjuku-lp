@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=6">
 
   <!-- 構造化データ -->
   <script type="application/ld+json">
@@ -420,68 +420,34 @@
         </div>
         <div class="freshness__inner">
           <div class="freshness__visual">
-            <!-- ブログ/お知らせの更新イメージイラスト -->
-            <svg class="freshness__illustration" viewBox="0 0 400 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- メインブラウザ -->
-              <rect x="40" y="20" width="240" height="170" rx="8" fill="#fff" stroke="#E0E4E8" stroke-width="2"/>
-              <rect x="40" y="20" width="240" height="28" rx="8" fill="#F8F9FB"/>
-              <rect x="40" y="40" width="240" height="8" rx="0" fill="#F8F9FB"/>
-              <circle cx="56" cy="34" r="5" fill="#ff5f57"/>
-              <circle cx="70" cy="34" r="5" fill="#febc2e"/>
-              <circle cx="84" cy="34" r="5" fill="#28c840"/>
-              <!-- ブログ記事リスト -->
-              <rect x="56" y="60" width="100" height="10" rx="3" fill="#1B2A4A" opacity="0.8"/>
-              <rect x="56" y="78" width="200" height="50" rx="6" fill="#F8F9FB" stroke="#E0E4E8" stroke-width="1"/>
-              <rect x="64" y="86" width="60" height="6" rx="2" fill="#1B2A4A" opacity="0.6"/>
-              <rect x="64" y="96" width="170" height="4" rx="2" fill="#999" opacity="0.4"/>
-              <rect x="64" y="104" width="140" height="4" rx="2" fill="#999" opacity="0.3"/>
-              <circle cx="240" cy="96" r="8" fill="#2E8B57" opacity="0.15"/>
-              <text x="236" y="100" font-size="8" fill="#2E8B57" font-weight="700">NEW</text>
-              <rect x="56" y="136" width="200" height="42" rx="6" fill="#F8F9FB" stroke="#E0E4E8" stroke-width="1"/>
-              <rect x="64" y="144" width="80" height="6" rx="2" fill="#1B2A4A" opacity="0.5"/>
-              <rect x="64" y="154" width="170" height="4" rx="2" fill="#999" opacity="0.3"/>
-              <rect x="64" y="162" width="120" height="4" rx="2" fill="#999" opacity="0.2"/>
-              <!-- 「今日更新」吹き出し -->
-              <rect x="200" y="2" width="96" height="28" rx="14" fill="#FF6B35"/>
-              <text x="214" y="20" font-size="9" fill="#fff" font-weight="700">今日更新!</text>
-              <polygon points="240,30 248,30 244,38" fill="#FF6B35"/>
-              <!-- 成績アップのカード（右上） -->
-              <rect x="296" y="40" width="96" height="80" rx="8" fill="#fff" stroke="#2E8B57" stroke-width="2" stroke-dasharray="0"/>
-              <rect x="296" y="40" width="96" height="24" rx="8" fill="#2E8B57" opacity="0.1"/>
-              <rect x="296" y="56" width="96" height="8" rx="0" fill="#2E8B57" opacity="0.1"/>
-              <text x="312" y="56" font-size="8" fill="#2E8B57" font-weight="700">成績UP!</text>
-              <!-- グラフ（上昇線） -->
-              <polyline points="310,108 324,100 338,104 352,92 366,80 380,72" stroke="#FF6B35" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="380" cy="72" r="3" fill="#FF6B35"/>
-              <text x="308" y="76" font-size="7" fill="#1B2A4A" opacity="0.6">数学 45→78点</text>
-              <!-- お知らせカード（右下） -->
-              <rect x="296" y="138" width="96" height="60" rx="8" fill="#fff" stroke="#1B2A4A" stroke-width="1.5" opacity="0.9"/>
-              <rect x="304" y="148" width="36" height="10" rx="3" fill="#1B2A4A" opacity="0.7"/>
-              <text x="308" y="156" font-size="6" fill="#fff" font-weight="500">お知らせ</text>
-              <rect x="304" y="164" width="78" height="4" rx="2" fill="#999" opacity="0.4"/>
-              <rect x="304" y="172" width="60" height="4" rx="2" fill="#999" opacity="0.3"/>
-              <rect x="304" y="180" width="70" height="4" rx="2" fill="#999" opacity="0.3"/>
-              <!-- 下部：スマホ表示 -->
-              <rect x="100" y="210" width="72" height="110" rx="10" fill="#fff" stroke="#E0E4E8" stroke-width="2"/>
-              <rect x="106" y="224" width="60" height="6" rx="2" fill="#1B2A4A" opacity="0.6"/>
-              <rect x="106" y="236" width="56" height="28" rx="4" fill="#F8F9FB"/>
-              <rect x="110" y="240" width="30" height="4" rx="1" fill="#1B2A4A" opacity="0.4"/>
-              <rect x="110" y="248" width="46" height="3" rx="1" fill="#999" opacity="0.3"/>
-              <rect x="110" y="254" width="38" height="3" rx="1" fill="#999" opacity="0.2"/>
-              <rect x="106" y="270" width="56" height="20" rx="4" fill="#2E8B57" opacity="0.1"/>
-              <text x="112" y="284" font-size="6" fill="#2E8B57" font-weight="500">期末結果UP!</text>
-              <!-- 更新フロー矢印 -->
-              <path d="M200 240 L200 260 Q200 270 210 270 L260 270" stroke="#FF6B35" stroke-width="2" stroke-dasharray="4 3" fill="none" marker-end="url(#arrowhead)"/>
-              <defs>
-                <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-                  <polygon points="0 0, 8 3, 0 6" fill="#FF6B35"/>
-                </marker>
-              </defs>
-              <!-- 管理画面から更新吹き出し -->
-              <rect x="264" y="250" width="120" height="44" rx="10" fill="#FF6B35" opacity="0.08" stroke="#FF6B35" stroke-width="1.5"/>
-              <text x="274" y="268" font-size="7.5" fill="#FF6B35" font-weight="500">管理画面から</text>
-              <text x="274" y="280" font-size="7.5" fill="#FF6B35" font-weight="500">自分で更新！無料</text>
-            </svg>
+            <div class="admin-carousel">
+              <div class="admin-carousel__track" id="adminTrack">
+                <div class="admin-carousel__slide">
+                  <img src="images/admin/admin-blog.jpg" alt="ブログ記事管理画面" loading="lazy">
+                  <div class="admin-carousel__caption">📄 ブログ記事管理</div>
+                </div>
+                <div class="admin-carousel__slide">
+                  <img src="images/admin/admin-ryokin.jpg" alt="料金表管理画面" loading="lazy">
+                  <div class="admin-carousel__caption">💰 料金表管理</div>
+                </div>
+                <div class="admin-carousel__slide">
+                  <img src="images/admin/admin-gokaku.jpg" alt="合格実績管理画面" loading="lazy">
+                  <div class="admin-carousel__caption">🏆 合格実績管理</div>
+                </div>
+                <div class="admin-carousel__slide">
+                  <img src="images/admin/admin-seiseki.jpg" alt="成績アップ事例管理画面" loading="lazy">
+                  <div class="admin-carousel__caption">📈 成績アップ事例管理</div>
+                </div>
+              </div>
+              <button class="admin-carousel__btn admin-carousel__btn--prev" id="adminPrev" aria-label="前へ">&#8249;</button>
+              <button class="admin-carousel__btn admin-carousel__btn--next" id="adminNext" aria-label="次へ">&#8250;</button>
+              <div class="admin-carousel__dots" id="adminDots">
+                <button class="admin-carousel__dot is-active" data-index="0"></button>
+                <button class="admin-carousel__dot" data-index="1"></button>
+                <button class="admin-carousel__dot" data-index="2"></button>
+                <button class="admin-carousel__dot" data-index="3"></button>
+              </div>
+            </div>
           </div>
           <div class="freshness__content">
             <div class="freshness__cards">

@@ -170,3 +170,44 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
+/* =========================================
+   Admin Carousel
+   ========================================= */
+(function () {
+  const track = document.getElementById('adminTrack');
+  if (!track) return;
+
+  const dots = document.querySelectorAll('.admin-carousel__dot');
+  const total = track.children.length;
+  let current = 0;
+  let timer;
+
+  function goTo(idx) {
+    current = (idx + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function startAuto() {
+    timer = setInterval(next, 3500);
+  }
+  function resetAuto() {
+    clearInterval(timer);
+    startAuto();
+  }
+
+  document.getElementById('adminNext').addEventListener('click', function () { next(); resetAuto(); });
+  document.getElementById('adminPrev').addEventListener('click', function () { prev(); resetAuto(); });
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function () {
+      goTo(parseInt(this.dataset.index));
+      resetAuto();
+    });
+  });
+
+  startAuto();
+})();

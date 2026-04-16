@@ -868,6 +868,98 @@ table {
   height: auto;
 }
 
+/* Admin Screenshot Carousel */
+.admin-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+  background: #0F1C33;
+}
+
+.admin-carousel__track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.admin-carousel__slide {
+  min-width: 100%;
+  position: relative;
+}
+
+.admin-carousel__slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.admin-carousel__caption {
+  background: rgba(15, 28, 51, 0.9);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 10px 16px;
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+.admin-carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  color: #1B2A4A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+  z-index: 2;
+  margin-top: -20px; /* caption分を補正 */
+}
+
+.admin-carousel__btn:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.08);
+  margin-top: -20px;
+}
+
+.admin-carousel__btn--prev { left: 10px; }
+.admin-carousel__btn--next { right: 10px; }
+
+.admin-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 0;
+  background: rgba(15, 28, 51, 0.9);
+}
+
+.admin-carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.35);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.admin-carousel__dot.is-active {
+  background: #FF6B35;
+  transform: scale(1.3);
+}
+
 /* 2×2 カードグリッド */
 .freshness__cards {
   display: grid;
