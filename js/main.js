@@ -36,6 +36,28 @@ document.addEventListener('DOMContentLoaded', () => {
   onScroll();
 
   /* =========================================
+     2.5 モバイル固定CTAの表示制御
+     （ヒーローを通過したら表示、フォームに到達したら隠す）
+     ========================================= */
+  const stickyCta = document.querySelector('.sticky-cta');
+  const heroEl = document.getElementById('hero');
+  const contactEl = document.getElementById('contact');
+  if (stickyCta && heroEl) {
+    const updateSticky = () => {
+      const scrollY = window.scrollY;
+      const passedHero = scrollY > (heroEl.offsetTop + heroEl.offsetHeight - 200);
+      const inContact = contactEl && scrollY + window.innerHeight > contactEl.offsetTop + 100;
+      if (passedHero && !inContact) {
+        stickyCta.classList.add('is-visible');
+      } else {
+        stickyCta.classList.remove('is-visible');
+      }
+    };
+    window.addEventListener('scroll', updateSticky, { passive: true });
+    updateSticky();
+  }
+
+  /* =========================================
      3. FAQアコーディオン
      ========================================= */
   document.querySelectorAll('.faq__question').forEach(btn => {
