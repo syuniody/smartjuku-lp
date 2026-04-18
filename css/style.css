@@ -988,6 +988,18 @@ section { padding: clamp(72px, 10vw, 128px) 0; }
 .compare__icon--ok   { color: var(--ink-600); }
 .compare__icon--fair { color: var(--warning); }
 .compare__icon--bad  { color: var(--danger); }
+.compare__campaign-tag {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 2px 9px;
+  border-radius: var(--r-xs);
+  margin-bottom: 5px;
+  vertical-align: middle;
+}
 
 .badge { display: inline-block; padding: 4px 10px; font-size: 0.75rem; font-weight: 700; border-radius: var(--r-xs); }
 .badge--accent { background: var(--accent); color: #fff; }
