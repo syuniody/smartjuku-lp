@@ -269,11 +269,11 @@ main { padding-top: var(--header-h); }
 .hero__title-accent { color: var(--accent); font-style: normal; }
 
 .hero__subtitle {
-  font-size: clamp(0.9375rem, 1.4vw, 1.0625rem);
-  line-height: 2;
-  color: var(--ink-600);
+  font-size: clamp(1.0625rem, 2.5vw, 1.25rem);
+  line-height: 1.85;
+  color: var(--ink-800);
   margin-bottom: 40px;
-  max-width: 30em;
+  max-width: 26em;
 }
 
 .hero__ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 36px; }
