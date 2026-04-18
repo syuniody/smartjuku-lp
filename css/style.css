@@ -245,12 +245,11 @@ main { padding-top: var(--header-h); }
   align-items: center;
   gap: 10px;
   margin-bottom: 28px;
-  font-family: var(--ff-mono);
-  font-size: 11px;
+  font-family: "Zen Kaku Gothic New", var(--ff-mono);
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.14em;
   color: var(--ink-400);
-  text-transform: uppercase;
 }
 .hero__eyebrow-dot {
   width: 6px; height: 6px; border-radius: 50%;
