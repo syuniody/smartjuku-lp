@@ -36,28 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
   onScroll();
 
   /* =========================================
-     2.5 モバイル固定CTAの表示制御
-     （ヒーローを通過したら表示、フォームに到達したら隠す）
-     ========================================= */
-  const stickyCta = document.querySelector('.sticky-cta');
-  const heroEl = document.getElementById('hero');
-  const contactEl = document.getElementById('contact');
-  if (stickyCta && heroEl) {
-    const updateSticky = () => {
-      const scrollY = window.scrollY;
-      const passedHero = scrollY > (heroEl.offsetTop + heroEl.offsetHeight - 200);
-      const inContact = contactEl && scrollY + window.innerHeight > contactEl.offsetTop + 100;
-      if (passedHero && !inContact) {
-        stickyCta.classList.add('is-visible');
-      } else {
-        stickyCta.classList.remove('is-visible');
-      }
-    };
-    window.addEventListener('scroll', updateSticky, { passive: true });
-    updateSticky();
-  }
-
-  /* =========================================
      3. FAQアコーディオン
      ========================================= */
   document.querySelectorAll('.faq__question').forEach(btn => {
@@ -185,6 +163,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Formspree へ AJAX送信
     e.preventDefault();
+
+    // マイクロCV: フォーム送信開始（Metaの学習促進用シグナル）
+    if (typeof fbq !== 'undefined') {
+      fbq('track', 'InitiateCheckout', {
+        content_name: 'スマ塾_無料相談',
+        value: 50000,
+        currency: 'JPY'
+      });
+    }
+    if (typeof gtag === 'function') {
+      gtag('event', 'form_submit_attempt', {
+        form_id: 'contactForm',
+        form_name: 'スマ塾_無料相談'
+      });
+    }
+
     const submitBtn = form.querySelector('[type="submit"]');
     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '送信中…'; }
 
@@ -196,7 +190,24 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(res => {
       if (res.ok) {
         // Meta Pixel: Lead イベント（コンバージョン計測）
-        if (typeof fbq !== 'undefined') { fbq('track', 'Lead'); }
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'Lead', {
+            content_name: 'スマ塾_無料相談',
+            content_category: 'lead_generation',
+            value: 50000,
+            currency: 'JPY'
+          });
+        }
+
+        // GA4: generate_lead イベント（コンバージョン計測）
+        if (typeof gtag === 'function') {
+          gtag('event', 'generate_lead', {
+            currency: 'JPY',
+            value: 50000,
+            form_id: 'contactForm',
+            form_name: 'スマ塾_無料相談'
+          });
+        }
 
         // サンクスメッセージ表示
         form.innerHTML = [
