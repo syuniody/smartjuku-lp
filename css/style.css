@@ -629,6 +629,12 @@ section { padding: clamp(72px, 10vw, 128px) 0; }
 @media (max-width: 860px) {
   .freshness__inner { grid-template-columns: 1fr; }
   .freshness__cards { grid-template-columns: 1fr; }
+  /* カルーセル：横paddingを0にして次スライドのはみ出しを防止 */
+  .admin-carousel { padding-left: 0; padding-right: 0; }
+  .admin-carousel__btn { width: 34px; height: 34px; font-size: 1rem; }
+  .admin-carousel__btn--prev { left: 8px; }
+  .admin-carousel__btn--next { right: 8px; }
+  .admin-carousel__caption { font-size: 0.75rem; padding: 6px 10px; left: 10px; bottom: 10px; }
 }
 
 /* ==========================================================================
