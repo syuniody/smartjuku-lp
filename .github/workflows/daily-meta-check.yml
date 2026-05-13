@@ -1,0 +1,51 @@
+name: Daily Meta Ad Health Check
+
+# 毎日 17:00 JST = 08:00 UTC に実行
+# 手動実行: Actions タブ → "Daily Meta Ad Health Check" → Run workflow
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+    inputs:
+      force_notify:
+        description: '異常がなくても通知する（テスト用）'
+        type: boolean
+        default: false
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write  # reports/daily/ コミット用
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Meta Ad health check
+        env:
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          META_AD_ACCOUNT_ID: ${{ secrets.META_AD_ACCOUNT_ID }}
+          META_CAMPAIGN_ID: ${{ secrets.META_CAMPAIGN_ID }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          APPS_SCRIPT_WEBHOOK_URL: ${{ secrets.APPS_SCRIPT_WEBHOOK_URL }}
+          ALERT_FORCE: ${{ inputs.force_notify && '1' || '' }}
+        run: python scripts/meta_ad_health_check.py
+
+      - name: Commit daily alert (if any)
+        run: |
+          if [ -d reports/daily ] && [ -n "$(ls -A reports/daily 2>/dev/null)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add reports/daily/
+            if ! git diff --staged --quiet; then
+              git commit -m "chore: 日次アラート記録 ($(date -u +%Y-%m-%d))"
+              git push
+            fi
+          fi
