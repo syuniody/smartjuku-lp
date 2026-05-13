@@ -182,6 +182,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitBtn = form.querySelector('[type="submit"]');
     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '送信中…'; }
 
+    // スプシ連携（Apps Script Web App）— Formspreeと並列に投げ、失敗は無視
+    // 受信側エンドポイント: スマ塾_顧客通知 doPost
+    const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzIxy8KJmUw7NpAAl3Mdo1H5PLQBYAdcfYbj0GxZ-KjEnLUTSx3yl89pCOsbO8SWQ5G/exec';
+    try {
+      const formData = new FormData(form);
+      const payload = {};
+      formData.forEach((v, k) => { payload[k] = v; });
+      // CORS preflightを避けるためtext/plainで送信（doPost側で JSON.parse する）
+      fetch(SHEET_WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      }).catch(() => { /* スプシ書き込み失敗してもUXには影響させない */ });
+    } catch (e) { /* 何もしない */ }
+
     fetch(form.action, {
       method: 'POST',
       body: new FormData(form),
