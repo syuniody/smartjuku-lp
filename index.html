@@ -332,6 +332,16 @@ section{padding:110px 0}
 .plan ul li.na::before{border:none;content:"—";top:0;left:2px;width:auto;height:auto;transform:none}
 .plan .btn{width:100%}
 .price-foot{text-align:center;margin-top:32px;font-size:.82rem;color:var(--ink-soft)}
+.price-grid--single{grid-template-columns:1fr;max-width:640px;margin:0 auto}
+.price-sub{margin-top:88px}
+.price-sub-head{margin-bottom:40px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.price-sub-head .p-tag{position:static;display:inline-block;margin-bottom:18px;background:var(--ink-soft)}
+.price-sub-title{font-family:var(--serif);font-weight:700;font-size:clamp(1.25rem,2.6vw,1.55rem);line-height:1.7;letter-spacing:.03em}
+.addon-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.plan.addon{background:var(--paper);padding:38px 34px;border:1px solid var(--line);box-shadow:none}
+.plan.addon .p-tag{background:var(--ink-soft)}
+.plan.addon .p-price .n{font-size:clamp(1.7rem,2.8vw,2.1rem);color:var(--ink)}
+.plan.addon .quote{font-size:.82rem;color:var(--ink-soft);line-height:1.7;margin:22px 0 22px;padding:12px 16px;border-left:2px solid var(--blue);background:#fff}
 
 /* ---------- flow ---------- */
 .flow-list{counter-reset:fl;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
@@ -431,6 +441,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
   .works-grid{grid-template-columns:1fr}
   .prob-list{grid-template-columns:1fr}
   .price-grid{grid-template-columns:1fr}
+  .addon-grid{grid-template-columns:1fr}
   .flow-list{grid-template-columns:1fr 1fr}
   .person-grid{grid-template-columns:1fr}
   .person-photo{max-width:400px}
@@ -481,19 +492,19 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="hero-lead">個人塾・地域密着塾のための、Webまわり支援サービス</p>
+          <p class="hero-lead">個人塾・地域密着塾専門</p>
           <h1>
-            塾のWebまわり、<br>
-            まるごと<span class="mk" style="display:inline-block">スマートに。</span>
+            5万円〜、月額0円。<br>
+            塾が自分で<span class="mk" style="display:inline-block">育てられる</span>ホームページ。
           </h1>
           <p class="hero-sub">
-            ホームページを作って終わり、にはしません。<br>
-            <b>Googleマップで見つかり、LINEでつながり、AIで発信が続く。</b><br>
-            塾長の手が回らないWebまわりを、塾専門でお手伝いします。
+            管理画面から、料金表・講習案内・ブログ・合格実績をいつでも更新。<br>
+            スマホ対応・問い合わせフォーム付きで、最短2週間で公開します。<br>
+            発信やGoogleマップまで任せたい場合だけ、月額サポートを追加できます。
           </p>
           <div class="hero-ctas">
-            <a class="btn" href="#contact">無料で制作相談する</a>
-            <a class="btn btn-ghost" href="#works">制作イメージを見る</a>
+            <a class="btn" href="#contact">今のHPを無料診断してもらう</a>
+            <a class="btn btn-ghost" href="#contact">HPがない方の制作相談</a>
           </div>
         </div>
         <div class="hero-visual" aria-hidden="true">
@@ -503,10 +514,10 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
         </div>
       </div>
       <ul class="hero-stats">
-        <li><div class="num">300<i>校以上</i></div><div class="lbl">の学習塾を支援</div></li>
-        <li><div class="num">5<i>万円〜</i></div><div class="lbl">HP制作は買い切り</div></li>
-        <li><div class="num">0<i>円</i></div><div class="lbl">月額費用（買い切り時）</div></li>
-        <li><div class="num">2<i>週間〜</i></div><div class="lbl">最短納品</div></li>
+        <li><div class="num">5<i>万円〜</i></div><div class="lbl">買い切り</div></li>
+        <li><div class="num">0<i>円</i></div><div class="lbl">月額保守費</div></li>
+        <li><div class="num">管理画面</div><div class="lbl">付き（自分で更新）</div></li>
+        <li><div class="num">2<i>週間〜</i></div><div class="lbl">最短で公開</div></li>
       </ul>
     </div>
   </section>
@@ -702,42 +713,66 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
       <div class="sec-head rv">
         <h2 class="sec-title">料金</h2>
       </div>
-      <div class="price-grid">
-        <div class="plan rv">
-          <span class="p-tag">まずはHPだけ</span>
-          <h3>買い切りプラン</h3>
-          <span class="p-en">一度きりのお支払い・月額なし</span>
+      <div class="price-grid price-grid--single">
+        <div class="plan reco rv">
+          <span class="p-tag">基本プラン｜買い切り</span>
+          <h3>スマ塾HP制作</h3>
+          <span class="p-en">買い切り・月額保守費0円・最短2週間</span>
           <div class="p-price"><span class="n">5<span style="font-size:.45em">万円</span></span><span class="u">〜（税込）</span></div>
-          <p class="p-note">既存HPリニューアル 5万円〜 ／ 新規立ち上げ 10万円。月額費用は0円です。</p>
+          <p class="p-note">既存HPリニューアル 5万円〜／新規立ち上げ 10万円。買い切りで、月額保守費は0円です。</p>
           <ul>
             <li>塾専門の型によるHP制作（最短2週間）</li>
             <li>スマホ対応・問い合わせフォーム設置</li>
-            <li>お知らせ・料金表・合格実績を自分で更新できる仕組み</li>
+            <li>管理画面から塾自身で更新（お知らせ・ブログ・料金表・合格実績・成績事例・FAQ・画像）</li>
             <li>AI検索時代に対応した基本設計</li>
+            <li>更新マニュアル付き</li>
             <li>すぐ使えるAI指示文（プロンプト）集プレゼント</li>
-            <li class="na">Googleマップ・公式LINEの運用サポート</li>
-            <li class="na">毎月の発信ネタ・原稿づくり</li>
-          </ul>
-          <a class="btn btn-ghost" href="#contact">このプランで相談する</a>
-        </div>
-        <div class="plan reco rv rv-d1">
-          <span class="p-tag">おすすめ｜Web担当まるごと</span>
-          <h3>スマ塾パートナー</h3>
-          <span class="p-en">月額制・HP＋マップ＋LINE＋AIをまとめて</span>
-          <div class="p-price"><span class="n">19,800<span style="font-size:.4em">円</span></span><span class="u">/ 月（税込・年間契約）</span></div>
-          <p class="p-note">初期HP制作費0円。HP・Googleマップ・LINE・AIをひとつの窓口でまとめて支援します。</p>
-          <ul>
-            <li>HP制作費0円 ＋ 月1回程度の更新代行</li>
-            <li>Googleマップ：プロフィール整備・口コミ導線・投稿サポート</li>
-            <li>公式LINE：開設・友だち追加導線・配信文テンプレート</li>
-            <li>保護者向け発信ネタ 月4本（ブログ・LINE・お知らせに使える短文原稿）</li>
-            <li>講習告知・合格実績の見せ方改善</li>
-            <li>AI活用相談：連絡文面・教材づくり・面談準備の時短</li>
           </ul>
           <a class="btn" href="#contact">このプランで相談する</a>
         </div>
       </div>
-      <p class="price-foot rv">※どちらのプランでも、制作したホームページは解約後も塾の資産として残せます。／表示価格は2026年7月時点のものです。</p>
+      <p class="price-foot rv">※制作したホームページは資産として残せます。／表示価格は2026年7月時点のものです。／無料ホスティングの標準範囲が前提です。独自ドメインの更新料・有料外部サービス・無料枠超過分の費用は別途となります。</p>
+
+      <div class="price-sub">
+        <div class="sec-head rv price-sub-head">
+          <span class="p-tag p-tag--sub">必要な方だけ追加</span>
+          <h3 class="price-sub-title">自分で更新できます。<br>それでも時間がない月々の発信は、任せることもできます。</h3>
+        </div>
+        <div class="addon-grid">
+          <div class="plan addon rv">
+            <span class="p-tag p-tag--sub">追加1</span>
+            <h3>集客原稿サポート</h3>
+            <span class="p-en">塾が管理画面から自分で投稿するプラン</span>
+            <div class="p-price"><span class="n">9,800<span style="font-size:.4em">円</span></span><span class="u">/ 月（税込）</span></div>
+            <p class="quote">投稿する時間はある。でも、何を書けばよいか考える時間がない塾へ。</p>
+            <ul>
+              <li>月1本の地域・学校別ブログ原稿</li>
+              <li>Googleビジネスプロフィール投稿文 月2本</li>
+              <li>FAQ回答案 月2問</li>
+              <li>講習・募集告知の短文原稿 月1本</li>
+              <li>月1回のAI検索・HP簡易チェック</li>
+            </ul>
+            <a class="btn btn-ghost" href="#contact">このプランで相談する</a>
+          </div>
+          <div class="plan addon rv rv-d1">
+            <span class="p-tag p-tag--sub">追加2</span>
+            <h3>地域集客運用</h3>
+            <span class="p-en">スマ塾が反映まで行うプラン</span>
+            <div class="p-price"><span class="n">19,800<span style="font-size:.4em">円</span></span><span class="u">/ 月（税込）</span></div>
+            <p class="quote">写真と教室の出来事を送るだけ。HPとGoogleマップの更新はスマ塾が行います。</p>
+            <ul>
+              <li>集客原稿サポートの全内容</li>
+              <li>HPへの月1回まとめ更新</li>
+              <li>Googleビジネスプロフィール 月2投稿</li>
+              <li>NAP整合確認・口コミ返信案 月5件</li>
+              <li>1枚レポート（Search Console・GA4・GBP）</li>
+              <li>AI検索での表示確認（月間作業上限90分）</li>
+            </ul>
+            <a class="btn btn-ghost" href="#contact">このプランで相談する</a>
+          </div>
+        </div>
+        <p class="price-foot rv">※月額サポートは任意です。維持のために必須ではありません。／表示価格は2026年7月時点のものです。</p>
+      </div>
     </div>
   </section>
 
