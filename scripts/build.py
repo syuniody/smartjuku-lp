@@ -67,7 +67,7 @@ SECTIONS = [
     },
 ]
 
-# トップページ（index.html）の「読み物」セクションに載せる記事の本数
+# トップページ（index.html）の「お役立ち情報」セクションに載せる記事の本数
 READING_LIMIT = 4
 READING_START = "<!-- READING:START -->"
 READING_END = "<!-- READING:END -->"
@@ -345,19 +345,19 @@ def render_index(section: dict, articles: list[dict]) -> str:
 
 
 def update_reading(all_sections: list[tuple[dict, list[dict]]]) -> str:
-    """トップページの「読み物」セクションの中身を差し替える。
+    """トップページの「お役立ち情報」セクションの中身を差し替える。
 
     READING:START 〜 READING:END の間だけを書き換えるので、
     セクションの見出しやリード文は index.html 側で自由に編集できる。
     """
     index = ROOT / "index.html"
     if not index.exists():
-        return "index.html が見つかりません（読み物セクションはスキップ）"
+        return "index.html が見つかりません（お役立ち情報セクションはスキップ）"
 
     src = read(index)
     n_start, n_end = src.count(READING_START), src.count(READING_END)
     if n_start == 0 or n_end == 0:
-        return "index.html に READING のマーカーがありません（読み物セクションはスキップ）"
+        return "index.html に READING のマーカーがありません（お役立ち情報セクションはスキップ）"
     if n_start != 1 or n_end != 1:
         # マーカー文字列が説明コメント等にも書かれていると、置換範囲がずれて壊れる
         return (
@@ -397,7 +397,7 @@ def update_reading(all_sections: list[tuple[dict, list[dict]]]) -> str:
     )
     if new != src:
         index.write_text(new, encoding="utf-8")
-    return f"更新: index.html の読み物セクション（{len(merged)} 本）"
+    return f"更新: index.html のお役立ち情報セクション（{len(merged)} 本）"
 
 
 def render_sitemap(all_sections: list[tuple[dict, list[dict]]]) -> str:
