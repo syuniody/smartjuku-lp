@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  スマ塾 記事テンプレート
+  使い方：このファイルをコピーして /guide/ /report/ /case/ /news/ 配下に置き、
+         「★」の付いた箇所を書き換える。ファイル名は英小文字とハイフン（例: juku-hp-cost.html）
+  ビルド：記事を追加・更新したら `python3 scripts/build.py` を実行
+         → sitemap.xml と各セクションの一覧ページが自動更新される
+  ============================================================
+-->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ★タイトル：検索で使われる言葉を前に。全角32字前後 -->
+<title>★記事タイトル｜スマ塾</title>
+<!-- ★説明：結論を含む2文。全角120字前後 -->
+<meta name="description" content="★この記事の結論を含む説明文。">
+<meta name="robots" content="index, follow">
+
+<!-- ★公開URL（絶対パス） -->
+<link rel="canonical" href="https://smart-juku.syuni.jp/guide/★slug.html">
+
+<!-- ★カテゴリ：guide / report / case / news のいずれか（build.pyが一覧生成に使用） -->
+<meta name="sj:category" content="guide">
+<!-- ★日付：YYYY-MM-DD -->
+<meta property="article:published_time" content="★2026-08-01">
+<meta property="article:modified_time" content="★2026-08-01">
+
+<!-- OGP -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="スマ塾｜学習塾専門のWeb支援">
+<meta property="og:title" content="★記事タイトル">
+<meta property="og:description" content="★この記事の結論を含む説明文。">
+<meta property="og:url" content="https://smart-juku.syuni.jp/guide/★slug.html">
+<meta property="og:image" content="https://smart-juku.syuni.jp/assets/ogp.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Shippori+Mincho:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<!-- Meta Pixel -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2147777948929240');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2147777948929240&ev=PageView&noscript=1"/></noscript>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JLH0DEFEX9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JLH0DEFEX9');
+</script>
+
+<!-- 構造化データ：Article -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "★記事タイトル",
+  "description": "★この記事の結論を含む説明文。",
+  "datePublished": "★2026-08-01",
+  "dateModified": "★2026-08-01",
+  "inLanguage": "ja",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://smart-juku.syuni.jp/guide/★slug.html" },
+  "image": "https://smart-juku.syuni.jp/assets/ogp.png",
+  "author": {
+    "@type": "Person",
+    "name": "小田 一勲",
+    "jobTitle": "合同会社SyUNi 代表",
+    "url": "https://smart-juku.syuni.jp/#person"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "スマ塾（合同会社SyUNi）",
+    "url": "https://smart-juku.syuni.jp/",
+    "logo": { "@type": "ImageObject", "url": "https://smart-juku.syuni.jp/assets/ogp.png" }
+  }
+}
+</script>
+
+<!-- 構造化データ：パンくず -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://smart-juku.syuni.jp/" },
+    { "@type": "ListItem", "position": 2, "name": "★塾HPの基礎知識", "item": "https://smart-juku.syuni.jp/guide/" },
+    { "@type": "ListItem", "position": 3, "name": "★記事タイトル" }
+  ]
+}
+</script>
+
+<!--
+  構造化データ：FAQPage（★FAQを載せる記事だけ有効化）
+  ※本文のQ&Aと文言を完全一致させること（不一致はペナルティ対象）
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "★質問文",
+      "acceptedAnswer": { "@type": "Answer", "text": "★回答文（結論ファースト）" }
+    }
+  ]
+}
+</script>
+-->
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-in">
+    <a class="site-logo" href="/"><span class="dot"></span><span>スマ塾<small>学習塾専門のWeb支援</small></span></a>
+    <nav class="site-nav">
+      <a href="/case/">制作事例</a>
+      <a href="/guide/">塾HPの基礎知識</a>
+      <a href="/report/">調査レポート</a>
+      <a href="/news/">教育ニュース</a>
+    </nav>
+    <a class="header-cta" href="/#contact">無料でHP診断を受ける</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <nav class="breadcrumb" aria-label="パンくず">
+      <ol>
+        <li><a href="/">ホーム</a></li>
+        <li><a href="/guide/">★塾HPの基礎知識</a></li>
+        <li>★記事タイトル</li>
+      </ol>
+    </nav>
+
+    <article>
+      <header class="article-head">
+        <div class="post-meta">
+          <span class="post-cat">★塾HPの基礎知識</span>
+          <time datetime="★2026-08-01">★2026年8月1日</time>
+        </div>
+        <h1 class="article-title">★記事タイトル（検索される言葉で。question形も可）</h1>
+        <p class="article-lede">★リード文。この記事で何がわかるかを2〜3文で。読者（塾長）の状況に触れてから結論の予告を置く。</p>
+      </header>
+
+      <div class="article-body">
+
+        <!-- ▼ 本文ここから。見出しは「質問形」、直後に .answer で結論を置く ▼ -->
+
+        <h2>★塾のホームページ制作にいくらかかる？</h2>
+        <div class="answer">
+          <p>★結論を1〜2文で断言する。数値があれば必ず入れる。</p>
+          <p>★補足があれば1文。（この2段落目は任意・グレー表示になる）</p>
+        </div>
+        <p>★理由や背景を説明する段落。1段落は3〜4文まで。</p>
+
+        <h3>★小見出し（詳細の切り分け）</h3>
+        <p>★説明。</p>
+
+        <ul>
+          <li>★箇条書きは「数値」「条件」を1行1項目で</li>
+          <li>★AIに引用されやすいよう、文を完結させる</li>
+        </ul>
+
+        <!-- ▼ 数値データの表（引用されやすい形） ▼ -->
+        <div class="data-table">
+          <table>
+            <caption>★表タイトル（例：制作方法別の費用と公開までの期間）</caption>
+            <thead>
+              <tr><th>★項目</th><th>★費用</th><th>★期間</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>★自作</th><td class="num">★0円〜</td><td>★1〜3ヶ月</td></tr>
+              <tr><th>★制作会社</th><td class="num">★30〜100万円</td><td>★1〜3ヶ月</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">★表の出典・注記（調査日・対象数など）</p>
+
+        <!-- ▼ 調査記事のみ：調査概要（対象・期間・方法・主体を明記＝AI検索の信頼要件） ▼
+        <div class="survey-meta">
+          <h2>この調査について</h2>
+          <dl>
+            <dt>調査対象</dt><dd>★例：全国の学習塾◯◯件のホームページ</dd>
+            <dt>調査期間</dt><dd>★例：2026年7月1日〜7月31日</dd>
+            <dt>調査方法</dt><dd>★例：各サイトのHTMLを取得し、指定項目の有無を自動判定</dd>
+            <dt>調査主体</dt><dd>スマ塾（合同会社SyUNi）</dd>
+            <dt>留意事項</dt><dd>★例：判定は自動処理のため一部に誤差を含みます</dd>
+          </dl>
+        </div>
+        ▲ ここまで調査記事用 ▲ -->
+
+        <div class="note-box">
+          ★補足や注意点はこの枠に。本文の流れを止めずに added context を渡せる。
+        </div>
+
+        <!-- ▼ 引用可の明記（AI・メディアに使ってもらうため） ▼ -->
+        <div class="citation">
+          <strong>この記事の数値は自由に引用いただけます。</strong>引用の際は、出典として本ページのURLを明記してください。
+          <span class="cite-example">出典：スマ塾「★記事タイトル」https://smart-juku.syuni.jp/guide/★slug.html</span>
+        </div>
+
+        <!-- ▲ 本文ここまで ▲ -->
+
+        <div class="article-cta">
+          <h2>塾のホームページ、今のままで大丈夫か診断します</h2>
+          <p>スマホ表示・問い合わせ導線・情報の鮮度を、塾専門の視点で無料チェックします。</p>
+          <a class="btn" href="/#contact">無料でHP診断を受ける</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 関連記事（手動で2〜3本） -->
+    <aside class="related">
+      <h2>あわせて読みたい</h2>
+      <a href="★/guide/xxx.html">
+        <span class="r-cat">★塾HPの基礎知識</span>
+        <span class="r-title">★関連記事のタイトル</span>
+      </a>
+    </aside>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="site-logo" href="/"><span class="dot"></span><span>スマ塾<small style="color:rgba(247,244,237,.55)">学習塾専門のWeb支援</small></span></a>
+        <p>個人塾・地域密着塾専門のWeb支援サービス<br>運営：<a href="https://syuni.jp/" target="_blank" rel="noopener noreferrer">合同会社SyUNi</a>（代表：小田 一勲）</p>
+      </div>
+      <nav class="foot-nav">
+        <a href="/case/">制作事例</a>
+        <a href="/guide/">塾HPの基礎知識</a>
+        <a href="/report/">調査レポート</a>
+        <a href="/news/">教育ニュース</a>
+        <a href="/#contact">無料相談</a>
+      </nav>
+    </div>
+    <div class="foot-copy">
+      <span>© 2026 合同会社SyUNi</span>
+      <span>
+        <a href="/privacy.html">プライバシーポリシー</a>
+        <a href="/tokushoho.html">特定商取引法に基づく表記</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
