@@ -121,6 +121,9 @@ ul,ol{list-style:none}
 .data-table thead th{background:var(--paper);font-weight:900;font-size:.88rem}
 .data-table tbody tr:last-child th,.data-table tbody tr:last-child td{border-bottom:none}
 .data-table td.num{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+/* 列が少なく、スマホでも横スクロールなしで収まる表に付ける */
+.data-table.fit table{min-width:0}
+@media(max-width:520px){.data-table.fit th,.data-table.fit td{padding:12px 12px}}
 .table-note{font-size:.78rem;color:var(--ink-soft);margin-top:10px;line-height:1.9}
 
 /* ★AIO：調査メタ枠（対象・期間・方法・主体） */
