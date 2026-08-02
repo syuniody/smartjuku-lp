@@ -14,7 +14,25 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://smart-juku.syuni.jp/guide/juku-hp-https.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://smart-juku.syuni.jp/guide/juku-hp-koushin.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smart-juku.syuni.jp/report/</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://smart-juku.syuni.jp/report/juku-hp-shindan-2026-07.html</loc>
     <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

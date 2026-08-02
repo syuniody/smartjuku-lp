@@ -29,6 +29,9 @@ import sys
 from datetime import date
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import make_ogp  # noqa: E402  （同じ scripts/ 配下）
+
 BASE_URL = "https://smart-juku.syuni.jp"
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -63,6 +66,11 @@ SECTIONS = [
         "lede": "文部科学省の発表や制度変更のうち、塾経営に関わるものを噛み砕いて解説します。",
     },
 ]
+
+# トップページ（index.html）の「読み物」セクションに載せる記事の本数
+READING_LIMIT = 4
+READING_START = "<!-- READING:START -->"
+READING_END = "<!-- READING:END -->"
 
 # サイトマップに含める固定ページ（トップは別途追加）
 STATIC_PAGES = [
@@ -148,13 +156,21 @@ def collect_articles(section: dict) -> tuple[list[dict], list[str]]:
         if not desc:
             warnings.append(f"{rel}: description がありません")
 
+        # OGP画像は命名規則で決まる。記事側の og:image が一致しているか点検する
+        want_ogp = make_ogp.ogp_rel_path(section["slug"], f.name)
+        og = meta_content(src, prop="og:image")
+        if og and not og.endswith(want_ogp):
+            warnings.append(f"{rel}: og:image を {want_ogp} に直してください（現在 {og}）")
+
         articles.append(
             {
                 "url": rel,
+                "filename": f.name,
                 "title": title,
                 "description": desc or "",
                 "published": pub,
                 "modified": mod,
+                "ogp_lead": meta_content(src, name="sj:ogp-lead") or "",
             }
         )
 
@@ -328,6 +344,62 @@ def render_index(section: dict, articles: list[dict]) -> str:
 """
 
 
+def update_reading(all_sections: list[tuple[dict, list[dict]]]) -> str:
+    """トップページの「読み物」セクションの中身を差し替える。
+
+    READING:START 〜 READING:END の間だけを書き換えるので、
+    セクションの見出しやリード文は index.html 側で自由に編集できる。
+    """
+    index = ROOT / "index.html"
+    if not index.exists():
+        return "index.html が見つかりません（読み物セクションはスキップ）"
+
+    src = read(index)
+    n_start, n_end = src.count(READING_START), src.count(READING_END)
+    if n_start == 0 or n_end == 0:
+        return "index.html に READING のマーカーがありません（読み物セクションはスキップ）"
+    if n_start != 1 or n_end != 1:
+        # マーカー文字列が説明コメント等にも書かれていると、置換範囲がずれて壊れる
+        return (
+            f"index.html の READING マーカーが複数あります"
+            f"（START {n_start} / END {n_end}）。1組だけにしてください（スキップ）"
+        )
+
+    # 全セクションを混ぜて新しい順に
+    merged: list[dict] = []
+    for section, articles in all_sections:
+        for a in articles:
+            merged.append({**a, "cat": section["name"]})
+    merged.sort(key=lambda a: a["published"], reverse=True)
+    merged = merged[:READING_LIMIT]
+
+    if merged:
+        items = "\n".join(
+            f"""        <a class="read-item rv" href="{esc(a['url'])}">
+          <div class="read-meta">
+            <span class="read-cat">{esc(a['cat'])}</span>
+            <time datetime="{esc(a['published'])}">{esc(jp_date(a['published']))}</time>
+          </div>
+          <h3>{esc(a['title'])}</h3>
+          <p>{esc(a['description'])}</p>
+        </a>"""
+            for a in merged
+        )
+        block = f'      <div class="read-list">\n{items}\n      </div>'
+    else:
+        block = ""
+
+    new = re.sub(
+        re.escape(READING_START) + r".*?" + re.escape(READING_END),
+        f"{READING_START}\n{block}\n      {READING_END}",
+        src,
+        flags=re.S,
+    )
+    if new != src:
+        index.write_text(new, encoding="utf-8")
+    return f"更新: index.html の読み物セクション（{len(merged)} 本）"
+
+
 def render_sitemap(all_sections: list[tuple[dict, list[dict]]]) -> str:
     today = date.today().isoformat()
     rows = [
@@ -403,6 +475,23 @@ def main() -> int:
         out = ROOT / section["slug"] / "index.html"
         out.write_text(render_index(section, articles), encoding="utf-8")
         print(f"  生成: /{section['slug']}/index.html")
+
+    ogp_items = [
+        {
+            "section": section["slug"],
+            "filename": a["filename"],
+            "title": a["title"],
+            "category": section["name"],
+            "lead": a["ogp_lead"],
+        }
+        for section, articles in all_sections
+        for a in articles
+    ]
+    made, ogp_warns = make_ogp.build(ogp_items)
+    all_warnings += ogp_warns
+    print(f"  生成: OGP画像 {made} 枚")
+
+    print(f"  {update_reading(all_sections)}")
 
     sm = ROOT / "sitemap.xml"
     sm.write_text(render_sitemap(all_sections), encoding="utf-8")
