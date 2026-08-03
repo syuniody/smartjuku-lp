@@ -116,6 +116,11 @@ def convert_body(body: str, slug: str, embeds: list[dict] | None = None) -> tupl
     out = re.sub(r"<figcaption>\s*</figcaption>", "", out)
     out = re.sub(r"<p>\s*(<br\s*/?>)?\s*</p>", "", out)
 
+    # note本文にマークダウン記法がそのまま残っていることがあるので、太字に直す
+    out = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", out)
+    # 空の見出しを落とす
+    out = re.sub(r"<h([23])>\s*</h\1>", "", out)
+
     # note末尾のハッシュタグ段落を落とす
     out = re.sub(r"<p>(?:\s|&nbsp;|<br\s*/?>)*(?:#[^\s<#]+(?:\s|&nbsp;)*)+</p>", "", out)
 
