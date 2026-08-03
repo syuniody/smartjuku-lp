@@ -179,6 +179,8 @@ ul,ol{list-style:none}
 /* ★AIO：引用可の明記枠 */
 .citation{background:#EDF2FA;border:1px solid rgba(36,81,158,.3);border-radius:12px;padding:22px 24px;font-size:.88rem;line-height:2}
 .citation strong{background:none;font-weight:900}
+/* noteから移した記事は太字が多いため、マーカーは引かず太字だけにする */
+.article-body.plain-strong strong{background:none;font-weight:900}
 .citation .cite-example{display:block;margin-top:10px;padding:12px 14px;background:var(--white);border-radius:8px;font-size:.84rem;color:var(--ink-soft);word-break:break-all}
 
 /* 補足・注記 */

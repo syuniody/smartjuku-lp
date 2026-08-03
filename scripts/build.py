@@ -141,9 +141,19 @@ def collect_articles(section: dict) -> tuple[list[dict], list[str]]:
         pub = meta_content(src, prop="article:published_time")
         mod = meta_content(src, prop="article:modified_time") or pub
 
-        # 未編集テンプレの取り込み防止
-        if title and "★" in title:
-            warnings.append(f"{rel}: テンプレートの★が残っています（一覧から除外）")
+        # 未編集テンプレの取り込み防止。★はタイトルに限らずファイル全体で見る
+        # （リード文や本文だけ★が残った書きかけを公開してしまわないため）
+        if "★" in src:
+            where = []
+            if title and "★" in title:
+                where.append("タイトル")
+            if desc and "★" in desc:
+                where.append("description")
+            if "★" in src.split("<body", 1)[-1]:
+                where.append("本文")
+            warnings.append(
+                f"{rel}: ★が {('・'.join(where) or 'ファイル内')} に残っています（一覧・sitemapから除外）"
+            )
             continue
         if not title:
             warnings.append(f"{rel}: <title> がありません（除外）")
