@@ -148,6 +148,19 @@ def convert_body(body: str, slug: str, embeds: list[dict] | None = None) -> tupl
     # h3だけで書かれた記事は、見出し階層が h1 → h3 と飛ぶので h2 に繰り上げる
     if "<h2>" not in out and "<h3>" in out:
         out = out.replace("<h3>", "<h2>").replace("</h3>", "</h2>")
+
+    # 見出しタグを使わず「太字だけの段落」で見出しを表している記事がある。
+    # 見出しが1つも無い場合に限り、太字だけの短い段落をh2として扱う。
+    if "<h2>" not in out and "<h3>" not in out:
+        def strong_to_h2(m: re.Match) -> str:
+            text = m.group(1)
+            plain = re.sub(r"<[^>]+>", "", text).strip()
+            if not plain or len(plain) > 60 or plain.endswith("。"):
+                return m.group(0)
+            return f"<h2>{plain}</h2>"
+
+        out = re.sub(r"<p><strong>(.*?)</strong>\s*(?:<br\s*/?>)?\s*</p>",
+                     strong_to_h2, out, flags=re.S)
     # ★はテンプレートの未編集マーカーに使っているので、本文中の★は実体参照に逃がす
     # （build.py が本文の★を「書きかけ」と誤判定するのを防ぐ）
     out = out.replace("★", "&#9733;")
