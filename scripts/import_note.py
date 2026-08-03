@@ -74,9 +74,19 @@ def convert_body(body: str, slug: str, embeds: list[dict] | None = None) -> tupl
         if not e:
             return ""
         url = html_mod.escape(e["url"], quote=True)
+        # note側に置いた自社サイトへの誘導カードは、記事末のCTAと重複するので落とす
+        if "smart-juku.syuni.jp" in url:
+            return ""
+        svc = (e.get("service") or "").lower()
+        if svc == "youtube":
+            label = "この内容を動画で見る（YouTube・Edu-NEWS）"
+        elif svc in ("twitter", "x") or "://x.com" in url or "twitter.com" in url:
+            label = "引用元のXの投稿を見る"
+        else:
+            label = "引用元を見る"
         return (
             '<p class="video-link"><a href="' + url + '" target="_blank" rel="noopener noreferrer">'
-            "この内容を動画で見る（YouTube・Edu-NEWS）</a></p>"
+            + label + "</a></p>"
         )
 
     body = re.sub(
@@ -116,6 +126,17 @@ def convert_body(body: str, slug: str, embeds: list[dict] | None = None) -> tupl
     out = re.sub(r"<figcaption>\s*</figcaption>", "", out)
     out = re.sub(r"<p>\s*(<br\s*/?>)?\s*</p>", "", out)
 
+    # 同じ動画リンクが連続して入っている記事があるので、重複を落とす
+    seen_video = set()
+
+    def dedupe_video(m: re.Match) -> str:
+        if m.group(0) in seen_video:
+            return ""
+        seen_video.add(m.group(0))
+        return m.group(0)
+
+    out = re.sub(r'<p class="video-link">.*?</p>', dedupe_video, out, flags=re.S)
+
     # note本文にマークダウン記法がそのまま残っていることがあるので、太字に直す
     out = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", out)
     # 空の見出しを落とす
@@ -127,6 +148,10 @@ def convert_body(body: str, slug: str, embeds: list[dict] | None = None) -> tupl
     # h3だけで書かれた記事は、見出し階層が h1 → h3 と飛ぶので h2 に繰り上げる
     if "<h2>" not in out and "<h3>" in out:
         out = out.replace("<h3>", "<h2>").replace("</h3>", "</h2>")
+    # ★はテンプレートの未編集マーカーに使っているので、本文中の★は実体参照に逃がす
+    # （build.py が本文の★を「書きかけ」と誤判定するのを防ぐ）
+    out = out.replace("★", "&#9733;")
+
     out = re.sub(r"\n{3,}", "\n\n", out)
     # 記事本文のインデントに合わせる
     out = "\n".join("        " + ln.strip() for ln in out.splitlines() if ln.strip())
