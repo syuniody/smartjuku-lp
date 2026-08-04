@@ -37,6 +37,19 @@ def fetch_json(url: str) -> dict:
     return json.load(urllib.request.urlopen(urllib.request.Request(url, headers=UA)))
 
 
+SECTION_NAMES = {"case": "制作事例", "guide": "塾HPの基礎知識",
+                 "report": "調査レポート", "news": "教育ニュース"}
+
+
+def nav_html(section: str) -> str:
+    """ヘッダーナビ。現在地に aria-current を付ける"""
+    rows = []
+    for slug, name in SECTION_NAMES.items():
+        cur = ' aria-current="page"' if slug == section else ""
+        rows.append(f'<a href="/{slug}/"{cur}>{name}</a>')
+    return "\n      ".join(rows)
+
+
 MAX_W = 1200      # 記事の本文幅（--measure 720px）の想定倍率で十分
 JPEG_QUALITY = 85
 
@@ -63,7 +76,7 @@ def download(url: str, dest: Path) -> None:
         dest.write_bytes(raw)
 
 
-def convert_body(body: str, slug: str, embeds: list[dict] | None = None) -> tuple[str, list[dict]]:
+def convert_body(body: str, slug: str, embeds: list[dict] | None = None, section: str = "news") -> tuple[str, list[dict]]:
     """note本文HTMLを記事本文に変換し、画像を自社へ移す"""
     images: list[dict] = []
     emap = {e["key"]: e for e in (embeds or []) if e.get("url")}
@@ -98,7 +111,7 @@ def convert_body(body: str, slug: str, embeds: list[dict] | None = None) -> tupl
         src = m.group(1)
         # note の画像URLは末尾にサイズ指定のクエリが付くことがある
         name = f"{len(images) + 1:02d}.jpg"
-        rel = f"/assets/news/{slug}/{name}"
+        rel = f"/assets/{section}/{slug}/{name}"
         try:
             download(src, ROOT / rel.lstrip("/"))
             images.append({"no": len(images) + 1, "src": src, "local": rel})
@@ -181,9 +194,9 @@ TEMPLATE = """<!DOCTYPE html>
 <meta name="description" content="★この記事の要点を、塾長にとっての意味を含めて2文で。全角120字前後。">
 <meta name="robots" content="index, follow">
 
-<link rel="canonical" href="{base}/news/{slug}.html">
+<link rel="canonical" href="{base}/{sec}/{slug}.html">
 
-<meta name="sj:category" content="news">
+<meta name="sj:category" content="{sec}">
 <meta property="article:published_time" content="{date}">
 <meta property="article:modified_time" content="{today}">
 
@@ -192,8 +205,8 @@ TEMPLATE = """<!DOCTYPE html>
 <meta property="og:site_name" content="スマ塾｜学習塾専門のWeb支援">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="★この記事の要点を、塾長にとっての意味を含めて2文で。">
-<meta property="og:url" content="{base}/news/{slug}.html">
-<meta property="og:image" content="{base}/assets/ogp/news-{slug}.png">
+<meta property="og:url" content="{base}/{sec}/{slug}.html">
+<meta property="og:image" content="{base}/assets/ogp/{sec}-{slug}.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="sj:ogp-lead" content="★共有時に出す一行（数値があれば入れる）">
@@ -240,8 +253,8 @@ TEMPLATE = """<!DOCTYPE html>
   "datePublished": "{date}",
   "dateModified": "{today}",
   "inLanguage": "ja",
-  "mainEntityOfPage": {{ "@type": "WebPage", "@id": "{base}/news/{slug}.html" }},
-  "image": "{base}/assets/ogp/news-{slug}.png",
+  "mainEntityOfPage": {{ "@type": "WebPage", "@id": "{base}/{sec}/{slug}.html" }},
+  "image": "{base}/assets/ogp/{sec}-{slug}.png",
   "author": {{
     "@type": "Person",
     "name": "小田 一勲",
@@ -264,7 +277,7 @@ TEMPLATE = """<!DOCTYPE html>
   "@type": "BreadcrumbList",
   "itemListElement": [
     {{ "@type": "ListItem", "position": 1, "name": "ホーム", "item": "{base}/" }},
-    {{ "@type": "ListItem", "position": 2, "name": "教育ニュース", "item": "{base}/news/" }},
+    {{ "@type": "ListItem", "position": 2, "name": "{sec_name}", "item": "{base}/{sec}/" }},
     {{ "@type": "ListItem", "position": 3, "name": "{title}" }}
   ]
 }}
@@ -279,7 +292,7 @@ TEMPLATE = """<!DOCTYPE html>
       <a href="/case/">制作事例</a>
       <a href="/guide/">塾HPの基礎知識</a>
       <a href="/report/">調査レポート</a>
-      <a href="/news/" aria-current="page">教育ニュース</a>
+      {nav}
     </nav>
     <a class="header-cta" href="/#contact">無料でHP診断を受ける</a>
   </div>
@@ -291,7 +304,7 @@ TEMPLATE = """<!DOCTYPE html>
     <nav class="breadcrumb" aria-label="パンくず">
       <ol>
         <li><a href="/">ホーム</a></li>
-        <li><a href="/news/">教育ニュース</a></li>
+        <li><a href="/{sec}/">{sec_name}</a></li>
         <li>{crumb}</li>
       </ol>
     </nav>
@@ -299,7 +312,7 @@ TEMPLATE = """<!DOCTYPE html>
     <article>
       <header class="article-head">
         <div class="post-meta">
-          <span class="post-cat">教育ニュース</span>
+          <span class="post-cat cat-{sec}">{sec_name}</span>
           <time datetime="{date}">{date_jp}</time>
         </div>
         <h1 class="article-title">{title}</h1>
@@ -370,6 +383,7 @@ def main() -> int:
         print(__doc__)
         return 1
     key, slug = sys.argv[1], sys.argv[2]
+    section = sys.argv[3] if len(sys.argv) > 3 else "news"
 
     d = fetch_json(f"https://note.com/api/v3/notes/{key}").get("data", {})
     title = html_mod.unescape(d.get("name") or "")
@@ -379,9 +393,12 @@ def main() -> int:
         print(f"本文が取得できませんでした（{key}）")
         return 1
 
-    body, images = convert_body(body_src, slug, d.get("embedded_contents") or [])
+    body, images = convert_body(body_src, slug, d.get("embedded_contents") or [], section)
     y, m, dd = pub.split("-")
     out = TEMPLATE.format(
+        sec=section,
+        sec_name=SECTION_NAMES[section],
+        nav=nav_html(section),
         title=html_mod.escape(title, quote=True),
         crumb=html_mod.escape(title[:24], quote=True),
         slug=slug,
@@ -391,12 +408,12 @@ def main() -> int:
         base=BASE_URL,
         body=body,
     )
-    dest = ROOT / "news" / f"{slug}.html"
+    dest = ROOT / section / f"{slug}.html"
     dest.parent.mkdir(exist_ok=True)
     dest.write_text(out, encoding="utf-8")
 
-    print(f"作成: news/{slug}.html  「{title}」  公開日 {pub}")
-    print(f"画像: {len([i for i in images if i['local']])} 点を assets/news/{slug}/ に保存")
+    print(f"作成: {section}/{slug}.html  「{title}」  公開日 {pub}")
+    print(f"画像: {len([i for i in images if i['local']])} 点を assets/{section}/{slug}/ に保存")
     for i in images:
         mark = i["local"] or f"取得失敗（{i.get('error')}）"
         print(f"   {i['no']:>2}. {mark}\n       元: {i['src']}")
