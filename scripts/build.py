@@ -30,7 +30,8 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import make_ogp  # noqa: E402  （同じ scripts/ 配下）
+import add_share  # noqa: E402  （同じ scripts/ 配下）
+import make_ogp  # noqa: E402
 
 BASE_URL = "https://smart-juku.syuni.jp"
 ROOT = Path(__file__).resolve().parent.parent
@@ -517,6 +518,10 @@ def main() -> int:
     made, ogp_warns = make_ogp.build(ogp_items)
     all_warnings += ogp_warns
     print(f"  生成: OGP画像 {made} 枚")
+
+    n_share, n_total, share_warns = add_share.run()
+    all_warnings += share_warns
+    print(f"  共有ボタン: {n_share}/{n_total} ファイルを更新")
 
     print(f"  {update_reading(all_sections)}")
 

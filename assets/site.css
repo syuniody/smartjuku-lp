@@ -169,6 +169,25 @@ ul,ol{list-style:none}
   .dotgrid{grid-template-columns:repeat(10,1fr);gap:6px}
 }
 
+/* ★共有ボタン（外部スクリプトは読み込まない。リンクとクリップボードだけ） */
+.share{margin:44px 0 0;padding-top:26px;border-top:1px solid var(--line)}
+.share-label{font-size:.8rem;font-weight:900;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:14px}
+.share-btns{display:flex;flex-wrap:wrap;gap:10px}
+.share-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:.82rem;font-weight:700;
+  line-height:1;padding:11px 18px;border-radius:999px;border:1.5px solid var(--line);background:transparent;
+  color:var(--ink-soft);text-decoration:none;cursor:pointer;
+  transition:background .2s ease,color .2s ease,border-color .2s ease}
+.share .share-btn{text-decoration:none}   /* 記事本文のリンク下線を打ち消す */
+.share-btn:hover,.share-btn:focus-visible{background:var(--sv,var(--ink));border-color:var(--sv,var(--ink));color:#fff}
+.share-btn .sv-dot{width:9px;height:9px;border-radius:50%;background:var(--sv,var(--ink));flex-shrink:0;transition:background .2s ease}
+.share-btn:hover .sv-dot,.share-btn:focus-visible .sv-dot{background:#fff}
+.sb-x{--sv:#22252B}
+.sb-line{--sv:#06C755}
+.sb-fb{--sv:#1877F2}
+.sb-copy{--sv:#24519E}
+.sb-copy.done{background:var(--sv);border-color:var(--sv);color:#fff}
+.sb-copy.done .sv-dot{background:#fff}
+
 /* 列が少なく、スマホでも横スクロールなしで収まる表に付ける */
 .data-table.fit table{min-width:0}
 @media(max-width:520px){.data-table.fit th,.data-table.fit td{padding:12px 12px}}
