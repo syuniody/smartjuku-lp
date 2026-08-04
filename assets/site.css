@@ -67,7 +67,12 @@ ul,ol{list-style:none}
 .post-item{display:block;padding:30px 4px;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;transition:background .2s}
 .post-item:hover{background:rgba(36,81,158,.04)}
 .post-meta{display:flex;gap:14px;align-items:center;font-size:.76rem;color:var(--ink-soft);margin-bottom:10px;flex-wrap:wrap}
-.post-cat{background:var(--blue);color:#fff;font-weight:700;padding:3px 12px;border-radius:999px;letter-spacing:.06em}
+/* カテゴリの色。トップページの絞り込みタブと同じ4色を使う */
+.post-cat{background:var(--cat,var(--blue));color:#fff;font-weight:700;padding:3px 12px;border-radius:999px;letter-spacing:.06em}
+.cat-guide{--cat:#24519E}
+.cat-report{--cat:#17706A}
+.cat-news{--cat:#B0553A}
+.cat-case{--cat:#7A5C2E}
 .post-item h2{font-family:var(--serif);font-weight:700;font-size:1.28rem;line-height:1.7;letter-spacing:.03em;margin-bottom:8px}
 .post-item p{font-size:.9rem;color:var(--ink-soft)}
 .list-empty{padding:70px 0 100px;text-align:center;color:var(--ink-soft);font-size:.95rem;line-height:2.1}

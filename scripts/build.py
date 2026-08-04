@@ -68,7 +68,8 @@ SECTIONS = [
 ]
 
 # トップページ（index.html）の「お役立ち情報」セクションに載せる記事の本数
-READING_LIMIT = 4
+# （カテゴリの絞り込みタブがあるので、1カテゴリだけ選んでも数本は残る程度にしておく）
+READING_LIMIT = 9
 READING_START = "<!-- READING:START -->"
 READING_END = "<!-- READING:END -->"
 
@@ -197,7 +198,7 @@ def render_index(section: dict, articles: list[dict]) -> str:
         items = "\n".join(
             f"""        <a class="post-item" href="{esc(a['url'])}">
           <div class="post-meta">
-            <span class="post-cat">{esc(name)}</span>
+            <span class="post-cat cat-{slug}">{esc(name)}</span>
             <time datetime="{esc(a['published'])}">{esc(jp_date(a['published']))}</time>
           </div>
           <h2>{esc(a['title'])}</h2>
@@ -379,23 +380,39 @@ def update_reading(all_sections: list[tuple[dict, list[dict]]]) -> str:
     merged: list[dict] = []
     for section, articles in all_sections:
         for a in articles:
-            merged.append({**a, "cat": section["name"]})
+            merged.append({**a, "cat": section["name"], "slug": section["slug"]})
     merged.sort(key=lambda a: a["published"], reverse=True)
     merged = merged[:READING_LIMIT]
 
     if merged:
+        # 表示中の記事に存在するカテゴリだけタブにする（空振りするタブを作らない）
+        present = [s for s in SECTIONS if any(a["slug"] == s["slug"] for a in merged)]
+        tabs = "\n".join(
+            f'          <button type="button" class="read-tab" data-cat="{esc(s["slug"])}" '
+            f'aria-pressed="false">{esc(s["name"])}</button>'
+            for s in present
+        )
+        tabs_html = (
+            '        <div class="read-tabs" role="group" aria-label="カテゴリで絞り込む">\n'
+            '          <button type="button" class="read-tab" data-cat="all" aria-pressed="true">すべて</button>\n'
+            f"{tabs}\n        </div>"
+        )
         items = "\n".join(
-            f"""        <a class="read-item rv" href="{esc(a['url'])}">
-          <div class="read-meta">
-            <span class="read-cat">{esc(a['cat'])}</span>
-            <time datetime="{esc(a['published'])}">{esc(jp_date(a['published']))}</time>
-          </div>
-          <h3>{esc(a['title'])}</h3>
-          <p>{esc(a['description'])}</p>
-        </a>"""
+            f"""          <a class="read-item rv" data-cat="{esc(a['slug'])}" href="{esc(a['url'])}">
+            <div class="read-meta">
+              <span class="read-cat">{esc(a['cat'])}</span>
+              <time datetime="{esc(a['published'])}">{esc(jp_date(a['published']))}</time>
+            </div>
+            <h3>{esc(a['title'])}</h3>
+            <p>{esc(a['description'])}</p>
+          </a>"""
             for a in merged
         )
-        block = f'      <div class="read-list">\n{items}\n      </div>'
+        block = (
+            f"{tabs_html}\n"
+            f'        <div class="read-list">\n{items}\n        </div>\n'
+            f'        <p class="read-empty" hidden>このカテゴリの記事はまだありません。</p>'
+        )
     else:
         block = ""
 

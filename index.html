@@ -252,10 +252,29 @@ section{padding:110px 0}
 /* お役立ち情報（記事の一覧。中身は scripts/build.py が生成） */
 .reading{padding:96px 0;border-top:1px solid var(--line)}
 .read-item{display:block;padding:30px 4px;border-top:1px solid var(--line);transition:background .25s ease}
-.read-item:last-child{border-bottom:1px solid var(--line)}
+.read-list{border-bottom:1px solid var(--line)}   /* 絞り込みで最後の行が変わるため、枠は親側に持たせる */
 .read-item:hover{background:var(--white,#fff)}
 .read-meta{display:flex;align-items:center;gap:14px;margin-bottom:10px}
-.read-cat{font-size:.72rem;font-weight:700;letter-spacing:.08em;color:var(--blue);border:1px solid var(--blue);border-radius:100px;padding:3px 11px}
+/* カテゴリの色。生成り地に合う、彩度を抑えた4色 */
+.read-cat{font-size:.72rem;font-weight:700;letter-spacing:.08em;color:#fff;background:var(--cat,var(--blue));border-radius:100px;padding:4px 12px}
+.read-item[data-cat="guide"]{--cat:#24519E}
+.read-item[data-cat="report"]{--cat:#17706A}
+.read-item[data-cat="news"]{--cat:#B0553A}
+.read-item[data-cat="case"]{--cat:#7A5C2E}
+
+/* カテゴリの絞り込みタブ */
+.read-tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+.read-tab{font-family:var(--sans);font-size:.82rem;font-weight:700;line-height:1;padding:11px 20px;border-radius:999px;
+  border:1.5px solid var(--line);background:transparent;color:var(--ink-soft);cursor:pointer;
+  transition:background .2s ease,color .2s ease,border-color .2s ease}
+.read-tab:hover{border-color:var(--tab,var(--ink));color:var(--tab,var(--ink))}
+.read-tab[aria-pressed="true"]{background:var(--tab,var(--ink));border-color:transparent;color:#fff}
+.read-tab[data-cat="guide"]{--tab:#24519E}
+.read-tab[data-cat="report"]{--tab:#17706A}
+.read-tab[data-cat="news"]{--tab:#B0553A}
+.read-tab[data-cat="case"]{--tab:#7A5C2E}
+.read-item[hidden]{display:none}
+.read-empty{padding:34px 4px;color:var(--ink-soft);font-size:.9rem;border-top:1px solid var(--line)}
 .read-meta time{font-size:.78rem;color:var(--ink-soft)}
 .read-item h3{font-family:var(--serif);font-weight:700;font-size:clamp(1.02rem,2vw,1.22rem);line-height:1.8;letter-spacing:.03em}
 .read-item p{margin-top:8px;font-size:.86rem;line-height:1.95;color:var(--ink-soft)}
@@ -888,40 +907,87 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
         <p class="sec-lede">営業のための記事ではなく、実際に塾のホームページを診断して分かったことを、数値のまま公開しています。<b>数値は出典を明記いただければ自由に引用いただけます。</b></p>
       </div>
       <!-- READING:START -->
-      <div class="read-list">
-        <a class="read-item rv" href="/guide/juku-hp-https.html">
-          <div class="read-meta">
-            <span class="read-cat">塾HPの基礎知識</span>
-            <time datetime="2026-08-02">2026年8月2日</time>
-          </div>
-          <h3>塾のホームページがhttpのままだと何が起きる？40塾中10塾が未対応</h3>
-          <p>学習塾40塾のホームページを調べたところ、10塾（25.0%）がhttpのままでした。ブラウザに「保護されていない通信」と表示されるだけでなく、httpの塾は他の項目でも課題が多く、総合スコアは平均で22点低いという結果でした。</p>
-        </a>
-        <a class="read-item rv" href="/guide/juku-hp-koushin.html">
-          <div class="read-meta">
-            <span class="read-cat">塾HPの基礎知識</span>
-            <time datetime="2026-08-02">2026年8月2日</time>
-          </div>
-          <h3>塾のホームページは更新が止まると集客に影響する？40塾の診断データ</h3>
-          <p>大阪を中心に学習塾40塾のホームページを診断したところ、情報の鮮度に課題があったのは25.0%でした。更新停止は単独では起きず、信頼要素の弱さや第一印象の課題と重なって現れます。実データと、自分で更新するときの3つのポイントをまとめました。</p>
-        </a>
-        <a class="read-item rv" href="/report/juku-hp-shindan-2026-07.html">
-          <div class="read-meta">
-            <span class="read-cat">調査レポート</span>
-            <time datetime="2026-08-02">2026年8月2日</time>
-          </div>
-          <h3>学習塾40塾のホームページ実態調査（2026年7月）</h3>
-          <p>大阪府を中心とする学習塾40塾のホームページを7項目で診断した一次データです。総合スコアは平均71.1点、70点未満が42%。httpのままが25.0%、課題が1つもなかった塾は30.0%でした。数値は出典明記で自由に引用いただけます。</p>
-        </a>
-        <a class="read-item rv" href="/news/tsuuchihyou-haishi.html">
-          <div class="read-meta">
-            <span class="read-cat">教育ニュース</span>
-            <time datetime="2026-08-01">2026年8月1日</time>
-          </div>
-          <h3>小学校で「通知表廃止」が広がる？ 評価はなくならない。本当に変わるもの</h3>
-          <p>小学校の通知表廃止は、評価そのものをやめる話ではありません。学校が残す指導要録は変わらず、変わるのは家庭への「伝え方」です。塾にとっては指導内容への影響より、保護者から必ず聞かれる質問に正しく答えられるかが分かれ目になります。</p>
-        </a>
-      </div>
+        <div class="read-tabs" role="group" aria-label="カテゴリで絞り込む">
+          <button type="button" class="read-tab" data-cat="all" aria-pressed="true">すべて</button>
+          <button type="button" class="read-tab" data-cat="guide" aria-pressed="false">塾HPの基礎知識</button>
+          <button type="button" class="read-tab" data-cat="report" aria-pressed="false">調査レポート</button>
+          <button type="button" class="read-tab" data-cat="news" aria-pressed="false">教育ニュース</button>
+        </div>
+        <div class="read-list">
+          <a class="read-item rv" data-cat="guide" href="/guide/juku-hp-https.html">
+            <div class="read-meta">
+              <span class="read-cat">塾HPの基礎知識</span>
+              <time datetime="2026-08-02">2026年8月2日</time>
+            </div>
+            <h3>塾のホームページがhttpのままだと何が起きる？40塾中10塾が未対応</h3>
+            <p>学習塾40塾のホームページを調べたところ、10塾（25.0%）がhttpのままでした。ブラウザに「保護されていない通信」と表示されるだけでなく、httpの塾は他の項目でも課題が多く、総合スコアは平均で22点低いという結果でした。</p>
+          </a>
+          <a class="read-item rv" data-cat="guide" href="/guide/juku-hp-koushin.html">
+            <div class="read-meta">
+              <span class="read-cat">塾HPの基礎知識</span>
+              <time datetime="2026-08-02">2026年8月2日</time>
+            </div>
+            <h3>塾のホームページは更新が止まると集客に影響する？40塾の診断データ</h3>
+            <p>大阪を中心に学習塾40塾のホームページを診断したところ、情報の鮮度に課題があったのは25.0%でした。更新停止は単独では起きず、信頼要素の弱さや第一印象の課題と重なって現れます。実データと、自分で更新するときの3つのポイントをまとめました。</p>
+          </a>
+          <a class="read-item rv" data-cat="report" href="/report/juku-hp-shindan-2026-07.html">
+            <div class="read-meta">
+              <span class="read-cat">調査レポート</span>
+              <time datetime="2026-08-02">2026年8月2日</time>
+            </div>
+            <h3>学習塾40塾のホームページ実態調査（2026年7月）</h3>
+            <p>大阪府を中心とする学習塾40塾のホームページを7項目で診断した一次データです。総合スコアは平均71.1点、70点未満が42%。httpのままが25.0%、課題が1つもなかった塾は30.0%でした。数値は出典明記で自由に引用いただけます。</p>
+          </a>
+          <a class="read-item rv" data-cat="news" href="/news/tsuuchihyou-haishi.html">
+            <div class="read-meta">
+              <span class="read-cat">教育ニュース</span>
+              <time datetime="2026-08-01">2026年8月1日</time>
+            </div>
+            <h3>小学校で「通知表廃止」が広がる？ 評価はなくならない。本当に変わるもの</h3>
+            <p>小学校の通知表廃止は、評価そのものをやめる話ではありません。学校が残す指導要録は変わらず、変わるのは家庭への「伝え方」です。塾にとっては指導内容への影響より、保護者から必ず聞かれる質問に正しく答えられるかが分かれ目になります。</p>
+          </a>
+          <a class="read-item rv" data-cat="news" href="/news/kokugo-2030.html">
+            <div class="read-meta">
+              <span class="read-cat">教育ニュース</span>
+              <time datetime="2026-07-31">2026年7月31日</time>
+            </div>
+            <h3>【徹底解説】2030年の国語はどう変わる？新聞・広告、評価、高校科目の5つの変更</h3>
+            <p>2026年7月に公表された国語ワーキンググループの取りまとめ案から、2030年以降の国語の変化を5つに整理しました。授業・評価・教科書・高校科目が「情報を吟味して自分の言葉で伝える力」で組み直されます。まだ正式決定ではない点も含めて解説します。</p>
+          </a>
+          <a class="read-item rv" data-cat="news" href="/news/tsuuchihyou-mikata.html">
+            <div class="read-meta">
+              <span class="read-cat">教育ニュース</span>
+              <time datetime="2026-07-17">2026年7月17日</time>
+            </div>
+            <h3>「通知表の見方」を完全解説｜夏休み前に親が見るべき5つのこと</h3>
+            <p>通知表は子どもを数字で判定する紙ではなく、夏休みに何をするかを決めるための材料です。5段階評定・三観点・所見・出欠の見方を整理し、夏期面談でそのまま使える形にまとめました。</p>
+          </a>
+          <a class="read-item rv" data-cat="news" href="/news/kokuritsu-suisen.html">
+            <div class="read-meta">
+              <span class="read-cat">教育ニュース</span>
+              <time datetime="2026-06-30">2026年6月30日</time>
+            </div>
+            <h3>国公立は「推薦が新常識」へ？旧帝大7校と募集要項から見る、保護者が知るべき大学入試の変化</h3>
+            <p>2026年度入試で総合型選抜を実施した学部の割合は、国立大学で93.3%、公立大学で84%台に達しています。「国公立は一般入試で勝負」という保護者世代の前提は、すでに実態と合っていません。</p>
+          </a>
+          <a class="read-item rv" data-cat="news" href="/news/gouriteki-hairyo.html">
+            <div class="read-meta">
+              <span class="read-cat">教育ニュース</span>
+              <time datetime="2026-06-29">2026年6月29日</time>
+            </div>
+            <h3>【徹底解説】合理的配慮と通級はどう変わる？文科省「特別支援教育WG」資料を現場目線で読む</h3>
+            <p>特別支援教育ワーキンググループの取りまとめ案では、特別支援教育を「特別な場所だけの話」とせず、通常学級を含めた学びの土台として位置づける方向が示されました。合理的配慮と通級の考え方を、現場目線で整理します。</p>
+          </a>
+          <a class="read-item rv" data-cat="news" href="/news/kokugo-shidouyouryou.html">
+            <div class="read-meta">
+              <span class="read-cat">教育ニュース</span>
+              <time datetime="2026-06-24">2026年6月24日</time>
+            </div>
+            <h3>【徹底解説】2030年次期学習指導要領で国語はどう変わる？読解力と生成AI時代の新しい国語教育</h3>
+            <p>国語ワーキンググループの取りまとめ骨子案から、2030年の国語の変化を5つに整理しました。AI時代の国語は「作文できるか」より「説明できるか」へ。評価もペーパーテストだけでは測りにくい方向に動きます。</p>
+          </a>
+        </div>
+        <p class="read-empty" hidden>このカテゴリの記事はまだありません。</p>
       <!-- READING:END -->
       <div class="read-more rv">
         <a href="/guide/">塾HPの基礎知識をすべて見る</a>
@@ -1092,6 +1158,28 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
   // ?noanim でアニメ無効（検証・PDF用）
   if(new URLSearchParams(location.search).has('noanim')){
     document.documentElement.classList.add('noanim');
+  }
+
+  // お役立ち情報：カテゴリで絞り込む
+  // （タブと記事は scripts/build.py が生成。JSが動かない場合は全件そのまま表示される）
+  var tabs=document.querySelectorAll('.read-tab');
+  if(tabs.length){
+    var items=document.querySelectorAll('.read-item');
+    var empty=document.querySelector('.read-empty');
+    Array.prototype.forEach.call(tabs,function(tab){
+      tab.addEventListener('click',function(){
+        var cat=tab.getAttribute('data-cat'),shown=0;
+        Array.prototype.forEach.call(tabs,function(t){
+          t.setAttribute('aria-pressed',String(t===tab));
+        });
+        Array.prototype.forEach.call(items,function(it){
+          var hit=(cat==='all'||it.getAttribute('data-cat')===cat);
+          it.hidden=!hit;
+          if(hit){shown++;it.classList.add('on')}   // 絞り込み後に出る行もフェード済みにする
+        });
+        if(empty){empty.hidden=shown>0}
+      });
+    });
   }
 
   // header
