@@ -212,9 +212,23 @@ section{padding:110px 0}
   font-size:clamp(2.2rem,3.9vw,3.4rem);
   line-height:1.5;letter-spacing:.05em;
 }
+/* 価格の行。本文と同じ大きさだと桁の途中で折り返すので、少し落として1行に収める */
+.hero h1 .h1-price{display:block;font-size:.72em;line-height:1.45;white-space:nowrap;margin-bottom:.12em}
+.hero h1 .h1-price small{font-size:.62em;font-weight:700;letter-spacing:.02em}
+/* マーカーを引いた語が行をまたぐと、帯が切れて1文字だけ残る。語ごと折り返す */
+.hero h1 .mk{white-space:nowrap}
+@media(max-width:420px){
+  .hero h1 .h1-price{white-space:normal}
+}
 .hero-sub{margin-top:32px;font-size:clamp(.98rem,1.5vw,1.12rem);max-width:640px;color:var(--ink-soft)}
 .hero-sub b{color:var(--ink)}
 .hero-ctas{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap}
+/* 誰が作るのかを、スクロール前に一行だけ渡す（主役は制作イメージのまま） */
+.hero-by{display:flex;align-items:center;gap:14px;margin-top:30px}
+.hero-by img{width:46px;height:46px;border-radius:50%;object-fit:cover;object-position:center top;border:1px solid var(--line);background:#E9EDF4;flex-shrink:0}
+.hero-by p{font-size:.82rem;line-height:1.9;color:var(--ink-soft)}
+.hero-by b{color:var(--ink);font-weight:900}
+.hero-by .nb{white-space:nowrap}   /* 「Edu-NEWS」がハイフンで割れるのを防ぐ */
 .hero-stats{display:flex;margin-top:64px;border-top:1.5px solid var(--ink);flex-wrap:wrap}
 .hero-stats li{flex:1;min-width:150px;padding:20px 24px 0 0;border-right:1px solid var(--line)}
 .hero-stats li:last-child{border-right:none}
@@ -502,7 +516,13 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
 @media(max-width:960px){
   .hero{padding-top:150px}
   .hero-grid{grid-template-columns:1fr}
-  .hero-visual{display:none}
+  /* スマホでも制作イメージを見せる。重ね配置はやめて1枚だけ素直に置く */
+  .hero-visual{height:auto;margin-top:0}   /* 段の間隔は hero-grid の gap で足りる */
+  .hero-visual .shot{position:static;transform:none;box-shadow:0 12px 30px rgba(34,37,43,.13)}
+  .hero-visual .shot.s1{width:100%;height:auto}
+  .hero-visual .shot.s1 img{height:auto}
+  .hero-visual .shot.s2{display:none}
+  .hero-visual .cap{position:static;display:block;margin-top:10px}
   .svc-feature{grid-template-columns:1fr;gap:28px;padding:40px 32px}
   .svc-price{border-left:none;border-top:1px dashed rgba(36,81,158,.3);padding-left:0;padding-top:24px}
   .svc-rest{grid-template-columns:1fr;gap:36px;margin-top:44px}
@@ -564,9 +584,8 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
         <div class="hero-copy">
           <p class="hero-lead">個人塾・地域密着塾専門</p>
           <h1>
-            5万円〜（税別）、月額0円。<br>
-            塾が自分で<span class="mk" style="display:inline-block">育てられる</span><br>
-            <span style="display:inline-block">ホームページ。</span>
+            <span class="h1-price">5万円〜<small>（税別）</small>・月額0円。</span>
+            塾が自分で<span class="mk">育てられる</span><br>ホームページ。
           </h1>
           <p class="hero-sub">
             管理画面から、料金表・講習案内・ブログ・合格実績をいつでも更新。<br>
@@ -577,10 +596,15 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
             <a class="btn" href="#diagnosis">今のHPを無料診断してもらう</a>
             <a class="btn btn-ghost" href="#diagnosis" data-prefill-consult="true">まずは無料で相談したい方はこちら</a>
           </div>
+          <div class="hero-by">
+            <img src="assets/oda.jpg" alt="スマ塾 代表・小田 一勲" width="46" height="46" loading="lazy" decoding="async">
+            <p>制作から運用まで、代表の<b>小田 一勲</b>がすべて担当します。<br>
+              文部科学省の動きを毎週解説する<span class="nb">「Edu-NEWS」運営。</span></p>
+          </div>
         </div>
-        <div class="hero-visual" aria-hidden="true">
-          <div class="shot s1"><img src="assets/works-rin.jpg" alt=""></div>
-          <div class="shot s2"><img src="assets/works-you.jpg" alt=""></div>
+        <div class="hero-visual">
+          <div class="shot s1"><img src="assets/works-rin.jpg" alt="スマ塾が制作する学習塾ホームページの例（タイプA）"></div>
+          <div class="shot s2"><img src="assets/works-you.jpg" alt="スマ塾が制作する学習塾ホームページの例（タイプB）"></div>
           <span class="cap">制作イメージ（デザイン3タイプ）</span>
         </div>
       </div>
