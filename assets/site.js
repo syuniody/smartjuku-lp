@@ -1,6 +1,31 @@
 /* スマ塾 記事ページの共通スクリプト
-   いまのところ「リンクをコピー」ボタンだけ。外部ライブラリは使わない。
+   「リンクをコピー」ボタンと、CTAクリックのGA4計測。外部ライブラリは使わない。
    X / LINE / Facebook はただのリンクなので、JSが動かなくても機能する。 */
+
+/* CTAクリック計測（GA4）。診断への導線がどこから踏まれたかを article_cta_click で記録する。
+   gtagがブロックされている環境では黙って何もしない。 */
+(function () {
+  'use strict';
+  if (typeof window.gtag !== 'function') return;
+
+  var targets = [
+    ['.article-cta .btn', 'article_end'],
+    ['a.header-cta', 'header'],
+    ['.foot-nav a[href="/#contact"]', 'footer']
+  ];
+
+  targets.forEach(function (t) {
+    Array.prototype.forEach.call(document.querySelectorAll(t[0]), function (el) {
+      el.addEventListener('click', function () {
+        window.gtag('event', 'article_cta_click', {
+          cta_position: t[1],
+          page_path: location.pathname
+        });
+      });
+    });
+  });
+})();
+
 (function () {
   'use strict';
 

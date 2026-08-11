@@ -1069,6 +1069,10 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
          2) Formspree の Webhook 送信先を「＜GASの/exec＞?token=＜SHARED_SECRET＞」に設定
             （シート記録は Formspree→Webhook→GAS が担う。ブラウザ直書きはしない）
        ============================================================ -->
+  <!-- 旧「無料相談」フォーム(#contact)は無料診断フォーム(#diagnosis)へ集約し撤去（2026-07 単一フォーム化）。
+       #contact への旧リンク切れ防止用アンカー。記事CTA等がフォーム先頭に着地するよう、セクションの直前に置く -->
+  <div id="contact" aria-hidden="true" style="position:relative;top:-80px;height:0;overflow:hidden"></div>
+
   <section class="cta diagnosis" id="diagnosis">
     <div class="wrap cta-in">
       <span class="diag-badge rv">無料・オンライン完結</span>
@@ -1138,10 +1142,6 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
       <p class="diag-secondary rv">すでに制作のご相談内容が決まっている方は、メール（<a href="mailto:oda@syuni.jp">oda@syuni.jp</a>）・お電話でも承ります。</p>
     </div>
   </section>
-
-  <!-- 旧「無料相談」フォーム(#contact)は無料診断フォーム(#diagnosis)へ集約し撤去（2026-07 単一フォーム化）。
-       #contact への旧リンク切れ防止用に、診断セクションへ飛ばす軽量アンカーのみ残置。 -->
-  <div id="contact" aria-hidden="true" style="position:relative;top:-80px;height:0;overflow:hidden"></div>
 
 </main>
 
