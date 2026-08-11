@@ -1,0 +1,143 @@
+# Decap CMS 設定 — 塾長がブラウザから更新できる項目の定義
+backend:
+  name: test-repo
+
+# ローカル動作確認用（npx decap-server を起動した時だけ有効になる）
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+locale: ja
+site_url: /demo/sei/
+
+collections:
+  - name: "blog"
+    label: "ブログ記事"
+    label_singular: "ブログ記事"
+    folder: "blog-posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    identifier_field: "title"
+    summary: "{{title}}（{{date | date('YYYY.MM.DD')}}）"
+    description: "記事を書いて「公開」を押すと、数分でサイトに反映されます。※URL用のスラッグは英数字で入力してください（例：test-kaizen-2026）"
+    fields:
+      - { label: "タイトル", name: "title", widget: "string" }
+      - { label: "公開日", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "アイキャッチ画像（記事の先頭と一覧に表示・任意）", name: "thumbnail", widget: "image", required: false, hint: "スマホで撮った写真でOK。横長がきれいに収まります。" }
+      - { label: "概要（検索結果に表示される説明文・50字程度）", name: "description", widget: "string", required: false }
+      - { label: "本文（写真は本文中にも挿入できます）", name: "body", widget: "markdown" }
+
+  - name: "settings"
+    label: "サイトの内容"
+    files:
+      - name: "news"
+        label: "お知らせ"
+        file: "data/news.json"
+        description: "トップページのお知らせ欄。講習・募集の告知は必ずここ（テキスト）に書いてください。"
+        fields:
+          - label: "お知らせ一覧"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.date}}｜{{fields.text}}"
+            fields:
+              - { label: "日付", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+              - { label: "種類（講習・募集・実績 など2文字程度）", name: "label", widget: "string" }
+              - { label: "内容", name: "text", widget: "text" }
+
+      - name: "pricing"
+        label: "コースと料金"
+        file: "data/pricing.json"
+        description: "学年タブ（小学生・中学生・高校生・英検）ごとにコースを編集できます。料金を変更したら、FAQの料金の回答も忘れずに合わせてください。"
+        fields:
+          - label: "学年タブ"
+            name: "tabs"
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "タブID（英数字・変更不要）", name: "id", widget: "string" }
+              - { label: "タブ名（例：小学生）", name: "label", widget: "string" }
+              - { label: "英字ラベル（例：Elementary）", name: "en", widget: "string" }
+              - { label: "見出し（例：小学生コース）", name: "title", widget: "string" }
+              - { label: "説明文", name: "lead", widget: "text" }
+              - label: "コース"
+                name: "courses"
+                widget: "list"
+                summary: "{{fields.name}}"
+                fields:
+                  - { label: "コース名", name: "name", widget: "string" }
+                  - { label: "対象（例：中1〜中3｜5教科対応）", name: "target", widget: "string" }
+                  - { label: "説明文", name: "desc", widget: "text" }
+                  - { label: "料金ラベル", name: "price_label", widget: "string", default: "月謝（税込）" }
+                  - label: "料金"
+                    name: "prices"
+                    widget: "list"
+                    summary: "{{fields.label}} {{fields.amount}}円"
+                    fields:
+                      - { label: "回数（例：週1回）", name: "label", widget: "string" }
+                      - { label: "金額（数字とカンマのみ。例：15,400）", name: "amount", widget: "string" }
+          - label: "補足（入塾金・割引など）"
+            name: "memo"
+            widget: "list"
+            field: { label: "補足文", name: "line", widget: "text" }
+
+      - name: "results"
+        label: "成績の実例"
+        file: "data/results.json"
+        description: "実際の塾生の数字だけを載せてください（学年・教科・期間を明記）。"
+        fields:
+          - label: "実例一覧"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.tag}}"
+            fields:
+              - { label: "見出し（例：藤が丘中2年・数学｜入塾6ヶ月）", name: "tag", widget: "string" }
+              - { label: "前（例：41点）", name: "before", widget: "string" }
+              - { label: "後の数字（例：79）", name: "after", widget: "string" }
+              - { label: "後の単位（例：点。偏差値なら空欄）", name: "unit", widget: "string", required: false, default: "点" }
+              - { label: "説明文", name: "text", widget: "text" }
+
+      - name: "goukaku"
+        label: "合格実績"
+        file: "data/goukaku.json"
+        description: "毎年春に更新してください。学校名と人数はAIがそのまま読み取ります。"
+        fields:
+          - label: "実績カード（2枚推奨：今年度／累計）"
+            name: "cards"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "カードの見出し（例：2026年春）", name: "title", widget: "string" }
+              - label: "行"
+                name: "rows"
+                widget: "list"
+                summary: "{{fields.name}}｜{{fields.num}}"
+                fields:
+                  - { label: "学校名など", name: "name", widget: "string" }
+                  - { label: "人数など（例：3名）", name: "num", widget: "string" }
+
+      - name: "taiken"
+        label: "合格体験記"
+        file: "data/taiken.json"
+        description: "卒塾生の体験記。毎年春に追加していくと信頼の蓄積になります。"
+        fields:
+          - label: "体験記一覧"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.school}}｜{{fields.who}}"
+            fields:
+              - { label: "合格した学校（例：岐阜高校）", name: "school", widget: "string" }
+              - { label: "本人（例：桜台中出身・Kさん（通塾3年））", name: "who", widget: "string" }
+              - { label: "年度（例：2026年春）", name: "year", widget: "string" }
+              - { label: "本文（本人の言葉をそのまま）", name: "text", widget: "text" }
+
+      - name: "faq"
+        label: "よくある質問"
+        file: "data/faq.json"
+        description: "AIに最も読まれる場所です。結論から書いてください。ページ内の表示と検索用データ（構造化データ）の両方に自動反映されます。"
+        fields:
+          - label: "質問一覧"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.q}}"
+            fields:
+              - { label: "質問", name: "q", widget: "string" }
+              - { label: "回答（結論ファーストで）", name: "a", widget: "text" }
