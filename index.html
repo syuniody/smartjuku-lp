@@ -72,10 +72,18 @@
     },
     {
       "@type": "Question",
+      "name": "公開後のサポートはありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "公開後30日間は、表示の不具合など制作に起因する修正を無償で承ります。それ以降は、月額1,980円（税別）の「あんしん保守」で、毎月のGA4レポート・ドメイン更新の代行・毎日の死活監視・月次バックアップ・軽微な修正（月1回・15分以内）を継続してお引き受けします。大きめの改修は、都度お見積りいたします。あんしん保守は任意です。ご利用がなくても、ホームページの機能はそのままお使いいただけます。"
+      }
+    },
+    {
+      "@type": "Question",
       "name": "パソコンが苦手でも更新できますか？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "はい。お知らせ・ブログ・料金表・合格実績・成績事例・FAQ・画像は、管理画面から専門知識なしで更新できます。更新マニュアルもお渡しします。何を書けばよいか迷う場合は集客原稿サポート（月9,800円・税別）で原稿をご用意でき、反映まで任せたい場合は地域集客運用（月19,800円・税別）で更新代行も可能です。"
+        "text": "はい。お知らせ・ブログ・料金表・合格実績・成績事例・FAQ・画像は、管理画面から専門知識なしで更新できます。更新マニュアルもお渡しします。何を書けばよいか迷う場合は集客原稿サポート（月9,800円・税別）で原稿をご用意でき、反映まで任せたい場合は地域集客運用（月19,800円・税別）で更新代行も可能です。触ること自体が不安な場合は、あんしん保守（月1,980円・税別）で軽微な修正の代行と死活監視をお引き受けします。"
       }
     },
     {
@@ -122,6 +130,7 @@
   },
   "offers": [
     { "@type": "Offer", "name": "スマ塾HP制作", "priceCurrency": "JPY", "price": "50000", "priceSpecification": { "@type": "PriceSpecification", "valueAddedTaxIncluded": false }, "description": "買い切り・月額保守費0円。既存HPリニューアル5万円〜／新規立ち上げ10万円（税別）。管理画面から塾自身が更新できます。" },
+    { "@type": "Offer", "name": "あんしん保守", "priceCurrency": "JPY", "price": "1980", "priceSpecification": { "@type": "PriceSpecification", "valueAddedTaxIncluded": false }, "description": "月額1,980円（税別）・任意の追加サービス。毎月のGA4レポート、ドメイン更新の代行と期限管理、毎日の死活監視（表示・SSL）、月次バックアップ、軽微な修正の代行（月1回・15分以内）、不具合時の優先対応。" },
     { "@type": "Offer", "name": "集客原稿サポート", "priceCurrency": "JPY", "price": "9800", "priceSpecification": { "@type": "PriceSpecification", "valueAddedTaxIncluded": false }, "description": "月額9,800円（税別）・任意の追加サービス。ブログ原稿・GBP投稿文・FAQ回答案などの原稿を提供し、塾が管理画面から自分で投稿するプラン。" },
     { "@type": "Offer", "name": "地域集客運用", "priceCurrency": "JPY", "price": "19800", "priceSpecification": { "@type": "PriceSpecification", "valueAddedTaxIncluded": false }, "description": "月額19,800円（税別）・任意の追加サービス。原稿提供に加え、HPへの月1回まとめ更新やGoogleビジネスプロフィール運用まで、スマ塾が反映を代行するプラン。" }
   ]
@@ -393,6 +402,12 @@ section{padding:110px 0}
 .price-sub-head .p-tag{position:static;display:inline-block;margin-bottom:18px;background:var(--marker);color:var(--ink)}
 .price-sub-title{font-family:var(--serif);font-weight:700;font-size:clamp(1.25rem,2.6vw,1.55rem);line-height:1.7;letter-spacing:.03em}
 .addon-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.addon-grid--3{grid-template-columns:repeat(3,1fr);gap:20px}
+/* GA4レポートの見本。数字を読ませるのではなく「毎月これが届く」を伝える大きさ */
+.ga4-sample{margin:44px auto 0;max-width:540px;text-align:center}
+.ga4-sample img{width:100%;height:auto;border:1px solid var(--line);border-radius:10px;box-shadow:0 14px 34px rgba(34,37,43,.13);display:block}
+.ga4-sample figcaption{margin-top:14px;font-size:.78rem;line-height:1.9;color:var(--ink-soft);text-align:left}
+@media(max-width:1024px){.addon-grid--3{grid-template-columns:1fr}}
 .plan.addon{background:var(--paper);padding:38px 34px;border:1px solid var(--line);box-shadow:none}
 .plan.addon .p-tag{background:#fff;color:var(--blue);border:1.5px solid var(--blue)}
 .plan.addon .p-price .n{font-size:clamp(1.7rem,2.8vw,2.1rem);color:var(--ink)}
@@ -675,6 +690,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
             <li>スマホ対応・問い合わせ導線を重視した設計</li>
             <li>お知らせ・ブログ・料金表・合格実績を自分で更新できる</li>
             <li>AI検索時代に対応した基本設計（よくある質問の構造化など）</li>
+            <li><b>アクセス解析（GA4）を設定して納品</b>。公開初日から数字が見える状態に</li>
             <li>既存HPのリニューアルも、ゼロからの新規立ち上げも</li>
           </ul>
         </div>
@@ -822,6 +838,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
             <li>スマホ対応・問い合わせフォーム設置</li>
             <li>管理画面から塾自身で更新（お知らせ・ブログ・料金表・合格実績・成績事例・FAQ・画像）</li>
             <li>AI検索時代に対応した基本設計</li>
+            <li>アクセス解析（GA4）の設定（数字が見える状態で納品）</li>
             <li>更新マニュアル付き</li>
             <li>すぐ使えるAI指示文（プロンプト）集プレゼント</li>
           </ul>
@@ -835,9 +852,25 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
           <span class="p-tag p-tag--sub">必要な方だけ追加</span>
           <h3 class="price-sub-title">自分で更新できます。<br>それでも時間がない月々の発信は、任せることもできます。</h3>
         </div>
-        <div class="addon-grid">
+        <div class="addon-grid addon-grid--3">
           <div class="plan addon rv">
             <span class="p-tag p-tag--sub">追加1</span>
+            <h3>あんしん保守</h3>
+            <span class="p-en">サイトを、生きたまま保つプラン</span>
+            <div class="p-price"><span class="n">1,980<span style="font-size:.4em">円</span></span><span class="u">/ 月（税別）</span></div>
+            <p class="quote">作ったあと、見ていてくれる人がいるだけで違う。そう思う塾へ。</p>
+            <ul>
+              <li>毎月のGA4レポート（A4×2枚・前月比つき）</li>
+              <li>ドメイン更新の代行と期限管理</li>
+              <li>毎日の死活監視（表示・SSL）</li>
+              <li>月次バックアップ</li>
+              <li>軽微な修正の代行（月1回・15分以内）</li>
+              <li>不具合が起きたときの優先対応</li>
+            </ul>
+            <a class="btn btn-ghost" href="#diagnosis">このプランで相談する</a>
+          </div>
+          <div class="plan addon rv rv-d1">
+            <span class="p-tag p-tag--sub">追加2</span>
             <h3>集客原稿サポート</h3>
             <span class="p-en">塾が管理画面から自分で投稿するプラン</span>
             <div class="p-price"><span class="n">9,800<span style="font-size:.4em">円</span></span><span class="u">/ 月（税別）</span></div>
@@ -851,8 +884,8 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
             </ul>
             <a class="btn btn-ghost" href="#diagnosis">このプランで相談する</a>
           </div>
-          <div class="plan addon rv rv-d1">
-            <span class="p-tag p-tag--sub">追加2</span>
+          <div class="plan addon rv rv-d2">
+            <span class="p-tag p-tag--sub">追加3</span>
             <h3>地域集客運用</h3>
             <span class="p-en">スマ塾が反映まで行うプラン</span>
             <div class="p-price"><span class="n">19,800<span style="font-size:.4em">円</span></span><span class="u">/ 月（税別）</span></div>
@@ -868,7 +901,12 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
             <a class="btn btn-ghost" href="#diagnosis">このプランで相談する</a>
           </div>
         </div>
-        <p class="price-foot rv">※価格はすべて税別です。／月額サポートは任意です。維持のために必須ではありません。／表示価格は2026年7月時点のものです。</p>
+        <figure class="ga4-sample rv">
+          <img src="assets/ga4-report-sample.jpg" alt="あんしん保守で毎月お届けするGA4レポートの見本。訪問数・訪れた人・平均滞在時間・しっかり読まれた割合の4指標と、流入元・入口ページの表が並ぶ" loading="lazy" decoding="async">
+          <figcaption>あんしん保守でお届けする月次レポートの見本（A4×2枚）。数字の横に前月比と読み方の注記を添えるので、見て意味が分かる形でお渡しします。※画像はサンプルサイトの見本で、数値は架空のものです。</figcaption>
+        </figure>
+
+        <p class="price-foot rv">※価格はすべて税別です。／<b>月額サポートはすべて任意です。ご利用なし（0円）でも、ホームページの機能はそのまま使えます。</b>／表示価格は2026年8月時点のものです。</p>
       </div>
     </div>
   </section>
@@ -954,6 +992,14 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
             <h3>近畿大学の総合型選抜で生成AI利用へ｜塾が押さえる範囲と注意点</h3>
             <p>近畿大学情報学部が2027年度総合型選抜で生成AI活用を認めました。利用できる範囲、志望理由書の注意点、本人の思考を確認する方法、学校・塾に必要な指導を解説します。</p>
           </a>
+          <a class="read-item rv" data-cat="news" href="/news/kyokasho-bunryo-kisei.html">
+            <div class="read-meta">
+              <span class="read-cat">教育ニュース</span>
+              <time datetime="2026-08-08">2026年8月8日</time>
+            </div>
+            <h3>教科書の分量規制で塾はどう変わる？｜小学校は約50年で3倍</h3>
+            <p>教科書は約50年前と比べて小学校で約3倍、中学校で約1.5倍に増加。文科省の分量精選が塾の教材管理・理解診断・保護者説明にどう影響するか、決定事項と検討段階を分けて解説します。</p>
+          </a>
           <a class="read-item rv" data-cat="news" href="/news/sougougata-senbatsu-2028.html">
             <div class="read-meta">
               <span class="read-cat">教育ニュース</span>
@@ -1002,14 +1048,6 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
             <h3>【徹底解説】2030年の国語はどう変わる？新聞・広告、評価、高校科目の5つの変更</h3>
             <p>2026年7月に公表された国語ワーキンググループの取りまとめ案から、2030年以降の国語の変化を5つに整理しました。授業・評価・教科書・高校科目が「情報を吟味して自分の言葉で伝える力」で組み直されます。まだ正式決定ではない点も含めて解説します。</p>
           </a>
-          <a class="read-item rv" data-cat="news" href="/news/tsuuchihyou-mikata.html">
-            <div class="read-meta">
-              <span class="read-cat">教育ニュース</span>
-              <time datetime="2026-07-17">2026年7月17日</time>
-            </div>
-            <h3>「通知表の見方」を完全解説｜夏休み前に親が見るべき5つのこと</h3>
-            <p>通知表は子どもを数字で判定する紙ではなく、夏休みに何をするかを決めるための材料です。5段階評定・三観点・所見・出欠の見方を整理し、夏期面談でそのまま使える形にまとめました。</p>
-          </a>
         </div>
         <p class="read-empty" hidden>このカテゴリの記事はまだありません。</p>
       <!-- READING:END -->
@@ -1036,8 +1074,12 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
           <div class="ans"><p>対応しています。現在のホームページの文章や写真を活かしながら、スマホ対応・問い合わせ導線・情報の鮮度を整えて作り直します。ホームページがない塾の新規立ち上げにも対応しています。</p></div>
         </details>
         <details class="rv">
+          <summary>公開後のサポートはありますか？</summary>
+          <div class="ans"><p>公開後30日間は、表示の不具合など制作に起因する修正を無償で承ります。それ以降は、月額1,980円（税別）の「あんしん保守」で、毎月のGA4レポート・ドメイン更新の代行・毎日の死活監視・月次バックアップ・軽微な修正（月1回・15分以内）を継続してお引き受けします。大きめの改修は、都度お見積りいたします。あんしん保守は任意です。ご利用がなくても、ホームページの機能はそのままお使いいただけます。</p></div>
+        </details>
+        <details class="rv">
           <summary>パソコンが苦手でも更新できますか？</summary>
-          <div class="ans"><p>はい。お知らせ・ブログ・料金表・合格実績・成績事例・FAQ・画像は、管理画面から専門知識なしで更新できます。更新マニュアルもお渡しします。何を書けばよいか迷う場合は集客原稿サポート（月9,800円・税別）で原稿をご用意でき、反映まで任せたい場合は地域集客運用（月19,800円・税別）で更新代行も可能です。</p></div>
+          <div class="ans"><p>はい。お知らせ・ブログ・料金表・合格実績・成績事例・FAQ・画像は、管理画面から専門知識なしで更新できます。更新マニュアルもお渡しします。何を書けばよいか迷う場合は集客原稿サポート（月9,800円・税別）で原稿をご用意でき、反映まで任せたい場合は地域集客運用（月19,800円・税別）で更新代行も可能です。触ること自体が不安な場合は、あんしん保守（月1,980円・税別）で軽微な修正の代行と死活監視をお引き受けします。</p></div>
         </details>
         <details class="rv">
           <summary>Googleマップ対策（MEO）では何をしてもらえますか？</summary>
