@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /_templates/
 Disallow: /demo/
+Disallow: /r/
 
 Sitemap: https://smart-juku.syuni.jp/sitemap.xml
