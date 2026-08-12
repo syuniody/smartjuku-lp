@@ -16,6 +16,7 @@ main{max-width:760px;margin:0 auto;padding:36px 20px 80px}
 h1{font-size:1.7rem;line-height:1.6;color:var(--navy)}
 h2{font-size:1.25rem;color:var(--navy);border-left:5px solid var(--blue);padding-left:12px;margin-top:56px}
 h3{font-size:1.05rem;margin-top:36px}
+img{max-width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}
 blockquote{background:#fff;border-left:4px solid #e8c24a;margin:16px 0;padding:12px 18px;font-size:.95rem}
 table{border-collapse:collapse;width:100%;background:#fff;font-size:.9rem;display:block;overflow-x:auto}
 th,td{border:1px solid var(--line);padding:8px 12px;text-align:left}
@@ -23,7 +24,6 @@ th{background:var(--navy);color:#fff;font-weight:700}
 code{background:#eceadf;padding:1px 6px;border-radius:4px;font-size:.9em}
 pre{background:#2b2b2b;color:#f7f4ed;padding:14px 18px;border-radius:8px;overflow-x:auto;line-height:1.7}
 pre code{background:none;color:inherit;padding:0}
-.figph{border:2px dashed var(--line);background:#fff;color:#888;text-align:center;padding:18px;border-radius:8px;font-size:.85rem;margin:14px 0}
 .foot{border-top:1px solid var(--line);margin-top:60px;padding-top:18px;font-size:.8rem;color:#777}
 </style>
 </head>
@@ -56,8 +56,7 @@ pre code{background:none;color:inherit;padding:0}
 <p>これが一番お伝えしたいことです。</p>
 <p>AIに頼んだ変更で表示が崩れても、<strong>変更前の状態に必ず戻せます</strong>。取り返しのつかない失敗は、仕組み上ほぼ起きません（戻し方は第9章）。</p>
 <p>「触って壊したら怖い」と身構える必要はありません。安心して試してください。</p>
-<div class="figph">図解：ファイルの集まり → GitHub（履歴が積み重なる書棚のイメージ）→ いつでも過去の巻に戻れる（レクチャー時にご説明します）</div>
-
+<p><img alt="変更のたびに記録が積み重なり、いつでも過去に戻せる仕組み" src="img/fig1_rekishi.png" /></p>
 <hr />
 <h2>第2章　サイトを構成するファイルの役割</h2>
 <p>AIに頼むとき、「どのファイルを渡すか」が結果を大きく左右します。まず全体像だけ頭に入れてください。</p>
@@ -135,8 +134,7 @@ pre code{background:none;color:inherit;padding:0}
 <p>ご自身のサイトがどちらの型かは、リポジトリに <code>templates/</code> フォルダが<strong>あるかないか</strong>で見分けられます（あれば複数ページ型）。</p>
 <h3>2-3．一番大事な区別：「原本」と「生成物」</h3>
 <p>このサイトは、<strong>原本（template.html や templates/ と data/）を材料に、<code>build.js</code> というプログラムが完成品（index.html など）を自動で組み立てる</strong>方式です。</p>
-<div class="figph">図解：template.html ＋ data/*.json →（node build.js）→ index.html・blog/ が生成される流れ（レクチャー時にご説明します）</div>
-
+<p><img alt="原本を直すと、公開ページが自動で組み上がる流れ" src="img/fig2_build.png" /></p>
 <p>つまり <code>index.html</code> は「印刷結果」のようなもので、<strong>直接直しても、次の組み立てで上書きされて消えます</strong>。直すべきは常に「原本」の側です。この区別さえ守れば、AI活用の失敗の大半は防げます。</p>
 <hr />
 <h2>第3章　「管理画面でやること」と「AIに頼むこと」の切り分け</h2>
