@@ -7,41 +7,95 @@
 <title>ホームページAI活用ガイド｜スマ塾</title>
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <style>
-:root{--ink:#2b2b2b;--navy:#1e3a6e;--blue:#24519e;--paper:#f7f4ed;--line:#e2ddd2}
+:root{--ink:#2b2b2b;--navy:#1e3a6e;--blue:#24519e;--gold:#e8c24a;--paper:#f7f4ed;--line:#e2ddd2}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN",sans-serif;line-height:2}
 .head{background:var(--navy);color:#fff;padding:14px 20px;font-weight:700}
 .head small{opacity:.7;font-weight:400;margin-left:10px}
-main{max-width:760px;margin:0 auto;padding:36px 20px 80px}
+.layout{display:grid;grid-template-columns:230px minmax(0,760px);gap:44px;max-width:1080px;margin:0 auto;padding:36px 20px 80px}
+nav.toc{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow:auto;font-size:.8rem;line-height:1.7;border-right:1px solid var(--line);padding-right:16px}
+nav.toc .toc-t{font-weight:700;color:var(--navy);margin-bottom:8px;font-size:.85rem}
+nav.toc a{display:block;color:#666;text-decoration:none;padding:4px 8px;border-left:3px solid transparent;border-radius:0 6px 6px 0}
+nav.toc a:hover{color:var(--navy);background:#efece3}
+nav.toc a.on{color:var(--navy);font-weight:700;border-left-color:var(--gold);background:#fff}
+details.toc-m{display:none}
 h1{font-size:1.7rem;line-height:1.6;color:var(--navy)}
-h2{font-size:1.25rem;color:var(--navy);border-left:5px solid var(--blue);padding-left:12px;margin-top:56px}
+h2{font-size:1.25rem;color:var(--navy);border-left:5px solid var(--blue);padding-left:12px;margin-top:56px;scroll-margin-top:24px}
 h3{font-size:1.05rem;margin-top:36px}
 img{max-width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}
-blockquote{background:#fff;border-left:4px solid #e8c24a;margin:16px 0;padding:12px 18px;font-size:.95rem}
+blockquote{background:#fff;border-left:4px solid var(--gold);margin:16px 0;padding:12px 18px;font-size:.95rem}
 table{border-collapse:collapse;width:100%;background:#fff;font-size:.9rem;display:block;overflow-x:auto}
 th,td{border:1px solid var(--line);padding:8px 12px;text-align:left}
 th{background:var(--navy);color:#fff;font-weight:700}
 code{background:#eceadf;padding:1px 6px;border-radius:4px;font-size:.9em}
 pre{background:#2b2b2b;color:#f7f4ed;padding:14px 18px;border-radius:8px;overflow-x:auto;line-height:1.7}
 pre code{background:none;color:inherit;padding:0}
+.sos{background:#fff;border:2px solid var(--gold);border-radius:12px;padding:14px 20px;margin:24px 0;font-size:.95rem}
+.sos b{color:var(--navy)}
+details.faq{background:#fff;border:1px solid var(--line);border-radius:10px;margin:12px 0;overflow:hidden}
+details.faq summary{padding:13px 18px;font-weight:700;cursor:pointer;list-style:none;position:relative;padding-right:44px}
+details.faq summary::before{content:"Q";color:#fff;background:var(--blue);border-radius:6px;padding:0 7px;margin-right:10px;font-size:.85em}
+details.faq summary::after{content:"＋";position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--blue);font-weight:700}
+details.faq[open] summary::after{content:"−"}
+details.faq summary:hover{background:#faf8f1}
+.faq-a{padding:2px 18px 14px 18px;border-top:1px dashed var(--line);font-size:.95rem}
+.faq-a::before{content:"A．";font-weight:700;color:var(--navy)}
 .foot{border-top:1px solid var(--line);margin-top:60px;padding-top:18px;font-size:.8rem;color:#777}
+@media(max-width:1000px){
+  .layout{display:block;max-width:800px}
+  nav.toc{display:none}
+  details.toc-m{display:block;background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:24px}
+  details.toc-m summary{padding:12px 16px;font-weight:700;color:var(--navy);cursor:pointer}
+  details.toc-m a{display:block;padding:6px 20px;color:#555;text-decoration:none;font-size:.9rem}
+}
 </style>
 </head>
 <body>
 <div class="head">● スマ塾<small>ご契約者様向け資料</small></div>
+<div class="layout">
+<nav class="toc"><div class="toc-t">目次</div>
+<a href="#sec-1">このガイドについて</a>
+<a href="#sec-2">1. あなたのホームページの仕組み（超入門）</a>
+<a href="#sec-3">2. サイトを構成するファイルの役割</a>
+<a href="#sec-4">3. 「管理画面でやること」と「AIに頼むこと」の切り分け</a>
+<a href="#sec-5">4. 事前準備（初回だけ・15分）</a>
+<a href="#sec-6">5. AIへの頼み方・3つの基本</a>
+<a href="#sec-7">6. 頼み方の文例集（コピペで使えます）</a>
+<a href="#sec-8">7. 変更を本番に反映する流れ</a>
+<a href="#sec-9">8. 絶対にやってはいけない3つのこと</a>
+<a href="#sec-10">9. 壊れたときの戻し方</a>
+<a href="#sec-11">10. よくある質問</a>
+<a href="#sec-12">11. 困ったときは</a>
+</nav>
 <main>
+<details class="toc-m"><summary>目次を開く</summary>
+<a href="#sec-1">このガイドについて</a>
+<a href="#sec-2">1. あなたのホームページの仕組み（超入門）</a>
+<a href="#sec-3">2. サイトを構成するファイルの役割</a>
+<a href="#sec-4">3. 「管理画面でやること」と「AIに頼むこと」の切り分け</a>
+<a href="#sec-5">4. 事前準備（初回だけ・15分）</a>
+<a href="#sec-6">5. AIへの頼み方・3つの基本</a>
+<a href="#sec-7">6. 頼み方の文例集（コピペで使えます）</a>
+<a href="#sec-8">7. 変更を本番に反映する流れ</a>
+<a href="#sec-9">8. 絶対にやってはいけない3つのこと</a>
+<a href="#sec-10">9. 壊れたときの戻し方</a>
+<a href="#sec-11">10. よくある質問</a>
+<a href="#sec-12">11. 困ったときは</a>
+</details>
+<div class="sos">🔧 <b>困ったときは、まず<a href="#sec-11">「よくある質問」</a>を開いてください。</b><br>
+表示が崩れた・戻したい・AIの答えが変？——たいていの疑問はそこで解決します。解決しなければ oda@syuni.jp へどうぞ。</div>
 <h1>ホームページAI活用ガイド</h1>
 <p><strong>― ChatGPT・Claudeに頼んで、自分のホームページを自分で育てる本 ―</strong></p>
 <p>スマ塾（合同会社SyUNi）<br />
 お問い合わせ：oda@syuni.jp</p>
 <hr />
-<h2>このガイドについて</h2>
+<h2 id="sec-1">このガイドについて</h2>
 <p>このガイドは、スマ塾で制作したホームページを納品させていただいた塾長先生向けの資料です。</p>
 <p>日々の更新（お知らせ・料金・ブログなど）は、納品時にご案内した<strong>管理画面</strong>からできます。一方で、「メインの色を変えたい」「夏期講習の特設ページを作りたい」といった<strong>デザインや構造の変更</strong>は、管理画面の守備範囲外です。</p>
 <p>従来ならその都度、制作会社に数千円〜数万円を払って依頼する内容ですが、<strong>あなたのホームページは、ChatGPTやClaude（以下「AI」と呼びます）に頼めばご自身で変更できる構造</strong>で作ってあります。このガイドは、その「頼み方」を具体的な文例つきでまとめたものです。</p>
 <p>パソコンの専門知識は前提にしていません。「ChatGPTやClaudeを一度でも触ったことがある」程度で読めるように書いています。</p>
 <hr />
-<h2>第1章　あなたのホームページの仕組み（超入門）</h2>
+<h2 id="sec-2">第1章　あなたのホームページの仕組み（超入門）</h2>
 <h3>1-1．ホームページは「ただのファイルの集まり」です</h3>
 <p>あなたのホームページは、特別なシステムやデータベースではなく、<strong>普通のファイルの集まり</strong>でできています。文章とデザインが書かれたファイル、料金やお知らせが書かれたファイル、写真のファイル。それだけです。</p>
 <p>だから、ワープロの文書を直すのと同じ感覚で、<strong>ファイルの中身を書き換えればホームページが変わります</strong>。その「書き換え」の部分をAIに手伝ってもらうのが、このガイドのテーマです。</p>
@@ -58,7 +112,7 @@ pre code{background:none;color:inherit;padding:0}
 <p>「触って壊したら怖い」と身構える必要はありません。安心して試してください。</p>
 <p><img alt="変更のたびに記録が積み重なり、いつでも過去に戻せる仕組み" src="img/fig1_rekishi.png" /></p>
 <hr />
-<h2>第2章　サイトを構成するファイルの役割</h2>
+<h2 id="sec-3">第2章　サイトを構成するファイルの役割</h2>
 <p>AIに頼むとき、「どのファイルを渡すか」が結果を大きく左右します。まず全体像だけ頭に入れてください。</p>
 <h3>2-1．ファイル構成</h3>
 <p>あなたのリポジトリには、おおよそ次のファイル・フォルダが入っています。</p>
@@ -137,7 +191,7 @@ pre code{background:none;color:inherit;padding:0}
 <p><img alt="原本を直すと、公開ページが自動で組み上がる流れ" src="img/fig2_build.png" /></p>
 <p>つまり <code>index.html</code> は「印刷結果」のようなもので、<strong>直接直しても、次の組み立てで上書きされて消えます</strong>。直すべきは常に「原本」の側です。この区別さえ守れば、AI活用の失敗の大半は防げます。</p>
 <hr />
-<h2>第3章　「管理画面でやること」と「AIに頼むこと」の切り分け</h2>
+<h2 id="sec-4">第3章　「管理画面でやること」と「AIに頼むこと」の切り分け</h2>
 <p>すべてをAIに頼む必要はありません。日常の更新は管理画面のほうが速くて安全です。</p>
 <table>
 <thead>
@@ -218,7 +272,7 @@ pre code{background:none;color:inherit;padding:0}
 <p><strong>迷ったらまず管理画面を開いてください。</strong> そこに編集項目があればそれで完結します。なければAIの出番です。</p>
 <p>管理画面の使い方をおさらいすると：<code>https://あなたのドメイン/admin/</code> にログイン → 項目をフォームで編集 → 「公開」ボタン。これだけで、裏側では自動的にGitHubへ記録され、数分でサイトに反映されます。</p>
 <hr />
-<h2>第4章　事前準備（初回だけ・15分）</h2>
+<h2 id="sec-5">第4章　事前準備（初回だけ・15分）</h2>
 <p>AIに頼む前に、次の3つを確認・準備してください。</p>
 <h3>4-1．自分のリポジトリの場所を確認する</h3>
 <p>納品時にお渡しした資料に、あなたのサイトのGitHubリポジトリのURL（<code>https://github.com/○○○/○○○-hp</code> の形式）とログイン情報が記載されています。ブラウザでURLを開き、ログインして第2章の表にあるファイルが見えることを確認してください。</p>
@@ -250,7 +304,7 @@ AI「保存（コミット）して公開しました。数分でサイトに反
 <p>初期設定（インストールとGitHubへの接続）だけはやや専門的なので、興味があればスマ塾にご相談ください。初期設定のお手伝いは都度お見積りで承ります。</p>
 <p>以降の文例は、一番簡単な<strong>方法A（コピペ）</strong>を前提に書いています。方法Cをお使いの場合も、依頼文はそのまま使えます（ファイルを渡す作業が不要になるだけです）。</p>
 <hr />
-<h2>第5章　AIへの頼み方・3つの基本</h2>
+<h2 id="sec-6">第5章　AIへの頼み方・3つの基本</h2>
 <p>文例集の前に、どの依頼にも共通するコツを3つだけ。</p>
 <p><strong>基本1：「どのファイルを渡すか」はこのガイドの文例に従う</strong><br />
 デザインや文言は原本（<code>template.html</code>、複数ページ型は <code>templates/</code> 内）。データの構造変更は <code>data/○○.json</code>。<strong><code>index.html</code> は生成物なので、渡して見せるのは構いませんが、修正対象にしてはいけません</strong>（直しても次のビルドで消えます）。AIが「index.htmlを修正しました」と言ってきたら、「index.htmlは生成物なので、template.html側を直してください」と返してください。</p>
@@ -265,7 +319,7 @@ data/内のJSONから、build.js（node build.js）でindex.html等を生成す�
 <p><strong>基本3：1回の依頼は1つの変更に絞る</strong><br />
 「色も変えて、講師も足して、ページも作って」とまとめて頼むと、確認が難しくなります。1つ変えて確認、また1つ変えて確認、が結局一番速いです。</p>
 <hr />
-<h2>第6章　頼み方の文例集（コピペで使えます）</h2>
+<h2 id="sec-7">第6章　頼み方の文例集（コピペで使えます）</h2>
 <p>各例に「AIに渡すファイル」と「依頼文」を付けています。依頼文の前には第5章・基本2の前提文を付けてください。<strong>保存と公開の手順は第7章で共通</strong>です。</p>
 <hr />
 <h3>例1　トップページの電話番号を変えたい</h3>
@@ -421,7 +475,7 @@ JSONの構造（項目名やカッコの対応）は絶対に崩さず、
 　1行ずつ日本語で説明してください。
 </code></pre>
 <hr />
-<h2>第7章　変更を本番に反映する流れ</h2>
+<h2 id="sec-8">第7章　変更を本番に反映する流れ</h2>
 <p>AIから修正版のファイルを受け取ったら、次の手順で本番サイトに反映します。</p>
 <h3>7-1．全体の流れ</h3>
 <pre><code>① 原本を修正（AIの修正版をGitHubに保存＝コミット）
@@ -455,7 +509,7 @@ JSONの構造（項目名やカッコの対応）は絶対に崩さず、
 </ol>
 <p>反映されたら、必ず<strong>スマートフォンでも</strong>実物のサイトを開いて確認してください（閲覧者の大半はスマホです）。</p>
 <hr />
-<h2>第8章　絶対にやってはいけない3つのこと</h2>
+<h2 id="sec-9">第8章　絶対にやってはいけない3つのこと</h2>
 <p>やってしまっても第9章で戻せますが、知っていれば無駄な手戻りがなくなります。</p>
 <h3>その1　<code>index.html</code> など「生成物」を直接編集する</h3>
 <p><code>index.html</code>、<code>blog/</code> フォルダの中身（複数ページ型では <code>courses/</code> <code>teachers/</code> など各ページフォルダ内の <code>index.html</code> も）は、すべて <code>node build.js</code> が原本から自動生成するファイルです。</p>
@@ -470,7 +524,7 @@ JSONの構造（項目名やカッコの対応）は絶対に崩さず、
 <p>「たぶん大丈夫」でコミットを重ねると、どの変更で崩れたのか分からなくなります。<strong>1変更ずつ、確認してから保存</strong>。これだけで、トラブル対応の時間が10分の1になります。</p>
 <p>このほか、<code>admin/</code>・<code>netlify.toml</code>・<code>build.js</code> は、サイトの土台を支える設定ファイルです。変更が必要になる場面はまずないので、AIが「build.jsも修正しましょう」と提案してきた場合は、一度スマ塾にご相談いただくのが安全です。</p>
 <hr />
-<h2>第9章　壊れたときの戻し方</h2>
+<h2 id="sec-10">第9章　壊れたときの戻し方</h2>
 <h3>9-1．あわてなくて大丈夫です</h3>
 <p>第1章のとおり、変更履歴はすべてGitHubに残っています。「昨日までは正常だった」なら、昨日の状態に戻せます。</p>
 <h3>9-2．ご自身で戻す（概要手順）</h3>
@@ -484,19 +538,14 @@ JSONの構造（項目名やカッコの対応）は絶対に崩さず、
 <h3>9-3．あんしん保守にご加入の場合</h3>
 <p><strong>あんしん保守（月額オプション）にご加入中の塾様は、ご自身で戻す必要はありません。</strong> oda@syuni.jp へ「サイトの表示が崩れた」と一報いただければ、当社が履歴から復旧します。原因のご説明と再発防止のアドバイスまで含めて対応いたします。</p>
 <hr />
-<h2>第10章　よくある質問</h2>
-<p><strong>Q．AIに頼むと、間違ったコードを書かれることはありませんか？</strong><br />
-A．あります。だからこそ「生成物ではなく原本を直す」「差分を確認する」「1変更ずつ公開する」の3点を守ってください。この3点を守っていれば、間違いが起きても影響は小さく、すぐ戻せます。</p>
-<p><strong>Q．AIの利用料はかかりますか？</strong><br />
-A．ChatGPT・Claudeとも無料プランでも使えますが、ファイルが長いので有料プラン（月20ドル程度）が快適です。逆に言えば、月20ドルで「デザイン修正を都度外注する費用」が置き換わるとお考えください。</p>
-<p><strong>Q．ホームページのファイルをAIに渡して、情報漏えいの心配はありませんか？</strong><br />
-A．ホームページのファイルは、もともと<strong>全世界に公開している情報</strong>（塾名・住所・料金など）でできています。渡して問題ありません。ただし、生徒名簿や成績データなど<strong>サイトに載せていない個人情報は、AIに貼り付けないでください</strong>。</p>
-<p><strong>Q．管理画面とAI修正がぶつかることはありませんか？</strong><br />
-A．管理画面は <code>data/</code> と <code>blog-posts/</code> を、AI修正は主に原本（<code>template.html</code>／<code>templates/</code>）を触るので、通常はぶつかりません。同じJSONファイルを同時に触ることだけ避けてください（AIでJSONを修正中に管理画面で同じ項目を公開しない）。</p>
-<p><strong>Q．どこまで自分でやって、どこから頼むべきですか？</strong><br />
-A．目安は「このガイドの文例にあるレベルまでは自分で」「サイト全体の作り直し・新機能（予約システム等）・原因不明の不具合はスマ塾へ」です。無理に全部自分でやる必要はありません。</p>
+<h2 id="sec-11">第10章　よくある質問</h2>
+<details class="faq"><summary>AIに頼むと、間違ったコードを書かれることはありませんか？</summary><div class="faq-a">あります。だからこそ「生成物ではなく原本を直す」「差分を確認する」「1変更ずつ公開する」の3点を守ってください。この3点を守っていれば、間違いが起きても影響は小さく、すぐ戻せます。</div></details>
+<details class="faq"><summary>AIの利用料はかかりますか？</summary><div class="faq-a">ChatGPT・Claudeとも無料プランでも使えますが、ファイルが長いので有料プラン（月20ドル程度）が快適です。逆に言えば、月20ドルで「デザイン修正を都度外注する費用」が置き換わるとお考えください。</div></details>
+<details class="faq"><summary>ホームページのファイルをAIに渡して、情報漏えいの心配はありませんか？</summary><div class="faq-a">ホームページのファイルは、もともと<strong>全世界に公開している情報</strong>（塾名・住所・料金など）でできています。渡して問題ありません。ただし、生徒名簿や成績データなど<strong>サイトに載せていない個人情報は、AIに貼り付けないでください</strong>。</div></details>
+<details class="faq"><summary>管理画面とAI修正がぶつかることはありませんか？</summary><div class="faq-a">管理画面は <code>data/</code> と <code>blog-posts/</code> を、AI修正は主に原本（<code>template.html</code>／<code>templates/</code>）を触るので、通常はぶつかりません。同じJSONファイルを同時に触ることだけ避けてください（AIでJSONを修正中に管理画面で同じ項目を公開しない）。</div></details>
+<details class="faq"><summary>どこまで自分でやって、どこから頼むべきですか？</summary><div class="faq-a">目安は「このガイドの文例にあるレベルまでは自分で」「サイト全体の作り直し・新機能（予約システム等）・原因不明の不具合はスマ塾へ」です。無理に全部自分でやる必要はありません。</div></details>
 <hr />
-<h2>第11章　困ったときは</h2>
+<h2 id="sec-12">第11章　困ったときは</h2>
 <p>うまくいかないとき、判断に迷うときは、遠慮なくご連絡ください。</p>
 <p><strong>連絡先：oda@syuni.jp（スマ塾／合同会社SyUNi 小田一勲）</strong></p>
 <p>メールには「やりたかったこと」「AIに頼んだ内容（依頼文のコピペで結構です）」「今どうなっているか」の3点を書いていただけると、対応が速くなります。</p>
@@ -529,5 +578,23 @@ A．目安は「このガイドの文例にあるレベルまでは自分で」�
 <p>（本ガイドおわり）</p>
 <div class="foot">本ガイドはスマ塾（合同会社SyUNi）のご契約者様向け資料です。無断転載はご遠慮ください。<br>お問い合わせ：oda@syuni.jp</div>
 </main>
+</div>
+<script>
+(function () {
+  var links = document.querySelectorAll('nav.toc a');
+  var map = {};
+  links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+  var obs = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (e.isIntersecting) {
+        links.forEach(function (a) { a.classList.remove('on'); });
+        var a = map[e.target.id];
+        if (a) a.classList.add('on');
+      }
+    });
+  }, {rootMargin: '0px 0px -75% 0px'});
+  document.querySelectorAll('h2[id]').forEach(function (h) { obs.observe(h); });
+})();
+</script>
 </body>
 </html>
