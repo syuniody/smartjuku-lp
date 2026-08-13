@@ -169,6 +169,11 @@ ul,ol{list-style:none}
   .dotgrid{grid-template-columns:repeat(10,1fr);gap:6px}
 }
 
+/* 画面の見本（自作のモックアップ。実サービスの画面転載はしない） */
+.shot{margin:36px 0}
+.shot img{width:100%;height:auto;border:1px solid var(--line);border-radius:10px;box-shadow:0 14px 34px rgba(34,37,43,.12);display:block;background:var(--white)}
+.shot figcaption{margin-top:13px;font-size:.78rem;line-height:1.9;color:var(--ink-soft)}
+
 /* ★共有ボタン（外部スクリプトは読み込まない。リンクとクリップボードだけ） */
 .share{margin:44px 0 0;padding-top:26px;border-top:1px solid var(--line)}
 .share-label{font-size:.8rem;font-weight:900;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:14px}
@@ -190,6 +195,9 @@ ul,ol{list-style:none}
 
 /* 列が少なく、スマホでも横スクロールなしで収まる表に付ける */
 .data-table.fit table{min-width:0}
+/* 表の中の「制作に含む」などの小ラベル */
+.data-table .t-in{display:inline-block;margin-top:7px;font-size:.72rem;font-weight:700;letter-spacing:.03em;
+  color:var(--blue-deep);background:var(--paper);border:1px solid var(--line);border-radius:100px;padding:3px 11px}
 @media(max-width:520px){.data-table.fit th,.data-table.fit td{padding:12px 12px}}
 .table-note{font-size:.78rem;color:var(--ink-soft);margin-top:10px;line-height:1.9}
 
@@ -203,6 +211,10 @@ ul,ol{list-style:none}
 /* ★AIO：引用可の明記枠 */
 .citation{background:#EDF2FA;border:1px solid rgba(36,81,158,.3);border-radius:12px;padding:22px 24px;font-size:.88rem;line-height:2}
 .citation strong{background:none;font-weight:900}
+/* 記事末の出典表記。数値はレポート側に置き、記事からはそこへ送る */
+.source-note{margin:44px 0 0;padding:18px 20px;border-left:3px solid var(--line);
+  font-size:.84rem;line-height:2;color:var(--ink-soft)}
+.source-note a{color:var(--blue);font-weight:700}
 /* noteから移した記事は太字が多いため、マーカーは引かず太字だけにする */
 .article-body.plain-strong strong{background:none;font-weight:900}
 .citation .cite-example{display:block;margin-top:10px;padding:12px 14px;background:var(--white);border-radius:8px;font-size:.84rem;color:var(--ink-soft);word-break:break-all}
