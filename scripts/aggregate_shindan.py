@@ -5,8 +5,11 @@
 使い方:  python3 scripts/aggregate_shindan.py
 
 データの所在:
-  Google Drive「001.おまけの学校/12_スマ塾（HP）」配下に散在する 診断結果*.json
-  1塾1ディレクトリ。同一ディレクトリに複数版がある場合は _v2 を優先。
+  診断バッチの出力先（1塾1ディレクトリ、診断結果*.json）。
+  同一ディレクトリに複数版がある場合は _v2 を優先。
+  場所はこのリポジトリに書かない。次のどちらかで指定する:
+    - 環境変数 SUMAJUKU_DATA_ROOT
+    - scripts/.data_root（1行にパスを書く。gitignore済み）
 
 集計上の注意（実データを見て判明した揺れ）:
   - 評価記号は ◎ / ◯(U+25EF LARGE CIRCLE) / △ / ✕(U+2715) / ×(U+00D7) の5種類。
@@ -14,13 +17,28 @@
   - 項目名に2系統の表記ゆれがある（例「スマホ表示」/「スマートフォン表示」）。
     CANON で正規化して初めて全40塾が揃う。
 """
-import json, glob, os
+import json, glob, os, pathlib, sys
 from collections import defaultdict, Counter
 
-ROOT = os.path.expanduser(
-    "~/Library/CloudStorage/GoogleDrive-kazuhiro-oda@surala.jp/マイドライブ"
-    "/001.おまけの学校/12_スマ塾（HP）"
-)
+
+def data_root():
+    """診断データの場所。リポジトリには書かず、環境変数か .data_root から読む。"""
+    p = os.environ.get("SUMAJUKU_DATA_ROOT")
+    if not p:
+        cfg = pathlib.Path(__file__).with_name(".data_root")
+        if cfg.exists():
+            p = cfg.read_text(encoding="utf-8").strip()
+    if not p:
+        sys.exit("診断データの場所が未設定です。\n"
+                 "  export SUMAJUKU_DATA_ROOT='<診断結果*.json のあるフォルダ>'\n"
+                 "  または scripts/.data_root に1行でパスを書いてください。")
+    p = os.path.expanduser(p)
+    if not os.path.isdir(p):
+        sys.exit(f"指定された場所が見つかりません: {p}")
+    return p
+
+
+ROOT = data_root()
 
 # 項目名の表記ゆれ → 正規名
 CANON = {

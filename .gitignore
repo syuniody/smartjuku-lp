@@ -1,3 +1,6 @@
 .DS_Store
 **/.DS_Store
 serve.py
+
+# 診断データの所在（個人のパスを含むためコミットしない）
+scripts/.data_root
