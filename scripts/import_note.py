@@ -289,9 +289,6 @@ TEMPLATE = """<!DOCTYPE html>
   <div class="site-header-in">
     <a class="site-logo" href="/"><span class="dot"></span><span>スマ塾<small>学習塾専門のWeb支援</small></span></a>
     <nav class="site-nav">
-      <a href="/case/">制作事例</a>
-      <a href="/guide/">塾HPの基礎知識</a>
-      <a href="/report/">調査レポート</a>
       {nav}
     </nav>
     <a class="header-cta" href="/#contact">無料でHP診断を受ける</a>

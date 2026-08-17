@@ -48,6 +48,7 @@ def inline(text: str) -> str:
 
 # note向けに入れている行。自社サイトには要らないので落とす
 DROP_PATTERNS = [
+    r"^\s*<!--",                                 # 原稿内のHTMLコメント
     r"^#{1,6}?\s*$",
     r"^\s*#\S",                                   # ハッシュタグの行
     r"Youtubeチャンネルでは動画解説",
