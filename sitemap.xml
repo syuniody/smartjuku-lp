@@ -69,9 +69,15 @@
   </url>
   <url>
     <loc>https://smart-juku.syuni.jp/news/</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://smart-juku.syuni.jp/news/adjusted-class-hours.html</loc>
+    <lastmod>2026-08-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://smart-juku.syuni.jp/news/sns-time-school-performance.html</loc>

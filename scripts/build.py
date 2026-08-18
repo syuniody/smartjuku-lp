@@ -168,6 +168,18 @@ def collect_articles(section: dict) -> tuple[list[dict], list[str]]:
         if not desc:
             warnings.append(f"{rel}: description がありません")
 
+        # 画像の代替テキスト。空のまま公開すると、AIにも読み上げにも内容が伝わらない。
+        # 自社の記事で他塾に「代替テキストが0%」と指摘している以上、ここは落とせない。
+        for tag in re.findall(r"<img[^>]*>", src):
+            if "facebook.com/tr" in tag:      # 計測用の1×1画像は対象外
+                continue
+            m = re.search(r'alt="([^"]*)"', tag)
+            if not (m and m.group(1).strip()):
+                name = (re.search(r'src="([^"]+)"', tag) or [None, "?"])[1].split("/")[-1]
+                warnings.append(f"{rel}: 画像 {name} に alt がありません")
+            elif re.search(r"すらら|公式LINE|チャンネル登録|概要欄|プレゼント", m.group(1)):
+                warnings.append(f"{rel}: 画像 {m.group(1)[:20]}… の alt に他社の宣伝文が混ざっています")
+
         # OGP画像は命名規則で決まる。記事側の og:image が一致しているか点検する
         want_ogp = make_ogp.ogp_rel_path(section["slug"], f.name)
         og = meta_content(src, prop="og:image")
