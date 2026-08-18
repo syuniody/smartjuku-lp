@@ -78,6 +78,16 @@ def _wrap(text: str, font, max_width: int, draw) -> list[str]:
             cur = ch
     if cur:
         lines.append(cur)
+
+    # 熟語が「累／計」のように1文字で割れると目につく。
+    # 行末が漢字1文字で、次行の先頭も漢字なら、その1文字を次行へ送る。
+    def _kanji(c: str) -> bool:
+        return "\u4e00" <= c <= "\u9fff"
+
+    for i in range(len(lines) - 1):
+        a, b = lines[i], lines[i + 1]
+        if len(a) >= 2 and _kanji(a[-1]) and b and _kanji(b[0]) and not _kanji(a[-2]):
+            lines[i], lines[i + 1] = a[:-1].rstrip(), a[-1] + b
     return lines
 
 
