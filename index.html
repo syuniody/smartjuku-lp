@@ -49,6 +49,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Shippori+Mincho:wght@500;600;700;800&display=swap" rel="stylesheet">
+<!-- 署名用。「小田一勲」の4文字のみを配信する（text= でサブセット・約1.8KB） -->
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&text=%E5%B0%8F%E7%94%B0%E4%B8%80%E5%8B%B2&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -294,11 +296,13 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 
 /* ---------- 代表からひとこと ---------- */
 .say{padding:96px 0;border-top:1px solid var(--line)}
-.say-in{max-width:820px;margin:0 auto;display:flex;gap:40px;align-items:flex-start}
-.say-photo{width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:center top;flex-shrink:0;border:1px solid var(--line);background:#E9EDF4}
+.say-in{max-width:720px;margin:0 auto}
+/* 署名。顔写真は「運営者について」に集約し、ここは言葉と署名だけにする */
+.say .sig{margin-top:36px;padding-top:26px;border-top:1px solid var(--line)}
+.say .sig-role{display:block;font-size:.76rem;letter-spacing:.1em;color:var(--ink-soft);margin-bottom:6px}
+.say .sig-name{display:block;font-family:"Klee One",var(--serif);font-weight:600;font-size:1.7rem;
+  color:var(--ink);letter-spacing:.14em;line-height:1.35}
 .say blockquote{font-family:var(--serif);font-weight:600;font-size:clamp(1.02rem,1.9vw,1.25rem);line-height:2.3;letter-spacing:.03em}
-.say .who{margin-top:16px;font-size:.82rem;color:var(--ink-soft)}
-.say .say-note{margin-top:12px;font-size:.82rem;line-height:1.95;color:var(--ink-soft)}
 
 /* 本文内から記事への導線 */
 .inline-link{color:var(--blue);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;font-weight:700}
@@ -687,11 +691,9 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
   <section class="say">
     <div class="wrap">
       <div class="say-in rv">
-        <img class="say-photo" src="assets/oda.jpg" alt="スマ塾 代表・小田 一勲">
         <div>
-          <blockquote>更新が止まったままのホームページを、私は現場で山ほど見てきました。悪いのは塾長ではありません。授業も面談も抱えながら、Webまで手が回らないのは当たり前なんです。だから、担当ごと引き受けることにしました。</blockquote>
-          <p class="who">スマ塾 代表　小田 一勲</p>
-          <p class="say-note">2026年7月に40塾のホームページを1件ずつ診断しました。<a class="inline-link" href="/guide/juku-hp-https.html">10塾はいまもhttpのまま</a>で、その10塾は他の項目でも軒並み点が低いという結果でした。</p>
+          <blockquote>塾の先生と直接話す仕事を続けてきました。ホームページの話になると、返ってくる言葉はだいたい二つです。手が回っていない。頼むと高い。<br>どちらもそのとおりだと思います。授業と面談で一日が終わるなかで、更新まで手を伸ばすのは難しい。制作費が生徒何人分かに相当するなら、後回しになるのが自然です。<br>だから、5万円から・月額0円にしました。作ったあとは、塾がご自身で書き換えられます。</blockquote>
+          <div class="sig"><span class="sig-role">スマ塾 代表</span><span class="sig-name">小田 一勲</span></div>
         </div>
       </div>
     </div>
