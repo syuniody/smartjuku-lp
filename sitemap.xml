@@ -51,9 +51,15 @@
   </url>
   <url>
     <loc>https://smart-juku.syuni.jp/report/</loc>
-    <lastmod>2026-08-13</lastmod>
+    <lastmod>2026-08-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://smart-juku.syuni.jp/report/juku-hp-shindan-matome.html</loc>
+    <lastmod>2026-08-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://smart-juku.syuni.jp/report/juku-shindan-osaka-2026-08.html</loc>
