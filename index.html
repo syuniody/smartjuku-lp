@@ -49,6 +49,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Shippori+Mincho:wght@500;600;700;800&display=swap" rel="stylesheet">
+<!-- 署名用。「小田一勲」の4文字のみを配信する（text= でサブセット・約1.8KB） -->
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&text=%E5%B0%8F%E7%94%B0%E4%B8%80%E5%8B%B2&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -149,6 +151,21 @@
   --max:1120px;
   --serif:"Shippori Mincho",serif;
   --sans:"Zen Kaku Gothic New",sans-serif;
+
+  /* Signature: 赤ペン（添削・丸つけ）。ページ内で最も強い一点にだけ使う */
+  --akapen:#D6402C;
+
+  /* 角丸：この4つ以外を使わない（円形の 50% は別扱い） */
+  --r-xs:4px;
+  --r-sm:8px;
+  --r-md:14px;
+  --r-pill:999px;
+
+  /* 影：この3つ以外を使わない */
+  --sh-line:0 1px 0 var(--line);
+  --sh-1:0 14px 34px rgba(34,37,43,.13);
+  --sh-2:0 20px 48px rgba(34,37,43,.16);
+  --sh-focus:0 0 0 3px rgba(27,61,120,.12);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -175,7 +192,7 @@ html.noanim .rv{opacity:1;transform:none;transition:none}
 
 /* ---------- header ---------- */
 header{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,box-shadow .3s}
-header.scrolled{background:rgba(247,244,237,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+header.scrolled{background:rgba(247,244,237,.92);backdrop-filter:blur(10px);box-shadow:var(--sh-line)}
 .header-in{max-width:var(--max);margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .logo{font-weight:900;font-size:1.3rem;letter-spacing:.08em;display:flex;align-items:center;gap:10px}
 .logo .dot{width:11px;height:11px;background:var(--blue);border-radius:50%;display:inline-block}
@@ -187,7 +204,7 @@ nav.gnav a:hover::after{width:100%}
 .btn{
   display:inline-flex;align-items:center;gap:10px;justify-content:center;
   background:var(--blue);color:#fff;font-weight:700;
-  padding:15px 30px;border-radius:10px;font-size:.92rem;
+  padding:15px 30px;border-radius:var(--r-sm);font-size:.92rem;
   transition:background .25s,transform .25s;border:1.5px solid var(--blue);
 }
 .btn:hover{background:var(--blue-deep);border-color:var(--blue-deep);transform:translateY(-2px)}
@@ -205,11 +222,34 @@ section{padding:110px 0}
 .sec-lede b{color:var(--ink)}
 .mk{background:linear-gradient(transparent 60%,var(--marker) 60%);-webkit-box-decoration-break:clone;box-decoration-break:clone}
 
+/* ---------- Signature：赤ペンの丸つけ ----------
+   このページで唯一の「大胆な一点」。塾の世界の道具（採点の赤ペン）を借りて、
+   商品の核心（月額0円）を先生が正解に丸をつけるように示す。
+   他の場所で赤ペンを装飾として使わないこと。 */
+.maru{position:relative;display:inline-block;white-space:nowrap;padding:0 .22em}
+.maru-ink{
+  position:absolute;left:0;top:50%;width:100%;height:auto;aspect-ratio:200/74;
+  transform:translateY(-50%);overflow:visible;pointer-events:none;
+}
+/* 等倍スケール（preserveAspectRatio を既定のまま）にしないと pathLength の
+   正規化が効かず、dasharray が画面px基準になって線が破線化する */
+.maru-ink path{
+  fill:none;stroke:var(--akapen);stroke-width:3.2;
+  stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:100;stroke-dashoffset:100;
+  animation:maru-draw 1s cubic-bezier(.6,.05,.3,1) .5s forwards;
+}
+@keyframes maru-draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){
+  .maru-ink path{animation:none;stroke-dashoffset:0}
+}
+html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
+
 /* ---------- hero ---------- */
 .hero{position:relative;padding:170px 0 64px;border-bottom:1px solid var(--line)}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
 .hero-visual{position:relative;height:500px}
-.hero-visual .shot{position:absolute;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 20px 48px rgba(34,37,43,.16)}
+.hero-visual .shot{position:absolute;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;background:#fff;box-shadow:var(--sh-2)}
 .hero-visual .shot img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
 .hero-visual .shot.s1{width:80%;height:72%;top:0;right:2%;transform:rotate(1.4deg)}
 .hero-visual .shot.s2{width:60%;height:52%;bottom:12px;left:0;transform:rotate(-2.2deg)}
@@ -224,8 +264,8 @@ section{padding:110px 0}
 /* 価格の行。本文と同じ大きさだと桁の途中で折り返すので、少し落として1行に収める */
 .hero h1 .h1-price{display:block;font-size:.72em;line-height:1.45;white-space:nowrap;margin-bottom:.12em}
 .hero h1 .h1-price small{font-size:.62em;font-weight:700;letter-spacing:.02em}
-/* マーカーを引いた語が行をまたぐと、帯が切れて1文字だけ残る。語ごと折り返す */
-.hero h1 .mk{white-space:nowrap}
+/* 語が行をまたぐと1文字だけ次行に残る。語ごと折り返す */
+.hero h1 .nb,.hero h1 .maru{white-space:nowrap}
 @media(max-width:420px){
   .hero h1 .h1-price{white-space:normal}
 }
@@ -238,12 +278,6 @@ section{padding:110px 0}
 .hero-by p{font-size:.82rem;line-height:1.9;color:var(--ink-soft)}
 .hero-by b{color:var(--ink);font-weight:900}
 .hero-by .nb{white-space:nowrap}   /* 「Edu-NEWS」がハイフンで割れるのを防ぐ */
-.hero-stats{display:flex;margin-top:64px;border-top:1.5px solid var(--ink);flex-wrap:wrap}
-.hero-stats li{flex:1;min-width:150px;padding:20px 24px 0 0;border-right:1px solid var(--line)}
-.hero-stats li:last-child{border-right:none}
-.hero-stats .num{font-weight:900;font-size:clamp(1.7rem,3vw,2.5rem);line-height:1.2;letter-spacing:.02em}
-.hero-stats .num i{font-style:normal;font-size:.52em;font-weight:700;margin-left:2px}
-.hero-stats .lbl{font-size:.78rem;font-weight:700;color:var(--ink-soft);letter-spacing:.06em}
 
 /* ---------- 帯 ---------- */
 .band{background:var(--blue);color:#fff;padding:20px 0;text-align:center}
@@ -262,11 +296,13 @@ section{padding:110px 0}
 
 /* ---------- 代表からひとこと ---------- */
 .say{padding:96px 0;border-top:1px solid var(--line)}
-.say-in{max-width:820px;margin:0 auto;display:flex;gap:40px;align-items:flex-start}
-.say-photo{width:88px;height:88px;border-radius:50%;object-fit:cover;object-position:center top;flex-shrink:0;border:1px solid var(--line);background:#E9EDF4}
+.say-in{max-width:720px;margin:0 auto}
+/* 署名。顔写真は「運営者について」に集約し、ここは言葉と署名だけにする */
+.say .sig{margin-top:36px;padding-top:26px;border-top:1px solid var(--line)}
+.say .sig-role{display:block;font-size:.76rem;letter-spacing:.1em;color:var(--ink-soft);margin-bottom:6px}
+.say .sig-name{display:block;font-family:"Klee One",var(--serif);font-weight:600;font-size:1.7rem;
+  color:var(--ink);letter-spacing:.14em;line-height:1.35}
 .say blockquote{font-family:var(--serif);font-weight:600;font-size:clamp(1.02rem,1.9vw,1.25rem);line-height:2.3;letter-spacing:.03em}
-.say .who{margin-top:16px;font-size:.82rem;color:var(--ink-soft)}
-.say .say-note{margin-top:12px;font-size:.82rem;line-height:1.95;color:var(--ink-soft)}
 
 /* 本文内から記事への導線 */
 .inline-link{color:var(--blue);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;font-weight:700}
@@ -279,7 +315,7 @@ section{padding:110px 0}
 .read-item:hover{background:var(--white,#fff)}
 .read-meta{display:flex;align-items:center;gap:14px;margin-bottom:10px}
 /* カテゴリの色。生成り地に合う、彩度を抑えた4色 */
-.read-cat{font-size:.72rem;font-weight:700;letter-spacing:.08em;color:#fff;background:var(--cat,var(--blue));border-radius:100px;padding:4px 12px}
+.read-cat{font-size:.72rem;font-weight:700;letter-spacing:.08em;color:#fff;background:var(--cat,var(--blue));border-radius:var(--r-pill);padding:4px 12px}
 .read-item[data-cat="guide"]{--cat:#24519E}
 .read-item[data-cat="report"]{--cat:#17706A}
 .read-item[data-cat="news"]{--cat:#B0553A}
@@ -287,7 +323,7 @@ section{padding:110px 0}
 
 /* カテゴリの絞り込みタブ */
 .read-tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
-.read-tab{font-family:var(--sans);font-size:.82rem;font-weight:700;line-height:1;padding:11px 20px;border-radius:999px;
+.read-tab{font-family:var(--sans);font-size:.82rem;font-weight:700;line-height:1;padding:11px 20px;border-radius:var(--r-pill);
   border:1.5px solid var(--line);background:transparent;color:var(--ink-soft);cursor:pointer;
   transition:background .2s ease,color .2s ease,border-color .2s ease}
 .read-tab:hover{border-color:var(--tab,var(--ink));color:var(--tab,var(--ink))}
@@ -309,10 +345,10 @@ section{padding:110px 0}
 .services{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .svc-feature{
   display:grid;grid-template-columns:1.3fr .8fr;gap:48px;align-items:start;
-  background:linear-gradient(150deg,#EDF2FA,#F7F9FD);border:1px solid rgba(36,81,158,.3);border-radius:12px;
+  background:linear-gradient(150deg,#EDF2FA,#F7F9FD);border:1px solid rgba(36,81,158,.3);border-radius:var(--r-md);
   padding:48px 52px;position:relative;
 }
-.svc-feature .tag{position:absolute;top:-13px;left:36px;font-size:.72rem;font-weight:700;letter-spacing:.1em;background:var(--blue);color:#fff;padding:5px 16px;border-radius:999px}
+.svc-feature .tag{position:absolute;top:-13px;left:36px;font-size:.72rem;font-weight:700;letter-spacing:.1em;background:var(--blue);color:#fff;padding:5px 16px;border-radius:var(--r-pill)}
 .svc-idx{display:flex;align-items:baseline;gap:12px}
 .svc-idx .n{font-family:var(--serif);font-weight:700;font-size:1.9rem;color:var(--blue);line-height:1}
 .svc-idx .cat{font-size:.74rem;font-weight:700;letter-spacing:.16em;color:var(--ink-soft)}
@@ -333,7 +369,7 @@ section{padding:110px 0}
 
 /* ---------- synergy ---------- */
 .synergy{background:var(--white);padding-top:0}
-.syn-box{border:1.5px solid var(--ink);border-radius:18px;padding:56px 48px;background:var(--paper)}
+.syn-box{border:1.5px solid var(--ink);border-radius:var(--r-md);padding:56px 48px;background:var(--paper)}
 .syn-box h3{font-family:var(--serif);font-weight:700;font-size:clamp(1.25rem,2.4vw,1.7rem);line-height:1.9;margin-bottom:40px;letter-spacing:.03em}
 .syn-box h3 em{font-style:normal;background:linear-gradient(transparent 60%,var(--marker) 60%)}
 .syn-flow{display:flex;gap:0;flex-wrap:wrap}
@@ -346,11 +382,11 @@ section{padding:110px 0}
 /* ---------- works ---------- */
 .works{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.work{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--paper);transition:box-shadow .3s,transform .3s;display:flex;flex-direction:column}
-.work:hover{box-shadow:0 16px 44px rgba(34,37,43,.1);transform:translateY(-3px)}
+.work{border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:var(--paper);transition:box-shadow .3s,transform .3s;display:flex;flex-direction:column}
+.work:hover{box-shadow:var(--sh-1);transform:translateY(-3px)}
 .work .browser{background:#E7E3D9;padding:11px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--line)}
 .work .browser i{width:11px;height:11px;border-radius:50%;background:#C9C3B4;display:inline-block}
-.work .browser .bar{flex:1;margin-left:10px;height:20px;border-radius:6px;background:#F2EFE7;font-size:.68rem;color:var(--ink-soft);display:flex;align-items:center;padding:0 12px;letter-spacing:.04em}
+.work .browser .bar{flex:1;margin-left:10px;height:20px;border-radius:var(--r-xs);background:#F2EFE7;font-size:.68rem;color:var(--ink-soft);display:flex;align-items:center;padding:0 12px;letter-spacing:.04em}
 .work .shot{aspect-ratio:16/10;overflow:hidden;background:#fff;border-bottom:1px solid var(--line)}
 .work .shot img{width:100%;height:100%;object-fit:cover;object-position:top center}
 .work .meta{padding:26px 28px 30px}
@@ -358,11 +394,11 @@ section{padding:110px 0}
 .work .meta h3{font-family:var(--serif);font-weight:700;font-size:1.35rem;margin:8px 0 10px;letter-spacing:.03em}
 .work .meta p{font-size:.88rem;color:var(--ink-soft);margin-bottom:16px}
 .work .meta .tags{display:flex;flex-wrap:wrap;gap:8px}
-.work .meta .tags span{font-size:.74rem;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--ink-soft);background:#fff}
+.work .meta .tags span{font-size:.74rem;font-weight:700;border:1px solid var(--line);border-radius:var(--r-pill);padding:4px 12px;color:var(--ink-soft);background:#fff}
 .works-note{text-align:center;margin-top:30px;font-size:.82rem;color:var(--ink-soft)}
 
 /* ---------- compare ---------- */
-.compare .tbl{border:1.5px solid var(--ink);border-radius:16px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;background:#fff}
+.compare .tbl{border:1.5px solid var(--ink);border-radius:var(--r-md);overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;background:#fff}
 .compare table{width:100%;border-collapse:collapse;font-size:.92rem}
 .compare th,.compare td{padding:20px 22px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle}
 .compare tr:last-child th,.compare tr:last-child td{border-bottom:none}
@@ -379,9 +415,9 @@ section{padding:110px 0}
 /* ---------- price ---------- */
 .price{background:var(--white);border-top:1px solid var(--line)}
 .price-grid{display:grid;grid-template-columns:1fr 1.12fr;gap:24px;align-items:stretch}
-.plan{border:1px solid var(--line);border-radius:16px;padding:48px 42px;background:var(--paper);position:relative;display:flex;flex-direction:column}
-.plan .p-tag{position:absolute;top:-15px;left:32px;background:var(--ink);color:#fff;font-size:.74rem;font-weight:700;letter-spacing:.12em;padding:6px 18px;border-radius:999px}
-.plan.reco{background:#fff;border:2px solid var(--blue);box-shadow:0 18px 50px rgba(36,81,158,.14)}
+.plan{border:1px solid var(--line);border-radius:var(--r-md);padding:48px 42px;background:var(--paper);position:relative;display:flex;flex-direction:column}
+.plan .p-tag{position:absolute;top:-15px;left:32px;background:var(--ink);color:#fff;font-size:.74rem;font-weight:700;letter-spacing:.12em;padding:6px 18px;border-radius:var(--r-pill)}
+.plan.reco{background:#fff;border:2px solid var(--blue);box-shadow:var(--sh-2)}
 .plan.reco .p-tag{background:var(--blue)}
 .plan h3{font-family:var(--serif);font-weight:700;font-size:1.5rem;margin:8px 0 2px;letter-spacing:.04em}
 .plan .p-en{font-size:.78rem;font-weight:700;letter-spacing:.08em;color:var(--ink-soft)}
@@ -405,7 +441,7 @@ section{padding:110px 0}
 .addon-grid--3{grid-template-columns:repeat(3,1fr);gap:20px}
 /* サイト分析レポートの見本。数字を読ませるのではなく「毎月これが届く」を伝える大きさ */
 .ga4-sample{margin:44px auto 0;max-width:540px;text-align:center}
-.ga4-sample img{width:100%;height:auto;border:1px solid var(--line);border-radius:10px;box-shadow:0 14px 34px rgba(34,37,43,.13);display:block}
+.ga4-sample img{width:100%;height:auto;border:1px solid var(--line);border-radius:var(--r-sm);box-shadow:var(--sh-1);display:block}
 .ga4-sample figcaption{margin-top:14px;font-size:.78rem;line-height:1.9;color:var(--ink-soft);text-align:left}
 @media(max-width:1024px){.addon-grid--3{grid-template-columns:1fr}}
 .plan.addon{background:var(--paper);padding:38px 34px;border:1px solid var(--line);box-shadow:none}
@@ -419,12 +455,12 @@ section{padding:110px 0}
 .flow-item::before{counter-increment:fl;content:"0" counter(fl);font-family:var(--serif);font-weight:700;font-size:2.1rem;line-height:1;color:var(--blue)}
 .flow-item h3{font-size:1.05rem;font-weight:900;margin:14px 0 10px}
 .flow-item p{font-size:.84rem;color:var(--ink-soft)}
-.flow-item .dur{display:inline-block;margin-top:14px;font-weight:700;font-size:.72rem;letter-spacing:.08em;border:1px solid var(--ink);border-radius:999px;padding:4px 14px}
+.flow-item .dur{display:inline-block;margin-top:14px;font-weight:700;font-size:.72rem;letter-spacing:.08em;border:1px solid var(--ink);border-radius:var(--r-pill);padding:4px 14px}
 
 /* ---------- person ---------- */
 .person{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .person-grid{display:grid;grid-template-columns:.85fr 1.5fr;gap:56px;align-items:start}
-.person-photo{aspect-ratio:4/5;border-radius:14px;background:linear-gradient(160deg,#E9EDF4,#D8DEE9);position:relative;overflow:hidden;display:flex;align-items:flex-end;border:1px solid var(--line)}
+.person-photo{aspect-ratio:4/5;border-radius:var(--r-md);background:linear-gradient(160deg,#E9EDF4,#D8DEE9);position:relative;overflow:hidden;display:flex;align-items:flex-end;border:1px solid var(--line)}
 .person-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
 .person-photo .ph-note{width:100%;padding:16px;font-size:.74rem;color:var(--ink-soft);text-align:center;letter-spacing:.1em;background:rgba(255,255,255,.7)}
 .person-body h3{font-family:var(--serif);font-weight:700;font-size:1.9rem;letter-spacing:.08em}
@@ -432,7 +468,7 @@ section{padding:110px 0}
 .person-body p{font-size:.95rem;color:var(--ink-soft);margin-bottom:18px}
 .person-body p b{color:var(--ink)}
 .cred{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
-.cred li{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-size:.84rem;display:flex;gap:14px;align-items:center}
+.cred li{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);padding:16px 18px;font-size:.84rem;display:flex;gap:14px;align-items:center}
 .cred li b{font-family:var(--serif);font-weight:700;color:var(--blue);font-size:1.05rem;white-space:nowrap;min-width:3.4em}
 .cred li.cred-link{transition:border-color .2s,background .2s}
 .cred li.cred-link:hover{border-color:var(--blue);background:#EDF2FA}
@@ -441,7 +477,7 @@ section{padding:110px 0}
 
 /* ---------- faq ---------- */
 .faq-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
-details{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+details{border:1px solid var(--line);border-radius:var(--r-md);background:#fff;overflow:hidden}
 summary{cursor:pointer;list-style:none;padding:24px 60px 24px 28px;font-weight:900;font-size:1rem;position:relative;line-height:1.7}
 summary::-webkit-details-marker{display:none}
 summary::before{content:"Q";font-family:var(--serif);font-weight:700;color:var(--blue);margin-right:14px;font-size:1.15em}
@@ -464,12 +500,12 @@ details .ans::before{content:"A";font-family:var(--serif);font-weight:700;color:
 .cta .btn.line-btn:hover{background:#05b34c;border-color:#05b34c;color:#fff}
 .cta-note{margin-top:22px;font-size:.86rem;opacity:.92;line-height:2.2}
 /* ---------- contact form ---------- */
-.form-wrap{max-width:640px;margin:44px auto 0;background:#fff;border-radius:16px;padding:44px 40px;text-align:left;color:var(--ink);box-shadow:0 18px 50px rgba(0,0,0,.22)}
+.form-wrap{max-width:640px;margin:44px auto 0;background:#fff;border-radius:var(--r-md);padding:44px 40px;text-align:left;color:var(--ink);box-shadow:var(--sh-2)}
 .form-row{margin-bottom:20px}
 .form-row label{display:block;font-size:.86rem;font-weight:700;margin-bottom:8px}
-.form-row .req{color:#fff;background:var(--blue);font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:4px;margin-left:8px;vertical-align:2px}
+.form-row .req{color:#fff;background:var(--blue);font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:var(--r-xs);margin-left:8px;vertical-align:2px}
 .form-row .opt{color:var(--ink-soft);font-size:.72rem;font-weight:500;margin-left:8px}
-.form-row input,.form-row textarea{width:100%;font-family:inherit;font-size:.95rem;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:9px;padding:13px 15px;transition:border-color .2s}
+.form-row input,.form-row textarea{width:100%;font-family:inherit;font-size:.95rem;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:13px 15px;transition:border-color .2s}
 .form-row input:focus,.form-row textarea:focus{outline:none;border-color:var(--blue)}
 .form-row textarea{resize:vertical;min-height:104px}
 .form-check{display:flex;align-items:flex-start;gap:10px;font-size:.86rem;margin:6px 0 26px}
@@ -484,29 +520,29 @@ details .ans::before{content:"A";font-family:var(--serif);font-weight:700;color:
 .form-wrap.sent .form-done{display:block}
 
 /* ---------- 無料HP診断（メインCV） ---------- */
-.diagnosis .diag-badge{display:inline-block;background:var(--marker);color:var(--ink);font-weight:700;font-size:.76rem;letter-spacing:.12em;padding:6px 18px;border-radius:999px;margin-bottom:20px}
+.diagnosis .diag-badge{display:inline-block;background:var(--marker);color:var(--ink);font-weight:700;font-size:.76rem;letter-spacing:.12em;padding:6px 18px;border-radius:var(--r-pill);margin-bottom:20px}
 .form-row--radio > label{display:block;font-size:.86rem;font-weight:700;margin-bottom:8px}
 .diag-radio-list{display:flex;flex-direction:column;gap:10px}
-.diag-radio{display:flex;align-items:flex-start;gap:11px;font-size:.9rem;font-weight:500;cursor:pointer;padding:13px 15px;border:1.5px solid var(--line);border-radius:9px;background:var(--paper);transition:border-color .2s,background .2s}
+.diag-radio{display:flex;align-items:flex-start;gap:11px;font-size:.9rem;font-weight:500;cursor:pointer;padding:13px 15px;border:1.5px solid var(--line);border-radius:var(--r-sm);background:var(--paper);transition:border-color .2s,background .2s}
 .diag-radio:hover{border-color:var(--blue)}
 .diag-radio input{width:18px;height:18px;margin-top:2px;flex-shrink:0;accent-color:var(--blue)}
 .diag-radio:has(input:checked){border-color:var(--blue);background:#EDF2FA}
 .diag-radio:has(input:checked) .diag-radio-txt{font-weight:700}
 .form-hint{font-size:.78rem;color:var(--ink-soft);margin-top:8px;line-height:1.8}
-.form-error{color:#C0392B;font-size:.8rem;font-weight:700;margin-top:8px}
-.form-row input.is-error,.form-row textarea.is-error{border-color:#C0392B}
+.form-error{color:var(--akapen);font-size:.8rem;font-weight:700;margin-top:8px}
+.form-row input.is-error,.form-row textarea.is-error{border-color:var(--akapen)}
 .diag-secondary{margin-top:28px;font-size:.88rem;opacity:.94;text-align:center;line-height:2}
 .diag-secondary a{color:#fff;text-decoration:underline;text-underline-offset:3px;font-weight:700}
 .diag-secondary a:hover{color:var(--marker)}
-.form-check--consult{border:1.5px solid var(--line);border-radius:9px;background:var(--paper);padding:13px 15px;margin:6px 0 18px;transition:border-color .2s,background .2s,box-shadow .2s}
+.form-check--consult{border:1.5px solid var(--line);border-radius:var(--r-sm);background:var(--paper);padding:13px 15px;margin:6px 0 18px;transition:border-color .2s,background .2s,box-shadow .2s}
 .form-check--consult .consult-note{display:block;margin-top:4px;font-size:.76rem;color:var(--ink-soft);line-height:1.7}
-.form-check--consult.is-highlight{border-color:var(--blue);background:#EDF2FA;box-shadow:0 0 0 3px rgba(27,61,120,.12)}
+.form-check--consult.is-highlight{border-color:var(--blue);background:#EDF2FA;box-shadow:var(--sh-focus)}
 .diag-book{margin-top:24px;padding-top:22px;border-top:1px solid var(--line)}
 .diag-book-lead{font-size:.9rem;color:var(--ink-soft);margin-bottom:16px;line-height:1.9}
 .diag-book .btn{display:inline-block}
 .diag-book-memo{font-size:.8rem;color:var(--ink-soft);margin-top:16px;line-height:1.8}
 /* HPなし＝面談主導：予約ブロックを主役化 */
-.diag-book.is-primary{margin-top:8px;padding:26px 22px;border:2px solid var(--blue);border-radius:14px;background:#EDF2FA}
+.diag-book.is-primary{margin-top:8px;padding:26px 22px;border:2px solid var(--blue);border-radius:var(--r-md);background:#EDF2FA}
 .diag-book.is-primary .diag-book-lead{font-family:var(--serif);font-weight:700;font-size:clamp(1.1rem,2.4vw,1.35rem);color:var(--ink);margin-bottom:20px;line-height:1.7}
 .diag-book.is-primary .btn{width:100%;padding:18px;font-size:1.05rem}
 
@@ -525,7 +561,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
 /* ---------- sticky mobile cta ---------- */
 .m-cta{position:fixed;left:12px;right:12px;bottom:12px;z-index:90;display:none;opacity:0;transform:translateY(16px);transition:opacity .35s,transform .35s;pointer-events:none}
 .m-cta.is-visible{opacity:1;transform:none;pointer-events:auto}
-.m-cta a{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--blue);color:#fff;font-weight:900;padding:16px;border-radius:12px;box-shadow:0 8px 30px rgba(34,37,43,.3);font-size:.95rem}
+.m-cta a{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--blue);color:#fff;font-weight:900;padding:16px;border-radius:var(--r-md);box-shadow:var(--sh-2);font-size:.95rem}
 
 /* ---------- responsive ---------- */
 @media(max-width:960px){
@@ -533,7 +569,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
   .hero-grid{grid-template-columns:1fr}
   /* スマホでも制作イメージを見せる。重ね配置はやめて1枚だけ素直に置く */
   .hero-visual{height:auto;margin-top:0}   /* 段の間隔は hero-grid の gap で足りる */
-  .hero-visual .shot{position:static;transform:none;box-shadow:0 12px 30px rgba(34,37,43,.13)}
+  .hero-visual .shot{position:static;transform:none;box-shadow:var(--sh-1)}
   .hero-visual .shot.s1{width:100%;height:auto}
   .hero-visual .shot.s1 img{height:auto}
   .hero-visual .shot.s2{display:none}
@@ -561,7 +597,6 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
   .say-photo{width:72px;height:72px}
   .flow-list{grid-template-columns:1fr}
   .cred{grid-template-columns:1fr}
-  .hero-stats li{min-width:46%;border-right:none;padding-right:0}
   .m-cta{display:block}
   .header-cta{display:none}
   .syn-step{min-width:100%;margin-right:0;padding-right:0}
@@ -599,8 +634,8 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
         <div class="hero-copy">
           <p class="hero-lead">個人塾・地域密着塾専門</p>
           <h1>
-            <span class="h1-price">5万円〜<small>（税別）</small>・月額0円。</span>
-            塾が自分で<span class="mk">育てられる</span><br>ホームページ。
+            <span class="h1-price">5万円〜<small>（税別）</small>・<span class="maru">月額0円<svg class="maru-ink" viewBox="0 0 200 74" aria-hidden="true" focusable="false"><path pathLength="100" d="M186 24 C 176 10, 133 3, 96 5 C 46 7, 12 20, 13 38 C 14 56, 62 66, 108 65 C 158 64, 190 51, 191 33 C 192 23, 183 16, 171 11"/></svg></span>。</span>
+            塾が自分で<span class="nb">育てられる</span><br>ホームページ。
           </h1>
           <p class="hero-sub">
             管理画面から、料金表・講習案内・ブログ・合格実績をいつでも更新。<br>
@@ -623,12 +658,6 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
           <span class="cap">制作イメージ（デザイン3タイプ）</span>
         </div>
       </div>
-      <ul class="hero-stats">
-        <li><div class="num">5<i>万円〜</i></div><div class="lbl">買い切り</div></li>
-        <li><div class="num">0<i>円</i></div><div class="lbl">月額保守費</div></li>
-        <li><div class="num">管理画面</div><div class="lbl">付き（自分で更新）</div></li>
-        <li><div class="num">2<i>週間〜</i></div><div class="lbl">最短で公開</div></li>
-      </ul>
     </div>
   </section>
 
@@ -662,11 +691,9 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
   <section class="say">
     <div class="wrap">
       <div class="say-in rv">
-        <img class="say-photo" src="assets/oda.jpg" alt="スマ塾 代表・小田 一勲">
         <div>
-          <blockquote>更新が止まったままのホームページを、私は現場で山ほど見てきました。悪いのは塾長ではありません。授業も面談も抱えながら、Webまで手が回らないのは当たり前なんです。だから、担当ごと引き受けることにしました。</blockquote>
-          <p class="who">スマ塾 代表　小田 一勲</p>
-          <p class="say-note">2026年7月に40塾のホームページを1件ずつ診断しました。<a class="inline-link" href="/guide/juku-hp-https.html">10塾はいまもhttpのまま</a>で、その10塾は他の項目でも軒並み点が低いという結果でした。</p>
+          <blockquote>塾の先生と直接話す仕事を続けてきました。ホームページの話になると、返ってくる言葉はだいたい二つです。手が回っていない。頼むと高い。<br>どちらもそのとおりだと思います。授業と面談で一日が終わるなかで、更新まで手を伸ばすのは難しい。制作費が生徒何人分かに相当するなら、後回しになるのが自然です。<br>だから、5万円から・月額0円にしました。作ったあとは、塾がご自身で書き換えられます。</blockquote>
+          <div class="sig"><span class="sig-role">スマ塾 代表</span><span class="sig-name">小田 一勲</span></div>
         </div>
       </div>
     </div>
