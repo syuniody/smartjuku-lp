@@ -27,6 +27,8 @@ import html
 import re
 import sys
 from datetime import date
+
+SCHEDULED: list[str] = []   # 公開日がまだ来ていない記事
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -127,6 +129,7 @@ def collect_articles(section: dict) -> tuple[list[dict], list[str]]:
     """セクション配下の記事を集める。戻り値: (記事リスト, 警告リスト)"""
     articles: list[dict] = []
     warnings: list[str] = []
+    scheduled: list[str] = []
     sec_dir = ROOT / section["slug"]
     if not sec_dir.is_dir():
         return articles, warnings
@@ -162,6 +165,13 @@ def collect_articles(section: dict) -> tuple[list[dict], list[str]]:
             continue
         if not pub:
             warnings.append(f"{rel}: article:published_time がありません（除外）")
+            continue
+
+        # 予約公開。公開日が未来の記事は、一覧とsitemapに出さない。
+        # ファイル自体は先にコミットしておき、日が来たら build.py を回すだけで表に出る。
+        # （直接URLを知っていれば見えるが、どこからもリンクされない）
+        if pub > date.today().isoformat():
+            scheduled.append(f"{rel}: {pub} 公開予定（まだ一覧に出しません）")
             continue
         if cat and cat != section["slug"]:
             warnings.append(f"{rel}: sj:category が '{cat}' でディレクトリと不一致")
@@ -200,6 +210,7 @@ def collect_articles(section: dict) -> tuple[list[dict], list[str]]:
 
     # 新しい順
     articles.sort(key=lambda a: a["published"], reverse=True)
+    SCHEDULED.extend(scheduled)
     return articles, warnings
 
 
@@ -501,6 +512,12 @@ def main() -> int:
         all_warnings += warns
         total += len(articles)
         print(f"  {section['slug']:<7} 記事 {len(articles)} 本")
+
+    if SCHEDULED:
+        print("\n[公開予定]")
+        for x in SCHEDULED:
+            print(f"  - {x}")
+
 
     if args.check:
         print(f"\n合計 {total} 本")
