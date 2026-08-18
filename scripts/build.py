@@ -196,10 +196,11 @@ def render_index(section: dict, articles: list[dict]) -> str:
     slug, name = section["slug"], section["name"]
 
     if articles:
+        # セクション一覧はカテゴリが自明なので、行ごとのカテゴリ表示はしない。
+        # （LPの「お役立ち情報」は複数カテゴリが混ざるので、あちらには残す）
         items = "\n".join(
             f"""        <a class="post-item" href="{esc(a['url'])}">
           <div class="post-meta">
-            <span class="post-cat cat-{slug}">{esc(name)}</span>
             <time datetime="{esc(a['published'])}">{esc(jp_date(a['published']))}</time>
           </div>
           <h2>{esc(a['title'])}</h2>

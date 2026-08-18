@@ -18,6 +18,16 @@
   --measure:720px;          /* 本文の可読幅 */
   --serif:"Shippori Mincho",serif;
   --sans:"Zen Kaku Gothic New",sans-serif;
+
+  /* DESIGN.md のトークン。ここに無い値をその場で作らない */
+  --r-xs:4px;               /* タグ・小さな囲み */
+  --r-sm:8px;               /* 入力欄・画像・ボタン */
+  --r-md:14px;              /* カード・テーブル・フォーム */
+  --r-pill:999px;           /* ピル型ラベル */
+  --sh-line:0 1px 0 var(--line);
+  --sh-1:0 14px 34px rgba(34,37,43,.13);
+  --sh-2:0 20px 48px rgba(34,37,43,.16);
+  --sh-focus:0 0 0 3px rgba(27,61,120,.12);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -31,6 +41,16 @@ body{
   overflow-x:hidden;
 }
 img{max-width:100%;height:auto;display:block}
+/* 折り返しの調整。非対応ブラウザは現状の挙動に戻るだけ。
+   ・見出しと一覧タイトル：語のまとまりで折る（auto-phrase）。短文なので隙間が目立たない
+   ・本文：pretty のみ。auto-phrase を本文に掛けると行が極端に短くなり、かえって読みにくい */
+h1,h2,h3,h4,.r-title,.f-title,caption{
+  word-break:auto-phrase;
+  text-wrap:balance;
+}
+p,li,dd,dt,figcaption,blockquote,.article-lede{
+  text-wrap:pretty;
+}
 a{color:var(--blue);text-underline-offset:2px}
 ul,ol{list-style:none}
 ::selection{background:var(--marker);color:var(--ink)}
@@ -46,7 +66,7 @@ ul,ol{list-style:none}
 .site-nav a{color:var(--ink);text-decoration:none;padding:4px 0;position:relative}
 .site-nav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--blue);transition:width .3s}
 .site-nav a:hover::after,.site-nav a[aria-current="page"]::after{width:100%}
-.header-cta{background:var(--blue);color:#fff !important;font-weight:700;padding:10px 20px;border-radius:10px;font-size:.82rem;text-decoration:none;border:1.5px solid var(--blue);transition:background .25s,transform .25s}
+.header-cta{background:var(--blue);color:#fff !important;font-weight:700;padding:10px 20px;border-radius:var(--r-sm);font-size:.82rem;text-decoration:none;border:1.5px solid var(--blue);transition:background .25s,transform .25s}
 .header-cta:hover{background:var(--blue-deep);border-color:var(--blue-deep);transform:translateY(-2px)}
 
 /* ---------- パンくず ---------- */
@@ -68,7 +88,7 @@ ul,ol{list-style:none}
 .post-item:hover{background:rgba(36,81,158,.04)}
 .post-meta{display:flex;gap:14px;align-items:center;font-size:.76rem;color:var(--ink-soft);margin-bottom:10px;flex-wrap:wrap}
 /* カテゴリの色。トップページの絞り込みタブと同じ4色を使う */
-.post-cat{background:var(--cat,var(--blue));color:#fff;font-weight:700;padding:3px 12px;border-radius:999px;letter-spacing:.06em}
+.post-cat{background:var(--cat,var(--blue));color:#fff;font-weight:700;padding:3px 12px;border-radius:var(--r-pill);letter-spacing:.06em}
 .cat-guide{--cat:#24519E}
 .cat-report{--cat:#17706A}
 .cat-news{--cat:#B0553A}
@@ -108,18 +128,18 @@ ul,ol{list-style:none}
 
 /* ★AIO：見出し直後に置く「結論ファースト」ブロック */
 .answer{
-  background:var(--white);border:1.5px solid var(--blue);border-radius:12px;
+  background:var(--white);border:1.5px solid var(--blue);border-radius:var(--r-md);
   padding:22px 24px;margin-top:20px;
 }
 .answer::before{
   content:"結論";display:inline-block;background:var(--blue);color:#fff;
-  font-size:.7rem;font-weight:700;letter-spacing:.12em;padding:3px 12px;border-radius:999px;margin-bottom:12px;
+  font-size:.7rem;font-weight:700;letter-spacing:.12em;padding:3px 12px;border-radius:var(--r-pill);margin-bottom:12px;
 }
 .answer p{font-weight:700;line-height:2;font-size:1.02rem}
 .answer p + p{margin-top:10px;font-weight:400;color:var(--ink-soft);font-size:.95rem}
 
 /* ★AIO：数値データの表（引用されやすい形） */
-.data-table{overflow-x:auto;border:1.5px solid var(--ink);border-radius:12px;background:var(--white)}
+.data-table{overflow-x:auto;border:1.5px solid var(--ink);border-radius:var(--r-md);background:var(--white)}
 .data-table table{width:100%;border-collapse:collapse;font-size:.92rem;min-width:520px}
 .data-table caption{caption-side:top;text-align:left;font-weight:700;font-size:.86rem;padding:16px 18px 0;color:var(--ink)}
 .data-table th,.data-table td{padding:14px 18px;border-bottom:1px solid var(--line);text-align:left}
@@ -129,7 +149,7 @@ ul,ol{list-style:none}
 /* ★データ図版
    装飾ではなく情報としての図。数値はHTMLのテキストのまま残すので、
    コピー・引用・読み上げができ、拡大してもぼやけない。 */
-.figure{margin:36px 0;border:1px solid var(--line);border-radius:12px;background:var(--white);padding:24px 26px}
+.figure{margin:36px 0;border:1px solid var(--line);border-radius:var(--r-md);background:var(--white);padding:24px 26px}
 .figure .f-title{font-size:.86rem;font-weight:900;color:var(--ink);margin-bottom:20px;line-height:1.7}
 .figure figcaption{margin-top:18px;font-size:.78rem;color:var(--ink-soft);line-height:1.9}
 .figure figcaption b{color:var(--ink)}
@@ -138,8 +158,8 @@ ul,ol{list-style:none}
 .bars{display:grid;gap:12px}
 .bars li{display:grid;grid-template-columns:7.2em 1fr 4.2em;align-items:center;gap:12px;list-style:none}
 .b-label{font-size:.82rem;font-weight:700;line-height:1.5}
-.b-track{position:relative;height:16px;border-radius:3px;background:#EDE9E0;overflow:hidden}
-.b-fill{position:absolute;inset:0 auto 0 0;background:var(--blue);border-radius:3px}
+.b-track{position:relative;height:16px;border-radius:var(--r-xs);background:#EDE9E0;overflow:hidden}
+.b-fill{position:absolute;inset:0 auto 0 0;background:var(--blue);border-radius:var(--r-xs)}
 .b-fill.sub{background:#AFC0DD}
 .b-val{font-size:.82rem;font-weight:900;color:var(--blue);text-align:right;font-variant-numeric:tabular-nums}
 .bars li.muted .b-fill{background:#AFC0DD}
@@ -147,20 +167,20 @@ ul,ol{list-style:none}
 
 /* 40塾を1マス1塾で表す升目 */
 .dotgrid{display:grid;grid-template-columns:repeat(20,1fr);gap:5px;max-width:520px}
-.dotgrid span{aspect-ratio:1;border-radius:2px;background:#E6E2D8}
+.dotgrid span{aspect-ratio:1;border-radius:var(--r-xs);background:#E6E2D8}
 .dotgrid span.on{background:var(--blue)}
 .dot-legend{display:flex;gap:20px;margin-top:16px;font-size:.78rem;color:var(--ink-soft);flex-wrap:wrap}
-.dot-legend i{display:inline-block;width:11px;height:11px;border-radius:2px;background:#E6E2D8;margin-right:7px;vertical-align:-1px}
+.dot-legend i{display:inline-block;width:11px;height:11px;border-radius:var(--r-xs);background:#E6E2D8;margin-right:7px;vertical-align:-1px}
 .dot-legend i.on{background:var(--blue)}
 
 /* 評価の内訳（◎◯△✕の帯） */
 .stack{display:grid;gap:10px}
 .stack li{display:grid;grid-template-columns:7.2em 1fr;align-items:center;gap:12px;list-style:none}
-.s-track{display:flex;height:18px;border-radius:3px;overflow:hidden;background:#EDE9E0}
+.s-track{display:flex;height:18px;border-radius:var(--r-xs);overflow:hidden;background:#EDE9E0}
 .s-track span{display:block}
 .s-a{background:#1B3D78}.s-b{background:#6B8CC4}.s-c{background:#F0C860}.s-d{background:#C2603F}
 .stack-legend{display:flex;gap:18px;margin-top:16px;font-size:.78rem;color:var(--ink-soft);flex-wrap:wrap}
-.stack-legend i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:7px;vertical-align:-1px}
+.stack-legend i{display:inline-block;width:11px;height:11px;border-radius:var(--r-xs);margin-right:7px;vertical-align:-1px}
 
 @media(max-width:560px){
   .figure{padding:20px 16px}
@@ -171,7 +191,7 @@ ul,ol{list-style:none}
 
 /* 画面の見本（自作のモックアップ。実サービスの画面転載はしない） */
 .shot{margin:36px 0}
-.shot img{width:100%;height:auto;border:1px solid var(--line);border-radius:10px;box-shadow:0 14px 34px rgba(34,37,43,.12);display:block;background:var(--white)}
+.shot img{width:100%;height:auto;border:1px solid var(--line);border-radius:var(--r-sm);box-shadow:var(--sh-1);display:block;background:var(--white)}
 .shot figcaption{margin-top:13px;font-size:.78rem;line-height:1.9;color:var(--ink-soft)}
 
 /* ★共有ボタン（外部スクリプトは読み込まない。リンクとクリップボードだけ） */
@@ -179,7 +199,7 @@ ul,ol{list-style:none}
 .share-label{font-size:.8rem;font-weight:900;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:14px}
 .share-btns{display:flex;flex-wrap:wrap;gap:10px}
 .share-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:.82rem;font-weight:700;
-  line-height:1;padding:11px 18px;border-radius:999px;border:1.5px solid var(--line);background:transparent;
+  line-height:1;padding:11px 18px;border-radius:var(--r-pill);border:1.5px solid var(--line);background:transparent;
   color:var(--ink-soft);text-decoration:none;cursor:pointer;
   transition:background .2s ease,color .2s ease,border-color .2s ease}
 .share .share-btn{text-decoration:none}   /* 記事本文のリンク下線を打ち消す */
@@ -197,19 +217,19 @@ ul,ol{list-style:none}
 .data-table.fit table{min-width:0}
 /* 表の中の「制作に含む」などの小ラベル */
 .data-table .t-in{display:inline-block;margin-top:7px;font-size:.72rem;font-weight:700;letter-spacing:.03em;
-  color:var(--blue-deep);background:var(--paper);border:1px solid var(--line);border-radius:100px;padding:3px 11px}
+  color:var(--blue-deep);background:var(--paper);border:1px solid var(--line);border-radius:var(--r-pill);padding:3px 11px}
 @media(max-width:520px){.data-table.fit th,.data-table.fit td{padding:12px 12px}}
 .table-note{font-size:.78rem;color:var(--ink-soft);margin-top:10px;line-height:1.9}
 
 /* ★AIO：調査メタ枠（対象・期間・方法・主体） */
-.survey-meta{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:24px 26px}
+.survey-meta{background:var(--white);border:1px solid var(--line);border-radius:var(--r-md);padding:24px 26px}
 .survey-meta h2,.survey-meta h3{margin:0 0 14px;padding:0;border:none;font-family:var(--sans);font-size:.9rem;font-weight:900;letter-spacing:.08em}
 .survey-meta dl{display:grid;grid-template-columns:120px 1fr;gap:10px 18px;font-size:.88rem}
 .survey-meta dt{font-weight:700;color:var(--ink-soft)}
 .survey-meta dd{color:var(--ink)}
 
 /* ★AIO：引用可の明記枠 */
-.citation{background:#EDF2FA;border:1px solid rgba(36,81,158,.3);border-radius:12px;padding:22px 24px;font-size:.88rem;line-height:2}
+.citation{background:#EDF2FA;border:1px solid rgba(36,81,158,.3);border-radius:var(--r-md);padding:22px 24px;font-size:.88rem;line-height:2}
 .citation strong{background:none;font-weight:900}
 /* 記事末の出典表記。数値はレポート側に置き、記事からはそこへ送る */
 .source-note{margin:44px 0 0;padding:18px 20px;border-left:3px solid var(--line);
@@ -217,16 +237,16 @@ ul,ol{list-style:none}
 .source-note a{color:var(--blue);font-weight:700}
 /* noteから移した記事は太字が多いため、マーカーは引かず太字だけにする */
 .article-body.plain-strong strong{background:none;font-weight:900}
-.citation .cite-example{display:block;margin-top:10px;padding:12px 14px;background:var(--white);border-radius:8px;font-size:.84rem;color:var(--ink-soft);word-break:break-all}
+.citation .cite-example{display:block;margin-top:10px;padding:12px 14px;background:var(--white);border-radius:var(--r-sm);font-size:.84rem;color:var(--ink-soft);word-break:break-all}
 
 /* 補足・注記 */
-.note-box{background:var(--white);border-left:3px solid var(--blue);border-radius:0 10px 10px 0;padding:18px 22px;font-size:.92rem;color:var(--ink-soft);line-height:2}
+.note-box{background:var(--white);border-left:3px solid var(--blue);border-radius:0 var(--r-sm) var(--r-sm) 0;padding:18px 22px;font-size:.92rem;color:var(--ink-soft);line-height:2}
 
 /* 記事内CTA */
-.article-cta{margin:70px 0 0;background:var(--blue-deep);color:#fff;border-radius:16px;padding:44px 40px;text-align:center}
+.article-cta{margin:70px 0 0;background:var(--blue-deep);color:#fff;border-radius:var(--r-md);padding:44px 40px;text-align:center}
 .article-cta h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.2rem,2.4vw,1.6rem);line-height:1.8;margin:0 0 14px;padding:0;border:none;color:#fff}
 .article-cta p{font-size:.94rem;opacity:.92;margin-bottom:26px}
-.article-cta .btn{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--blue-deep);font-weight:700;padding:16px 40px;border-radius:10px;text-decoration:none;transition:background .25s,transform .25s}
+.article-cta .btn{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--blue-deep);font-weight:700;padding:16px 40px;border-radius:var(--r-sm);text-decoration:none;transition:background .25s,transform .25s}
 .article-cta .btn:hover{background:var(--marker);color:var(--ink);transform:translateY(-2px)}
 
 /* 関連記事 */
@@ -252,7 +272,14 @@ ul,ol{list-style:none}
 
 /* ---------- レスポンシブ ---------- */
 @media(max-width:860px){
-  .site-nav{display:none}
+  /* ナビを隠さない。ハンバーガーを足すのではなく、横に流せる帯にして残す */
+  .site-header-in{flex-wrap:wrap;row-gap:0;padding:10px 0 0}
+  .site-logo,.header-cta{margin:0 16px}
+  .site-nav{order:3;width:100%;gap:16px;font-size:.76rem;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+    padding:0 16px 7px;border-top:1px solid var(--line-soft);margin-top:8px}
+  .site-nav::-webkit-scrollbar{display:none}
+  .site-nav a{white-space:nowrap;padding-top:7px}
   .article-body h2{margin-top:52px}
   .survey-meta dl{grid-template-columns:1fr;gap:4px 0}
   .survey-meta dd{margin-bottom:10px}
@@ -261,7 +288,7 @@ ul,ol{list-style:none}
   .list-head{padding:40px 0 32px}
   .article-head{padding:32px 0 30px}
   .article-body{padding:40px 0 30px}
-  .article-cta{padding:34px 24px;border-radius:12px}
+  .article-cta{padding:34px 24px;border-radius:var(--r-md)}
   .answer,.survey-meta,.citation,.note-box{padding:18px 18px}
   .site-footer{padding:48px 0 28px;margin-top:64px}
 }
