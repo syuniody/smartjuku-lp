@@ -115,10 +115,16 @@ def render(out_path: Path, *, title: str, category: str, lead: str = "") -> None
 
     # --- タイトル（入る大きさまで自動で縮める） ---------------------
     max_w = W - pad * 2
+    foot_y = H - 96          # フッターの罫線。ここから下には何も置かない
+    f_lead = _font(GOTHIC_W6, 26)
+    lead_lines = _wrap(lead, f_lead, max_w, d)[:2] if lead else []
+    need_lead = 14 + 40 * len(lead_lines) if lead_lines else 0
+
+    # タイトルとリードが、フッターの手前に収まる大きさまで縮める
     for size, gap in ((62, 92), (56, 84), (50, 76), (44, 68)):
         f_title = _font(MINCHO, size, index=2)
         lines = _wrap(title, f_title, max_w, d)
-        if len(lines) <= 3:
+        if len(lines) <= 3 and 258 + len(lines) * gap + need_lead <= foot_y - 16:
             break
     lines = lines[:3]
 
@@ -128,10 +134,12 @@ def render(out_path: Path, *, title: str, category: str, lead: str = "") -> None
         y += gap
 
     # --- リード（任意） ---------------------------------------------
-    if lead:
-        f_lead = _font(GOTHIC_W6, 26)
+    if lead_lines:
         ly = max(y + 14, 470)
-        for ln in _wrap(lead, f_lead, max_w, d)[:2]:
+        # それでも入らない場合は行を削る。フッターに重ねるくらいなら出さない
+        while lead_lines and ly + 40 * len(lead_lines) > foot_y - 16:
+            lead_lines.pop()
+        for ln in lead_lines:
             d.text((pad, ly), ln, font=f_lead, fill=BLUE)
             ly += 40
 
