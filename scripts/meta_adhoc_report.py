@@ -36,3 +36,23 @@ print("DATE | AD | SPEND | IMP | CTR | FREQ | LEADS")
 for r in sorted(rows, key=lambda x: (x["date_start"], x.get("ad_name", ""))):
     leads = act(r.get("actions"), "onsite_conversion.lead_grouped") or act(r.get("actions"), "lead")
     print(f"{r['date_start']} | {r.get('ad_name','?')} | {float(r.get('spend',0)):.0f} | {r.get('impressions','0')} | {float(r.get('ctr',0)):.2f} | {float(r.get('frequency',0)):.2f} | {leads:.0f}")
+
+# ---- アカウント全体サマリ（REPORT_SCOPE=account のとき）----
+if os.environ.get("REPORT_SCOPE") == "account":
+    acct = get(f"{BASE}/{CAMPAIGN}", fields="account_id").get("account_id")
+    print(f"\nACCOUNT: act_{acct}  期間 {SINCE} 〜 {UNTIL}")
+    camps = get(f"{BASE}/act_{acct}/insights",
+                level="campaign",
+                time_range=json.dumps({"since": SINCE, "until": UNTIL}),
+                fields="campaign_name,spend,impressions,clicks,actions",
+                limit="200").get("data", [])
+    tot_spend = tot_leads = tot_imp = tot_clicks = 0.0
+    print("CAMPAIGN | SPEND | IMP | CLICKS | LEADS")
+    for c in sorted(camps, key=lambda x: -float(x.get("spend", 0))):
+        leads = act(c.get("actions"), "onsite_conversion.lead_grouped") or act(c.get("actions"), "lead")
+        sp = float(c.get("spend", 0)); imp = float(c.get("impressions", 0)); ck = float(c.get("clicks", 0))
+        tot_spend += sp; tot_leads += leads; tot_imp += imp; tot_clicks += ck
+        print(f"{c.get('campaign_name','?')} | {sp:.0f} | {imp:.0f} | {ck:.0f} | {leads:.0f}")
+    print(f"TOTAL | {tot_spend:.0f} | {tot_imp:.0f} | {tot_clicks:.0f} | {tot_leads:.0f}")
+    if tot_leads:
+        print(f"CPL(全体) = {tot_spend/tot_leads:.0f}")
