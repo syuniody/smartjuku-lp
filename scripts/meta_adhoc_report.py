@@ -56,3 +56,33 @@ if os.environ.get("REPORT_SCOPE") == "account":
     print(f"TOTAL | {tot_spend:.0f} | {tot_imp:.0f} | {tot_clicks:.0f} | {tot_leads:.0f}")
     if tot_leads:
         print(f"CPL(全体) = {tot_spend/tot_leads:.0f}")
+
+# ---- 診断モード：ステータス更新履歴・広告セット設定・アクティビティログ ----
+if os.environ.get("REPORT_SCOPE") == "diag":
+    acct = get(f"{BASE}/{CAMPAIGN}", fields="account_id").get("account_id")
+    print(f"\n=== 広告の設定状態 ===")
+    ads2 = get(f"{BASE}/{CAMPAIGN}/ads",
+               fields="name,status,effective_status,created_time,updated_time,adset_id",
+               limit="50").get("data", [])
+    for a in ads2:
+        print(f"AD | {a['name'][:34]} | status={a.get('status')} | eff={a.get('effective_status')} | created={a.get('created_time','')[:16]} | updated={a.get('updated_time','')[:16]}")
+    print(f"\n=== 広告セットの設定 ===")
+    sets = get(f"{BASE}/{CAMPAIGN}/adsets",
+               fields="name,status,effective_status,daily_budget,bid_strategy,optimization_goal,updated_time,learning_stage_info",
+               limit="25").get("data", [])
+    for s in sets:
+        print(f"ADSET | {s.get('name','?')[:30]} | {s.get('effective_status')} | 日予算={s.get('daily_budget')} | 入札={s.get('bid_strategy')} | 目標={s.get('optimization_goal')} | updated={s.get('updated_time','')[:16]}")
+        print(f"        learning={s.get('learning_stage_info')}")
+    print(f"\n=== アカウント変更履歴（{SINCE}〜{UNTIL}）===")
+    try:
+        acts = get(f"{BASE}/act_{acct}/activities",
+                   since=SINCE, until=UNTIL,
+                   fields="event_type,event_time,object_name,object_type,actor_name,extra_data",
+                   limit="100").get("data", [])
+        if not acts:
+            print("（該当期間の変更履歴なし）")
+        for a in acts:
+            ex = str(a.get("extra_data", ""))[:110]
+            print(f"{a.get('event_time','')[:16]} | {a.get('event_type')} | {a.get('object_type')} {str(a.get('object_name',''))[:30]} | by {a.get('actor_name')} | {ex}")
+    except Exception as e:
+        print(f"activities取得エラー: {e}")
