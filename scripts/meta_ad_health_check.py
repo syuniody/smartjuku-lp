@@ -94,6 +94,19 @@ def get_campaign_status(campaign_id: str, token: str) -> dict:
     return http_get_json(f"{META_GRAPH_BASE}/{campaign_id}", params)
 
 
+def get_daily_series(campaign_id: str, token: str, since: str, until: str) -> list[dict]:
+    """日別（time_increment=1）の実績を古い順で返す"""
+    rows = get_insights(campaign_id, token, since, until,
+                        ["spend", "actions"], {"time_increment": "1"})
+    return sorted(rows, key=lambda r: r.get("date_start", ""))
+
+
+def get_ad_breakdown(campaign_id: str, token: str, since: str, until: str) -> list[dict]:
+    """広告別の実績（期間合計）"""
+    return get_insights(campaign_id, token, since, until,
+                        ["ad_name", "spend"], {"level": "ad"})
+
+
 def actions_to_dict(actions: list[dict] | None) -> dict[str, float]:
     if not actions:
         return {}
@@ -102,7 +115,11 @@ def actions_to_dict(actions: list[dict] | None) -> dict[str, float]:
 
 # ---------- 異常検知ロジック ----------
 
-def detect_anomalies(today: dict, yesterday: dict, last7d: dict, campaign_meta: dict) -> list[dict]:
+def detect_anomalies(today: dict, yesterday: dict, last7d: dict, campaign_meta: dict,
+                     daily_series: list[dict] | None = None,
+                     ad_rows: list[dict] | None = None,
+                     expected_ads: list[str] | None = None,
+                     today_date: str = "") -> list[dict]:
     """異常を検知してアラート辞書のリストを返す"""
     alerts: list[dict] = []
 
@@ -180,6 +197,52 @@ def detect_anomalies(today: dict, yesterday: dict, last7d: dict, campaign_meta: 
             "title": "予算消化が日割と乖離",
             "detail": f"日予算 ¥{daily}、本日消化 ¥{today_spend:,.0f}",
         })
+
+    # --- 追加ルール1: リードが連続ゼロ（当日を除く確定日で数える）---
+    if daily_series:
+        confirmed = [r for r in daily_series if r.get("date_start", "") != today_date]
+        streak = 0
+        for r in reversed(confirmed):
+            if actions_to_dict(r.get("actions")).get("onsite_conversion.lead_grouped", 0) == 0:
+                streak += 1
+            else:
+                break
+        if streak >= 3:
+            alerts.append({
+                "level": "HIGH",
+                "title": f"リード{streak}日連続ゼロ",
+                "detail": f"確定日ベースで{streak}日間リードなし。クリエイティブ・配信先の確認を推奨。",
+            })
+        elif streak == 2:
+            alerts.append({
+                "level": "MEDIUM",
+                "title": "リード2日連続ゼロ",
+                "detail": "確定日ベースで2日間リードなし。翌日も出なければ手当てが必要。",
+            })
+
+    # --- 追加ルール2: 想定外の広告が配信されている ---
+    if ad_rows and expected_ads:
+        for r in ad_rows:
+            name = r.get("ad_name", "")
+            spend = float(r.get("spend", 0))
+            if spend > 0 and not any(k in name for k in expected_ads):
+                alerts.append({
+                    "level": "HIGH",
+                    "title": "想定外の広告が配信中",
+                    "detail": f"「{name}」が ¥{spend:,.0f} 消化。停止したはずの広告が復活していないか確認。",
+                })
+
+    # --- 追加ルール3: 消化が日予算の60%未満（確定日2日連続）---
+    if daily_series and daily > 0:
+        confirmed = [r for r in daily_series if r.get("date_start", "") != today_date]
+        low = [r for r in confirmed[-2:] if float(r.get("spend", 0)) < daily * 0.6]
+        if len(low) == 2:
+            amounts = "／".join(f"¥{float(r.get('spend',0)):,.0f}" for r in low)
+            alerts.append({
+                "level": "MEDIUM",
+                "title": "消化が日予算を大きく下回る",
+                "detail": f"日予算 ¥{daily} に対し直近2日は {amounts}。配信量が落ちている可能性。",
+            })
 
     return alerts
 
@@ -287,7 +350,20 @@ def main() -> int:
     yesterday_data = yesterday_data_list[0] if yesterday_data_list else {"spend": 0}
     last7_data = last7_data_list[0] if last7_data_list else {"spend": 0, "actions": []}
 
-    alerts = detect_anomalies(today_data, yesterday_data, last7_data, campaign_meta)
+    # 追加検知用データ（失敗しても本体の判定は続行する）
+    daily_series: list[dict] = []
+    ad_rows: list[dict] = []
+    try:
+        daily_series = get_daily_series(campaign_id, token, seven_days_ago, today)
+        ad_rows = get_ad_breakdown(campaign_id, token, yesterday, today)
+    except Exception as e:
+        print(f"::warning::追加検知データの取得に失敗: {e}", file=sys.stderr)
+
+    expected = [x.strip() for x in env("EXPECTED_ADS", required=False).split(",") if x.strip()]
+
+    alerts = detect_anomalies(today_data, yesterday_data, last7_data, campaign_meta,
+                              daily_series=daily_series, ad_rows=ad_rows, expected_ads=expected,
+                              today_date=today)
 
     title, body = build_text_summary(today_data, last7_data, alerts, campaign_meta)
 
