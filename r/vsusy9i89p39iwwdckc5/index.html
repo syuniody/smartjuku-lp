@@ -332,7 +332,7 @@ if(!SJ_PREVIEW){
 (function(){
   if(SJ_PREVIEW) return;
   try{
-    var u='__BEACON_URL__';
+    var u='https://script.google.com/macros/s/AKfycby1HnN7qnh2p4QD86OjlAdhyYPD9fonyeEO4jOx4qotfhSgdgF5YnAH3M16OGEUCTvj/exec';
     if(!u || u.indexOf('__BEACON')===0) return;
     fetch(u+(u.indexOf('?')<0?'?':'&')+'id=OSK-0006&token=vsusy9i89p39iwwdckc5',
           {mode:'no-cors', keepalive:true, credentials:'omit'}).catch(function(){});
