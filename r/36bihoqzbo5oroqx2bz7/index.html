@@ -253,12 +253,30 @@ ol.flow .ft b{font-weight:600; margin-right:.4rem;}
 .cta h3{font-family:var(--serif); font-weight:600; font-size:1.2rem; line-height:1.7;
   word-break:auto-phrase; text-wrap:balance;}
 .cta p{font-size:.92rem; color:var(--ink-soft); margin-top:.7rem;}
-.cta .lp{
-  display:inline-block; margin-top:1.1rem; padding:.8rem 1.6rem;
-  background:var(--blue); color:#fff; text-decoration:none; font-weight:600;
-  border-radius:var(--r-sm); font-size:.95rem;
+
+/* 主導線：面談予約ボタン（TimeRex） */
+.cta .book{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  width:100%; max-width:26rem; margin:1.2rem auto 0;
+  min-height:56px; padding:.85rem 1rem;
+  background:var(--blue); color:#fff; text-decoration:none;
+  font-weight:700; font-size:1.02rem; line-height:1.5;
+  border-radius:var(--r-sm); box-shadow:var(--sh-1);
+  transition:background .15s ease, transform .15s ease;
 }
-.cta .lp:hover{background:var(--blue-deep);}
+.cta .book .bl{display:block;}
+.cta .book .bs{display:block; margin-top:.2rem; font-size:.74rem; font-weight:500;
+  letter-spacing:.02em; opacity:.88; line-height:1.6;}
+.cta .book:hover{background:var(--blue-deep);}
+.cta .book:active{transform:translateY(1px);}
+.cta .book:focus-visible{outline:3px solid var(--blue-deep); outline-offset:3px;}
+
+/* 従：メール返信の補足 */
+.cta .cta-sub{font-size:.82rem; margin-top:.8rem; line-height:1.8;}
+
+/* 格下げ：スマ塾サービス紹介はテキストリンク */
+.cta .cta-lp{margin-top:1rem; font-size:.82rem;}
+.cta .lp{color:var(--blue-deep); text-decoration:underline; text-underline-offset:.2em;}
 
 footer.rfoot{margin-top:2.4rem; padding-top:1rem; border-top:1px solid var(--line);
   font-size:.78rem; color:var(--ink-soft); line-height:1.85;}
@@ -345,11 +363,16 @@ footer.rfoot .note{margin-top:.7rem; padding-top:.7rem; border-top:1px dotted va
 
 <div class="cta">
   <h3>このレポートについて、10分ほどご説明できます</h3>
-  <p>お読みいただいて気になった点や、「これはうちだとどうなるか」といったご質問があれば、
-  <b>お送りしたメールにそのままご返信ください。</b>ご返信いただいた内容に合わせて、
-  優先順位や進め方をお伝えします。無理な営業はいたしません。</p>
-  <p>「3つのうちどれから手をつけるべきか」だけでも構いません。ひと言で結構です。</p>
-  <a class="lp" href="https://smart-juku.syuni.jp">スマ塾のサービスを見る</a>
+  <p>お読みいただいて気になった点や、「これはうちだとどうなるか」といったご質問に、
+  画面を一緒に見ながらお答えします。<b>下のカレンダーから、ご都合のよい時間をお選びください。</b>
+  オンラインで10分ほど、優先順位と進め方をお伝えします。無理な営業はいたしません。</p>
+  <a class="book" href="https://timerex.net/s/oda_d465_d8f9/441d345c" target="_blank" rel="noopener noreferrer" data-booking="report_cta">
+    <span class="bl">ご都合のよい枠を予約する</span>
+    <span class="bs">オンライン10分／空いている時間を選ぶだけ</span>
+  </a>
+  <p class="cta-sub">日程が合わなければ、お送りしたメールへのご返信でも承ります。
+  「3つのうちどれから手をつけるべきか」だけでも構いません。</p>
+  <p class="cta-lp"><a class="lp" href="https://smart-juku.syuni.jp">スマ塾のサービスを見る</a></p>
 </div>
 
 <footer class="rfoot">
@@ -419,6 +442,21 @@ if(!SJ_PREVIEW){
     try{ if(typeof gtag==='function'){
       gtag('event','guide_click',{
         guide_slug: a.getAttribute('data-guide') || '',
+        juku_id:'OSK-0111',
+        token:'36bihoqzbo5oroqx2bz7'
+      });
+    } }catch(err){}
+  }, true);
+})();
+
+/* 面談予約ボタン（TimeRex）のクリックを GA4 に送る。?preview=1 では送らない。 */
+(function(){
+  if(SJ_PREVIEW) return;
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[data-booking]') : null;
+    if(!a) return;
+    try{ if(typeof gtag==='function'){
+      gtag('event','booking_click',{
         juku_id:'OSK-0111',
         token:'36bihoqzbo5oroqx2bz7'
       });
