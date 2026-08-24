@@ -30,12 +30,12 @@ for a in ads:
 rows = get(f"{BASE}/{CAMPAIGN}/insights",
            level="ad", time_increment="1",
            time_range=json.dumps({"since": SINCE, "until": UNTIL}),
-           fields="date_start,ad_name,spend,impressions,ctr,frequency,actions",
+           fields="date_start,ad_name,spend,impressions,clicks,cpc,ctr,frequency,reach,actions",
            limit="500").get("data", [])
-print("DATE | AD | SPEND | IMP | CTR | FREQ | LEADS")
+print("DATE | AD | SPEND | IMP | REACH | CLICKS | CPC | CTR | FREQ | LEADS")
 for r in sorted(rows, key=lambda x: (x["date_start"], x.get("ad_name", ""))):
     leads = act(r.get("actions"), "onsite_conversion.lead_grouped") or act(r.get("actions"), "lead")
-    print(f"{r['date_start']} | {r.get('ad_name','?')} | {float(r.get('spend',0)):.0f} | {r.get('impressions','0')} | {float(r.get('ctr',0)):.2f} | {float(r.get('frequency',0)):.2f} | {leads:.0f}")
+    print(f"{r['date_start']} | {r.get('ad_name','?')} | {float(r.get('spend',0)):.0f} | {r.get('impressions','0')} | {r.get('reach','0')} | {r.get('clicks','0')} | {float(r.get('cpc',0)):.0f} | {float(r.get('ctr',0)):.2f} | {float(r.get('frequency',0)):.2f} | {leads:.0f}")
 
 # ---- アカウント全体サマリ（REPORT_SCOPE=account のとき）----
 if os.environ.get("REPORT_SCOPE") == "account":
