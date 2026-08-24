@@ -137,3 +137,29 @@ if os.environ.get("REPORT_SCOPE") == "form":
         acts = {a["action_type"]: a.get("value") for a in (r.get("actions") or [])}
         keep = {k: v for k, v in acts.items() if any(x in k for x in ("lead", "click", "view", "landing"))}
         print(f"{r['date_start']} | 消化{float(r.get('spend',0)):>5.0f} | clicks={r.get('clicks','0')} | {keep}")
+
+
+# ---- クリエイティブ設定の比較（REPORT_SCOPE=creative）----
+if os.environ.get("REPORT_SCOPE") == "creative":
+    print("\n=== 各広告のクリエイティブ設定 ===")
+    ads4 = get(f"{BASE}/{CAMPAIGN}/ads",
+               fields="name,effective_status,creative{id,name,degrees_of_freedom_spec,object_story_spec,asset_feed_spec,contextual_multi_ads}",
+               limit="50").get("data", [])
+    for a in ads4:
+        cr = a.get("creative") or {}
+        print(f"\n--- {a['name']} ({a.get('effective_status')}) ---")
+        dof = cr.get("degrees_of_freedom_spec")
+        print(f"  Advantage+設定(degrees_of_freedom_spec): {json.dumps(dof, ensure_ascii=False) if dof else 'なし'}")
+        oss = cr.get("object_story_spec") or {}
+        ld = oss.get("link_data") or {}
+        msg = (ld.get("message") or "")[:60].replace("\n", " / ")
+        cta = (ld.get("call_to_action") or {})
+        print(f"  page_id={oss.get('page_id')} / IG={oss.get('instagram_actor_id') or oss.get('instagram_user_id')}")
+        print(f"  本文冒頭: {msg}")
+        print(f"  見出し(name): {ld.get('name')}")
+        print(f"  説明(description): {ld.get('description')}")
+        print(f"  link: {ld.get('link')}")
+        print(f"  CTA: type={cta.get('type')} value={json.dumps(cta.get('value'), ensure_ascii=False)}")
+        afs = cr.get("asset_feed_spec")
+        if afs:
+            print(f"  asset_feed_spec: optimization={afs.get('optimization_type')} / keys={list(afs.keys())}")
