@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Edu-biz通信 試作版｜社内共有用</title>
+<meta name="description" content="すららネット導入塾さま向け隔週ダイジェスト「Edu-biz通信」の試作版。記事ページとHTMLメールの2案を確認できます。">
+<meta property="og:title" content="Edu-biz通信 試作版｜社内共有用">
+<meta property="og:description" content="導入塾さま向け隔週ダイジェストの試作版。記事ページとHTMLメールを確認できます。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://smart-juku.syuni.jp/demo/edubiz-tsushin/vol01/images/ogp.jpg">
+<meta property="og:url" content="https://smart-juku.syuni.jp/demo/edubiz-tsushin/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@600;700&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F7F5F0; }
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', Meiryo, sans-serif;
+    color: #2A2723;
+  }
+  a { color: #C73E2E; text-decoration: none; }
+  a:hover { color: #9C2F22; }
+  img { max-width: 100%; }
+
+  .wrap { display: flex; justify-content: center; padding: 0 20px; }
+  .col { width: min(760px, 100%); }
+
+  .site-header { background: #1B2A4A; padding: 0 32px; height: 62px; display: flex; align-items: center; }
+  .brand-title {
+    color: #FFFFFF; font-size: 19px; font-weight: 700;
+    font-family: 'Zen Old Mincho', 'Hiragino Mincho ProN', serif; letter-spacing: 0.05em;
+  }
+  .brand-sub { color: #A9B4CC; font-size: 11px; letter-spacing: 0.1em; margin-left: 14px; }
+
+  .lead { padding: 64px 0 36px 0; }
+  .eyebrow { display: flex; align-items: center; gap: 12px; }
+  .eyebrow-bar { width: 28px; height: 3px; background: #C73E2E; flex-shrink: 0; }
+  .eyebrow-text { color: #8B8578; font-size: 13px; letter-spacing: 0.14em; }
+  h1 {
+    font-size: clamp(24px, 5.4vw, 34px); font-weight: 700; line-height: 1.55; color: #1B2A4A;
+    font-family: 'Zen Old Mincho', 'Hiragino Mincho ProN', serif; letter-spacing: 0.02em;
+    margin: 18px 0 0 0; word-break: auto-phrase; text-wrap: balance;
+  }
+  .masthead-rule { border-top: 3px solid #1B2A4A; border-bottom: 1px solid #D9D4CA; padding: 14px 0 16px 0; margin-top: 18px; }
+  .masthead-data { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; font-size: 12.5px; line-height: 1.7; }
+  .masthead-data dt { color: #8B8578; letter-spacing: 0.18em; white-space: nowrap; }
+  .masthead-data dd { margin: 0; color: #4A463F; word-break: auto-phrase; }
+  .lead-text { font-size: 15px; line-height: 1.95; color: #4A463F; margin: 20px 0 0 0; text-wrap: pretty; }
+
+  .label { color: #8B8578; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; }
+  .section { margin-top: 56px; }
+  .rule-row { display: flex; align-items: center; gap: 12px; }
+  .rule { height: 1px; background: #D9D4CA; flex-grow: 1; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-top: 22px; }
+  .card { background: #FFFFFF; border: 1px solid #E2DDD2; display: flex; flex-direction: column; }
+  .card-body { padding: 22px 24px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1 1 auto; }
+  .card-kicker { font-size: 11px; color: #C73E2E; font-weight: 700; letter-spacing: 0.18em; }
+  .card-title { font-size: 17px; font-weight: 700; color: #1B2A4A; line-height: 1.5; word-break: auto-phrase; }
+  .card-note { font-size: 13px; line-height: 1.9; color: #4A463F; text-wrap: pretty; flex: 1 1 auto; }
+  .card-link { display: inline-block; background: #1B2A4A; color: #FFFFFF; font-size: 13px; font-weight: 700; padding: 12px 22px; letter-spacing: 0.04em; align-self: flex-start; }
+  .card-link:hover { color: #FFFFFF; background: #24365c; }
+
+  .notes { margin-top: 56px; border-top: 1px solid #D9D4CA; padding-top: 22px; }
+  .notes ul { margin: 14px 0 0 0; padding-left: 1.2em; }
+  .notes li { font-size: 13px; line-height: 1.95; color: #4A463F; margin-bottom: 8px; text-wrap: pretty; }
+  .notes strong { color: #1B2A4A; }
+
+  .site-footer { margin-top: 64px; padding: 22px 20px 32px 20px; text-align: center; font-size: 11px; color: #8B8578; letter-spacing: 0.08em; }
+
+  @media (max-width: 680px) {
+    .site-header { padding: 10px 20px; height: auto; flex-wrap: wrap; }
+    .brand-sub { margin-left: 0; width: 100%; padding-top: 4px; }
+    .lead { padding: 40px 0 28px 0; }
+    .cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand-title">Edu-biz 通信</div>
+  <div class="brand-sub">試作版・社内共有用</div>
+</header>
+
+<div class="wrap">
+  <div class="col">
+
+    <section class="lead">
+      <div class="eyebrow">
+        <div class="eyebrow-bar"></div>
+        <div class="eyebrow-text">試作 vol.01｜2026年8月24日</div>
+      </div>
+      <h1>導入塾さま向け「Edu-biz通信」の試作版</h1>
+      <div class="masthead-rule">
+        <dl class="masthead-data">
+          <dt>目的</dt><dd>Edu-bizチャンネルの視聴を増やすこと</dd>
+          <dt>頻度</dt><dd>2週間に1度。直近6本前後から3本を選んでダイジェストにする</dd>
+          <dt>宛先</dt><dd>「すらら」導入塾さま（塾経営者・教室長）</dd>
+        </dl>
+      </div>
+      <p class="lead-text">2026年8月11日〜24日に実際に公開した6本を使って、記事ページとHTMLメールの2案を作りました。動画のタイトル・尺・公開日・サムネイル・リンクはすべて実物です。ダイジェスト本文は各動画の概要欄の内容に基づいています。</p>
+    </section>
+
+    <section class="section">
+      <div class="rule-row"><div class="label">2つの案</div><div class="rule"></div></div>
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-body">
+            <div class="card-kicker">案A</div>
+            <div class="card-title">記事ページ</div>
+            <div class="card-note">動画をページ内で再生できる形。埋め込み再生も再生回数・視聴時間に加算されます。カテゴリでの絞り込み、過去号のアーカイブ、検索からの流入も見込めます。</div>
+            <a class="card-link" href="./vol01/">記事ページを見る</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="card-kicker">案B</div>
+            <div class="card-title">HTMLメール</div>
+            <div class="card-note">メールの中だけで完結する形。開封さえされれば内容が伝わり、動画までのクリックは1回で済みます。一斉配信ツールに載せる前提のテーブルレイアウトで組んでいます。</div>
+            <a class="card-link" href="./vol01/email.html">メールを見る</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="notes">
+      <div class="label">確認していただきたい点</div>
+      <ul>
+        <li><strong>どちらを主にするか。</strong>メール完結（案B）は動画までのクリックが1回で済みます。記事ページ（案A）は1ホップ増えますが、ページ内で再生でき、過去号がストックとして残ります。両方を併用し、メールに要旨、記事ページに全文という形も可能です。</li>
+        <li><strong>「選定」の基準を毎号どう決めるか。</strong>今号は「秋の保護者面談で説明を求められる可能性が高い順」としました。この一文がこの媒体の価値の核なので、毎号書き直す前提です。</li>
+        <li><strong>各本に「今週やること」を1行添えるか。</strong>読者が毎号戻ってくる理由になりますが、塾への指示になるため内容は編集者が決める必要があります。</li>
+        <li><strong>配信ツール。</strong>BCC一斉送信ができないため、一斉配信ツールの選定が前提になります。ツールによって配信停止リンクの差し込み方が変わるので、決まり次第そこだけ差し替えます。</li>
+        <li><strong>公開場所。</strong>現在は社内確認用に限定公開（検索避け・未リンク）で置いています。本番はすららネット管理のドメインへ移す想定です。</li>
+      </ul>
+    </section>
+
+  </div>
+</div>
+
+<footer class="site-footer">© 株式会社すららネット｜Edu-biz 通信（試作）</footer>
+
+</body>
+</html>
