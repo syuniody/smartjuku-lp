@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Lステップ配信の設定内容｜Edu-biz通信 vol.01</title>
+<meta name="description" content="Edu-biz通信 vol.01 を公式LINE（Lステップ）から配信するための、カードタイプの設定内容と画像URL。">
+<meta property="og:title" content="Lステップ配信の設定内容｜Edu-biz通信 vol.01">
+<meta property="og:description" content="カードタイプ（カルーセル）の設定内容と画像URL。">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://smart-juku.syuni.jp/demo/edubiz-tsushin/vol01/images/ogp.jpg">
+<meta property="og:url" content="https://smart-juku.syuni.jp/demo/edubiz-tsushin/vol01/line.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@600;700&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F7F5F0; }
+  body { font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', Meiryo, sans-serif; color: #2A2723; }
+  a { color: #C73E2E; text-decoration: none; }
+  a:hover { color: #9C2F22; }
+  img { max-width: 100%; }
+
+  .site-header { background: #1B2A4A; padding: 0 32px; height: 62px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .brand-title { color: #FFFFFF; font-size: 19px; font-weight: 700; font-family: 'Zen Old Mincho', 'Hiragino Mincho ProN', serif; letter-spacing: 0.05em; }
+  .brand-sub { color: #A9B4CC; font-size: 11px; letter-spacing: 0.1em; }
+
+  .wrap { display: flex; justify-content: center; padding: 0 20px; }
+  .col { width: min(860px, 100%); }
+
+  .lead { padding: 60px 0 32px 0; }
+  .eyebrow { display: flex; align-items: center; gap: 12px; }
+  .eyebrow-bar { width: 28px; height: 3px; background: #C73E2E; flex-shrink: 0; }
+  .eyebrow-text { color: #8B8578; font-size: 13px; letter-spacing: 0.14em; }
+  h1 { font-size: clamp(23px, 5vw, 32px); font-weight: 700; line-height: 1.55; color: #1B2A4A;
+       font-family: 'Zen Old Mincho', 'Hiragino Mincho ProN', serif; letter-spacing: 0.02em;
+       margin: 18px 0 0 0; word-break: auto-phrase; text-wrap: balance; }
+  .masthead-rule { border-top: 3px solid #1B2A4A; border-bottom: 1px solid #D9D4CA; padding: 14px 0 16px 0; margin-top: 18px; }
+  .masthead-data { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; font-size: 12.5px; line-height: 1.7; }
+  .masthead-data dt { color: #8B8578; letter-spacing: 0.18em; white-space: nowrap; }
+  .masthead-data dd { margin: 0; color: #4A463F; word-break: auto-phrase; }
+  .lead-text { font-size: 15px; line-height: 1.95; color: #4A463F; margin: 20px 0 0 0; text-wrap: pretty; }
+
+  .label { color: #8B8578; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; white-space: nowrap; }
+  .rule-row { display: flex; align-items: center; gap: 12px; }
+  .rule { height: 1px; background: #D9D4CA; flex-grow: 1; }
+  .section { margin-top: 56px; }
+
+  /* カルーセルの見た目（LINE上の並びを再現） */
+  .carousel { display: flex; gap: 12px; overflow-x: auto; padding: 22px 0 8px 0; }
+  .lcard { flex: 0 0 244px; background: #FFFFFF; border: 1px solid #E2DDD2; display: flex; flex-direction: column; }
+  .lcard img { display: block; width: 100%; height: auto; }
+  .lcard-body { padding: 12px 14px 14px 14px; display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; }
+  .lcard-title { font-size: 13px; font-weight: 700; color: #1B2A4A; line-height: 1.5; word-break: auto-phrase; }
+  .lcard-text { font-size: 12px; line-height: 1.7; color: #4A463F; flex: 1 1 auto; text-wrap: pretty; }
+  .lcard-btn { border-top: 1px solid #ECE8DF; padding-top: 10px; margin-top: 4px; font-size: 12px; font-weight: 700; color: #C73E2E; text-align: center; }
+  .lcard-alt { flex: 0 0 244px; background: #1B2A4A; display: flex; flex-direction: column; justify-content: center; padding: 22px 18px; gap: 8px; }
+  .lcard-alt .t { color: #FFFFFF; font-size: 14px; font-weight: 700; line-height: 1.6; }
+  .lcard-alt .d { color: #C9D2E4; font-size: 12px; line-height: 1.7; }
+  .lcard-alt .b { color: #FFFFFF; font-size: 12px; font-weight: 700; border-top: 1px solid #41567F; padding-top: 10px; margin-top: 4px; text-align: center; }
+
+  table.spec { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 13px; }
+  table.spec th, table.spec td { border: 1px solid #E2DDD2; padding: 10px 12px; text-align: left; vertical-align: top; line-height: 1.7; }
+  table.spec th { background: #FFFFFF; color: #8B8578; font-weight: 700; white-space: nowrap; width: 116px; letter-spacing: 0.08em; }
+  table.spec td { background: #FFFFFF; color: #2A2723; word-break: break-word; }
+  .card-head { margin-top: 34px; font-size: 15px; font-weight: 700; color: #1B2A4A; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; color: #4A463F; background: #F0EDE6; padding: 1px 5px; }
+  .count { color: #8B8578; font-size: 11px; }
+
+  .notes ul { margin: 16px 0 0 0; padding-left: 1.2em; }
+  .notes li { font-size: 14px; line-height: 1.95; color: #4A463F; margin-bottom: 10px; text-wrap: pretty; }
+  .notes strong { color: #1B2A4A; }
+
+  .site-footer { margin-top: 64px; padding: 22px 20px 32px 20px; text-align: center; font-size: 11px; color: #8B8578; letter-spacing: 0.08em; }
+
+  @media (max-width: 680px) {
+    .site-header { padding: 10px 20px; height: auto; }
+    .lead { padding: 40px 0 24px 0; }
+    table.spec th { width: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand-title">Edu-biz 通信</div>
+  <div class="brand-sub">Lステップ配信の設定内容</div>
+</header>
+
+<div class="wrap">
+  <div class="col">
+
+    <section class="lead">
+      <div class="eyebrow">
+        <div class="eyebrow-bar"></div>
+        <div class="eyebrow-text">vol.01｜2026年8月24日号</div>
+      </div>
+      <h1>公式LINEから送るときの設定内容</h1>
+      <div class="masthead-rule">
+        <dl class="masthead-data">
+          <dt>形式</dt><dd>カードタイプ（カルーセル）4枚｜1通で送る</dd>
+          <dt>画像</dt><dd>1200×795px（1.51:1）。下のURLをそのまま登録できます</dd>
+          <dt>方針</dt><dd>本文は載せない。動画と記事ページへの入口に徹する</dd>
+        </dl>
+      </div>
+      <p class="lead-text">LINEはチャットなので、メールの文章をそのまま短くして流すと読まれません。3本のピックアップは横スワイプのカードと相性がよいので、カルーセル1通にまとめます。吹き出しを増やすと通数課金が増えるため、必ず1通に収めます。</p>
+    </section>
+
+    <section class="section">
+      <div class="rule-row"><div class="label">送られ方（イメージ）</div><div class="rule"></div></div>
+      <div class="carousel">
+        <div class="lcard">
+          <img src="images/th1-line.jpg" alt="通知表の「態度」評価が根本から変わる" width="1200" height="795">
+          <div class="lcard-body">
+            <div class="lcard-title">通知表の「態度」評価が根本から変わる</div>
+            <div class="lcard-text">8月4日の文科省案で具体化。A・B・Cの独立した観点として評定しない方向です。（12:02）</div>
+            <div class="lcard-btn">動画を見る</div>
+          </div>
+        </div>
+        <div class="lcard">
+          <img src="images/th2-line.jpg" alt="【数学再編】A・B・C統合で何が変わる？" width="1200" height="795">
+          <div class="lcard-body">
+            <div class="lcard-title">【数学再編】A・B・C統合で何が変わる？</div>
+            <div class="lcard-text">高校数学の選択科目を1つに再編する案。数学Ⅰ・Ⅱ・Ⅲは残る想定です。（13:06）</div>
+            <div class="lcard-btn">動画を見る</div>
+          </div>
+        </div>
+        <div class="lcard">
+          <img src="images/th3-line.jpg" alt="不登校の成績評価が変わる？「4※」と内申" width="1200" height="795">
+          <div class="lcard-body">
+            <div class="lcard-title">不登校の成績評価が変わる？「4※」と内申</div>
+            <div class="lcard-text">出席扱いの先の評価方法を整理。「4※」は通常の評定4とは別物です。（24:36）</div>
+            <div class="lcard-btn">動画を見る</div>
+          </div>
+        </div>
+        <div class="lcard-alt">
+          <div class="t">今号のダイジェストを読む</div>
+          <div class="d">3本の要点と、今号のその他の動画。Edu-biz通信 vol.01</div>
+          <div class="b">記事を読む</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="rule-row"><div class="label">設定内容</div><div class="rule"></div></div>
+
+      <table class="spec">
+        <tr><th>通知の文言</th><td>【Edu-biz通信】通知表の「態度」評価が変わります<br><span class="count">ロック画面に出るのはこの一文だけ。開くかどうかがここで決まるので、号数ではなく中身を書く（Lステップでは「代替テキスト」欄）</span></td></tr>
+      </table>
+
+      <div class="card-head">カード1</div>
+      <table class="spec">
+        <tr><th>画像</th><td><code>https://smart-juku.syuni.jp/demo/edubiz-tsushin/vol01/images/th1-line.jpg</code></td></tr>
+        <tr><th>タイトル</th><td>通知表の「態度」評価が根本から変わる <span class="count">17字／上限40字</span></td></tr>
+        <tr><th>説明</th><td>8月4日の文科省案で具体化。A・B・Cの独立した観点として評定しない方向です。（12:02） <span class="count">40字／上限60字</span></td></tr>
+        <tr><th>ボタン</th><td>動画を見る → <code>https://www.youtube.com/watch?v=a0YUNzc8a3U</code></td></tr>
+      </table>
+
+      <div class="card-head">カード2</div>
+      <table class="spec">
+        <tr><th>画像</th><td><code>https://smart-juku.syuni.jp/demo/edubiz-tsushin/vol01/images/th2-line.jpg</code></td></tr>
+        <tr><th>タイトル</th><td>【数学再編】A・B・C統合で何が変わる？ <span class="count">19字</span></td></tr>
+        <tr><th>説明</th><td>高校数学の選択科目を1つに再編する案。数学Ⅰ・Ⅱ・Ⅲは残る想定です。（13:06） <span class="count">37字</span></td></tr>
+        <tr><th>ボタン</th><td>動画を見る → <code>https://www.youtube.com/watch?v=DhD2p_t2zHk</code></td></tr>
+      </table>
+
+      <div class="card-head">カード3</div>
+      <table class="spec">
+        <tr><th>画像</th><td><code>https://smart-juku.syuni.jp/demo/edubiz-tsushin/vol01/images/th3-line.jpg</code></td></tr>
+        <tr><th>タイトル</th><td>不登校の成績評価が変わる？「4※」と内申 <span class="count">19字</span></td></tr>
+        <tr><th>説明</th><td>出席扱いの先の評価方法を整理。「4※」は通常の評定4とは別物です。（24:36） <span class="count">36字</span></td></tr>
+        <tr><th>ボタン</th><td>動画を見る → <code>https://www.youtube.com/watch?v=-cCJrVi7p0o</code></td></tr>
+      </table>
+
+      <div class="card-head">カード4</div>
+      <table class="spec">
+        <tr><th>画像</th><td>紺一色の背景（または <code>images/ogp.jpg</code> を1.51:1に調整して使用）</td></tr>
+        <tr><th>タイトル</th><td>今号のダイジェストを読む <span class="count">11字</span></td></tr>
+        <tr><th>説明</th><td>3本の要点と、今号のその他の動画。Edu-biz通信 vol.01 <span class="count">30字</span></td></tr>
+        <tr><th>ボタン</th><td>記事を読む → 記事ページのURL</td></tr>
+      </table>
+    </section>
+
+    <section class="section notes">
+      <div class="rule-row"><div class="label">Lステップでの注意点</div><div class="rule"></div></div>
+      <ul>
+        <li><strong>画像比率は 1.51:1 を選ぶ。</strong>カードタイプの画像は 1.51:1 か 1:1 に固定され、16:9のままだと左右が切れて「文科省案」のラベルが欠けます。上の画像は上下に紺の帯を足して 1.51:1 に整えてあるので、そのまま登録できます。</li>
+        <li><strong>必ず1通に収める。</strong>テキストの吹き出しを別に足すと、その分だけ通数課金が増えます。言いたいことは通知の文言とカードの中に入れてください。</li>
+        <li><strong>URLクリック測定を有効にする。</strong>Lステップ側でURLを登録すると、カードごとのクリック数が取れます。どのテーマが刺さるかが分かるので、次号の「選定」に直結します。</li>
+        <li><strong>配信時間は試して決める。</strong>塾長は夕方から夜が本業なので、開くとしたら午前〜昼過ぎが有力です。まずは2回ぶん時間を変えて、クリック率を比べてください。</li>
+        <li><strong>メールと同じ本文を載せない。</strong>メールは全文、記事ページはストック、LINEは入口。役割を分けないと、どれも中途半端になります。</li>
+        <li><strong>配信前にブロック率と到達数を確認する。</strong>既存の配信と合わせて月に何通になるかを見てから頻度を決めてください。隔週1通なら過剰ではないはずですが、他の配信と重なると体感は変わります。</li>
+      </ul>
+    </section>
+
+  </div>
+</div>
+
+<footer class="site-footer">© 株式会社すららネット｜Edu-biz 通信（試作）</footer>
+
+</body>
+</html>
