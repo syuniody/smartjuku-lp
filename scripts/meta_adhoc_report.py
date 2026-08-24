@@ -89,32 +89,51 @@ if os.environ.get("REPORT_SCOPE") == "diag":
 
 # ---- フォーム診断モード（REPORT_SCOPE=form）----
 if os.environ.get("REPORT_SCOPE") == "form":
-    print("\n=== リードフォームの状態 ===")
-    ads3 = get(f"{BASE}/{CAMPAIGN}/ads", fields="name,effective_status", limit="50").get("data", [])
-    seen_forms = {}
+    print("\n=== 広告セットの promoted_object ===")
+    sets2 = get(f"{BASE}/{CAMPAIGN}/adsets", fields="name,promoted_object,optimization_goal", limit="25").get("data", [])
+    form_ids = set()
+    for st in sets2:
+        po = st.get("promoted_object") or {}
+        print(f"ADSET | {st.get('name','?')[:30]} | goal={st.get('optimization_goal')} | promoted={po}")
+        if po.get("leadgen_form_id"):
+            form_ids.add(po["leadgen_form_id"])
+
+    print("\n=== 広告クリエイティブのフォームID ===")
+    ads3 = get(f"{BASE}/{CAMPAIGN}/ads", fields="name,creative{id,object_story_spec,effective_object_story_id}", limit="50").get("data", [])
     for a in ads3:
+        cr = a.get("creative") or {}
+        oss = cr.get("object_story_spec") or {}
+        page_id = oss.get("page_id")
+        call = ((oss.get("link_data") or {}).get("call_to_action") or {}).get("value") or {}
+        fid = call.get("lead_gen_form_id")
+        print(f"AD | {a['name'][:30]} | page={page_id} | form={fid}")
+        if fid: form_ids.add(str(fid))
+
+    print("\n=== フォームの状態と実リード ===")
+    for fid in form_ids:
         try:
-            forms = get(f"{BASE}/{a['id']}/leadgen_forms",
-                        fields="id,name,status,locale,questions,created_time", limit="10").get("data", [])
-        except Exception as e:
-            print(f"  {a['name'][:30]}: フォーム取得エラー {e}")
-            continue
-        for f in forms:
-            seen_forms[f["id"]] = f
+            f = get(f"{BASE}/{fid}", fields="name,status,locale,questions,created_time")
             qs = [q.get("key") or q.get("type") for q in (f.get("questions") or [])]
-            print(f"FORM | {f.get('name','?')[:40]} | id={f['id']} | status={f.get('status')} | 質問={qs}")
-    print("\n=== フォーム別の実リード（直近取得できる分）===")
-    for fid, f in seen_forms.items():
-        try:
-            leads = get(f"{BASE}/{fid}/leads", fields="created_time,id", limit="50").get("data", [])
-            if leads:
-                dates = sorted(l.get("created_time", "")[:10] for l in leads)
-                from collections import Counter
-                c = Counter(dates)
-                print(f"  {f.get('name','?')[:30]} 合計{len(leads)}件 / 最新={dates[-1]}")
-                for d in sorted(c)[-12:]:
-                    print(f"     {d} : {c[d]}件")
-            else:
-                print(f"  {f.get('name','?')[:30]} : リード0件")
+            print(f"FORM {fid} | {f.get('name','?')[:40]} | status={f.get('status')} | 質問={qs}")
         except Exception as e:
-            print(f"  {f.get('name','?')[:30]} : leads取得エラー {e}")
+            print(f"FORM {fid} | 取得エラー: {e}")
+        try:
+            leads = get(f"{BASE}/{fid}/leads", fields="created_time", limit="100").get("data", [])
+            if leads:
+                from collections import Counter
+                c = Counter(l.get("created_time","")[:10] for l in leads)
+                print(f"   実リード 合計{len(leads)}件 / 最新 {max(c)}")
+                for d in sorted(c)[-14:]: print(f"     {d} : {c[d]}件")
+            else:
+                print("   実リード 0件")
+        except Exception as e:
+            print(f"   leads取得エラー: {e}")
+
+    print("\n=== アクション内訳（日別・全種類）===")
+    arows = get(f"{BASE}/{CAMPAIGN}/insights", time_increment="1",
+                time_range=json.dumps({"since": SINCE, "until": UNTIL}),
+                fields="date_start,spend,clicks,actions", limit="200").get("data", [])
+    for r in sorted(arows, key=lambda x: x["date_start"]):
+        acts = {a["action_type"]: a.get("value") for a in (r.get("actions") or [])}
+        keep = {k: v for k, v in acts.items() if any(x in k for x in ("lead", "click", "view", "landing"))}
+        print(f"{r['date_start']} | 消化{float(r.get('spend',0)):>5.0f} | clicks={r.get('clicks','0')} | {keep}")
