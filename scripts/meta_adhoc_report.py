@@ -86,3 +86,35 @@ if os.environ.get("REPORT_SCOPE") == "diag":
             print(f"{a.get('event_time','')[:16]} | {a.get('event_type')} | {a.get('object_type')} {str(a.get('object_name',''))[:30]} | by {a.get('actor_name')} | {ex}")
     except Exception as e:
         print(f"activities取得エラー: {e}")
+
+# ---- フォーム診断モード（REPORT_SCOPE=form）----
+if os.environ.get("REPORT_SCOPE") == "form":
+    print("\n=== リードフォームの状態 ===")
+    ads3 = get(f"{BASE}/{CAMPAIGN}/ads", fields="name,effective_status", limit="50").get("data", [])
+    seen_forms = {}
+    for a in ads3:
+        try:
+            forms = get(f"{BASE}/{a['id']}/leadgen_forms",
+                        fields="id,name,status,locale,questions,created_time", limit="10").get("data", [])
+        except Exception as e:
+            print(f"  {a['name'][:30]}: フォーム取得エラー {e}")
+            continue
+        for f in forms:
+            seen_forms[f["id"]] = f
+            qs = [q.get("key") or q.get("type") for q in (f.get("questions") or [])]
+            print(f"FORM | {f.get('name','?')[:40]} | id={f['id']} | status={f.get('status')} | 質問={qs}")
+    print("\n=== フォーム別の実リード（直近取得できる分）===")
+    for fid, f in seen_forms.items():
+        try:
+            leads = get(f"{BASE}/{fid}/leads", fields="created_time,id", limit="50").get("data", [])
+            if leads:
+                dates = sorted(l.get("created_time", "")[:10] for l in leads)
+                from collections import Counter
+                c = Counter(dates)
+                print(f"  {f.get('name','?')[:30]} 合計{len(leads)}件 / 最新={dates[-1]}")
+                for d in sorted(c)[-12:]:
+                    print(f"     {d} : {c[d]}件")
+            else:
+                print(f"  {f.get('name','?')[:30]} : リード0件")
+        except Exception as e:
+            print(f"  {f.get('name','?')[:30]} : leads取得エラー {e}")
