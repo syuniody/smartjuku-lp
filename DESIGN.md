@@ -10,6 +10,10 @@ AI（Claude / Codex 等）に制作・改修を任せるときは、必ず最初
 - `tokushoho.html` / `privacy.html`（各ページが自己完結の inline `<style>`。
   **器は tokushoho.html を正とし、privacy.html はそれを複製して中身だけ差し替える**）
 
+**適用範囲外：`demo/edubiz-tsushin/`。**
+すららネットの媒体「Edu-biz通信」で、スマ塾のページではない。
+別規約 `demo/edubiz-tsushin/DESIGN.md` に従う。互いに値を持ち込まないこと。
+
 2026-08-18 の時点で `assets/site.css` は規約が未適用のままだった（角丸の直値10種、
 `999px` と `100px` の併存、影が規定値と 0.01 違う近似値）。同じことを繰り返さないため、
 **改修後は必ず両方のファイルでレンダリング実測すること。**
