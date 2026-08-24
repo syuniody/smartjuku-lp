@@ -220,15 +220,11 @@
     margin-top: 72px;
   }
   .article-section.first { margin-top: 64px; }
-
-  /* 3本を平等に並べない。1本目を主役に立て、2・3本目は従にする。
-     等分割の反復がテンプレート然として見える最大の原因だったため。 */
-  .article-section.first .article-title { font-size: clamp(23px, 5.4vw, 31px); }
-  .article-section.first .video-embed { max-width: 640px; }
-  .article-section.first .article-body p:first-child { font-size: 16px; }
-  .article-section.sub .article-title { font-size: clamp(19px, 4vw, 23px); }
-  .article-section.sub .video-embed { max-width: 440px; }
   .article-section.sub { margin-top: 64px; }
+
+  /* 3本のサイズは揃える。サイズ差だけでは「重要だから大きい」と読まれず、
+     ただの不揃いに見える（2026-08-24 の指摘）。主従を付けたいときは
+     サイズではなく言葉（ラベル）で示すこと。 */
   .article-header { display: flex; align-items: center; gap: 16px; }
   .article-icon { flex-shrink: 0; }
   .article-title {
