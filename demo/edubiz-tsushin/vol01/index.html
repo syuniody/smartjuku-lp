@@ -207,6 +207,7 @@
   .video-embed {
     position: relative;
     width: 100%;
+    max-width: 520px;
     aspect-ratio: 16 / 9;
     background-color: #000;
   }
@@ -239,8 +240,9 @@
   .grid-rule { height: 1px; background-color: #D9D4CA; flex-grow: 1; }
   .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px 22px;
+    max-width: 600px;
   }
   .video-card { display: flex; flex-direction: column; gap: 10px; }
   .video-card img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
@@ -338,6 +340,7 @@
     .cta-section { padding: 40px 20px; }
     .backnumber-section { padding: 40px 20px 16px 20px; }
     .site-footer { padding: 20px 20px 28px 20px; }
+    .video-grid { grid-template-columns: 1fr; max-width: none; }
   }
 </style>
 </head>
