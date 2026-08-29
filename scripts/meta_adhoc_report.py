@@ -185,12 +185,11 @@ if os.environ.get("REPORT_SCOPE") == "audience":
     print("\n=== アカウントの保存済みオーディエンス ===")
     try:
         auds = get(f"{BASE}/act_{acct}/customaudiences",
-                   fields="id,name,subtype,approximate_count_lower_bound,approximate_count_upper_bound,origin_audience_id,lookalike_spec,time_created",
+                   fields="id,name,subtype,approximate_count_lower_bound,time_created",
                    limit="50").get("data", [])
-        for a in sorted(auds, key=lambda x: x.get("time_created",""), reverse=True):
-            lk = a.get("lookalike_spec") or {}
-            ratio = lk.get("ratio")
-            cnt = a.get("approximate_count_lower_bound")
-            print(f"  {a['id']} | {a.get('name','?')[:40]} | {a.get('subtype')} | 類似割合={ratio} | 規模≒{cnt} | 作成={a.get('time_created','')[:10]}")
+        for a in auds:
+            if not isinstance(a, dict):
+                continue
+            print(f"  {a.get('id')} | {str(a.get('name','?'))[:45]} | {a.get('subtype')} | 規模≒{a.get('approximate_count_lower_bound')} | 作成={str(a.get('time_created',''))[:10]}")
     except Exception as e:
         print(f"  取得エラー: {e}")
