@@ -163,3 +163,34 @@ if os.environ.get("REPORT_SCOPE") == "creative":
         afs = cr.get("asset_feed_spec")
         if afs:
             print(f"  asset_feed_spec: optimization={afs.get('optimization_type')} / keys={list(afs.keys())}")
+
+
+# ---- オーディエンス設定（REPORT_SCOPE=audience）----
+if os.environ.get("REPORT_SCOPE") == "audience":
+    acct = get(f"{BASE}/{CAMPAIGN}", fields="account_id").get("account_id")
+    print("\n=== 広告セットのターゲティング ===")
+    sets3 = get(f"{BASE}/{CAMPAIGN}/adsets",
+                fields="name,targeting,optimization_goal,daily_budget,effective_status", limit="25").get("data", [])
+    for st in sets3:
+        t = st.get("targeting") or {}
+        print(f"\nADSET: {st.get('name')} ({st.get('effective_status')})")
+        print(f"  年齢: {t.get('age_min')}-{t.get('age_max')} / 性別: {t.get('genders','すべて')}")
+        print(f"  地域: {json.dumps(t.get('geo_locations'), ensure_ascii=False)[:200]}")
+        print(f"  カスタムオーディエンス: {json.dumps(t.get('custom_audiences'), ensure_ascii=False)}")
+        print(f"  除外: {json.dumps(t.get('excluded_custom_audiences'), ensure_ascii=False)}")
+        fs = t.get("flexible_spec")
+        print(f"  興味関心(flexible_spec): {json.dumps(fs, ensure_ascii=False)[:300] if fs else 'なし'}")
+        print(f"  配置: {t.get('publisher_platforms')} / 自動拡張: targeting_relaxation={json.dumps(t.get('targeting_relaxation_types'), ensure_ascii=False)}")
+
+    print("\n=== アカウントの保存済みオーディエンス ===")
+    try:
+        auds = get(f"{BASE}/act_{acct}/customaudiences",
+                   fields="id,name,subtype,approximate_count_lower_bound,approximate_count_upper_bound,origin_audience_id,lookalike_spec,time_created",
+                   limit="50").get("data", [])
+        for a in sorted(auds, key=lambda x: x.get("time_created",""), reverse=True):
+            lk = a.get("lookalike_spec") or {}
+            ratio = lk.get("ratio")
+            cnt = a.get("approximate_count_lower_bound")
+            print(f"  {a['id']} | {a.get('name','?')[:40]} | {a.get('subtype')} | 類似割合={ratio} | 規模≒{cnt} | 作成={a.get('time_created','')[:10]}")
+    except Exception as e:
+        print(f"  取得エラー: {e}")
