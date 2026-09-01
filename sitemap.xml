@@ -3,15 +3,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://smart-juku.syuni.jp/</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://smart-juku.syuni.jp/guide/</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://smart-juku.syuni.jp/guide/juku-hp-ryoukin.html</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smart-juku.syuni.jp/guide/juku-hp-shinrai.html</loc>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://smart-juku.syuni.jp/guide/juku-hp-first-view.html</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://smart-juku.syuni.jp/guide/juku-hp-toiawase.html</loc>
@@ -81,9 +99,15 @@
   </url>
   <url>
     <loc>https://smart-juku.syuni.jp/news/</loc>
-    <lastmod>2026-08-31</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://smart-juku.syuni.jp/news/next-curriculum-guideline-2026.html</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://smart-juku.syuni.jp/news/elementary-ai-education-2030.html</loc>
@@ -321,13 +345,13 @@
   </url>
   <url>
     <loc>https://smart-juku.syuni.jp/privacy.html</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://smart-juku.syuni.jp/tokushoho.html</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-09-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
