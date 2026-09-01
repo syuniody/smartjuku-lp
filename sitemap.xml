@@ -104,6 +104,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://smart-juku.syuni.jp/news/high-school-tuition-public-private-shift.html</loc>
+    <lastmod>2026-09-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://smart-juku.syuni.jp/news/next-curriculum-guideline-2026.html</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
