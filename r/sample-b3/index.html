@@ -559,6 +559,49 @@ h2.sec,.whois,.pb,.samples{margin-left:0;margin-right:0;}
   display:inline-block;font-size:1rem;color:rgba(255,255,255,.8);
   letter-spacing:.06em;margin-left:.3rem;vertical-align:baseline;
 }
+
+/* ---- 目次（2026-09-05） ---- */
+.toc{position:fixed;z-index:60;}
+.toc-t{font-size:.68rem;letter-spacing:.24em;color:var(--ink-soft);margin:0 0 .9rem;}
+.toc-l{list-style:none;margin:0;padding:0;}
+.toc-l li{margin:0 0 .1rem;}
+.toc-l a{display:grid;grid-template-columns:1.75rem 1fr;gap:.35rem;align-items:baseline;
+  padding:.42rem 0;text-decoration:none;color:var(--ink-soft);
+  font-size:.82rem;line-height:1.6;border-bottom:0;}
+.toc-n{font-family:var(--serif);font-size:.72rem;opacity:.55;}
+.toc-l a:hover{color:var(--blue-deep);}
+.toc-l a.on{color:var(--blue-deep);}
+.toc-l a.on .toc-n{opacity:1;}
+.toc-l a.on .toc-x{border-bottom:1px solid var(--blue-deep);padding-bottom:1px;}
+.toc-btn{position:fixed;z-index:61;border:0;cursor:pointer;font-family:var(--sans);
+  background:var(--blue-deep);color:#fff;display:flex;align-items:center;gap:.45rem;}
+
+/* 広い画面：左の余白に常時表示。ボタンは出さない */
+@media (min-width:1180px){
+  .toc{top:0;left:0;width:calc(50% - 380px);height:100vh;display:flex;align-items:center;
+    justify-content:flex-end;padding-right:2.4rem;pointer-events:none;}
+  .toc-in{pointer-events:auto;width:min(210px,100%);}
+  .toc-btn{display:none;}
+}
+
+/* 狭い画面：ボタンで開閉するパネル */
+@media (max-width:1179px){
+  .toc{top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);
+    padding:clamp(1.5rem,7vw,2.5rem);overflow-y:auto;
+    opacity:0;visibility:hidden;transition:opacity .18s ease;}
+  body.toc-open .toc{opacity:1;visibility:visible;}
+  .toc-in{max-width:520px;margin:0 auto;padding-top:3rem;}
+  .toc-t{font-size:.74rem;}
+  .toc-l a{font-size:.98rem;padding:.72rem 0;border-bottom:1px solid var(--line);}
+  .toc-btn{right:clamp(.9rem,4vw,1.4rem);bottom:clamp(.9rem,4vw,1.4rem);
+    padding:.75rem 1.05rem;font-size:.82rem;letter-spacing:.12em;box-shadow:0 6px 20px rgba(27,61,120,.28) !important;}
+  .tb-i{width:14px;height:9px;border-top:1.5px solid #fff;border-bottom:1.5px solid #fff;position:relative;}
+  .tb-i::before{content:"";position:absolute;left:0;right:0;top:3px;border-top:1.5px solid #fff;}
+  body.toc-open .tb-i{border:0;}
+  body.toc-open .tb-i::before{content:"×";position:static;border:0;font-size:1rem;line-height:1;}
+  body.toc-open{overflow:hidden;}
+}
+@media print{ .toc,.toc-btn{display:none !important;} }
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLH0DEFEX9"></script>
 </head>
@@ -783,6 +826,65 @@ if(!SJ_PREVIEW){
   function close(){ lb.classList.remove('on'); im.removeAttribute('src'); document.body.style.overflow=''; }
   lb.addEventListener('click',close);
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+})();
+
+/* ---- 目次（2026-09-05）
+   h2.sec からその場で組み立てる。節の増減（MEO/AIOの有無）に自動で追従する。
+   広い画面: 左の余白に常時表示 ／ 狭い画面: 「目次」ボタンで開閉 ---- */
+(function(){
+  var secs = [].slice.call(document.querySelectorAll('h2.sec'));
+  if (secs.length < 3) return;
+
+  var nav = document.createElement('nav');
+  nav.className = 'toc'; nav.setAttribute('aria-label','目次');
+  var inner = document.createElement('div'); inner.className = 'toc-in';
+  var ttl = document.createElement('p'); ttl.className = 'toc-t'; ttl.textContent = '目次';
+  inner.appendChild(ttl);
+  var ol = document.createElement('ol'); ol.className = 'toc-l';
+
+  secs.forEach(function(h, i){
+    if (!h.id) h.id = 'sec-' + (i+1);
+    var label = (h.firstChild && h.firstChild.nodeType === 3) ? h.firstChild.textContent.trim() : h.textContent.trim();
+    var li = document.createElement('li');
+    var a  = document.createElement('a');
+    a.href = '#' + h.id;
+    a.innerHTML = '<span class="toc-n">' + String(i+1).padStart(2,'0') + '</span><span class="toc-x"></span>';
+    a.querySelector('.toc-x').textContent = label;
+    li.appendChild(a); ol.appendChild(li);
+  });
+  inner.appendChild(ol); nav.appendChild(inner);
+
+  var btn = document.createElement('button');
+  btn.className = 'toc-btn'; btn.type = 'button';
+  btn.setAttribute('aria-expanded','false');
+  btn.innerHTML = '<span class="tb-i" aria-hidden="true"></span><span class="tb-t">目次</span>';
+
+  document.body.appendChild(nav);
+  document.body.appendChild(btn);
+
+  function setOpen(v){
+    document.body.classList.toggle('toc-open', v);
+    btn.setAttribute('aria-expanded', v ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function(){ setOpen(!document.body.classList.contains('toc-open')); });
+  nav.addEventListener('click', function(e){ if (e.target.closest('a')) setOpen(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setOpen(false); });
+
+  /* 現在地のハイライト */
+  var links = [].slice.call(ol.querySelectorAll('a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        var i = secs.indexOf(en.target);
+        if (i < 0) return;
+        if (en.isIntersecting) {
+          links.forEach(function(a){ a.classList.remove('on'); });
+          links[i].classList.add('on');
+        }
+      });
+    }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+    secs.forEach(function(h){ io.observe(h); });
+  }
 })();
 </script>
 </body>
