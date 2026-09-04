@@ -337,15 +337,17 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .panel-name{margin-top:14px;color:#fff;font-size:.95rem;font-weight:700;letter-spacing:.04em}
 
 /* 人物：面の右下。切り抜きの下端を面の下端にそろえ、右は画面端から少しはみ出す。
-   四角にはまった感じを消す役目は右端のはみ出しに持たせ、文言との重なりゼロを優先した */
-.panel-person{position:absolute;right:-40px;bottom:0;height:64%;width:auto;max-width:none;
+   四角にはまった感じを消す役目は右端のはみ出しに持たせ、文言との重なりゼロを優先した。
+   大きさは高さではなく幅で決める（写真が腰から上＝縦長なので、高さ基準だと痩せて見える）。
+   47% は「文言の右端より内側に入らない最大」で、面の幅から決めている */
+.panel-person{position:absolute;right:-28px;bottom:0;width:47%;height:auto;max-width:none;
   z-index:1;pointer-events:none}
 
 /* 2カラムのまま幅だけ狭まる範囲。面が縮むと人物が文言に寄るので、
    文字カラムと人物を一段ずつ小さくして重なりを0に保つ */
 @media(min-width:961px) and (max-width:1280px){
   .panel-in{max-width:340px;padding-left:44px}
-  .panel-person{height:50%;right:-56px}
+  .panel-person{width:46%;right:-40px}
   .hero-visual::before{left:26px}
 }
 
@@ -686,7 +688,7 @@ details .ans{color:var(--ink)}
   .hero-visual::before{left:24px}
   .panel-in{padding:26px 0 26px 48px;max-width:55%}
   .panel-list{margin-top:14px}
-  .panel-person{height:58%;right:-24px}
+  .panel-person{width:auto;height:88%;right:-16px}
   .svc-feature{grid-template-columns:1fr;gap:28px;padding:40px 32px}
   .svc-price{border-left:none;border-top:1px dashed rgba(36,81,158,.3);padding-left:0;padding-top:24px}
   .svc-rest{grid-template-columns:1fr;gap:36px;margin-top:44px}
@@ -734,10 +736,12 @@ details .ans{color:var(--ink)}
   .panel-list li{font-size:.74rem;line-height:1.65;padding:7px 0}
   .panel-list li.pl-career{display:none}   /* 390pxは根拠2行（Edu-NEWS・82塾）だけ */
   .panel-name{margin-top:12px;font-size:.8rem;max-width:none}
-  /* 人物はラベルの直後。幅は面の57〜60%・右寄せ、下端は本文側の罫線に接する。
+  /* 人物はラベルの直後。幅は面の65%・右寄せ、下端は本文側の罫線に接する。
+     切り抜きが腰まで＝縦長なので、300px を超えると600〜640pxで面が人物だけになる。
      左に空く余白には何も置かない。右へ少しはみ出させて四角い枠に見せない */
   .panel-person{order:2;position:relative;z-index:1;display:block;
-    right:auto;bottom:auto;height:auto;width:65%;margin:10px -24px 0 auto}
+    right:auto;bottom:auto;height:auto;width:65%;max-width:300px;
+    margin:10px -24px 0 auto}
   .say{padding:56px 0}
   .reading{padding:56px 0}
   .flow-list{grid-template-columns:1fr}
@@ -842,7 +846,7 @@ details .ans{color:var(--ink)}
               <p class="panel-name"><span class="nb">合同会社SyUNi 代表</span>　<span class="nb">小田 一勲</span></p>
             </div>
           </div>
-          <img class="panel-person" src="assets/oda-cutout.png" alt="スマ塾 代表・小田 一勲" width="650" height="697" decoding="async">
+          <img class="panel-person" src="assets/oda-cutout.png" alt="スマ塾 代表・小田 一勲" width="800" height="1213" decoding="async">
         </div>
       </div>
     </div>
