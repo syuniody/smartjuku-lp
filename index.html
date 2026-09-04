@@ -269,45 +269,90 @@ section{padding:64px 0}   /* 本文が16pxになるぶん節の上下を詰め�
 }
 html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 
-/* ---------- hero ---------- */
-.hero{position:relative;padding:132px 0 48px;border-bottom:1px solid var(--line)}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
-.hero-visual{position:relative;height:500px}
-.hero-visual .shot{position:absolute;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;background:#fff;box-shadow:var(--sh-2)}
-.hero-visual .shot img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
-.hero-visual .shot.s1{width:80%;height:72%;top:0;right:2%;transform:rotate(1.4deg)}
-.hero-visual .shot.s2{width:60%;height:52%;bottom:12px;left:0;transform:rotate(-2.2deg)}
-.hero-visual .cap{position:absolute;left:2px;bottom:-22px;font-size:.74rem;color:var(--ink-soft);letter-spacing:.08em}
-.hero-lead{font-size:.95rem;font-weight:700;letter-spacing:.14em;color:var(--blue);margin-bottom:26px;display:flex;align-items:center;gap:14px}
-.hero-lead::before{content:"";width:44px;height:1.5px;background:var(--blue)}
+/* ---------- hero ----------
+   左＝白地に見出しと赤ペン、右＝紺（--blue-deep）の面に担当者。
+   面には出席簿の横罫を敷き、人物の切り抜きを面からはみ出させて置く。
+   色トークンは足していない（白＝--white／紺＝--blue-deep）。 */
+.hero{position:relative;padding:0;overflow:hidden;background:var(--white);border-bottom:1px solid var(--line)}
+/* 面を画面の右端まで伸ばすため、版面の右パディングを外す。
+   左のコピーは --max の左端に揃えたまま */
+.hero .wrap{max-width:none;margin:0;
+  padding:0 0 0 max(24px,calc((100% - var(--max))/2 + 24px))}
+.hero-grid{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1fr);gap:40px;align-items:stretch}
+.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:132px 0 56px}
+.hero .sec-label{margin-bottom:22px}
 .hero h1{
   font-family:var(--serif);font-weight:800;
-  font-size:clamp(2.2rem,3.9vw,3.4rem);
-  line-height:1.5;letter-spacing:.05em;
+  font-size:clamp(1.9rem,3.35vw,3rem);
+  line-height:1.44;letter-spacing:.04em;
+  text-wrap:balance;
 }
-/* 価格の行。本文と同じ大きさだと桁の途中で折り返すので、少し落として1行に収める */
-.hero h1 .h1-price{display:block;font-size:.72em;line-height:1.45;white-space:nowrap;margin-bottom:.12em}
-.hero h1 .h1-price small{font-size:.62em;font-weight:700;letter-spacing:.02em}
 /* 語が行をまたぐと1文字だけ次行に残る。語ごと折り返す */
 .hero h1 .nb,.hero h1 .maru{white-space:nowrap}
-.sp-br{display:none}
-@media(max-width:420px){
-  .hero h1 .h1-price{white-space:normal}
+/* 価格は見出しの下に1行。枠を付けずゴシックで置く。赤ペンの丸はここだけ */
+.hero-price{
+  font-family:var(--sans);font-weight:700;
+  font-size:1.7rem;line-height:1.7;letter-spacing:.03em;
+  margin-top:26px;color:var(--ink);white-space:nowrap;
 }
-.hero-sub{margin-top:26px;font-size:clamp(.98rem,1.5vw,1.12rem);max-width:640px;color:var(--ink-soft)}
+.hero-price small{font-size:.68em;font-weight:700;letter-spacing:.02em}
+.hero-sub{margin-top:20px;font-size:clamp(.98rem,1.5vw,1.12rem);max-width:640px;color:var(--ink-soft)}
 .hero-sub b{color:var(--ink)}
-.hero-ctas{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+.hero-ctas{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
 /* 副導線はボタンではなく小さなテキストリンク（ボタンは1ページ1文言に統一） */
 .hero-sublink{margin-top:14px;font-size:.86rem}
-/* 誰が作るのかを、スクロール前に一行だけ渡す（主役は制作イメージのまま） */
-.hero-by{display:flex;align-items:center;gap:14px;margin-top:24px}
-.hero-by img{width:46px;height:46px;border-radius:50%;object-fit:cover;object-position:center top;border:1px solid var(--line);background:#E9EDF4;flex-shrink:0}
-.hero-by p{font-size:.8rem;line-height:1.9;color:var(--ink-soft)}
-.hero-by b{color:var(--ink);font-weight:900}
-.hero-by .nb{white-space:nowrap}   /* 「Edu-NEWS」がハイフンで割れるのを防ぐ */
+
+/* ---- 紺の面：ヘッダー直下からヒーロー下端まで。右端は画面端まで ---- */
+.hero-visual{
+  position:relative;display:block;overflow:visible;
+  margin-top:76px;                    /* ヘッダーの高さぶん下げる＝ヘッダー直下から */
+  padding:0;
+  background-color:var(--blue-deep);
+  /* 出席簿の横罫：白14%・1px・間隔30px */
+  background-image:repeating-linear-gradient(to bottom,
+      rgba(255,255,255,.14) 0 1px, transparent 1px 30px);
+  background-position:0 30px;
+}
+/* 左に細い縦罫1本（出席簿の綴じ側） */
+.hero-visual::before{content:"";position:absolute;left:36px;top:0;bottom:0;width:1px;
+  background:rgba(255,255,255,.14)}
+/* 奥行き用の円（装飾はこれ1つだけ）。直径＝面の高さの70% */
+.hero-visual::after{content:"";position:absolute;right:6%;bottom:8%;
+  height:70%;aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.06)}
+
+/* 面の上の文言。人物と重ならない左側に組む。
+   幅は「見出しが2行に収まる」ことから決めている（1行目15字・2行目16字ぶん） */
+.panel-in{position:relative;z-index:2;display:flex;flex-direction:column;
+  padding:34px 0 40px 56px;max-width:386px}
+.hero-visual .sec-label{color:#fff;margin-bottom:0;flex:0 0 auto}
+.hero-visual .sec-label::before{background:#fff}
+.panel-body{margin-top:20px}
+/* <br> で2行に固定してあるので balance は掛けない（掛けると2行が割れる） */
+.panel-h{font-family:var(--serif);font-weight:700;color:#fff;
+  font-size:clamp(1.1rem,1.32vw,1.2rem);line-height:1.66;letter-spacing:.02em}
+.panel-list{list-style:none;margin:16px 0 0}
+.panel-list li{color:#fff;font-size:.86rem;line-height:1.66;letter-spacing:.01em;
+  padding:9px 0;border-top:1px solid rgba(255,255,255,.16);text-wrap:pretty}
+.panel-list li:last-child{border-bottom:1px solid rgba(255,255,255,.16)}
+.panel-name{margin-top:14px;color:#fff;font-size:.95rem;font-weight:700;letter-spacing:.04em}
+
+/* 人物：面の右下。切り抜きの下端を面の下端にそろえ、右は画面端から少しはみ出す。
+   四角にはまった感じを消す役目は右端のはみ出しに持たせ、文言との重なりゼロを優先した */
+.panel-person{position:absolute;right:-40px;bottom:0;height:64%;width:auto;max-width:none;
+  z-index:1;pointer-events:none}
+
+/* 2カラムのまま幅だけ狭まる範囲。面が縮むと人物が文言に寄るので、
+   文字カラムと人物を一段ずつ小さくして重なりを0に保つ */
+@media(min-width:961px) and (max-width:1280px){
+  .panel-in{max-width:340px;padding-left:44px}
+  .panel-person{height:50%;right:-56px}
+  .hero-visual::before{left:26px}
+}
 
 /* ---------- 帯 ---------- */
-.band{background:var(--blue);color:#fff;padding:20px 0;text-align:center}
+/* 右カラムと同じ紺がそのまま帯に続くと重いので、帯は白地・紺文字に反転する */
+.band{background:var(--white);color:var(--blue-deep);padding:20px 0;text-align:center;
+  border-bottom:1px solid var(--line)}
 .band p{font-size:clamp(.86rem,1.6vw,1.02rem);font-weight:700;letter-spacing:.12em}
 .band p span{margin:0 .7em;opacity:.55}
 
@@ -633,15 +678,15 @@ details .ans{color:var(--ink)}
 
 /* ---------- responsive ---------- */
 @media(max-width:960px){
-  .hero{padding-top:132px}
-  .hero-grid{grid-template-columns:1fr}
-  /* スマホでも制作イメージを見せる。重ね配置はやめて1枚だけ素直に置く */
-  .hero-visual{height:auto;margin-top:0}   /* 段の間隔は hero-grid の gap で足りる */
-  .hero-visual .shot{position:static;transform:none;box-shadow:var(--sh-1)}
-  .hero-visual .shot.s1{width:100%;height:auto}
-  .hero-visual .shot.s1 img{height:auto}
-  .hero-visual .shot.s2{display:none}
-  .hero-visual .cap{position:static;display:block;margin-top:10px}
+  /* 1段。上＝白地のコピー、下＝紺の面。紺は画面幅いっぱいに伸ばす */
+  .hero .wrap{max-width:none;margin:0;padding:0}
+  .hero-grid{grid-template-columns:1fr;gap:0}
+  .hero-copy{padding:112px 24px 36px}
+  .hero-visual{margin-top:0;min-height:400px}
+  .hero-visual::before{left:24px}
+  .panel-in{padding:26px 0 26px 48px;max-width:55%}
+  .panel-list{margin-top:14px}
+  .panel-person{height:58%;right:-24px}
   .svc-feature{grid-template-columns:1fr;gap:28px;padding:40px 32px}
   .svc-price{border-left:none;border-top:1px dashed rgba(36,81,158,.3);padding-left:0;padding-top:24px}
   .svc-rest{grid-template-columns:1fr;gap:36px;margin-top:44px}
@@ -666,11 +711,26 @@ details .ans{color:var(--ink)}
   nav.gnav a.gnav-extra{display:none}
 }
 @media(max-width:640px){
-  .sp-br{display:inline}
   section{padding:64px 0}
-  .hero{padding-top:114px}
+  .hero-copy{padding:104px 24px 30px}
   .hero h1{font-size:clamp(1.75rem,8.6vw,2.2rem)}
-  .hero-lead{font-size:.8rem;letter-spacing:.08em}
+  .hero-price{font-size:1.4rem;white-space:normal;margin-top:20px}
+  /* 390px：紺の面を詰めて、人物の頭が少しのスクロールで入るようにする。
+     面の中は「見出し2行＋根拠2行（Edu-NEWS・82塾）＋名前」に絞る */
+  .hero-visual{min-height:300px;background-position:0 26px;
+    background-image:repeating-linear-gradient(to bottom,
+      rgba(255,255,255,.14) 0 1px, transparent 1px 28px)}
+  .hero-visual::before{left:20px}
+  .hero-visual::after{height:64%;right:2%;bottom:10%}
+  /* 見出しは面の幅いっぱいに置いて2行を保つ。その下だけ左に寄せ、
+     空いた右下に人物を入れる（人物の頭を最初の画面に入れるための組み） */
+  .panel-in{padding:20px 0 20px 24px;max-width:none}
+  .panel-h{font-size:1.02rem;line-height:1.7;padding-right:24px}
+  .panel-list{margin-top:12px;max-width:168px}
+  .panel-list li{font-size:.74rem;line-height:1.65;padding:7px 0}
+  .panel-list li.pl-career{display:none}   /* 390pxは根拠2行（Edu-NEWS・82塾）だけ */
+  .panel-name{margin-top:12px;font-size:.8rem;max-width:168px}
+  .panel-person{height:58%;right:-16px}
   .say{padding:56px 0}
   .reading{padding:56px 0}
   .flow-list{grid-template-columns:1fr}
@@ -720,6 +780,12 @@ details .ans{color:var(--ink)}
   .plan-band{padding:30px 26px;gap:18px}
   .plan-band-price{text-align:left}
 }
+
+/* 390pxより狭い端末。人物と根拠の列をもう一段ずつ詰めて重なりを0に保つ */
+@media(max-width:389px){
+  .panel-list,.panel-name{max-width:150px}
+  .panel-person{height:52%}
+}
 </style>
 </head>
 <body>
@@ -748,31 +814,29 @@ details .ans{color:var(--ink)}
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="hero-lead">個人塾・地域密着塾専門</p>
-          <h1>
-            <span class="h1-price">55,000円<small>（税込）</small>・<br class="sp-br"><span class="maru">月額保守費0円<svg class="maru-ink" viewBox="0 0 280 74" aria-hidden="true" focusable="false"><path pathLength="100" d="M260 24 C 246 10, 186 3, 134 5 C 64 7, 17 20, 18 38 C 20 56, 87 66, 151 65 C 221 64, 266 51, 267 33 C 269 23, 256 16, 239 11"/></svg></span>。</span>
-            塾が自分で<span class="nb">育てられる</span><br>ホームページ。
-          </h1>
-          <p class="hero-sub">
-            Googleマップにも、AI検索にも見つかるところまで整えて公開します。<br>
-            料金表・講習案内・合格実績は、塾長がスマホから自分で<span class="nb">差し替えられます。</span><br>
-            最短2週間。作ったあとの月額サポートは、<span class="nb">必要なときだけ。</span><br>
-            サーバー・ドメインの実費（月1,000〜1,300円程度）は<span class="nb">塾さまのご契約です。</span>
-          </p>
+          <p class="sec-label">個人塾・地域密着塾専門</p>
+          <h1>塾が自分で<span class="nb">育てられる</span><span class="nb">ホームページ。</span></h1>
+          <p class="hero-price">55,000円<small>（税込）</small>・<span class="maru">月額保守費0円<svg class="maru-ink" viewBox="0 0 280 74" aria-hidden="true" focusable="false"><path pathLength="100" d="M260 24 C 246 10, 186 3, 134 5 C 64 7, 17 20, 18 38 C 20 56, 87 66, 151 65 C 221 64, 266 51, 267 33 C 269 23, 256 16, 239 11"/></svg></span></p>
+          <p class="hero-sub">Googleマップにも、AI検索にも見つかるところまで整えて<span class="nb">公開します。</span></p>
           <div class="hero-ctas">
             <a class="btn" href="#diagnosis">無料HP診断を申し込む</a>
           </div>
           <p class="hero-sublink"><a class="inline-link" href="#diagnosis" data-prefill-consult="true">まずは無料で相談したい方はこちら</a></p>
-          <div class="hero-by">
-            <img src="assets/oda-96.jpg" alt="スマ塾 代表・小田 一勲" width="46" height="46" loading="lazy" decoding="async">
-            <p>制作から運用まで、代表の<b>小田 一勲</b>がすべて担当します。<br>
-              文部科学省の動きを毎週解説する<span class="nb">「Edu-NEWS」運営。</span></p>
-          </div>
         </div>
         <div class="hero-visual">
-          <div class="shot s1"><img src="assets/works-rin.jpg" alt="スマ塾が制作する学習塾ホームページの例（タイプA）" width="1200" height="937" decoding="async"></div>
-          <div class="shot s2"><img src="assets/works-you.jpg" alt="スマ塾が制作する学習塾ホームページの例（タイプB）" width="1200" height="937" decoding="async"></div>
-          <span class="cap">制作イメージ（デザイン3タイプ）</span>
+          <div class="panel-in">
+            <p class="sec-label panel-label">この人が担当します</p>
+            <div class="panel-body">
+              <h3 class="panel-h">塾の集客を10年見てきた人間が、<br>あなたの塾のWeb担当に<span class="nb">なります。</span></h3>
+              <ul class="panel-list">
+                <li class="pl-career">教育業界で10年以上、<span class="nb">学習塾の集客支援</span>（<span class="nb">代表個人の経歴</span>）</li>
+                <li>教育ニュース解説「<span class="nb">Edu-NEWS</span>」<span class="nb">登録者3,480人</span>・<span class="nb">月間視聴2,000時間以上</span>（<span class="nb">2026年8月時点</span>）</li>
+                <li><span class="nb">学習塾82塾</span>のホームページを診断（<span class="nb">2026年7〜8月</span>）</li>
+              </ul>
+              <p class="panel-name"><span class="nb">合同会社SyUNi 代表</span>　<span class="nb">小田 一勲</span></p>
+            </div>
+          </div>
+          <img class="panel-person" src="assets/oda-cutout.png" alt="スマ塾 代表・小田 一勲" width="650" height="697" decoding="async">
         </div>
       </div>
     </div>
@@ -882,7 +946,7 @@ details .ans{color:var(--ink)}
           <ul class="svc-ul">
             <li>料金・対象学年・住所・営業時間を、AIが読める文字情報として明示</li>
             <li>よくある質問を、AIが答えの根拠に使える形で<span class="nb">掲載</span></li>
-            <li>AI検索での見え方を定期的に確認し、古い情報や誤りが出ていないかをチェック</li>
+            <li>AI検索での見え方を定期的に確認し、<span class="nb">古い情報や誤りが</span><span class="nb">出ていないかをチェック</span></li>
           </ul>
         </div>
         <div class="svc-item rv rv-d2">
@@ -988,7 +1052,7 @@ details .ans{color:var(--ink)}
             <li>Googleビジネスプロフィールの整備（写真・営業時間・カテゴリ／HPとの表記統一）</li>
             <li>AI検索対応（料金・対象学年・住所・営業時間を機械が読める形に）</li>
             <li>問い合わせ導線の修正（スマホで電話番号が消えない・タップで発信できる）</li>
-            <li>アクセス解析（GA4）の設置と、初回のレポート</li>
+            <li>アクセス解析（GA4）の設置と、<span class="nb">初回のレポート</span></li>
             <li>2週間後に「何をどう変えたか」の1枚レポート</li>
           </ul>
           <a class="btn btn-ghost" href="#diagnosis">無料HP診断を申し込む</a>
@@ -999,11 +1063,11 @@ details .ans{color:var(--ink)}
           <div class="p-price"><span class="n">55,000<span style="font-size:.45em">円</span></span><span class="u">（税込）</span></div>
           <p class="p-note">税別50,000円。5ページまで（トップ／コース・料金／講師／アクセス／お問い合わせ）。写真・原稿はご支給いただく前提で、着手日を決めたうえで素材がそろった日から10営業日（最短2週間）で公開します。</p>
           <ul>
-            <li>塾専門の型によるHP制作（5ページまで）・スマホ対応・問い合わせフォーム</li>
+            <li>塾専門の型によるHP制作（5ページまで）・スマホ対応・<span class="nb">問い合わせフォーム</span></li>
             <li>管理画面から塾自身で更新（お知らせ・ブログ・料金表・合格実績・成績事例・FAQ・画像）</li>
             <li><b>Googleビジネスプロフィールの初期整備込み</b>（HPとの表記統一）</li>
-            <li>AI検索向けの構造化データと、アクセス解析（GA4）を設定して納品</li>
-            <li><b>他社サイトからの移転と転送設定込み</b>／公開前の確認2往復・公開後のレクチャー60分</li>
+            <li>AI検索向けの構造化データと、<span class="nb">アクセス解析（GA4）を</span><span class="nb">設定して納品</span></li>
+            <li><b>他社サイトからの移転と転送設定込み</b>／公開前の確認2往復・<span class="nb">公開後のレクチャー60分</span></li>
           </ul>
           <a class="btn" href="#diagnosis">無料HP診断を申し込む</a>
         </div>
