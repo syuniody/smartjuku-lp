@@ -489,6 +489,12 @@ ul.bars{list-style:none;margin-top:1.4rem;padding:0;}
 .br .brh{font-size:1.2rem;letter-spacing:.07em;}
 .br .catch{font-size:1.15rem;line-height:1.75;}
 .br .sub{font-size:.93rem;line-height:2.0;}
+
+/* ---- 追修正2（2026-09-05）: 影の消し漏れ ----
+   透明・余白0の要素に box-shadow だけが残り、本文に接した「座布団」が見えていた。
+   カードを使わない設計なので、本文ブロックの影は一律で落とす（拡大表示 #lb は除く）。 */
+.pb,.gref,.br,.refex,.xnote,.item,.t3,.lead,.purpose,.whois,.cta,.scorebox,
+.pb-block,.pb-note,.samples,.sample,.shot,.shot img{box-shadow:none !important;}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLH0DEFEX9"></script>
 </head>
