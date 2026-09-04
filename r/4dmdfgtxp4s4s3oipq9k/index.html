@@ -53,6 +53,34 @@ a{color:var(--blue-deep);}
 .scorebox .num{font-family:var(--serif); font-size:1.9rem; color:var(--blue-deep); line-height:1.2;}
 .scorebox .den{font-size:.8rem; color:var(--ink-soft);}
 
+/* ---- このレポートについて（冒頭・目的の明示） ---- */
+.purpose{
+  margin-top:1.1rem; padding:.9rem 1.05rem;
+  background:var(--white); border:1px solid var(--line); border-radius:var(--r-sm);
+  font-size:.86rem; line-height:1.9; color:var(--ink-soft);
+}
+.purpose b{color:var(--ink); font-weight:600;}
+.purpose .discard{display:block; margin-top:.5rem; font-size:.8rem;}
+
+/* ---- 差出人プロフィール（末尾CTA直前） ---- */
+.whois{
+  margin-top:2.2rem; padding:1.1rem 1.15rem;
+  background:var(--white); border:1px solid var(--line); border-radius:var(--r-sm);
+}
+.whois .wh{font-size:.72rem; letter-spacing:.14em; color:var(--ink-soft); margin-bottom:.6rem;}
+.whois .wname{font-family:var(--serif); font-size:1.05rem; color:var(--ink); line-height:1.6;}
+.whois .wname span{font-size:.8rem; color:var(--ink-soft); font-family:var(--sans); margin-left:.5rem;}
+.whois .wbody{font-size:.88rem; line-height:1.95; color:var(--ink-soft); margin-top:.6rem;}
+.whois .wfacts{
+  display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.8rem; padding-top:.8rem;
+  border-top:1px solid var(--line);
+}
+.whois .wfacts li{
+  list-style:none; font-size:.76rem; line-height:1.6; color:var(--blue-deep);
+  background:rgba(36,81,158,.08); border-radius:var(--r-pill); padding:.28rem .7rem;
+}
+@media(max-width:480px){ .whois .wfacts{gap:.35rem;} .whois .wfacts li{font-size:.72rem;} }
+
 /* ---- 見出し ---- */
 h2.sec{
   font-family:var(--serif); font-weight:600; font-size:1.22rem; letter-spacing:.05em;
@@ -302,6 +330,14 @@ footer.rfoot .note{margin-top:.7rem; padding-top:.7rem; border-top:1px dotted va
   <div class="kind">ホームページ診断レポート</div>
   <h1>寺子屋ふじ色　様</h1>
   <div class="meta">診断対象：<a href="https://67j8c.hp.peraichi.com/" rel="noopener noreferrer nofollow">https://67j8c.hp.peraichi.com/</a><br>2026年9月4日に、パソコン表示・スマートフォン表示（375px幅）・HTMLソースを実際に確認して作成しています。</div>
+  <div class="purpose">
+    このレポートは、学習塾専門のホームページ制作「スマ塾」が、ご提案に先立って
+    <b>保護者の目線で貴塾のサイトを実際に開いて確認したもの</b>です。
+    売り込みのための資料ではなく、<b>今日からご自身で直せる点</b>をお伝えするためにお送りしています。
+    以下の点数は、保護者が塾を選ぶときに見る順番に沿って機械的に付けたもので、
+    貴塾の指導の質を評価したものではありません。
+    <span class="discard">ご不要でしたら、このまま破棄していただいて構いません。</span>
+  </div>
   <div class="scorebox"><div class="cap">総合スコア</div><span class="num">65</span><span class="den">／100</span></div>
 </header>
 
@@ -359,6 +395,24 @@ footer.rfoot .note{margin-top:.7rem; padding-top:.7rem; border-top:1px dotted va
     <li><span class="n">4</span><span class="ft"><b>公開</b>最短2週間で公開</span></li>
   </ol>
   <div class="br-note">これまで300校以上の学習塾のホームページ・集客を見てきた知見をもとに、保護者が塾を選ぶ動線に沿って制作します。</div>
+</section>
+
+<section class="whois">
+  <div class="wh">このレポートを作成した人</div>
+  <div class="wname">小田 一勲<span>合同会社SyUNi 代表／スマ塾</span></div>
+  <div class="wbody">
+    教育業界で、これまで300校以上の学習塾のホームページと集客に携わってきました。
+    その中で、指導は良いのにホームページで損をしている塾があまりに多いと感じ、
+    学習塾に特化したホームページ制作「スマ塾」を始めました。
+    診断は、集客に効く順に自分の目でひとつずつ確認しています。
+    制作をご依頼いただかなくても、このレポートの内容はそのままお使いいただけます。
+  </div>
+  <ul class="wfacts">
+    <li>学習塾専門のホームページ制作</li>
+    <li>買い切り5万円〜（税別）・月額0円</li>
+    <li>公開後は塾さまご自身で更新できます</li>
+    <li>大阪市中央区谷町</li>
+  </ul>
 </section>
 
 <div class="cta">
