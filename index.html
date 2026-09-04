@@ -48,7 +48,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Shippori+Mincho:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet">
 <!-- 署名用。「小田一勲」の4文字のみを配信する（text= でサブセット・約1.8KB） -->
 <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&text=%E5%B0%8F%E7%94%B0%E4%B8%80%E5%8B%B2&display=swap" rel="stylesheet">
 <script type="application/ld+json">
@@ -543,7 +543,7 @@ details .ans::before{content:"A";font-family:var(--serif);font-weight:700;color:
 .form-row{margin-bottom:20px}
 .form-row label{display:block;font-size:.86rem;font-weight:700;margin-bottom:8px}
 .form-row .req{color:#fff;background:var(--blue);font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:var(--r-xs);margin-left:8px;vertical-align:2px}
-.form-row .opt{color:var(--ink-soft);font-size:.72rem;font-weight:500;margin-left:8px}
+.form-row .opt{color:var(--ink-soft);font-size:.72rem;font-weight:400;margin-left:8px}
 .form-row input,.form-row textarea{width:100%;font-family:inherit;font-size:.95rem;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r-sm);padding:13px 15px;transition:border-color .2s}
 .form-row input:focus,.form-row textarea:focus{outline:none;border-color:var(--blue)}
 .form-row textarea{resize:vertical;min-height:104px}
@@ -562,7 +562,7 @@ details .ans::before{content:"A";font-family:var(--serif);font-weight:700;color:
 .diagnosis .diag-badge{display:inline-block;background:var(--marker);color:var(--ink);font-weight:700;font-size:.76rem;letter-spacing:.12em;padding:6px 18px;border-radius:var(--r-pill);margin-bottom:20px}
 .form-row--radio > label{display:block;font-size:.86rem;font-weight:700;margin-bottom:8px}
 .diag-radio-list{display:flex;flex-direction:column;gap:10px}
-.diag-radio{display:flex;align-items:flex-start;gap:11px;font-size:.9rem;font-weight:500;cursor:pointer;padding:13px 15px;border:1.5px solid var(--line);border-radius:var(--r-sm);background:var(--paper);transition:border-color .2s,background .2s}
+.diag-radio{display:flex;align-items:flex-start;gap:11px;font-size:.9rem;font-weight:400;cursor:pointer;padding:13px 15px;border:1.5px solid var(--line);border-radius:var(--r-sm);background:var(--paper);transition:border-color .2s,background .2s}
 .diag-radio:hover{border-color:var(--blue)}
 .diag-radio input{width:18px;height:18px;margin-top:2px;flex-shrink:0;accent-color:var(--blue)}
 .diag-radio:has(input:checked){border-color:var(--blue);background:#EDF2FA}
@@ -629,7 +629,15 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
   .flow-list{grid-template-columns:1fr 1fr}
   .person-grid{grid-template-columns:1fr}
   .person-photo{max-width:400px}
-  nav.gnav{display:none}
+  /* ナビを隠さない。ハンバーガーを足すのではなく、横に流せる帯にして残す
+     （DESIGN.md「モバイル（〜860px）」／assets/site.css の .site-nav と同じ実装） */
+  .header-in{flex-wrap:wrap;row-gap:0;padding:10px 0 0}
+  .logo,.header-cta{margin:0 24px}
+  nav.gnav{order:3;width:100%;gap:16px;font-size:.76rem;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+    padding:0 24px 7px;border-top:1px solid var(--line);margin-top:8px}
+  nav.gnav::-webkit-scrollbar{display:none}
+  nav.gnav a{white-space:nowrap;padding-top:7px}
 }
 @media(max-width:640px){
   section{padding:80px 0}
@@ -690,14 +698,14 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
             <a class="btn btn-ghost" href="#diagnosis" data-prefill-consult="true">まずは無料で相談したい方はこちら</a>
           </div>
           <div class="hero-by">
-            <img src="assets/oda.jpg" alt="スマ塾 代表・小田 一勲" width="46" height="46" loading="lazy" decoding="async">
+            <img src="assets/oda-96.jpg" alt="スマ塾 代表・小田 一勲" width="46" height="46" loading="lazy" decoding="async">
             <p>制作から運用まで、代表の<b>小田 一勲</b>がすべて担当します。<br>
               文部科学省の動きを毎週解説する<span class="nb">「Edu-NEWS」運営。</span></p>
           </div>
         </div>
         <div class="hero-visual">
-          <div class="shot s1"><img src="assets/works-rin.jpg" alt="スマ塾が制作する学習塾ホームページの例（タイプA）"></div>
-          <div class="shot s2"><img src="assets/works-you.jpg" alt="スマ塾が制作する学習塾ホームページの例（タイプB）"></div>
+          <div class="shot s1"><img src="assets/works-rin.jpg" alt="スマ塾が制作する学習塾ホームページの例（タイプA）" width="1200" height="937" decoding="async"></div>
+          <div class="shot s2"><img src="assets/works-you.jpg" alt="スマ塾が制作する学習塾ホームページの例（タイプB）" width="1200" height="937" decoding="async"></div>
           <span class="cap">制作イメージ（デザイン3タイプ）</span>
         </div>
       </div>
@@ -773,7 +781,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
       <div class="svc-rest">
         <div class="svc-item rv">
           <div class="svc-idx"><span class="n">02</span><span class="cat">Googleマップ</span></div>
-          <h3>Googleマップ対策<span style="font-size:.6em;font-weight:500">（MEO）</span></h3>
+          <h3>Googleマップ対策<span style="font-size:.6em;font-weight:600">（MEO）</span></h3>
           <p class="desc">保護者の塾探しは「地域名＋塾」のマップ検索から始まります。近所の保護者に見つけてもらう土台を整えます。</p>
           <ul class="svc-ul">
             <li>Googleビジネスプロフィールの初期整備（写真・営業時間・カテゴリ）</li>
@@ -783,7 +791,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
         </div>
         <div class="svc-item rv rv-d1">
           <div class="svc-idx"><span class="n">03</span><span class="cat">AI検索</span></div>
-          <h3>AI検索対策<span style="font-size:.6em;font-weight:500">（AIO）</span></h3>
+          <h3>AI検索対策<span style="font-size:.6em;font-weight:600">（AIO）</span></h3>
           <p class="desc">ChatGPTなどのAIに「◯◯市でおすすめの塾は？」と聞いて候補を絞る保護者が出てきました。AIが塾の情報を正しく読み取れる状態にしておきます。</p>
           <ul class="svc-ul">
             <li>料金・対象学年・住所・営業時間を、AIが読める文字情報として明示</li>
@@ -879,7 +887,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
       <div class="works-grid">
         <div class="work rv">
           <div class="browser"><i></i><i></i><i></i><span class="bar">haruoka-juku.example.jp</span></div>
-          <div class="shot"><img src="assets/works-rin.jpg" alt="和モダンの個別指導塾向けホームページ制作イメージ（明朝体・深藍と弁柄の配色）"></div>
+          <div class="shot"><img src="assets/works-rin.jpg" alt="和モダンの個別指導塾向けホームページ制作イメージ（明朝体・深藍と弁柄の配色）" width="1200" height="937" loading="lazy" decoding="async"></div>
           <div class="meta">
             <span class="cat">タイプ A｜和モダン</span>
             <h3>地域密着の個別指導塾に</h3>
@@ -889,7 +897,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
         </div>
         <div class="work rv rv-d1">
           <div class="browser"><i></i><i></i><i></i><span class="bar">hibari-manabi.example.jp</span></div>
-          <div class="shot"><img src="assets/works-you.jpg" alt="自立学習・ICT教材導入塾向けホームページ制作イメージ（明るい配色・料金訴求）"></div>
+          <div class="shot"><img src="assets/works-you.jpg" alt="自立学習・ICT教材導入塾向けホームページ制作イメージ（明るい配色・料金訴求）" width="1200" height="937" loading="lazy" decoding="async"></div>
           <div class="meta">
             <span class="cat">タイプ B｜モダン</span>
             <h3>自立学習・ICT教材導入塾に</h3>
@@ -899,7 +907,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
         </div>
         <div class="work rv rv-d2">
           <div class="browser"><i></i><i></i><i></i><span class="bar">sakuradai-zemi.example.jp</span></div>
-          <div class="shot"><img src="assets/works-sei.jpg" alt="進学塾向けホームページ制作イメージ（紺と橙の配色・写真ヒーロー）"></div>
+          <div class="shot"><img src="assets/works-sei.jpg" alt="進学塾向けホームページ制作イメージ（紺と橙の配色・写真ヒーロー）" width="1200" height="937" loading="lazy" decoding="async"></div>
           <div class="meta">
             <span class="cat">タイプ C｜王道</span>
             <h3>進学塾・総合塾に</h3>
@@ -1094,7 +1102,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
       </div>
       <div class="person-grid">
         <div class="person-photo rv">
-          <img src="assets/oda.jpg" alt="スマ塾 代表・小田 一勲" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <img src="assets/oda.jpg" alt="スマ塾 代表・小田 一勲" width="896" height="1200" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
           <p class="ph-note" style="display:none">※代表・小田の写真（assets/oda.jpg）を配置してください</p>
         </div>
         <div class="person-body rv rv-d1">
