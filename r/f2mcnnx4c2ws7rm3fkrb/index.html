@@ -7,7 +7,7 @@
 <meta name="googlebot" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
-<meta name="theme-color" content="#F7F4ED">
+<meta name="theme-color" content="#FFFFFF">
 <title>小島教育塾様 ホームページ診断レポート｜スマ塾</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -319,6 +319,298 @@ footer.rfoot .note{margin-top:.7rem; padding-top:.7rem; border-top:1px dotted va
   .samples{grid-template-columns:1fr 1fr;}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none !important; animation:none !important;}}
+
+/* =========================================================
+   デザイン刷新（2026-09-04）: 既製部品（角丸カード・ピル・
+   丸バッジ）をやめ、罫線・余白・級で組む印刷物の語彙に統一。
+   ここから下は上のルールを上書きする。戻すときはこのブロックごと削除。
+   ========================================================= */
+*{border-radius:0 !important;}
+body{background:var(--paper);}
+.wrap{max-width:680px;padding:0 0 0;}
+
+/* ---- 表紙（紺ベタ） ---- */
+.rhead{background:var(--blue-deep);color:#fff;margin:0 0 0;
+  padding:clamp(2.2rem,8vw,3.4rem) clamp(1.25rem,6vw,2.6rem) clamp(2rem,7vw,2.8rem);
+  border-bottom:0;}
+.rhead .brand{color:rgba(255,255,255,.72);letter-spacing:.32em;font-size:.62rem;}
+.rhead .kind{color:rgba(255,255,255,.9);margin-top:1.9rem;font-size:.82rem;letter-spacing:.26em;}
+.rhead h1{color:#fff;font-size:clamp(1.7rem,6.8vw,2.35rem);margin-top:.5rem;letter-spacing:.05em;}
+.rhead .meta{color:rgba(255,255,255,.8);font-size:.8rem;line-height:1.95;margin-top:1.5rem;}
+.rhead .meta a{color:#fff;text-decoration:underline;}
+.rhead .cvnote{color:rgba(255,255,255,.66);font-size:.76rem;line-height:1.9;margin-top:1.3rem;}
+.scorebox{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;
+  background:transparent;border:0;border-top:1px solid rgba(255,255,255,.28);
+  margin:1.8rem 0 0;padding:1.4rem 0 0;width:100%;}
+.scorebox .cap{color:rgba(255,255,255,.75);font-size:.66rem;letter-spacing:.22em;}
+.scorebox .num{color:#fff;font-size:3rem;line-height:.95;}
+.scorebox .den{color:rgba(255,255,255,.72);font-size:.78rem;}
+
+/* ---- 本文は内側にパディング ---- */
+.purpose,.lead,.good,.bars,.items,.t3,.shots,.gref,.refex,.br,.rfoot,
+h2.sec,.cta,.whois,.pb,.samples{margin-left:clamp(1.25rem,6vw,2.6rem);margin-right:clamp(1.25rem,6vw,2.6rem);}
+
+/* ---- 前書き（箱をやめる） ---- */
+.purpose{background:transparent;border:0;padding:0;margin-top:clamp(2rem,7vw,2.6rem);
+  font-size:.88rem;line-height:2.1;color:var(--ink-soft);}
+.purpose p{margin:0 0 .7rem;}
+.purpose p:last-child{margin:0;}
+.purpose b{font-weight:400;color:var(--ink-soft);}
+
+/* ---- 節見出し（通し番号＋太細二重罫） ---- */
+body{counter-reset:sec;}
+h2.sec{counter-increment:sec;border-bottom:0;padding-bottom:0;
+  margin-top:clamp(2.6rem,8vw,3.4rem);margin-bottom:0;
+  font-size:1.28rem;letter-spacing:.07em;
+  position:relative;padding-left:2.1rem;}
+h2.sec::before{content:counter(sec, upper-roman);position:absolute;left:0;top:.15em;
+  font-family:var(--serif);font-size:.78rem;letter-spacing:.12em;color:var(--blue);opacity:.75;}
+h2.sec::after{content:"";display:block;margin-top:.55rem;margin-left:-2.1rem;
+  border-top:2px solid var(--blue-deep);box-shadow:0 3px 0 -2px var(--line);}
+h2.sec .en{margin-top:.75rem;margin-left:-2.1rem;font-size:.78rem;letter-spacing:.1em;}
+
+/* ---- 所感 ---- */
+.lead{background:transparent;border:0;border-left:0;padding:0;margin-top:1.5rem;
+  font-size:1.04rem;line-height:2.15;}
+
+/* ---- 良い点 ---- */
+ul.good{margin-top:1.4rem;padding:0;list-style:none;}
+ul.good li{background:transparent;border:0;border-top:1px solid var(--line);
+  border-radius:0;padding:1.15rem 0;margin:0;font-size:.97rem;line-height:2.05;}
+ul.good li:first-child{border-top:0;padding-top:.2rem;}
+ul.good li::before{content:none;}
+
+/* ---- 評価の一望（新設） ---- */
+ul.bars{list-style:none;margin-top:1.4rem;padding:0;}
+.bar{display:grid;grid-template-columns:1.75rem 1fr 4.4rem 1.4rem;gap:.5rem;
+  align-items:center;padding:.5rem 0;}
+.bn{font-family:var(--serif);font-size:.78rem;color:var(--ink-soft);}
+.bl{font-size:.87rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.bt{height:5px;background:rgba(27,61,120,.13);position:relative;}
+.bf{position:absolute;left:0;top:0;bottom:0;background:var(--blue-deep);}
+.bg{font-family:var(--serif);font-size:1.02rem;color:var(--blue-deep);text-align:right;}
+
+/* ---- 8項目：カード廃止 ---- */
+.items{margin-top:1.4rem;}
+.item{background:transparent;border:0;border-top:1px solid var(--line);
+  padding:1.3rem 0;margin:0;box-shadow:none;}
+.item:first-child{border-top:0;}
+.item-h{display:grid;grid-template-columns:2.3rem 1fr auto;gap:.5rem;align-items:baseline;}
+.item-no{background:transparent;color:var(--blue-deep);opacity:.6;font-family:var(--serif);
+  font-size:.88rem;width:auto;height:auto;line-height:1.5;border-radius:0;
+  display:inline;padding:0;}
+.item-nm{font-family:var(--serif);font-size:1.08rem;letter-spacing:.04em;line-height:1.6;}
+.badge{background:transparent !important;border:0 !important;padding:0;
+  font-family:var(--serif);font-size:1.16rem;color:var(--blue-deep) !important;
+  text-align:right;line-height:1.35;white-space:nowrap;min-width:0;}
+.badge .gl{display:block;font-family:var(--sans);font-size:.68rem;color:var(--ink-soft);line-height:1.4;}
+.item-rs{margin:.5rem 0 0 2.8rem;font-size:.95rem;line-height:2.0;}
+.item-link{margin-left:2.8rem;background:transparent;padding:0;font-size:.82rem;}
+
+/* ---- 改善3つ：飾り数字 ---- */
+.t3{background:transparent;border:0;border-top:1px solid var(--line);
+  padding:1.9rem 0;margin:0;box-shadow:none;}
+.t3:first-of-type{border-top:0;}
+.t3-n{font-family:var(--serif);font-weight:700;font-size:2.5rem;line-height:1;
+  color:var(--blue-deep);opacity:.16;letter-spacing:.02em;margin:0;}
+.t3-t{font-family:var(--serif);font-size:1.18rem;line-height:1.7;letter-spacing:.04em;
+  margin:-1.35rem 0 .9rem 2.6rem;}
+.t3-tag{background:transparent;padding:0;margin:0 0 1rem 2.6rem;font-size:.79rem;color:var(--ink-soft);}
+.t3-row{display:grid;grid-template-columns:5.4rem 1fr;gap:.6rem;margin-bottom:.65rem;}
+.t3-row .k{font-size:.75rem;letter-spacing:.1em;color:var(--ink-soft);padding-top:.45rem;}
+.t3-row .v{font-size:.96rem;line-height:2.0;}
+.t3-guide{display:inline-block;margin-top:.6rem;font-size:.84rem;}
+
+/* ---- MEO/AIO・関連資料・参考事例 ---- */
+.pb,.gref,.refex{background:transparent;border:0;padding:0;margin-top:1.4rem;}
+.pb-lead{font-size:.97rem;line-height:2.05;margin:1.4rem 0 0;}
+.pb-facts{list-style:none;margin:1.3rem 0 0;padding:0;border-top:1px solid var(--line);}
+.pb-facts li{display:grid;grid-template-columns:8.5rem 1fr;gap:.6rem;
+  padding:.6rem 0;border-bottom:1px solid var(--line);}
+.pb-facts .k{font-size:.79rem;letter-spacing:.06em;color:var(--ink-soft);line-height:1.9;}
+.pb-facts .v{font-size:.94rem;line-height:1.9;}
+.pb-block{background:transparent;border:0;border-top:1px solid var(--line);
+  padding:1.2rem 0 0;margin-top:1.3rem;}
+.pb-h{font-family:var(--serif);font-size:1.05rem;letter-spacing:.04em;margin-bottom:.5rem;}
+.pb-b{font-size:.95rem;line-height:2.0;color:var(--ink-soft);}
+.pb-note{font-size:.83rem;line-height:1.95;color:var(--ink-soft);margin-top:1rem;}
+.grh,.refex-h{font-family:var(--serif);font-size:1.05rem;letter-spacing:.04em;margin-bottom:.5rem;}
+.gref a{background:transparent;border:0;border-top:1px solid var(--line);
+  padding:.9rem 0;display:block;}
+.gref a:first-of-type{border-top:0;}
+
+/* ---- スクショ＝図版 ---- */
+.shots{display:grid;gap:1.6rem;margin-top:1.5rem;}
+.shot{margin:0;}
+.shot img{border:1px solid var(--line);max-height:none;}
+.shot figcaption{font-size:.78rem;letter-spacing:.06em;color:var(--ink-soft);margin-top:.5rem;}
+
+/* ---- ご案内（料金・制作の流れ） ---- */
+.br{background:transparent;border:0;padding:0;margin-top:1.4rem;}
+.brh,.br-h,.br-sec-h{font-family:var(--serif);letter-spacing:.05em;}
+.br-h,.br-sec-h{border-top:1px solid var(--line);padding-top:1.2rem;margin-top:1.4rem;}
+.flow{padding-left:0;}
+.flow li{background:transparent;border:0;border-top:1px solid var(--line);padding:.85rem 0;}
+.flow .n{background:transparent;color:var(--blue-deep);font-family:var(--serif);opacity:.6;}
+
+/* ---- 差出人 ---- */
+.whois{background:transparent;border:0;padding:0;margin-top:1.4rem;}
+.whois .wh{font-size:.74rem;letter-spacing:.22em;}
+.whois .wname{font-size:1.26rem;letter-spacing:.06em;}
+.whois .wfacts{display:grid;grid-template-columns:1fr;gap:.35rem;}
+.whois .wfacts li{background:transparent !important;color:var(--ink-soft) !important;
+  padding:0 0 0 .9rem;position:relative;font-size:.83rem;}
+.whois .wfacts li::before{content:"";position:absolute;left:0;top:.85em;width:4px;height:1px;background:var(--blue-deep);}
+
+/* ---- CTA：紺ベタ面 ---- */
+.cta{background:var(--blue-deep);color:#fff;border:0;padding:clamp(2rem,7vw,2.8rem) clamp(1.25rem,6vw,2.6rem);
+  margin:clamp(2.6rem,8vw,3.4rem) 0 0;text-align:left;}
+.cta h3{color:#fff;font-size:1.24rem;line-height:1.7;}
+.cta p,.cta .cta-sub{color:rgba(255,255,255,.85);font-size:.95rem;line-height:2.05;}
+.cta .book{background:#fff;color:var(--blue-deep);border:0;box-shadow:none;padding:1rem 1.2rem;}
+.cta .book .bl{color:var(--blue-deep);font-family:var(--serif);letter-spacing:.08em;}
+.cta .book .bs{color:rgba(27,61,120,.72);}
+.cta .cta-lp a,.cta .lp{color:#fff;border-bottom-color:rgba(255,255,255,.5);}
+
+/* ---- 奥付 ---- */
+.rfoot{border-top:1px solid var(--line);margin-top:2.4rem;padding:1.5rem 0 3.5rem;}
+
+/* ---- 追修正（2026-09-05） ---- */
+/* ① linked項目だけカードに見えていたのを解消（.item より詳細度が高い） */
+.item.linked{box-shadow:none !important;border-color:transparent !important;background:transparent !important;}
+/* ② スコアの数字と分母を右側でひとまとまりにする */
+.scorebox{justify-content:flex-start;gap:.15rem;}
+.scorebox .cap{margin-right:auto;}
+.scorebox .den{align-self:flex-end;}
+/* ④ ご案内：中央揃えをやめ、他の節と同じ左揃えに揃える */
+.br .brh,.br .catch,.br .sub,.br .eyebrow,.br .br-h,.br .br-sec-h,.br .br-note,.br .monthly,
+.br .price,.br .price-note,.br .sample,.br figcaption{text-align:left !important;}
+.br .rule{margin-left:0 !important;margin-right:0 !important;}
+.br .brh{font-size:1.2rem;letter-spacing:.07em;}
+.br .catch{font-size:1.15rem;line-height:1.75;}
+.br .sub{font-size:.93rem;line-height:2.0;}
+
+/* ---- 追修正2（2026-09-05）: 影の消し漏れ ----
+   透明・余白0の要素に box-shadow だけが残り、本文に接した「座布団」が見えていた。
+   カードを使わない設計なので、本文ブロックの影は一律で落とす（拡大表示 #lb は除く）。 */
+.pb,.gref,.br,.refex,.xnote,.item,.t3,.lead,.purpose,.whois,.cta,.scorebox,
+.pb-block,.pb-note,.samples,.sample,.shot,.shot img{box-shadow:none !important;}
+
+/* ---- 追修正3（2026-09-05）: 白ベース化＋級の記号を大きく ---- */
+/* 背景を白に。クリーム(#F7F4ED)は「うっすらした地」としてのみ残す。 */
+body{background:#FFFFFF;}
+.pb-note{background:#F7F4ED !important;border-color:rgba(34,37,43,.14) !important;}
+.bt{background:rgba(27,61,120,.15);}          /* 白地でバーの溝が沈まないよう少し濃く */
+.rule,hr{border-color:rgba(34,37,43,.18);}
+
+/* 級の記号と語をはっきり大きく（8項目の詳細） */
+.badge{font-size:1.65rem !important;line-height:1.15 !important;}
+.badge .gl{font-size:.82rem !important;line-height:1.5 !important;letter-spacing:.02em;
+  color:var(--ink-soft) !important;margin-top:.15rem;}
+.item-h{align-items:center;}
+
+/* 評価の一望の記号も合わせて大きく */
+.bg{font-size:1.4rem;line-height:1.1;}
+.bl{font-size:.92rem;}
+.bn{font-size:.82rem;}
+.bar{grid-template-columns:1.9rem 1fr 4.4rem 1.9rem;padding:.62rem 0;}
+
+/* 一望の凡例（◎＝強み …）も読める大きさに */
+h2.sec .en{font-size:.82rem;line-height:1.9;}
+
+/* 一望グラフ：項目名が省略されないよう折り返しを許可し、バー列を細くする */
+.bl{white-space:normal !important;overflow:visible !important;text-overflow:clip !important;
+  line-height:1.55;}
+.bar{grid-template-columns:1.9rem 1fr 3.4rem 1.9rem;align-items:center;}
+@media(min-width:430px){ .bar{grid-template-columns:2rem 1fr 5rem 2rem;} }
+
+/* ---- 追修正4（2026-09-05）: 版面の再設計＋スコアの主役化 ----
+   紺の面が中央に浮いて見えていたので、表紙とCTAを画面いっぱいに抜く（フルブリード）。
+   本文は読み幅で中央寄せ。要素ごとの左右マージンはやめ、.wrap のパディングに一本化する。 */
+html,body{overflow-x:hidden;}
+.wrap{max-width:760px;margin:0 auto;padding:0 clamp(1.25rem,5vw,2.2rem);}
+
+/* 要素ごとに付けていた左右マージンを解除（.wrap 側で持つ） */
+.purpose,.lead,.good,.bars,.items,.t3,.shots,.gref,.refex,.br,.rfoot,
+h2.sec,.whois,.pb,.samples{margin-left:0;margin-right:0;}
+
+/* 紺の面は画面幅いっぱいに、中身は読み幅のまま */
+.rhead,.cta{
+  margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
+  padding-left:calc(50vw - 50% + clamp(1.25rem,5vw,2.2rem));
+  padding-right:calc(50vw - 50% + clamp(1.25rem,5vw,2.2rem));
+}
+
+/* ---- スコアを主役にする ---- */
+.scorebox{
+  display:block;border-top:1px solid rgba(255,255,255,.3);
+  border-bottom:1px solid rgba(255,255,255,.3);
+  margin:2rem 0 0;padding:1.5rem 0 1.6rem;text-align:left;
+}
+.scorebox .cap{
+  display:block;font-size:.86rem;letter-spacing:.24em;
+  color:rgba(255,255,255,.92);margin-bottom:.5rem;
+}
+.scorebox .num{
+  display:inline-block;font-family:var(--serif);font-weight:600;
+  font-size:clamp(3.6rem,15vw,4.6rem);line-height:.9;color:#fff;letter-spacing:.01em;
+}
+.scorebox .den{
+  display:inline-block;font-size:1rem;color:rgba(255,255,255,.8);
+  letter-spacing:.06em;margin-left:.3rem;vertical-align:baseline;
+}
+
+/* ---- 目次（2026-09-05） ---- */
+.toc{position:fixed;z-index:60;}
+.toc-t{font-size:.68rem;letter-spacing:.24em;color:var(--ink-soft);margin:0 0 .9rem;}
+.toc-l{list-style:none;margin:0;padding:0;}
+.toc-l li{margin:0 0 .1rem;}
+.toc-l a{display:grid;grid-template-columns:1.75rem 1fr;gap:.35rem;align-items:baseline;
+  padding:.42rem 0;text-decoration:none;color:var(--ink-soft);
+  font-size:.82rem;line-height:1.6;border-bottom:0;}
+.toc-n{font-family:var(--serif);font-size:.72rem;opacity:.55;}
+.toc-l a:hover{color:var(--blue-deep);}
+.toc-l a.on{color:var(--blue-deep);}
+.toc-l a.on .toc-n{opacity:1;}
+.toc-l a.on .toc-x{border-bottom:1px solid var(--blue-deep);padding-bottom:1px;}
+.toc-btn{position:fixed;z-index:61;border:0;cursor:pointer;font-family:var(--sans);
+  background:var(--blue-deep);color:#fff;display:flex;align-items:center;gap:.45rem;}
+
+/* 広い画面：左の余白に常時表示。ボタンは出さない */
+@media (min-width:1180px){
+  .toc{top:0;left:0;width:calc(50% - 380px);height:100vh;display:flex;align-items:center;
+    justify-content:flex-end;padding-right:2.4rem;pointer-events:none;}
+  .toc-in{pointer-events:auto;width:min(210px,100%);}
+  .toc-btn{display:none;}
+}
+
+/* 狭い画面：ボタンで開閉するパネル */
+@media (max-width:1179px){
+  .toc{top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);
+    padding:clamp(1.5rem,7vw,2.5rem);overflow-y:auto;
+    opacity:0;visibility:hidden;transition:opacity .18s ease;}
+  body.toc-open .toc{opacity:1;visibility:visible;}
+  .toc-in{max-width:520px;margin:0 auto;padding-top:3rem;}
+  .toc-t{font-size:.74rem;}
+  .toc-l a{font-size:.98rem;padding:.72rem 0;border-bottom:1px solid var(--line);}
+  .toc-btn{right:clamp(.9rem,4vw,1.4rem);bottom:clamp(.9rem,4vw,1.4rem);
+    padding:.75rem 1.05rem;font-size:.82rem;letter-spacing:.12em;box-shadow:0 6px 20px rgba(27,61,120,.28) !important;}
+  .tb-i{width:14px;height:9px;border-top:1.5px solid #fff;border-bottom:1.5px solid #fff;position:relative;}
+  .tb-i::before{content:"";position:absolute;left:0;right:0;top:3px;border-top:1.5px solid #fff;}
+  body.toc-open .tb-i{border:0;}
+  body.toc-open .tb-i::before{content:"×";position:static;border:0;font-size:1rem;line-height:1;}
+  body.toc-open{overflow:hidden;}
+}
+@media print{ .toc,.toc-btn{display:none !important;} }
+
+/* 目次：表紙に重なる間は隠す／間隔と改行の調整 */
+@media (min-width:1180px){
+  .toc{transition:opacity .2s ease;}
+  body.toc-hide .toc{opacity:0;visibility:hidden;}
+  .toc-in{width:min(230px,100%);}
+  .toc-l a{padding:.5rem 0;grid-template-columns:2rem 1fr;font-size:.8rem;line-height:1.75;}
+  .toc-n{font-size:.7rem;letter-spacing:.1em;}
+}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLH0DEFEX9"></script>
 </head>
@@ -329,17 +621,15 @@ footer.rfoot .note{margin-top:.7rem; padding-top:.7rem; border-top:1px dotted va
   <div class="brand">SUMAJUKU &mdash; WEB DESIGN FOR JUKU</div>
   <div class="kind">ホームページ診断レポート</div>
   <h1>小島教育塾　様</h1>
-  <div class="meta">診断対象：<a href="https://dwly7.hp.peraichi.com/" rel="noopener noreferrer nofollow">https://dwly7.hp.peraichi.com/</a><br>2026年9月4日に、パソコン表示・スマートフォン表示（375px幅）・HTMLソースを実際に確認して作成しています。</div>
-  <div class="purpose">
-    このレポートは、学習塾専門のホームページ制作「スマ塾」が、ご提案に先立って
-    <b>保護者の目線で貴塾のサイトを実際に開いて確認したもの</b>です。
-    売り込みのための資料ではなく、<b>今日からご自身で直せる点</b>をお伝えするためにお送りしています。
-    以下の点数は、保護者が塾を選ぶときに見る順番に沿って機械的に付けたもので、
-    貴塾の指導の質を評価したものではありません。
-    <span class="discard">ご不要でしたら、このまま破棄していただいて構いません。</span>
-  </div>
+  <div class="meta">診断対象<br><a href="https://dwly7.hp.peraichi.com/" rel="noopener noreferrer nofollow">https://dwly7.hp.peraichi.com/</a></div>
   <div class="scorebox"><div class="cap">総合スコア</div><span class="num">74</span><span class="den">／100</span></div>
+  <div class="cvnote">2026年9月4日に、パソコン表示・スマートフォン表示（375px幅）・HTMLソースを実際に確認して作成しています。</div>
 </header>
+
+<div class="purpose">
+  <p>このレポートは、学習塾専門のホームページ制作「スマ塾」が、ご提案に先立って保護者の目線で貴塾のサイトを実際に開いて確認したものです。売り込みのための資料ではなく、今日からご自身で直せる点をお伝えするためにお送りしています。</p>
+  <p>点数は、保護者が塾を選ぶときに見る順番に沿って機械的に付けたもので、貴塾の指導の質を評価したものではありません。ご不要でしたら、このまま破棄していただいて構いません。</p>
+</div>
 
 <h2 class="sec">はじめに ― 拝見しての所感</h2>
 <div class="lead">1学期のテスト結果が、5教科151点アップといった具体的な数字で何十人分も並んでいて、指導の手ごたえがそのまま伝わってきました。開塾50年、40年以上教えていらっしゃる先生方という重みも大きな財産です。ただ、その一番強い部分がページのかなり下にあり、電話番号もタップで発信できないため、せっかくの信頼が行動につながりにくい状態でした。</div>
@@ -347,8 +637,11 @@ footer.rfoot .note{margin-top:.7rem; padding-top:.7rem; border-top:1px dotted va
 <h2 class="sec">貴塾ホームページの良い点</h2>
 <ul class="good"><li>1学期のテスト結果を、5教科151点アップ・数学21点から90点というように実名頭文字と数字で何十件も公開されています。指導の効果がこれ以上ないほど具体的に伝わります。</li><li>開塾50年、当塾で40年以上教鞭をとる複数の講師という積み重ねをお持ちです。保護者の方がご自身の卒業生なら入会金無料という制度も、地域に根を張ってきた証になっています。</li></ul>
 
-<h2 class="sec">8項目の評価<span class="en">保護者が塾を選ぶ動線に沿って確認しました</span></h2>
-<div class="items"><div class="item"><div class="item-h"><span class="item-no">1</span><span class="item-nm">スマホ表示</span><span class="badge g-excellent">◎<span class="gl">強み</span></span></div><div class="item-rs">375px幅で実測して横の見切れは0px、画面幅も端末に合わせる設定でした。項目ごとに枠で区切られていて、スクロールしても今どの話かを見失いません。</div></div><div class="item"><div class="item-h"><span class="item-no">2</span><span class="item-nm">ファーストビュー</span><span class="badge g-ok">◯<span class="gl">合格</span></span></div><div class="item-rs">塾名と3つの強み、無料体験授業の案内までが最初の画面に収まっています。一方で堺市中区という地域名と、小学生から高校生までという対象範囲はこの画面には出ていません。</div></div><div class="item linked"><div class="item-h"><span class="item-no">3</span><span class="item-nm">問い合わせ導線</span><span class="badge g-warn">△<span class="gl">改善余地</span></span></div><div class="item-rs">電話番号とメールアドレスは体験授業の欄に大きく書かれています。ただ番号がタップ発信に対応しておらず、拝見した範囲では問い合わせフォームとLINEも確認できませんでした。</div><div class="item-link">▶ 下の改善提案で触れています</div></div><div class="item"><div class="item-h"><span class="item-no">4</span><span class="item-nm">情報の鮮度</span><span class="badge g-ok">◯<span class="gl">合格</span></span></div><div class="item-rs">1学期の中間テスト速報が掲載され、今年の指導の成果が反映されています。一方でそれぞれに日付が書かれていないため、いつの結果なのかは読み手には分かりません。</div></div><div class="item"><div class="item-h"><span class="item-no">5</span><span class="item-nm">塾選びの必須情報</span><span class="badge g-ok">◯<span class="gl">合格</span></span></div><div class="item-rs">対象学年とコースが6種類、公立・私立・大学の進学実績まで具体的に並んでいます。一方で拝見した範囲では、授業料の記載と生徒・保護者の方の声は確認できませんでした。</div></div><div class="item linked"><div class="item-h"><span class="item-no">6</span><span class="item-nm">信頼要素</span><span class="badge g-ok">◯<span class="gl">合格</span></span></div><div class="item-rs">開塾50年と、40年以上教えている複数の講師という事実が書かれています。ただ拝見した範囲では、先生方のお名前やお顔、教室の様子が分かるお写真は確認できませんでした。</div><div class="item-link">▶ 下の改善提案で触れています</div></div><div class="item"><div class="item-h"><span class="item-no">7</span><span class="item-nm">検索とAIでの見つかりやすさ</span><span class="badge g-warn">△<span class="gl">改善余地</span></span></div><div class="item-rs">ページ説明文と本文量は十分で、住所・電話・対象学年もテキストで書かれています。一方で教室情報を伝える構造化データ、大見出しの設定、画像の代替テキストが入っていません。</div></div><div class="item"><div class="item-h"><span class="item-no">8</span><span class="item-nm">Googleマップ</span><span class="badge g-ok">◯<span class="gl">合格</span></span></div><div class="item-rs">クチコミ10件で平均4.6、最新が2026年7月と新しく、地域の評価は十分に集まっています。一方で登録されたお写真は0枚で、営業時間も未設定のままです。</div></div></div>
+<h2 class="sec">評価の一望<span class="en">◎＝強み　◯＝良好　△＝改善余地　✕＝要対応</span></h2>
+<ul class="bars"><li class="bar"><span class="bn">01</span><span class="bl">スマホ表示</span><span class="bt"><span class="bf" style="width:100%"></span></span><span class="bg">◎</span></li><li class="bar"><span class="bn">02</span><span class="bl">ファーストビュー</span><span class="bt"><span class="bf" style="width:70%"></span></span><span class="bg">◯</span></li><li class="bar"><span class="bn">03</span><span class="bl">問い合わせ導線</span><span class="bt"><span class="bf" style="width:40%"></span></span><span class="bg">△</span></li><li class="bar"><span class="bn">04</span><span class="bl">情報の鮮度</span><span class="bt"><span class="bf" style="width:70%"></span></span><span class="bg">◯</span></li><li class="bar"><span class="bn">05</span><span class="bl">塾選びの必須情報</span><span class="bt"><span class="bf" style="width:70%"></span></span><span class="bg">◯</span></li><li class="bar"><span class="bn">06</span><span class="bl">信頼要素</span><span class="bt"><span class="bf" style="width:70%"></span></span><span class="bg">◯</span></li><li class="bar"><span class="bn">07</span><span class="bl">検索とAIでの見つかりやすさ</span><span class="bt"><span class="bf" style="width:40%"></span></span><span class="bg">△</span></li><li class="bar"><span class="bn">08</span><span class="bl">Googleマップ</span><span class="bt"><span class="bf" style="width:70%"></span></span><span class="bg">◯</span></li></ul>
+
+<h2 class="sec">8項目の詳細<span class="en">保護者が塾を選ぶ動線に沿って確認しました</span></h2>
+<div class="items"><div class="item"><div class="item-h"><span class="item-no">01</span><span class="item-nm">スマホ表示</span><span class="badge g-excellent">◎<span class="gl">強み</span></span></div><div class="item-rs">375px幅で実測して横の見切れは0px、画面幅も端末に合わせる設定でした。項目ごとに枠で区切られていて、スクロールしても今どの話かを見失いません。</div></div><div class="item"><div class="item-h"><span class="item-no">02</span><span class="item-nm">ファーストビュー</span><span class="badge g-ok">◯<span class="gl">合格</span></span></div><div class="item-rs">塾名と3つの強み、無料体験授業の案内までが最初の画面に収まっています。一方で堺市中区という地域名と、小学生から高校生までという対象範囲はこの画面には出ていません。</div></div><div class="item linked"><div class="item-h"><span class="item-no">03</span><span class="item-nm">問い合わせ導線</span><span class="badge g-warn">△<span class="gl">改善余地</span></span></div><div class="item-rs">電話番号とメールアドレスは体験授業の欄に大きく書かれています。ただ番号がタップ発信に対応しておらず、拝見した範囲では問い合わせフォームとLINEも確認できませんでした。</div><div class="item-link">▶ 下の改善提案で触れています</div></div><div class="item"><div class="item-h"><span class="item-no">04</span><span class="item-nm">情報の鮮度</span><span class="badge g-ok">◯<span class="gl">合格</span></span></div><div class="item-rs">1学期の中間テスト速報が掲載され、今年の指導の成果が反映されています。一方でそれぞれに日付が書かれていないため、いつの結果なのかは読み手には分かりません。</div></div><div class="item"><div class="item-h"><span class="item-no">05</span><span class="item-nm">塾選びの必須情報</span><span class="badge g-ok">◯<span class="gl">合格</span></span></div><div class="item-rs">対象学年とコースが6種類、公立・私立・大学の進学実績まで具体的に並んでいます。一方で拝見した範囲では、授業料の記載と生徒・保護者の方の声は確認できませんでした。</div></div><div class="item linked"><div class="item-h"><span class="item-no">06</span><span class="item-nm">信頼要素</span><span class="badge g-ok">◯<span class="gl">合格</span></span></div><div class="item-rs">開塾50年と、40年以上教えている複数の講師という事実が書かれています。ただ拝見した範囲では、先生方のお名前やお顔、教室の様子が分かるお写真は確認できませんでした。</div><div class="item-link">▶ 下の改善提案で触れています</div></div><div class="item"><div class="item-h"><span class="item-no">07</span><span class="item-nm">検索とAIでの見つかりやすさ</span><span class="badge g-warn">△<span class="gl">改善余地</span></span></div><div class="item-rs">ページ説明文と本文量は十分で、住所・電話・対象学年もテキストで書かれています。一方で教室情報を伝える構造化データ、大見出しの設定、画像の代替テキストが入っていません。</div></div><div class="item"><div class="item-h"><span class="item-no">08</span><span class="item-nm">Googleマップ</span><span class="badge g-ok">◯<span class="gl">合格</span></span></div><div class="item-rs">クチコミ10件で平均4.6、最新が2026年7月と新しく、地域の評価は十分に集まっています。一方で登録されたお写真は0枚で、営業時間も未設定のままです。</div></div></div>
 
 <h2 class="sec">特に効く改善 3つ<span class="en">それぞれ上の8項目のどれに対応するかを明記しました</span></h2>
 <article class="t3"><div class="t3-n">その1</div><div class="t3-t">電話番号をタップで発信できるようにする</div><div class="t3-tag">→ 項目3（問い合わせ導線）に対応 ｜ 現状評価 △</div><div class="t3-rows"><div class="t3-row"><div class="k">現状</div><div class="v">体験授業の欄に番号が大きく載っていますが、スマートフォンで押しても発信されず、番号を覚えて打ち直す必要があります。</div></div><div class="t3-row"><div class="k">ご提案</div><div class="v">番号を電話発信のリンクにし、画面下に「無料体験のお申し込み」ボタンを常に出しておいてください。</div></div><div class="t3-row"><div class="k">期待できること</div><div class="v">思い立ったその場でかけてもらえるようになり、体験の申込みが取りこぼれません。</div></div><div class="t3-row"><div class="k">集客に効く理由</div><div class="v">見る方の大半がスマートフォンで、番号の打ち直しはそこで止まる理由になるためです。</div></div></div><a class="t3-guide" href="https://smart-juku.syuni.jp/guide/juku-hp-toiawase.html" target="_blank" rel="noopener noreferrer" data-guide="toiawase">▸ 詳しく：「塾のホームページ、問い合わせが来ない原因はどこにある？」</a></article><article class="t3"><div class="t3-n">その2</div><div class="t3-t">授業料の目安を金額で載せる</div><div class="t3-tag">→ 項目3（問い合わせ導線）に対応 ｜ 現状評価 △</div><div class="t3-rows"><div class="t3-row"><div class="k">現状</div><div class="v">コースは6種類とも内容が詳しく書かれていますが、拝見した範囲では授業料にあたる記載は確認できませんでした。</div></div><div class="t3-row"><div class="k">ご提案</div><div class="v">「中1・5教科で月◯円〜」のように学年ごとの代表例を並べ、入会金と教材費も添えてください。</div></div><div class="t3-row"><div class="k">期待できること</div><div class="v">予算に合うかがその場で分かり、問い合わせる前の迷いがなくなります。</div></div><div class="t3-row"><div class="k">集客に効く理由</div><div class="v">保護者の方が最初に確かめるのが料金で、無いと比較の候補から外れるためです。</div></div></div><a class="t3-guide" href="https://smart-juku.syuni.jp/guide/juku-hp-ryoukin.html" target="_blank" rel="noopener noreferrer" data-guide="ryoukin">▸ 詳しく：「塾のホームページに料金を載せるべき？」</a></article><article class="t3"><div class="t3-n">その3</div><div class="t3-t">開塾50年と先生方を、上のほうに出す</div><div class="t3-tag">→ 項目6（信頼要素）に対応 ｜ 現状評価 ◯</div><div class="t3-rows"><div class="t3-row"><div class="k">現状</div><div class="v">開塾50年と40年以上教える講師陣という一番の強みが、テスト結果が続いたあとの下のほうにあります。</div></div><div class="t3-row"><div class="k">ご提案</div><div class="v">塾名のすぐ下に「堺市中区で開塾50年／小1〜高3・幼児から」と置き、先生方のお写真を添えてください。</div></div><div class="t3-row"><div class="k">期待できること</div><div class="v">最初の3秒で信頼が伝わり、その先の実績も納得して読んでもらえます。</div></div><div class="t3-row"><div class="k">集客に効く理由</div><div class="v">50年という年数は他塾が真似できない強みで、最初に見せる価値があるためです。</div></div></div></article>
@@ -367,7 +660,6 @@ footer.rfoot .note{margin-top:.7rem; padding-top:.7rem; border-top:1px dotted va
 <section class="gref"><div class="grh">関連資料</div><div class="grs">今回の診断で触れた点について、考え方をまとめた記事をスマ塾のサイトに用意しています。お手すきのときにご覧ください（無料・登録不要です）。</div><ul><li><a href="https://smart-juku.syuni.jp/guide/juku-hp-toiawase.html" target="_blank" rel="noopener noreferrer" data-guide="toiawase"><span class="gk">項目3　問い合わせ導線</span>塾のホームページ、問い合わせが来ない原因はどこにある？</a></li><li><a href="https://smart-juku.syuni.jp/guide/juku-aio.html" target="_blank" rel="noopener noreferrer" data-guide="aio"><span class="gk">項目7　検索とAIでの見つかりやすさ</span>塾のAI検索対策（AIO）とは？いま何をすればいいのか</a></li></ul></section>
 
 <section class="br">
-  <div class="eyebrow">SUMAJUKU &mdash; WEB DESIGN FOR JUKU</div>
   <div class="brh">スマ塾のご案内</div>
   <div class="rule"></div>
   <div class="catch">個人塾のホームページを、<b>5万円</b>でスマートに。</div>
@@ -543,6 +835,89 @@ if(!SJ_PREVIEW){
   function close(){ lb.classList.remove('on'); im.removeAttribute('src'); document.body.style.overflow=''; }
   lb.addEventListener('click',close);
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+})();
+
+/* ---- 目次（2026-09-05）
+   h2.sec からその場で組み立てる。節の増減（MEO/AIOの有無）に自動で追従する。
+   広い画面: 左の余白に常時表示 ／ 狭い画面: 「目次」ボタンで開閉 ---- */
+(function(){
+  var secs = [].slice.call(document.querySelectorAll('h2.sec'));
+  if (secs.length < 3) return;
+  function roman(n){
+    var t=[[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']], o='';
+    t.forEach(function(p){ while(n>=p[0]){ o+=p[1]; n-=p[0]; } });
+    return o;
+  }
+
+  var nav = document.createElement('nav');
+  nav.className = 'toc'; nav.setAttribute('aria-label','目次');
+  var inner = document.createElement('div'); inner.className = 'toc-in';
+  var ttl = document.createElement('p'); ttl.className = 'toc-t'; ttl.textContent = '目次';
+  inner.appendChild(ttl);
+  var ol = document.createElement('ol'); ol.className = 'toc-l';
+
+  secs.forEach(function(h, i){
+    if (!h.id) h.id = 'sec-' + (i+1);
+    var label = (h.firstChild && h.firstChild.nodeType === 3) ? h.firstChild.textContent.trim() : h.textContent.trim();
+    var li = document.createElement('li');
+    var a  = document.createElement('a');
+    a.href = '#' + h.id;
+    a.innerHTML = '<span class="toc-n">' + roman(i+1) + '</span><span class="toc-x"></span>';
+    a.querySelector('.toc-x').textContent = label;
+    li.appendChild(a); ol.appendChild(li);
+  });
+  inner.appendChild(ol); nav.appendChild(inner);
+
+  var btn = document.createElement('button');
+  btn.className = 'toc-btn'; btn.type = 'button';
+  btn.setAttribute('aria-expanded','false');
+  btn.innerHTML = '<span class="tb-i" aria-hidden="true"></span><span class="tb-t">目次</span>';
+
+  document.body.appendChild(nav);
+  document.body.appendChild(btn);
+
+  function setOpen(v){
+    document.body.classList.toggle('toc-open', v);
+    btn.setAttribute('aria-expanded', v ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function(){ setOpen(!document.body.classList.contains('toc-open')); });
+  nav.addEventListener('click', function(e){ if (e.target.closest('a')) setOpen(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setOpen(false); });
+
+  /* 表紙（紺の面）に重なる間は隠す。
+     html に overflow-x:hidden があると IntersectionObserver のルートが期待どおりに
+     働かないことがあるため、スクロール量で判定する。 */
+  var cover = document.querySelector('.rhead');
+  function syncToc(){
+    if (!cover) return;
+    var bottom = cover.offsetTop + cover.offsetHeight;
+    document.body.classList.toggle('toc-hide', (window.scrollY || 0) < bottom - 80);
+  }
+  syncToc();
+  window.addEventListener('scroll', syncToc, { passive: true });
+  window.addEventListener('resize', syncToc);
+  /* 保険：スクロールイベントが取れない環境向けに監視も併用する */
+  if (cover && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function(es){
+      document.body.classList.toggle('toc-hide', es[0].isIntersecting);
+    }, { threshold: 0 }).observe(cover);
+  }
+
+  /* 現在地のハイライト */
+  var links = [].slice.call(ol.querySelectorAll('a'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        var i = secs.indexOf(en.target);
+        if (i < 0) return;
+        if (en.isIntersecting) {
+          links.forEach(function(a){ a.classList.remove('on'); });
+          links[i].classList.add('on');
+        }
+      });
+    }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+    secs.forEach(function(h){ io.observe(h); });
+  }
 })();
 </script>
 </body>
