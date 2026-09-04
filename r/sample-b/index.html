@@ -55,14 +55,17 @@ ul.good li:first-child{border-top:0;padding-top:0;}
 
 /* ---- 8項目：カード廃止・罫と級で組む ---- */
 ul.items{list-style:none;margin:0;padding:0;}
-.it{display:grid;grid-template-columns:2.6rem 1fr auto;column-gap:.5rem;
-  align-items:baseline;padding:1.35rem 0;border-top:1px solid var(--rule);}
+.it{display:grid;grid-template-columns:2.6rem 1fr auto;column-gap:.6rem;
+  align-items:start;padding:1.2rem 0;border-top:1px solid var(--rule);}
+.it-n,.it-name{line-height:1.5;}
 .it:first-child{border-top:0;padding-top:0;}
 .it-n{font-family:var(--serif);font-size:.82rem;color:var(--soft);letter-spacing:.06em;}
 .it-name{font-family:var(--serif);font-size:1.02rem;letter-spacing:.04em;}
-.it-g{font-family:var(--serif);font-size:1.12rem;color:var(--navy);white-space:nowrap;text-align:right;}
-.it-g small{display:block;font-family:var(--sans);font-size:.62rem;letter-spacing:.08em;color:var(--soft);margin-top:.1rem;}
-.it-r{grid-column:2 / -1;margin:.55rem 0 0;font-size:.88rem;line-height:2.0;color:var(--soft);}
+.it-g{font-family:var(--serif);font-size:1.1rem;color:var(--navy);white-space:nowrap;
+  text-align:right;line-height:1.35;}
+.it-g small{display:block;font-family:var(--sans);font-size:.6rem;letter-spacing:.06em;
+  color:var(--soft);line-height:1.4;}
+.it-r{grid-column:2 / -1;margin:.3rem 0 0;font-size:.88rem;line-height:1.95;color:var(--soft);}
 
 /* ---- 改善3つ ---- */
 .t3{padding:1.8rem 0;border-top:1px solid var(--rule);}
