@@ -523,6 +523,42 @@ h2.sec .en{font-size:.82rem;line-height:1.9;}
   line-height:1.55;}
 .bar{grid-template-columns:1.9rem 1fr 3.4rem 1.9rem;align-items:center;}
 @media(min-width:430px){ .bar{grid-template-columns:2rem 1fr 5rem 2rem;} }
+
+/* ---- 追修正4（2026-09-05）: 版面の再設計＋スコアの主役化 ----
+   紺の面が中央に浮いて見えていたので、表紙とCTAを画面いっぱいに抜く（フルブリード）。
+   本文は読み幅で中央寄せ。要素ごとの左右マージンはやめ、.wrap のパディングに一本化する。 */
+html,body{overflow-x:hidden;}
+.wrap{max-width:760px;margin:0 auto;padding:0 clamp(1.25rem,5vw,2.2rem);}
+
+/* 要素ごとに付けていた左右マージンを解除（.wrap 側で持つ） */
+.purpose,.lead,.good,.bars,.items,.t3,.shots,.gref,.refex,.br,.rfoot,
+h2.sec,.whois,.pb,.samples{margin-left:0;margin-right:0;}
+
+/* 紺の面は画面幅いっぱいに、中身は読み幅のまま */
+.rhead,.cta{
+  margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
+  padding-left:calc(50vw - 50% + clamp(1.25rem,5vw,2.2rem));
+  padding-right:calc(50vw - 50% + clamp(1.25rem,5vw,2.2rem));
+}
+
+/* ---- スコアを主役にする ---- */
+.scorebox{
+  display:block;border-top:1px solid rgba(255,255,255,.3);
+  border-bottom:1px solid rgba(255,255,255,.3);
+  margin:2rem 0 0;padding:1.5rem 0 1.6rem;text-align:left;
+}
+.scorebox .cap{
+  display:block;font-size:.86rem;letter-spacing:.24em;
+  color:rgba(255,255,255,.92);margin-bottom:.5rem;
+}
+.scorebox .num{
+  display:inline-block;font-family:var(--serif);font-weight:600;
+  font-size:clamp(3.6rem,15vw,4.6rem);line-height:.9;color:#fff;letter-spacing:.01em;
+}
+.scorebox .den{
+  display:inline-block;font-size:1rem;color:rgba(255,255,255,.8);
+  letter-spacing:.06em;margin-left:.3rem;vertical-align:baseline;
+}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLH0DEFEX9"></script>
 </head>
