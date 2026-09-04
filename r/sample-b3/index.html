@@ -336,9 +336,9 @@ body{background:var(--paper);}
 .rhead .brand{color:rgba(255,255,255,.72);letter-spacing:.32em;font-size:.62rem;}
 .rhead .kind{color:rgba(255,255,255,.9);margin-top:1.9rem;font-size:.82rem;letter-spacing:.26em;}
 .rhead h1{color:#fff;font-size:clamp(1.7rem,6.8vw,2.35rem);margin-top:.5rem;letter-spacing:.05em;}
-.rhead .meta{color:rgba(255,255,255,.8);font-size:.73rem;line-height:1.95;margin-top:1.5rem;}
+.rhead .meta{color:rgba(255,255,255,.8);font-size:.8rem;line-height:1.95;margin-top:1.5rem;}
 .rhead .meta a{color:#fff;text-decoration:underline;}
-.rhead .cvnote{color:rgba(255,255,255,.66);font-size:.69rem;line-height:1.9;margin-top:1.3rem;}
+.rhead .cvnote{color:rgba(255,255,255,.66);font-size:.76rem;line-height:1.9;margin-top:1.3rem;}
 .scorebox{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;
   background:transparent;border:0;border-top:1px solid rgba(255,255,255,.28);
   margin:1.8rem 0 0;padding:1.4rem 0 0;width:100%;}
@@ -352,7 +352,7 @@ h2.sec,.cta,.whois,.pb,.samples{margin-left:clamp(1.25rem,6vw,2.6rem);margin-rig
 
 /* ---- 前書き（箱をやめる） ---- */
 .purpose{background:transparent;border:0;padding:0;margin-top:clamp(2rem,7vw,2.6rem);
-  font-size:.81rem;line-height:2.1;color:var(--ink-soft);}
+  font-size:.88rem;line-height:2.1;color:var(--ink-soft);}
 .purpose p{margin:0 0 .7rem;}
 .purpose p:last-child{margin:0;}
 .purpose b{font-weight:400;color:var(--ink-soft);}
@@ -360,22 +360,23 @@ h2.sec,.cta,.whois,.pb,.samples{margin-left:clamp(1.25rem,6vw,2.6rem);margin-rig
 /* ---- 節見出し（通し番号＋太細二重罫） ---- */
 body{counter-reset:sec;}
 h2.sec{counter-increment:sec;border-bottom:0;padding-bottom:0;
-  margin:clamp(2.6rem,8vw,3.4rem) 0 0;font-size:1.2rem;letter-spacing:.07em;
+  margin-top:clamp(2.6rem,8vw,3.4rem);margin-bottom:0;
+  font-size:1.28rem;letter-spacing:.07em;
   position:relative;padding-left:2.1rem;}
 h2.sec::before{content:counter(sec, upper-roman);position:absolute;left:0;top:.15em;
   font-family:var(--serif);font-size:.78rem;letter-spacing:.12em;color:var(--blue);opacity:.75;}
 h2.sec::after{content:"";display:block;margin-top:.55rem;margin-left:-2.1rem;
   border-top:2px solid var(--blue-deep);box-shadow:0 3px 0 -2px var(--line);}
-h2.sec .en{margin-top:.75rem;margin-left:-2.1rem;font-size:.72rem;letter-spacing:.1em;}
+h2.sec .en{margin-top:.75rem;margin-left:-2.1rem;font-size:.78rem;letter-spacing:.1em;}
 
 /* ---- 所感 ---- */
 .lead{background:transparent;border:0;border-left:0;padding:0;margin-top:1.5rem;
-  font-size:.97rem;line-height:2.2;}
+  font-size:1.04rem;line-height:2.15;}
 
 /* ---- 良い点 ---- */
 ul.good{margin-top:1.4rem;padding:0;list-style:none;}
 ul.good li{background:transparent;border:0;border-top:1px solid var(--line);
-  border-radius:0;padding:1.15rem 0;margin:0;font-size:.91rem;line-height:2.05;}
+  border-radius:0;padding:1.15rem 0;margin:0;font-size:.97rem;line-height:2.05;}
 ul.good li:first-child{border-top:0;padding-top:.2rem;}
 ul.good li::before{content:none;}
 
@@ -383,11 +384,11 @@ ul.good li::before{content:none;}
 ul.bars{list-style:none;margin-top:1.4rem;padding:0;}
 .bar{display:grid;grid-template-columns:1.75rem 1fr 4.4rem 1.4rem;gap:.5rem;
   align-items:center;padding:.5rem 0;}
-.bn{font-family:var(--serif);font-size:.72rem;color:var(--ink-soft);}
-.bl{font-size:.79rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.bn{font-family:var(--serif);font-size:.78rem;color:var(--ink-soft);}
+.bl{font-size:.87rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .bt{height:5px;background:rgba(27,61,120,.13);position:relative;}
 .bf{position:absolute;left:0;top:0;bottom:0;background:var(--blue-deep);}
-.bg{font-family:var(--serif);font-size:.95rem;color:var(--blue-deep);text-align:right;}
+.bg{font-family:var(--serif);font-size:1.02rem;color:var(--blue-deep);text-align:right;}
 
 /* ---- 8項目：カード廃止 ---- */
 .items{margin-top:1.4rem;}
@@ -396,15 +397,15 @@ ul.bars{list-style:none;margin-top:1.4rem;padding:0;}
 .item:first-child{border-top:0;}
 .item-h{display:grid;grid-template-columns:2.3rem 1fr auto;gap:.5rem;align-items:baseline;}
 .item-no{background:transparent;color:var(--blue-deep);opacity:.6;font-family:var(--serif);
-  font-size:.82rem;width:auto;height:auto;line-height:1.5;border-radius:0;
+  font-size:.88rem;width:auto;height:auto;line-height:1.5;border-radius:0;
   display:inline;padding:0;}
-.item-nm{font-family:var(--serif);font-size:1.02rem;letter-spacing:.04em;line-height:1.6;}
+.item-nm{font-family:var(--serif);font-size:1.08rem;letter-spacing:.04em;line-height:1.6;}
 .badge{background:transparent !important;border:0 !important;padding:0;
-  font-family:var(--serif);font-size:1.08rem;color:var(--blue-deep) !important;
+  font-family:var(--serif);font-size:1.16rem;color:var(--blue-deep) !important;
   text-align:right;line-height:1.35;white-space:nowrap;min-width:0;}
-.badge .gl{display:block;font-family:var(--sans);font-size:.6rem;color:var(--ink-soft);line-height:1.4;}
-.item-rs{margin:.45rem 0 0 2.8rem;font-size:.87rem;line-height:1.98;}
-.item-link{margin-left:2.8rem;background:transparent;padding:0;font-size:.74rem;}
+.badge .gl{display:block;font-family:var(--sans);font-size:.68rem;color:var(--ink-soft);line-height:1.4;}
+.item-rs{margin:.5rem 0 0 2.8rem;font-size:.95rem;line-height:2.0;}
+.item-link{margin-left:2.8rem;background:transparent;padding:0;font-size:.82rem;}
 
 /* ---- 改善3つ：飾り数字 ---- */
 .t3{background:transparent;border:0;border-top:1px solid var(--line);
@@ -412,28 +413,28 @@ ul.bars{list-style:none;margin-top:1.4rem;padding:0;}
 .t3:first-of-type{border-top:0;}
 .t3-n{font-family:var(--serif);font-weight:700;font-size:2.5rem;line-height:1;
   color:var(--blue-deep);opacity:.16;letter-spacing:.02em;margin:0;}
-.t3-t{font-family:var(--serif);font-size:1.12rem;line-height:1.7;letter-spacing:.04em;
+.t3-t{font-family:var(--serif);font-size:1.18rem;line-height:1.7;letter-spacing:.04em;
   margin:-1.35rem 0 .9rem 2.6rem;}
-.t3-tag{background:transparent;padding:0;margin:0 0 1rem 2.6rem;font-size:.72rem;color:var(--ink-soft);}
+.t3-tag{background:transparent;padding:0;margin:0 0 1rem 2.6rem;font-size:.79rem;color:var(--ink-soft);}
 .t3-row{display:grid;grid-template-columns:5.4rem 1fr;gap:.6rem;margin-bottom:.65rem;}
-.t3-row .k{font-size:.67rem;letter-spacing:.1em;color:var(--ink-soft);padding-top:.45rem;}
-.t3-row .v{font-size:.88rem;line-height:1.98;}
-.t3-guide{display:inline-block;margin-top:.6rem;font-size:.76rem;}
+.t3-row .k{font-size:.75rem;letter-spacing:.1em;color:var(--ink-soft);padding-top:.45rem;}
+.t3-row .v{font-size:.96rem;line-height:2.0;}
+.t3-guide{display:inline-block;margin-top:.6rem;font-size:.84rem;}
 
 /* ---- MEO/AIO・関連資料・参考事例 ---- */
 .pb,.gref,.refex{background:transparent;border:0;padding:0;margin-top:1.4rem;}
-.pb-lead{font-size:.9rem;line-height:2.05;margin:1.4rem 0 0;}
+.pb-lead{font-size:.97rem;line-height:2.05;margin:1.4rem 0 0;}
 .pb-facts{list-style:none;margin:1.3rem 0 0;padding:0;border-top:1px solid var(--line);}
 .pb-facts li{display:grid;grid-template-columns:8.5rem 1fr;gap:.6rem;
   padding:.6rem 0;border-bottom:1px solid var(--line);}
-.pb-facts .k{font-size:.72rem;letter-spacing:.06em;color:var(--ink-soft);line-height:1.9;}
-.pb-facts .v{font-size:.85rem;line-height:1.9;}
+.pb-facts .k{font-size:.79rem;letter-spacing:.06em;color:var(--ink-soft);line-height:1.9;}
+.pb-facts .v{font-size:.94rem;line-height:1.9;}
 .pb-block{background:transparent;border:0;border-top:1px solid var(--line);
   padding:1.2rem 0 0;margin-top:1.3rem;}
-.pb-h{font-family:var(--serif);font-size:.98rem;letter-spacing:.04em;margin-bottom:.5rem;}
-.pb-b{font-size:.87rem;line-height:2.0;color:var(--ink-soft);}
-.pb-note{font-size:.75rem;line-height:1.95;color:var(--ink-soft);margin-top:1rem;}
-.grh,.refex-h{font-family:var(--serif);font-size:.98rem;letter-spacing:.04em;margin-bottom:.5rem;}
+.pb-h{font-family:var(--serif);font-size:1.05rem;letter-spacing:.04em;margin-bottom:.5rem;}
+.pb-b{font-size:.95rem;line-height:2.0;color:var(--ink-soft);}
+.pb-note{font-size:.83rem;line-height:1.95;color:var(--ink-soft);margin-top:1rem;}
+.grh,.refex-h{font-family:var(--serif);font-size:1.05rem;letter-spacing:.04em;margin-bottom:.5rem;}
 .gref a{background:transparent;border:0;border-top:1px solid var(--line);
   padding:.9rem 0;display:block;}
 .gref a:first-of-type{border-top:0;}
@@ -442,7 +443,7 @@ ul.bars{list-style:none;margin-top:1.4rem;padding:0;}
 .shots{display:grid;gap:1.6rem;margin-top:1.5rem;}
 .shot{margin:0;}
 .shot img{border:1px solid var(--line);max-height:none;}
-.shot figcaption{font-size:.7rem;letter-spacing:.06em;color:var(--ink-soft);margin-top:.5rem;}
+.shot figcaption{font-size:.78rem;letter-spacing:.06em;color:var(--ink-soft);margin-top:.5rem;}
 
 /* ---- ご案内（料金・制作の流れ） ---- */
 .br{background:transparent;border:0;padding:0;margin-top:1.4rem;}
@@ -454,18 +455,18 @@ ul.bars{list-style:none;margin-top:1.4rem;padding:0;}
 
 /* ---- 差出人 ---- */
 .whois{background:transparent;border:0;padding:0;margin-top:1.4rem;}
-.whois .wh{font-size:.68rem;letter-spacing:.22em;}
+.whois .wh{font-size:.74rem;letter-spacing:.22em;}
 .whois .wname{font-size:1.26rem;letter-spacing:.06em;}
 .whois .wfacts{display:grid;grid-template-columns:1fr;gap:.35rem;}
 .whois .wfacts li{background:transparent !important;color:var(--ink-soft) !important;
-  padding:0 0 0 .9rem;position:relative;font-size:.75rem;}
+  padding:0 0 0 .9rem;position:relative;font-size:.83rem;}
 .whois .wfacts li::before{content:"";position:absolute;left:0;top:.85em;width:4px;height:1px;background:var(--blue-deep);}
 
 /* ---- CTA：紺ベタ面 ---- */
 .cta{background:var(--blue-deep);color:#fff;border:0;padding:clamp(2rem,7vw,2.8rem) clamp(1.25rem,6vw,2.6rem);
   margin:clamp(2.6rem,8vw,3.4rem) 0 0;text-align:left;}
-.cta h3{color:#fff;font-size:1.18rem;line-height:1.7;}
-.cta p,.cta .cta-sub{color:rgba(255,255,255,.85);}
+.cta h3{color:#fff;font-size:1.24rem;line-height:1.7;}
+.cta p,.cta .cta-sub{color:rgba(255,255,255,.85);font-size:.95rem;line-height:2.05;}
 .cta .book{background:#fff;color:var(--blue-deep);border:0;box-shadow:none;padding:1rem 1.2rem;}
 .cta .book .bl{color:var(--blue-deep);font-family:var(--serif);letter-spacing:.08em;}
 .cta .book .bs{color:rgba(27,61,120,.72);}
