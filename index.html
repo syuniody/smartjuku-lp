@@ -655,6 +655,43 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
   .syn-box{padding:40px 26px}
   .band p span{display:block;height:0;overflow:hidden;margin:0}
   .band p{line-height:2.1}
+
+  /* 料金セクションの2表は、スマホで横スクロールさせず行ごとのカードにする。
+     見せる順番は「サービス名 → 3年で払う総額 → 初期費用・月額・契約期間 → やめたとき」。
+     比較表（#compare）は従来どおり横スクロールのまま。 */
+  .tbl--wide table,.tbl--menu table{min-width:0}
+  .tbl--wide thead,.tbl--menu thead{display:none}
+  .tbl--wide table,.tbl--wide tbody,.tbl--wide tr,.tbl--wide th,.tbl--wide td,
+  .tbl--menu table,.tbl--menu tbody,.tbl--menu tr,.tbl--menu th,.tbl--menu td{display:block;width:auto}
+  .tbl--wide tbody th,.tbl--wide tbody td,
+  .tbl--menu tbody th,.tbl--menu tbody td{background:transparent;padding:0;border-bottom:none;text-align:left}
+
+  .tbl--wide tbody tr{display:flex;flex-wrap:wrap;align-items:baseline;padding:22px 18px;border-bottom:1px solid var(--line)}
+  .tbl--wide tbody tr:last-child{border-bottom:none}
+  .tbl--wide tbody tr.is-suma{background:#EDF2FA}
+  .tbl--wide tbody th{order:1;width:100%;font-size:.95rem;font-weight:900;margin-bottom:10px}
+  .tbl--wide tbody th.suma{color:var(--blue-deep)}
+  /* 主役＝3年で払う総額（4列目） */
+  .tbl--wide tbody td:nth-of-type(4){order:2;width:100%;margin-bottom:12px}
+  .tbl--wide tbody td:nth-of-type(4)::before{content:attr(data-label);display:block;font-size:.72rem;font-weight:700;color:var(--ink-soft);margin-bottom:2px}
+  .tbl--wide tbody td:nth-of-type(4) .mark{font-size:1.5rem;color:var(--blue-deep)}
+  /* 初期費用・月額・最低契約期間は小さく1行にまとめる（1〜3列目） */
+  .tbl--wide tbody td:nth-of-type(-n+3){order:3;display:flex;align-items:baseline;gap:4px;margin:0 14px 6px 0;font-size:.76rem;color:var(--ink-soft)}
+  .tbl--wide tbody td:nth-of-type(-n+3)::before{content:attr(data-label) "：";white-space:nowrap}
+  .tbl--wide tbody td:nth-of-type(-n+3) .mark{display:inline;font-size:.8rem;font-weight:700;color:var(--ink)}
+  .tbl--wide tbody td:nth-of-type(-n+3) small{display:inline;margin:0 0 0 4px}
+  /* 3年後にやめたら（5列目） */
+  .tbl--wide tbody td:nth-of-type(5){order:4;width:100%;margin-top:8px;padding-top:10px;border-top:1px solid var(--line)}
+  .tbl--wide tbody td:nth-of-type(5)::before{content:attr(data-label) "：";font-size:.72rem;font-weight:700;color:var(--ink-soft);margin-right:6px}
+  .tbl--wide tbody td:nth-of-type(5) .mark{display:inline;font-size:.88rem}
+
+  /* 単価メニュー：やりたいこと（左）＋費用（右）を1行目、補足はその下に小さく */
+  .tbl--menu tbody tr{display:grid;grid-template-columns:1fr auto;gap:0 14px;align-items:baseline;padding:18px;border-bottom:1px solid var(--line)}
+  .tbl--menu tbody tr:last-child{border-bottom:none}
+  .tbl--menu tbody th{width:auto;font-size:.88rem;font-weight:700;line-height:1.7}
+  .tbl--menu tbody td:nth-of-type(1){text-align:right;justify-self:end}
+  .tbl--menu tbody td:nth-of-type(1) .mark{font-size:1.02rem}
+  .tbl--menu tbody td.memo{grid-column:1 / -1;width:auto;margin-top:8px;font-size:.78rem}
 }
 </style>
 </head>
@@ -861,10 +898,10 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
               <tr><th></th><th>初期費用</th><th>月額</th><th>最低契約期間</th><th>3年で払う総額</th><th>3年後にやめたら</th></tr>
             </thead>
             <tbody>
-              <tr><th>塾向けサブスクA社</th><td><span class="mark">0円</span></td><td><span class="mark">8,800円</span></td><td><span class="mark">36か月</span></td><td><span class="mark">約316,800円</span></td><td><span class="mark">サイトは残らない</span></td></tr>
-              <tr><th>塾向けサブスクB社</th><td><span class="mark">0円</span></td><td><span class="mark">9,800円前後</span></td><td><span class="mark">36か月</span></td><td><span class="mark">約357,800円</span></td><td><span class="mark">サイトは残らない</span></td></tr>
-              <tr><th>一般的な制作会社</th><td><span class="mark">30〜100万円</span></td><td><span class="mark">5,000〜30,000円</span></td><td><span class="mark">—</span></td><td><span class="mark">48〜208万円</span></td><td><span class="mark">サイトは残る</span></td></tr>
-              <tr><th class="suma">スマ塾</th><td class="suma"><span class="mark">55,000円</span><small>税込・5ページまで</small></td><td class="suma"><span class="mark">0円</span></td><td class="suma"><span class="mark">なし</span></td><td class="suma"><span class="mark">55,000円</span></td><td class="suma"><span class="mark">サイトもドメインも塾のもの</span></td></tr>
+              <tr><th>塾向けサブスクA社</th><td data-label="初期費用"><span class="mark">0円</span></td><td data-label="月額"><span class="mark">8,800円</span></td><td data-label="最低契約期間"><span class="mark">36か月</span></td><td data-label="3年で払う総額"><span class="mark">約316,800円</span></td><td data-label="3年後にやめたら"><span class="mark">サイトは残らない</span></td></tr>
+              <tr><th>塾向けサブスクB社</th><td data-label="初期費用"><span class="mark">0円</span></td><td data-label="月額"><span class="mark">9,800円前後</span></td><td data-label="最低契約期間"><span class="mark">36か月</span></td><td data-label="3年で払う総額"><span class="mark">約357,800円</span></td><td data-label="3年後にやめたら"><span class="mark">サイトは残らない</span></td></tr>
+              <tr><th>一般的な制作会社</th><td data-label="初期費用"><span class="mark">30〜100万円</span></td><td data-label="月額"><span class="mark">5,000〜30,000円</span></td><td data-label="最低契約期間"><span class="mark">—</span></td><td data-label="3年で払う総額"><span class="mark">48〜208万円</span></td><td data-label="3年後にやめたら"><span class="mark">サイトは残る</span></td></tr>
+              <tr class="is-suma"><th class="suma">スマ塾</th><td class="suma" data-label="初期費用"><span class="mark">55,000円</span><small>税込・5ページまで</small></td><td class="suma" data-label="月額"><span class="mark">0円</span></td><td class="suma" data-label="最低契約期間"><span class="mark">なし</span></td><td class="suma" data-label="3年で払う総額"><span class="mark">55,000円</span></td><td class="suma" data-label="3年後にやめたら"><span class="mark">サイトもドメインも塾のもの</span></td></tr>
             </tbody>
           </table>
         </div>
