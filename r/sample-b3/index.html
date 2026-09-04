@@ -884,13 +884,18 @@ if(!SJ_PREVIEW){
   nav.addEventListener('click', function(e){ if (e.target.closest('a')) setOpen(false); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setOpen(false); });
 
-  /* 表紙（紺の面）に重なる間は隠す */
+  /* 表紙（紺の面）に重なる間は隠す。
+     html に overflow-x:hidden があると IntersectionObserver のルートが期待どおりに
+     働かないことがあるため、スクロール量で判定する。 */
   var cover = document.querySelector('.rhead');
-  if (cover && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function(es){
-      document.body.classList.toggle('toc-hide', es[0].isIntersecting);
-    }, { threshold: 0 }).observe(cover);
+  function syncToc(){
+    if (!cover) return;
+    var bottom = cover.offsetTop + cover.offsetHeight;
+    document.body.classList.toggle('toc-hide', (window.scrollY || 0) < bottom - 80);
   }
+  syncToc();
+  window.addEventListener('scroll', syncToc, { passive: true });
+  window.addEventListener('resize', syncToc);
 
   /* 現在地のハイライト */
   var links = [].slice.call(ol.querySelectorAll('a'));
