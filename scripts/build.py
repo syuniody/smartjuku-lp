@@ -87,6 +87,7 @@ READING_END = "<!-- READING:END -->"
 STATIC_PAGES = [
     {"path": "privacy.html", "changefreq": "yearly", "priority": "0.3"},
     {"path": "tokushoho.html", "changefreq": "yearly", "priority": "0.3"},
+    {"path": "shindan/index.html", "loc": "shindan/", "changefreq": "monthly", "priority": "0.8"},
 ]
 
 
@@ -486,7 +487,7 @@ def render_sitemap(all_sections: list[tuple[dict, list[dict]]]) -> str:
         if not (ROOT / p["path"]).exists():
             continue
         rows.append(
-            f"  <url>\n    <loc>{BASE_URL}/{p['path']}</loc>\n"
+            f"  <url>\n    <loc>{BASE_URL}/{p.get('loc', p['path'])}</loc>\n"
             f"    <lastmod>{today}</lastmod>\n"
             f"    <changefreq>{p['changefreq']}</changefreq>\n"
             f"    <priority>{p['priority']}</priority>\n  </url>"
