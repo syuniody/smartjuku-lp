@@ -602,6 +602,15 @@ h2.sec,.whois,.pb,.samples{margin-left:0;margin-right:0;}
   body.toc-open{overflow:hidden;}
 }
 @media print{ .toc,.toc-btn{display:none !important;} }
+
+/* 目次：表紙に重なる間は隠す／間隔と改行の調整 */
+@media (min-width:1180px){
+  .toc{transition:opacity .2s ease;}
+  body.toc-hide .toc{opacity:0;visibility:hidden;}
+  .toc-in{width:min(230px,100%);}
+  .toc-l a{padding:.5rem 0;grid-template-columns:2rem 1fr;font-size:.8rem;line-height:1.75;}
+  .toc-n{font-size:.7rem;letter-spacing:.1em;}
+}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLH0DEFEX9"></script>
 </head>
@@ -834,6 +843,11 @@ if(!SJ_PREVIEW){
 (function(){
   var secs = [].slice.call(document.querySelectorAll('h2.sec'));
   if (secs.length < 3) return;
+  function roman(n){
+    var t=[[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']], o='';
+    t.forEach(function(p){ while(n>=p[0]){ o+=p[1]; n-=p[0]; } });
+    return o;
+  }
 
   var nav = document.createElement('nav');
   nav.className = 'toc'; nav.setAttribute('aria-label','目次');
@@ -848,7 +862,7 @@ if(!SJ_PREVIEW){
     var li = document.createElement('li');
     var a  = document.createElement('a');
     a.href = '#' + h.id;
-    a.innerHTML = '<span class="toc-n">' + String(i+1).padStart(2,'0') + '</span><span class="toc-x"></span>';
+    a.innerHTML = '<span class="toc-n">' + roman(i+1) + '</span><span class="toc-x"></span>';
     a.querySelector('.toc-x').textContent = label;
     li.appendChild(a); ol.appendChild(li);
   });
@@ -869,6 +883,14 @@ if(!SJ_PREVIEW){
   btn.addEventListener('click', function(){ setOpen(!document.body.classList.contains('toc-open')); });
   nav.addEventListener('click', function(e){ if (e.target.closest('a')) setOpen(false); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') setOpen(false); });
+
+  /* 表紙（紺の面）に重なる間は隠す */
+  var cover = document.querySelector('.rhead');
+  if (cover && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function(es){
+      document.body.classList.toggle('toc-hide', es[0].isIntersecting);
+    }, { threshold: 0 }).observe(cover);
+  }
 
   /* 現在地のハイライト */
   var links = [].slice.call(ol.querySelectorAll('a'));
