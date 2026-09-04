@@ -231,12 +231,12 @@ nav.gnav a:hover::after{width:100%}
 .header-cta{padding:11px 20px;font-size:.82rem}
 
 /* ---------- 見出し共通 ---------- */
-section{padding:110px 0}
-.sec-head{margin-bottom:56px}
+section{padding:70px 0}
+.sec-head{margin-bottom:40px}
 .sec-label{display:flex;align-items:center;gap:12px;font-size:.82rem;font-weight:700;letter-spacing:.2em;color:var(--blue);margin-bottom:18px}
 .sec-label::before{content:"";width:36px;height:1.5px;background:var(--blue)}
 .sec-title{font-family:var(--serif);font-weight:700;font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.5;letter-spacing:.04em}
-.sec-lede{font-size:1rem;line-height:2.1;max-width:720px;margin-top:22px;color:var(--ink-soft)}
+.sec-lede{font-size:1rem;line-height:2.1;max-width:720px;margin-top:18px;color:var(--ink-soft)}
 .sec-lede b{color:var(--ink)}
 /* 1文字だけ次行に残るのを防ぐ。語のまとまりごと折り返す（DESIGN.md「折り返し」） */
 .nb{white-space:nowrap}
@@ -265,7 +265,7 @@ section{padding:110px 0}
 html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 
 /* ---------- hero ---------- */
-.hero{position:relative;padding:170px 0 64px;border-bottom:1px solid var(--line)}
+.hero{position:relative;padding:132px 0 48px;border-bottom:1px solid var(--line)}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
 .hero-visual{position:relative;height:500px}
 .hero-visual .shot{position:absolute;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;background:#fff;box-shadow:var(--sh-2)}
@@ -289,13 +289,13 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 @media(max-width:420px){
   .hero h1 .h1-price{white-space:normal}
 }
-.hero-sub{margin-top:32px;font-size:clamp(.98rem,1.5vw,1.12rem);max-width:640px;color:var(--ink-soft)}
+.hero-sub{margin-top:26px;font-size:clamp(.98rem,1.5vw,1.12rem);max-width:640px;color:var(--ink-soft)}
 .hero-sub b{color:var(--ink)}
-.hero-ctas{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap}
+.hero-ctas{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
 /* 副導線はボタンではなく小さなテキストリンク（ボタンは1ページ1文言に統一） */
 .hero-sublink{margin-top:14px;font-size:.86rem}
 /* 誰が作るのかを、スクロール前に一行だけ渡す（主役は制作イメージのまま） */
-.hero-by{display:flex;align-items:center;gap:14px;margin-top:30px}
+.hero-by{display:flex;align-items:center;gap:14px;margin-top:24px}
 .hero-by img{width:46px;height:46px;border-radius:50%;object-fit:cover;object-position:center top;border:1px solid var(--line);background:#E9EDF4;flex-shrink:0}
 .hero-by p{font-size:.82rem;line-height:1.9;color:var(--ink-soft)}
 .hero-by b{color:var(--ink);font-weight:900}
@@ -306,28 +306,28 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .band p{font-size:clamp(.86rem,1.6vw,1.02rem);font-weight:700;letter-spacing:.12em}
 .band p span{margin:0 .7em;opacity:.55}
 
-.prob-punch{margin-top:64px;text-align:center}
+.prob-punch{margin-top:48px;text-align:center}
 .prob-punch p{font-family:var(--serif);font-weight:700;font-size:clamp(1.3rem,3vw,2rem);line-height:2}
 
 /* ---------- セルフチェック（罫線リスト。カードを反復しない） ---------- */
 .selfcheck{background:var(--white);border-top:1px solid var(--line)}
 .check-list{border-bottom:1px solid var(--line)}
-.check-item{display:flex;gap:22px;padding:32px 4px;border-top:1px solid var(--line)}
+.check-item{display:flex;gap:22px;padding:26px 4px;border-top:1px solid var(--line)}
 .check-item h3{font-size:1.06rem;font-weight:900;line-height:1.8;margin-bottom:10px}
 .check-item p{font-size:.88rem;color:var(--ink-soft);line-height:1.95}
 .check-item .how,.check-item .dat{font-size:.84rem;margin-top:6px}
 .check-item .how b{color:var(--ink);font-weight:900;margin-right:10px}
 .check-item .dat b{color:var(--blue);font-weight:900}
-.check-foot{margin-top:44px;text-align:center}
-.check-foot p{font-size:.98rem;line-height:2;margin-bottom:24px}
-.check-src{font-size:.8rem;color:var(--ink-soft);margin-top:24px;line-height:1.9}
+.check-foot{margin-top:36px;text-align:center}
+.check-foot p{font-size:.98rem;line-height:2;margin-bottom:18px}
+.check-src{font-size:.8rem;color:var(--ink-soft);margin-top:18px;line-height:1.9}
 
 /* ---------- 無料HP診断で見る8つの視点 ---------- */
 .points{border-top:1px solid var(--line)}
-.points-note{margin-top:30px;font-size:.88rem;color:var(--ink-soft);line-height:1.9}
+.points-note{margin-top:22px;font-size:.88rem;color:var(--ink-soft);line-height:1.9}
 
 /* ---------- 代表からひとこと ---------- */
-.say{padding:96px 0;border-top:1px solid var(--line)}
+.say{padding:72px 0;border-top:1px solid var(--line)}
 .say-in{max-width:720px;margin:0 auto}
 /* 署名。顔写真は「運営者について」に集約し、ここは言葉と署名だけにする */
 .say .sig{margin-top:36px;padding-top:26px;border-top:1px solid var(--line)}
@@ -352,7 +352,7 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .svc-feature{
   display:grid;grid-template-columns:1.3fr .8fr;gap:48px;align-items:start;
   background:linear-gradient(150deg,#EDF2FA,#F7F9FD);border:1px solid rgba(36,81,158,.3);border-radius:var(--r-md);
-  padding:48px 52px;position:relative;
+  padding:40px 52px;position:relative;
 }
 .svc-idx{display:flex;align-items:baseline;gap:12px}
 .svc-idx .cat{font-size:.74rem;font-weight:700;letter-spacing:.16em;color:var(--ink-soft)}
@@ -366,7 +366,7 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .svc-price .n small{font-size:.5em}
 .svc-price .u{font-size:.88rem;font-weight:700;margin-top:6px}
 .svc-price .note{font-size:.78rem;color:var(--ink-soft);margin-top:14px}
-.svc-rest{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:64px}
+.svc-rest{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:48px}
 .svc-item{border-top:1.5px solid var(--ink);padding-top:26px}
 .svc-item h3{font-family:var(--serif);font-weight:700;font-size:1.28rem;margin:14px 0 4px;letter-spacing:.04em}
 .svc-item p.desc{margin:10px 0 18px;font-size:.88rem;color:var(--ink-soft)}
@@ -382,10 +382,10 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .work .browser .bar{flex:1;margin-left:10px;height:20px;border-radius:var(--r-xs);background:#F2EFE7;font-size:.68rem;color:var(--ink-soft);display:flex;align-items:center;padding:0 12px;letter-spacing:.04em}
 .work .shot{aspect-ratio:16/10;overflow:hidden;background:#fff;border-bottom:1px solid var(--line)}
 .work .shot img{width:100%;height:100%;object-fit:cover;object-position:top center}
-.work .meta{padding:26px 28px 30px}
+.work .meta{padding:22px 28px 24px}
 .work .meta .cat{font-size:.74rem;font-weight:700;letter-spacing:.14em;color:var(--blue)}
 .work .meta h3{font-family:var(--serif);font-weight:700;font-size:1.35rem;margin:8px 0 10px;letter-spacing:.03em}
-.work .meta p{font-size:.88rem;color:var(--ink-soft);margin-bottom:16px}
+.work .meta p{font-size:.88rem;color:var(--ink-soft)}
 
 /* ---------- compare ---------- */
 .tbl{border:1.5px solid var(--ink);border-radius:var(--r-md);overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;background:#fff}
@@ -400,13 +400,13 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .tbl td .mark{font-weight:900;font-size:1.15rem;display:block;line-height:1.4}
 .tbl td small{font-weight:400;color:var(--ink-soft);font-size:.76rem;display:block;margin-top:2px}
 .tbl-scroll{overflow-x:auto}
-.tbl-note{text-align:center;margin-top:30px;font-size:.82rem;color:var(--ink-soft);line-height:1.9}
+.tbl-note{text-align:center;margin-top:22px;font-size:.82rem;color:var(--ink-soft);line-height:1.9}
 .tbl--wide table{min-width:880px;font-size:.86rem}
 .tbl--wide th,.tbl--wide td{padding:16px 14px}
 .tbl--wide td .mark{font-size:1.02rem}
 .tbl--wide tbody th{width:auto;min-width:150px}
 /* 単価メニュー表。1列目が長いので左を広く、3列目は注記として左寄せ */
-.menu-block{margin-top:88px}
+.menu-block{margin-top:56px}
 .tbl--menu tbody th{width:44%;font-weight:700}
 .tbl--menu td.memo{text-align:left;width:32%;font-size:.8rem;color:var(--ink-soft);line-height:1.8}
 .tbl--menu td .mark{white-space:nowrap}
@@ -414,7 +414,7 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 /* ---------- price ---------- */
 .price{background:var(--white);border-top:1px solid var(--line)}
 .price-grid{display:grid;grid-template-columns:1fr 1.12fr;gap:24px;align-items:stretch}
-.plan{border:1px solid var(--line);border-radius:var(--r-md);padding:48px 42px;background:var(--paper);position:relative;display:flex;flex-direction:column}
+.plan{border:1px solid var(--line);border-radius:var(--r-md);padding:40px 40px;background:var(--paper);position:relative;display:flex;flex-direction:column}
 .plan.reco{background:#fff;border:2px solid var(--blue);box-shadow:var(--sh-2)}
 .plan h3{font-family:var(--serif);font-weight:700;font-size:1.5rem;margin:8px 0 2px;letter-spacing:.04em}
 .plan .p-en{font-size:.78rem;font-weight:700;letter-spacing:.08em;color:var(--ink-soft)}
@@ -428,10 +428,10 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .plan ul li.na{opacity:.42}
 .plan ul li.na::before{border:none;content:"—";top:0;left:2px;width:auto;height:auto;transform:none}
 .plan .btn{width:100%}
-.price-foot{text-align:center;margin-top:32px;font-size:.82rem;color:var(--ink-soft)}
+.price-foot{text-align:center;margin-top:24px;font-size:.82rem;color:var(--ink-soft)}
 .price-grid--single{grid-template-columns:1fr;max-width:640px;margin:0 auto}
 /* Standard を段として見せる全幅の帯。罫線・角丸・地色はカード（.plan）と同じ値 */
-.plan-band{position:relative;margin-top:32px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);
+.plan-band{position:relative;margin-top:24px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);
   padding:34px 42px;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap}
 .plan-band h3{font-family:var(--serif);font-weight:700;font-size:1.4rem;letter-spacing:.04em;margin-bottom:8px}
 .plan-band-main p{font-size:.86rem;color:var(--ink-soft);max-width:620px}
@@ -439,8 +439,8 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .plan-band-price .n{display:block;font-weight:900;font-size:2.1rem;line-height:1.2;color:var(--blue);letter-spacing:.01em}
 .plan-band-price .u{font-weight:900;font-size:.92rem}
 .plan-band-price a{display:inline-block;margin-top:10px;font-size:.84rem}
-.price-sub{margin-top:88px}
-.price-sub-head{margin-bottom:40px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.price-sub{margin-top:56px}
+.price-sub-head{margin-bottom:28px;text-align:center;display:flex;flex-direction:column;align-items:center}
 .price-sub-title{font-family:var(--serif);font-weight:700;font-size:clamp(1.25rem,2.6vw,1.55rem);line-height:1.7;letter-spacing:.03em}
 
 .switch-lead{font-size:.94rem;line-height:2.1;color:var(--ink-soft)}
@@ -463,7 +463,7 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .faq-more .faq-list{padding:0 28px 26px}
 
 /* ---------- 乗り換えの案内（compare の末尾に統合） ---------- */
-.switch-inline{margin-top:56px;padding-top:36px;border-top:1px solid var(--line)}
+.switch-inline{margin-top:40px;padding-top:28px;border-top:1px solid var(--line)}
 
 /* ---------- flow ---------- */
 .flow-list{counter-reset:fl;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -580,7 +580,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
 
 /* ---------- responsive ---------- */
 @media(max-width:960px){
-  .hero{padding-top:150px}
+  .hero{padding-top:132px}
   .hero-grid{grid-template-columns:1fr}
   /* スマホでも制作イメージを見せる。重ね配置はやめて1枚だけ素直に置く */
   .hero-visual{height:auto;margin-top:0}   /* 段の間隔は hero-grid の gap で足りる */
@@ -614,12 +614,12 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
 }
 @media(max-width:640px){
   .sp-br{display:inline}
-  section{padding:80px 0}
-  .hero{padding-top:130px}
+  section{padding:64px 0}
+  .hero{padding-top:114px}
   .hero h1{font-size:clamp(1.75rem,8.6vw,2.2rem)}
   .hero-lead{font-size:.78rem;letter-spacing:.08em}
-  .say{padding:72px 0}
-  .reading{padding:72px 0}
+  .say{padding:56px 0}
+  .reading{padding:56px 0}
   .flow-list{grid-template-columns:1fr}
   .m-cta{display:block}
   .header-cta{display:none}
@@ -900,14 +900,14 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
               <tr><th></th><th>初期費用</th><th>月額</th><th>最低契約期間</th><th>3年で払う総額（サーバー・ドメイン実費を除く）</th><th>3年後にやめたら</th></tr>
             </thead>
             <tbody>
-              <tr><th>月額制の計算例①</th><td data-label="初期費用"><span class="mark">0円</span></td><td data-label="月額"><span class="mark">8,800円</span></td><td data-label="最低契約期間"><span class="mark">36か月</span></td><td data-label="3年で払う総額（サーバー・ドメイン実費を除く）"><span class="mark">316,800円</span></td><td data-label="3年後にやめたら"><span class="mark">契約条件によります（各社の規約をご確認ください）</span></td></tr>
-              <tr><th>月額制の計算例②</th><td data-label="初期費用"><span class="mark">5,000円</span></td><td data-label="月額"><span class="mark">9,800円</span></td><td data-label="最低契約期間"><span class="mark">36か月</span></td><td data-label="3年で払う総額（サーバー・ドメイン実費を除く）"><span class="mark">357,800円</span></td><td data-label="3年後にやめたら"><span class="mark">契約条件によります（各社の規約をご確認ください）</span></td></tr>
-              <tr><th>制作会社型の計算例</th><td data-label="初期費用"><span class="mark">30〜100万円</span></td><td data-label="月額"><span class="mark">5,000〜30,000円</span></td><td data-label="最低契約期間"><span class="mark">—</span></td><td data-label="3年で払う総額（サーバー・ドメイン実費を除く）"><span class="mark">48〜208万円</span></td><td data-label="3年後にやめたら"><span class="mark">契約条件によります（各社の規約をご確認ください）</span></td></tr>
+              <tr><th>月額制の計算例①</th><td data-label="初期費用"><span class="mark">0円</span></td><td data-label="月額"><span class="mark">8,800円</span></td><td data-label="最低契約期間"><span class="mark">36か月</span></td><td data-label="3年で払う総額（サーバー・ドメイン実費を除く）"><span class="mark">316,800円</span></td><td data-label="3年後にやめたら"><span class="mark">契約条件によります</span></td></tr>
+              <tr><th>月額制の計算例②</th><td data-label="初期費用"><span class="mark">5,000円</span></td><td data-label="月額"><span class="mark">9,800円</span></td><td data-label="最低契約期間"><span class="mark">36か月</span></td><td data-label="3年で払う総額（サーバー・ドメイン実費を除く）"><span class="mark">357,800円</span></td><td data-label="3年後にやめたら"><span class="mark">契約条件によります</span></td></tr>
+              <tr><th>制作会社型の計算例</th><td data-label="初期費用"><span class="mark">30〜100万円</span></td><td data-label="月額"><span class="mark">5,000〜30,000円</span></td><td data-label="最低契約期間"><span class="mark">—</span></td><td data-label="3年で払う総額（サーバー・ドメイン実費を除く）"><span class="mark">48〜208万円</span></td><td data-label="3年後にやめたら"><span class="mark">契約条件によります</span></td></tr>
               <tr class="is-suma"><th class="suma">スマ塾 Lite</th><td class="suma" data-label="初期費用"><span class="mark">55,000円</span><small>税込・5ページまで</small></td><td class="suma" data-label="月額"><span class="mark">月額保守費0円</span></td><td class="suma" data-label="最低契約期間"><span class="mark">なし</span></td><td class="suma" data-label="3年で払う総額（サーバー・ドメイン実費を除く）"><span class="mark">55,000円</span></td><td class="suma" data-label="3年後にやめたら"><span class="mark">サイトもドメインも塾のもの</span></td></tr>
             </tbody>
           </table>
         </div>
-      <p class="tbl-note rv">※計算例は仮定の条件によるもので、特定の会社を示すものではありません。<br>※サーバー代・独自ドメイン代（月1,000〜1,300円程度）は当社の場合も別途かかります。他社についてはご確認ください。</p>
+      <p class="tbl-note rv">※計算例は仮定の条件によるもので、特定の会社を示すものではありません。解約時の扱いは各社の規約をご確認ください。<br>※サーバー代・独自ドメイン代（月1,000〜1,300円程度）は当社の場合も別途かかります。他社についてはご確認ください。</p>
       <div class="prob-punch rv">
         <p>商談で1つだけ聞いてほしい質問があります。<br>「そのHPは、解約したら手元に残りますか？」</p>
       </div>
