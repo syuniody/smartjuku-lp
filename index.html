@@ -48,8 +48,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&family=Shippori+Mincho:wght@600;700;800&display=swap" rel="stylesheet">
-<!-- 署名用。「小田一勲」の4文字のみを配信する（text= でサブセット・約1.8KB） -->
-<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@600&text=%E5%B0%8F%E7%94%B0%E4%B8%80%E5%8B%B2&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -378,16 +376,6 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .points{border-top:1px solid var(--line)}
 .points-note{margin-top:22px;font-size:.86rem;color:var(--ink-soft);line-height:1.9}
 
-/* ---------- 代表からひとこと ---------- */
-.say{padding:72px 0;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.say-in{max-width:720px;margin:0 auto}
-/* 署名。顔写真は「運営者について」に集約し、ここは言葉と署名だけにする */
-.say .sig{margin-top:36px;padding-top:26px;border-top:1px solid var(--line)}
-.say .sig-role{display:block;font-size:.74rem;letter-spacing:.1em;color:var(--ink-soft);margin-bottom:6px}
-.say .sig-name{display:block;font-family:"Klee One",var(--serif);font-weight:600;font-size:1.7rem;
-  color:var(--ink);letter-spacing:.14em;line-height:1.35}
-.say blockquote{font-family:var(--serif);font-weight:600;font-size:clamp(1.02rem,1.9vw,1.25rem);line-height:2.3;letter-spacing:.03em}
-
 /* 本文内から記事への導線 */
 .inline-link{color:var(--blue);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;font-weight:700}
 .inline-link:hover{background:var(--marker);text-decoration:none}
@@ -531,8 +519,10 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .person-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
 .person-photo .ph-note{width:100%;padding:16px;font-size:.74rem;color:var(--ink-soft);text-align:center;letter-spacing:.1em;background:rgba(255,255,255,.7)}
 .person-body h3{font-family:var(--serif);font-weight:700;font-size:1.7rem;letter-spacing:.08em}
-.person-body .p-en{font-size:.8rem;font-weight:700;letter-spacing:.1em;color:var(--ink-soft);margin-bottom:26px;display:block}
-.person-body p{font-size:.95rem;color:var(--ink-soft);margin-bottom:18px}
+.person-body .p-en{font-size:.8rem;font-weight:700;letter-spacing:.1em;color:var(--ink-soft);margin-bottom:10px;display:block}
+/* 経歴の補足1行。Edu-NEWS への導線はページ内でここだけ */
+.person-body .p-credit{font-size:.86rem;color:var(--ink-soft);line-height:1.8;margin-bottom:26px}
+.person-body p{font-size:.95rem;color:var(--ink-soft);margin-bottom:18px;text-wrap:pretty}
 .person-body p b{color:var(--ink)}
 
 /* ---------- faq ---------- */
@@ -742,7 +732,6 @@ details .ans{color:var(--ink)}
   .panel-person{order:2;position:relative;z-index:1;display:block;
     right:auto;bottom:auto;height:auto;width:65%;max-width:300px;
     margin:10px -24px 0 auto}
-  .say{padding:56px 0}
   .reading{padding:56px 0}
   .flow-list{grid-template-columns:1fr}
   .m-cta{display:block}
@@ -895,18 +884,6 @@ details .ans{color:var(--ink)}
         <p>3つとも自信を持って「はい」と言えない場合は、<br>無料HP診断で8項目まとめてお調べします。</p>
         <a class="btn" href="#diagnosis">無料HP診断を申し込む</a>
         <p class="check-src">※数値は当社が学習塾のホームページを1件ずつ診断した集計です。母数は項目ごとに異なります（8月に診断項目を追加したため）。対象・時期の異なる集計なので、項目どうしの直接の比較ではありません。<a class="inline-link" href="/report/juku-hp-shindan-matome.html">診断の集計を見る</a></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 代表からひとこと -->
-  <section class="say">
-    <div class="wrap">
-      <div class="say-in rv">
-        <div>
-          <blockquote>塾の先生と直接話す仕事を続けてきました。ホームページの話になると、返ってくる言葉はだいたい二つです。手が回っていない。頼むと高い。<br>どちらもそのとおりだと思います。授業と面談で一日が終わるなかで、更新まで手を伸ばすのは難しい。制作費が生徒何人分かに相当するなら、後回しになるのが自然です。<br>だから、55,000円から・月額保守費0円にしました。作ったあとは、塾がご自身で書き換えられます。</blockquote>
-          <div class="sig"><span class="sig-role">スマ塾 代表</span><span class="sig-name">小田 一勲</span></div>
-        </div>
       </div>
     </div>
   </section>
@@ -1312,7 +1289,7 @@ details .ans{color:var(--ink)}
     <div class="wrap">
       <div class="sec-head rv">
         <p class="sec-label">運営者について</p>
-        <h2 class="sec-title">診断もレクチャーも、<br>代表の小田が全部やります。</h2>
+        <h2 class="sec-title">診断もレクチャーも、<br>代表の小田が<span class="nb">全部やります。</span></h2>
       </div>
       <div class="person-grid">
         <div class="person-photo rv">
@@ -1322,7 +1299,10 @@ details .ans{color:var(--ink)}
         <div class="person-body rv rv-d1">
           <h3>小田 一勲</h3>
           <span class="p-en">おだ・かずひろ／合同会社SyUNi 代表</span>
-          <p>教育業界で10年以上、塾の集客支援に携わってきました（代表個人の経歴です）。教育ニュース解説<a class="inline-link" href="https://www.youtube.com/channel/UCYS6zWMZwBGCISTYcUFjqZg" target="_blank" rel="noopener noreferrer">「Edu-NEWS」</a>を運営。<b>制作から運用まで代表が担当します。</b></p>
+          <p class="p-credit">教育ニュース解説<a class="inline-link" href="https://www.youtube.com/channel/UCYS6zWMZwBGCISTYcUFjqZg" target="_blank" rel="noopener noreferrer">「Edu-NEWS」</a>を運営（登録者3,480人・2026年8月時点）</p>
+          <p>塾の先生と直接話す仕事を続けてきました。ホームページの話になると、返ってくる言葉はだいたい二つです。手が回っていない。頼むと高い。</p>
+          <p>どちらもそのとおりだと思います。授業と面談で一日が終わるなかで、更新まで手を伸ばすのは難しい。制作費が生徒何人分かに相当するなら、後回しになるのが自然です。</p>
+          <p>だから、55,000円から・月額保守費0円にしました。作ったあとは、塾がご自身で書き換えられます。</p>
           <p>スマ塾は「業者に外注する」サービスではありません。塾業界を知る人間が、あなたの塾のWeb担当として隣に座ります。HP・Googleマップ・AI検索・AI活用、どこから相談してもらっても大丈夫です。</p>
         </div>
       </div>
