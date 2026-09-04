@@ -46,6 +46,13 @@ SECTIONS = [
         "title": "制作事例｜スマ塾が作った学習塾のホームページ",
         "description": "スマ塾が制作した学習塾ホームページの事例集。塾の課題、制作の狙い、公開後の変化までを掲載しています。",
         "lede": "実際にスマ塾が制作した学習塾のホームページです。どんな課題があり、何をどう設計したのかを、塾ごとに具体的に紹介します。",
+        # 記事が1本も無いときに出す暫定文。空の一覧は、無いより信頼を削るため。
+        "empty": (
+            '        <p>制作事例は、公開のご承諾をいただいた塾から順に掲載します（2026年内に2件公開予定）。'
+            '制作の考え方は「<a href="/#works">こんなホームページを、お作りします</a>」と'
+            '「<a href="/guide/">塾HPの基礎知識</a>」でご覧いただけます。</p>\n'
+            '        <p><a href="/#diagnosis">無料でHP診断を受ける</a></p>\n'
+        ),
     },
     {
         "slug": "guide",
@@ -233,12 +240,11 @@ def render_index(section: dict, articles: list[dict]) -> str:
         )
         list_html = f'      <div class="post-list">\n{items}\n      </div>'
     else:
-        list_html = (
-            '      <div class="list-empty">\n'
+        body = section.get("empty") or (
             "        <p>記事を準備しています。もうしばらくお待ちください。</p>\n"
-            '        <p><a href="/#contact">ホームページのご相談はこちら</a></p>\n'
-            "      </div>"
+            '        <p><a href="/#diagnosis">無料でHP診断を受ける</a></p>\n'
         )
+        list_html = '      <div class="list-empty">\n' + body + "      </div>"
 
     # 一覧の構造化データ
     if articles:
