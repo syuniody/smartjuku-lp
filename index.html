@@ -165,8 +165,11 @@
   --blue:#24519E;
   --blue-deep:#1B3D78;
   --marker:#FFE9A0;
-  --line:rgba(34,37,43,.16);
+  /* 白地の上では .16 が消えるため .22。クリームの面の上でも同じ値で足りる */
+  --line:rgba(34,37,43,.22);
   --max:1120px;
+  /* 本文 16px。注記・ラベルだけ従来の小さい値を残す */
+  --fs-body:1rem;
   --serif:"Shippori Mincho",serif;
   --sans:"Zen Kaku Gothic New",sans-serif;
 
@@ -190,9 +193,11 @@ html{scroll-behavior:smooth}
 html.noanim{scroll-behavior:auto}
 body{
   font-family:var(--sans);
-  background:var(--paper);
+  /* 地色は白。クリーム（--paper）は「面」にだけ置く（2026-09-04） */
+  background:var(--white);
   color:var(--ink);
-  line-height:1.9;
+  font-size:16px;
+  line-height:1.8;
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
@@ -210,7 +215,7 @@ html.noanim .rv{opacity:1;transform:none;transition:none}
 
 /* ---------- header ---------- */
 header{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,box-shadow .3s}
-header.scrolled{background:rgba(247,244,237,.92);backdrop-filter:blur(10px);box-shadow:var(--sh-line)}
+header.scrolled{background:rgba(255,255,255,.92);backdrop-filter:blur(10px);box-shadow:var(--sh-line)}
 .header-in{max-width:var(--max);margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .logo{font-weight:900;font-size:1.3rem;letter-spacing:.08em;display:flex;align-items:center;gap:10px}
 .logo .dot{width:11px;height:11px;background:var(--blue);border-radius:50%;display:inline-block}
@@ -231,7 +236,7 @@ nav.gnav a:hover::after{width:100%}
 .header-cta{padding:11px 20px;font-size:.8rem}
 
 /* ---------- 見出し共通 ---------- */
-section{padding:70px 0}
+section{padding:64px 0}   /* 本文が16pxになるぶん節の上下を詰め、全高を14,000px以内に保つ */
 .sec-head{margin-bottom:40px}
 .sec-label{display:flex;align-items:center;gap:12px;font-size:.8rem;font-weight:700;letter-spacing:.2em;color:var(--blue);margin-bottom:18px}
 .sec-label::before{content:"";width:36px;height:1.5px;background:var(--blue)}
@@ -310,7 +315,7 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .prob-punch p{font-family:var(--serif);font-weight:700;font-size:clamp(1.3rem,3vw,2rem);line-height:2}
 
 /* ---------- セルフチェック（罫線リスト。カードを反復しない） ---------- */
-.selfcheck{background:var(--white);border-top:1px solid var(--line)}
+.selfcheck{background:var(--paper);border-top:1px solid var(--line)}
 .check-list{border-bottom:1px solid var(--line)}
 .check-item{display:flex;gap:22px;padding:26px 4px;border-top:1px solid var(--line)}
 .check-item h3{font-size:1.02rem;font-weight:900;line-height:1.8;margin-bottom:10px}
@@ -327,7 +332,7 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .points-note{margin-top:22px;font-size:.86rem;color:var(--ink-soft);line-height:1.9}
 
 /* ---------- 代表からひとこと ---------- */
-.say{padding:72px 0;border-top:1px solid var(--line)}
+.say{padding:72px 0;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .say-in{max-width:720px;margin:0 auto}
 /* 署名。顔写真は「運営者について」に集約し、ここは言葉と署名だけにする */
 .say .sig{margin-top:36px;padding-top:26px;border-top:1px solid var(--line)}
@@ -348,7 +353,7 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .read-more a:hover{background:var(--marker);text-decoration:none}
 
 /* ---------- services ---------- */
-.services{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.services{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .svc-feature{
   display:grid;grid-template-columns:1.3fr .8fr;gap:48px;align-items:start;
   background:linear-gradient(150deg,#EDF2FA,#F7F9FD);border:1px solid rgba(36,81,158,.3);border-radius:var(--r-md);
@@ -373,9 +378,9 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 
 
 /* ---------- works ---------- */
-.works{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.works{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.work{border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:var(--paper);transition:box-shadow .3s,transform .3s;display:flex;flex-direction:column}
+.work{border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:var(--white);transition:box-shadow .3s,transform .3s;display:flex;flex-direction:column}
 .work:hover{box-shadow:var(--sh-1);transform:translateY(-3px)}
 .work .browser{background:#E7E3D9;padding:11px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--line)}
 .work .browser i{width:11px;height:11px;border-radius:50%;background:#C9C3B4;display:inline-block}
@@ -412,9 +417,9 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .tbl--menu td .mark{white-space:nowrap}
 
 /* ---------- price ---------- */
-.price{background:var(--white);border-top:1px solid var(--line)}
+.price{background:var(--paper);border-top:1px solid var(--line)}
 .price-grid{display:grid;grid-template-columns:1fr 1.12fr;gap:24px;align-items:stretch}
-.plan{border:1px solid var(--line);border-radius:var(--r-md);padding:40px 40px;background:var(--paper);position:relative;display:flex;flex-direction:column}
+.plan{border:1px solid var(--line);border-radius:var(--r-md);padding:40px 40px;background:var(--white);position:relative;display:flex;flex-direction:column}
 .plan.reco{background:#fff;border:2px solid var(--blue);box-shadow:var(--sh-2)}
 .plan h3{font-family:var(--serif);font-weight:700;font-size:1.3rem;margin:8px 0 2px;letter-spacing:.04em}
 .plan .p-en{font-size:.8rem;font-weight:700;letter-spacing:.08em;color:var(--ink-soft)}
@@ -431,7 +436,7 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .price-foot{text-align:center;margin-top:24px;font-size:.8rem;color:var(--ink-soft)}
 .price-grid--single{grid-template-columns:1fr;max-width:640px;margin:0 auto}
 /* Standard を段として見せる全幅の帯。罫線・角丸・地色はカード（.plan）と同じ値 */
-.plan-band{position:relative;margin-top:24px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);
+.plan-band{position:relative;margin-top:24px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--white);
   padding:34px 42px;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap}
 .plan-band h3{font-family:var(--serif);font-weight:700;font-size:1.3rem;letter-spacing:.04em;margin-bottom:8px}
 .plan-band-main p{font-size:.86rem;color:var(--ink-soft);max-width:620px}
@@ -473,7 +478,7 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .flow-item p{font-size:.86rem;color:var(--ink-soft)}
 
 /* ---------- person ---------- */
-.person{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.person{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .person-grid{display:grid;grid-template-columns:.85fr 1.5fr;gap:56px;align-items:start}
 .person-photo{aspect-ratio:4/5;border-radius:var(--r-md);background:linear-gradient(160deg,#E9EDF4,#D8DEE9);position:relative;overflow:hidden;display:flex;align-items:flex-end;border:1px solid var(--line)}
 .person-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
@@ -485,7 +490,7 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 
 /* ---------- faq ---------- */
 .faq-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
-details{border:1px solid var(--line);border-radius:var(--r-md);background:#fff;overflow:hidden}
+details{border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);overflow:hidden}
 summary{cursor:pointer;list-style:none;padding:24px 60px 24px 28px;font-weight:900;font-size:1.02rem;position:relative;line-height:1.7}
 summary::-webkit-details-marker{display:none}
 summary::before{content:"Q";font-family:var(--serif);font-weight:700;color:var(--blue);margin-right:14px;font-size:1.15em}
@@ -581,6 +586,50 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
 .m-cta{position:fixed;left:12px;right:12px;bottom:12px;z-index:90;display:none;opacity:0;transform:translateY(16px);transition:opacity .35s,transform .35s;pointer-events:none}
 .m-cta.is-visible{opacity:1;transform:none;pointer-events:auto}
 .m-cta a{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--blue);color:#fff;font-weight:900;padding:16px;border-radius:var(--r-md);box-shadow:var(--sh-2);font-size:.95rem}
+
+/* ---------- 本文の型（2026-09-04：白地に合わせて引き直し） ----------
+   本文は 16px・--ink。--ink-soft は注記・キャプション・ヒントだけに残す。
+   個別ルールを上書きするため、基本スタイルの最後に置いている。 */
+.sec-lede,
+.check-item p,.check-foot p,
+.points-note,
+.svc-feature p.desc,.svc-ul li,.svc-item p.desc,
+.work .meta p,
+.plan ul li,.plan-band-main p,
+.switch-lead,
+.rate-item p,
+.flow-item p,
+.person-body p,
+details .ans,
+.cta p,
+.form-row label,.diag-radio,
+.hero-sublink,.read-more a,
+.tbl table{font-size:var(--fs-body);line-height:1.8}
+
+.sec-lede,
+.check-item p,.check-foot p,
+.points-note,
+.svc-feature p.desc,.svc-ul li,.svc-item p.desc,
+.work .meta p,
+.plan ul li,.plan-band-main p,
+.switch-lead,
+.rate-item p,
+.flow-item p,
+.person-body p,
+details .ans{color:var(--ink)}
+
+/* 注記・キャプションは従来どおり補助色・小さめ */
+.check-src,.tbl-note,.rate-note,.price-foot,.form-note,.form-hint,.form-lead,
+.svc-price .note,.plan .p-note,.diag-book-memo,
+.form-row .opt,.form-check .opt,.consult-note{color:var(--ink-soft)}
+
+/* 小見出しは本文より一段上に保つ */
+.check-item h3,.rate-item h4,.flow-item h3,summary{font-size:1.15rem}
+.sec-lede{font-size:1.08rem;line-height:1.9}
+
+/* 明朝は h1・h2 と主役の数字だけ。カードの h3 はゴシック700 */
+.svc-feature h3,.svc-item h3,.work .meta h3,.plan h3,.plan-band h3,
+.person-body h3,.form-done h3{font-family:var(--sans);font-weight:700;letter-spacing:.02em}
 
 /* ---------- responsive ---------- */
 @media(max-width:960px){
