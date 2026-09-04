@@ -275,6 +275,8 @@ ul,ol{list-style:none}
   /* ナビを隠さない。ハンバーガーを足すのではなく、横に流せる帯にして残す */
   .site-header-in{flex-wrap:wrap;row-gap:0;padding:10px 0 0}
   .site-logo,.header-cta{margin:0 16px}
+  /* 390pxでロゴと同じ行に収める。高さ（タップ領域48px）は変えず、左右の余白だけ詰める */
+  .header-cta{padding-left:14px;padding-right:14px}
   .site-nav{order:3;width:100%;gap:16px;font-size:.76rem;
     overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
     padding:0 16px 7px;border-top:1px solid var(--line-soft);margin-top:8px}

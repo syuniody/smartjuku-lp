@@ -37,7 +37,6 @@
   fbq('init', '2147777948929240');
   fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2147777948929240&ev=PageView&noscript=1"/></noscript>
 <!-- Google Analytics 4（現行LPと同一） -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLH0DEFEX9"></script>
 <script>
@@ -146,7 +145,7 @@
     "name": "合同会社SyUNi",
     "founder": { "@type": "Person", "name": "小田 一勲" }
   },
-  "offers": [
+  "makesOffer": [
     { "@type": "Offer", "name": "スマ塾HP制作 Lite", "priceCurrency": "JPY", "price": "55000", "priceSpecification": { "@type": "PriceSpecification", "valueAddedTaxIncluded": true }, "description": "55,000円（税込）・買い切り・月額保守費0円。5ページまで（トップ／コース・料金／講師／アクセス／お問い合わせ）。素材支給、公開前の確認2往復、公開後のレクチャー60分、GA4設定、構造化データ、Googleビジネスプロフィールの初期整備、他社サイトからの移転と転送設定を含みます。着手日を決めたうえで、必要な素材がそろった日から10営業日（最短2週間）を目安に公開します。サーバー・ドメインの実費は別途かかります。" },
     { "@type": "Offer", "name": "スマ塾HP制作 Standard", "priceCurrency": "JPY", "price": "107800", "priceSpecification": { "@type": "PriceSpecification", "valueAddedTaxIncluded": true }, "description": "107,800円（税込）・買い切り・月額保守費0円。7ページ・原稿整理・写真選定・旧サイトの記事移行50本まで・AI検索対応（構造化データ・よくある質問）を含みます。着手日を決めたうえで、必要な素材がそろった日から10営業日（最短2週間）を目安に公開します。サーバー・ドメインの実費は別途かかります。" },
     { "@type": "Offer", "name": "HP改善スプリント", "priceCurrency": "JPY", "price": "43780", "priceSpecification": { "@type": "PriceSpecification", "valueAddedTaxIncluded": true }, "description": "43,780円（税込）・買い切り。いまのホームページはそのままです。Googleビジネスプロフィールの整備、AI検索向けの構造化データとよくある質問の設置、問い合わせ導線の修正、GA4の設置と初回レポートを、2週間で行います。" },
@@ -287,6 +286,7 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .hero h1 .h1-price small{font-size:.62em;font-weight:700;letter-spacing:.02em}
 /* 語が行をまたぐと1文字だけ次行に残る。語ごと折り返す */
 .hero h1 .nb,.hero h1 .maru{white-space:nowrap}
+.sp-br{display:none}
 @media(max-width:420px){
   .hero h1 .h1-price{white-space:normal}
 }
@@ -666,7 +666,13 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
   nav.gnav::-webkit-scrollbar{display:none}
   nav.gnav a{white-space:nowrap;padding-top:7px}
 }
+/* DESIGN.md「モバイル（〜860px）」：ナビ4リンクは390pxにちょうど収まる。
+   5つ目以降は横スクロールしないと気づかれないので、860px以下では出さない */
+@media(max-width:860px){
+  nav.gnav a.gnav-extra{display:none}
+}
 @media(max-width:640px){
+  .sp-br{display:inline}
   section{padding:80px 0}
   .hero{padding-top:130px}
   .hero h1{font-size:clamp(1.75rem,8.6vw,2.2rem)}
@@ -726,16 +732,17 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2147777948929240&ev=PageView&noscript=1"/></noscript>
 
 <header id="header">
   <div class="header-in">
     <a class="logo" href="#top"><span class="dot"></span><span>スマ塾<small>学習塾専門のWeb支援</small></span></a>
     <nav class="gnav">
       <a href="#services">サービス</a>
-      <a href="#compare">選ばれる理由</a>
-      <a href="#works">制作イメージ</a>
+      <a class="gnav-extra" href="#compare">選ばれる理由</a>
+      <a class="gnav-extra" href="#works">制作イメージ</a>
       <a href="#price">料金</a>
-      <a href="#person">運営者</a>
+      <a class="gnav-extra" href="#person">運営者</a>
       <a href="#reading">お役立ち情報</a>
       <a href="#faq">よくある質問</a>
     </nav>
@@ -752,7 +759,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
         <div class="hero-copy">
           <p class="hero-lead">個人塾・地域密着塾専門</p>
           <h1>
-            <span class="h1-price">55,000円<small>（税込）</small>・<span class="maru">月額保守費0円<svg class="maru-ink" viewBox="0 0 280 74" aria-hidden="true" focusable="false"><path pathLength="100" d="M260 24 C 246 10, 186 3, 134 5 C 64 7, 17 20, 18 38 C 20 56, 87 66, 151 65 C 221 64, 266 51, 267 33 C 269 23, 256 16, 239 11"/></svg></span>。</span>
+            <span class="h1-price">55,000円<small>（税込）</small>・<br class="sp-br"><span class="maru">月額保守費0円<svg class="maru-ink" viewBox="0 0 280 74" aria-hidden="true" focusable="false"><path pathLength="100" d="M260 24 C 246 10, 186 3, 134 5 C 64 7, 17 20, 18 38 C 20 56, 87 66, 151 65 C 221 64, 266 51, 267 33 C 269 23, 256 16, 239 11"/></svg></span>。</span>
             塾が自分で<span class="nb">育てられる</span><br>ホームページ。
           </h1>
           <p class="hero-sub">
@@ -819,7 +826,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
           <span class="q">一</span>
           <div>
             <h3>Googleで塾名を検索したとき、マップに写真・営業時間・口コミへの返信は出ますか？</h3>
-            <p class="why">マップの情報が空だと、保護者は電話する前に候補から外します。</p>
+            <p class="why">マップの情報が空だと、電話する前に候補から外されやすくなります。</p>
             <p class="how"><b>確かめ方</b>スマホで塾名を検索し、右または上に出る地図の枠を見る（30秒）。</p>
             <p class="dat">当社の診断では、Googleマップに課題があった塾は<b>51.5%</b>（33塾中）。</p>
           </div>
@@ -828,7 +835,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
           <span class="q">二</span>
           <div>
             <h3>ChatGPTなどのAIに「◯◯市 塾 おすすめ」と聞いたとき、貴塾は候補に出ますか？</h3>
-            <p class="why">AIは、文字として書かれた料金・住所・営業時間しか読めません。画像の中の文字は届きません。</p>
+            <p class="why">AIには、文字として書かれた料金・住所・営業時間のほうが安定して読み取られます。画像の中の文字は参照されにくいことがあります。</p>
             <p class="how"><b>確かめ方</b>AIに市区名＋塾と聞いて、出てきた候補と、その理由に書かれた内容を読む（1分）。</p>
             <p class="dat">当社の診断では、検索とAIでの見つかりやすさに課題があった塾は<b>63.6%</b>（33塾中）。</p>
           </div>
@@ -846,7 +853,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
       <div class="check-foot rv">
         <p>3つとも自信を持って「はい」と言えない場合は、<br>無料HP診断で8項目まとめてお調べします。</p>
         <a class="btn" href="#diagnosis">無料でHP診断を受ける</a>
-        <p class="check-src">※数値は当社が学習塾のホームページを1件ずつ診断した集計です。母数は項目ごとに異なります（8月に診断項目を追加したため）。<a class="inline-link" href="/report/juku-hp-shindan-matome.html">診断の集計を見る</a></p>
+        <p class="check-src">※数値は当社が学習塾のホームページを1件ずつ診断した集計です。母数は項目ごとに異なります（8月に診断項目を追加したため）。対象・時期の異なる集計なので、項目どうしの直接の比較ではありません。<a class="inline-link" href="/report/juku-hp-shindan-matome.html">診断の集計を見る</a></p>
       </div>
     </div>
   </section>
@@ -860,7 +867,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
         <p class="sec-lede">保護者が塾を選ぶ動線（検索する→見る→比べる→問い合わせる）に沿って確認します。<b>点数を出すことが目的ではなく、いちばん効く改善3つを選ぶための物差し</b>です。</p>
       </div>
       <div class="prob-list">
-        <div class="prob-item rv"><span class="no">1</span><div><h3>スマホ表示</h3><p>保護者の7〜8割はスマホで見ます。文字の見切れ、横スクロール、タップのしやすさを確認します。</p></div></div>
+        <div class="prob-item rv"><span class="no">1</span><div><h3>スマホ表示</h3><p>保護者の多くはスマホで見ます。文字の見切れ、横スクロール、タップのしやすさを確認します。</p></div></div>
         <div class="prob-item rv"><span class="no">2</span><div><h3>ファーストビュー</h3><p>最初の画面で「どこの、誰向けの、何の塾か」が3秒で読めるかを確認します。</p></div></div>
         <div class="prob-item rv"><span class="no">3</span><div><h3>問い合わせ導線</h3><p>電話・LINE・フォームへ何タップで着くか、電話番号がスマホでタップ発信できるかを確認します。</p></div></div>
         <div class="prob-item rv"><span class="no">4</span><div><h3>情報の鮮度</h3><p>古い年度の講習案内が残っていないか、更新の痕跡があるかを確認します。</p></div></div>
@@ -869,7 +876,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
         <div class="prob-item rv"><span class="no">7</span><div><h3>検索とAIでの見つかりやすさ</h3><p>タイトルタグ・SSL・独自ドメイン・構造化データ・画像の代替テキストなど、機械が読める形になっているかを確認します。</p></div></div>
         <div class="prob-item rv"><span class="no">8</span><div><h3>Googleマップ</h3><p>診断日に実際に検索し、写真の枚数・営業時間・口コミへの返信・最新の投稿を確認します。</p></div></div>
       </div>
-      <p class="points-note rv">お申し込み → 1営業日以内にWeb版レポートをメールでお送りします → ご希望の方だけ15分の解説。こちらから営業のお電話はしません。</p>
+      <p class="points-note rv">お申し込み → 通常1営業日以内（申込が集中する時期は2営業日以内）にWeb版レポートをメールでお送りします → ご希望の方だけ15分の解説。こちらから営業のお電話はしません。</p>
       <p class="points-note rv"><a class="inline-link" href="/shindan/">診断の中身を詳しく見る</a>　／　<a class="inline-link" href="#diagnosis">無料HP診断を申し込む</a></p>
     </div>
   </section>
@@ -978,7 +985,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
           <tbody>
             <tr><th>初期費用</th><td><span class="mark">0円〜</span><small>月額契約が前提</small></td><td><span class="mark">30〜100万円</span><small>ページ数・機能で変動</small></td><td class="suma"><span class="mark">55,000円〜（税込）</span><small>買い切り・月額保守費0円で運用可能</small></td></tr>
             <tr><th>月額費用</th><td><span class="mark">月9,800円前後</span><small>使い続ける限り払い続ける</small></td><td><span class="mark">5,000〜3万円</span><small>保守費が必要な場合が多い</small></td><td class="suma"><span class="mark">月額保守費0円</span><small>サーバー・ドメインの実費は別途</small></td></tr>
-            <tr><th>やめたとき</th><td><span class="mark">HPは残らない</span><small>原則、解約すると使えなくなるレンタル型</small></td><td><span class="mark">HPは残る</span><small>データは手元に残る</small></td><td class="suma"><span class="mark">塾の資産として残る</span><small>ドメインは塾さま名義。著作権と管理者権限もお渡しします</small></td></tr>
+            <tr><th>やめたとき</th><td><span class="mark">残らない場合がある</span><small>解約後の扱いは各社の規約によります</small></td><td><span class="mark">HPは残る</span><small>データは手元に残る</small></td><td class="suma"><span class="mark">塾の資産として残る</span><small>ドメインは塾さま名義。著作権と管理者権限もお渡しします</small></td></tr>
             <tr><th>公開後の更新</th><td><span class="mark">サービスの範囲内</span><small>できることはプランによる</small></td><td><span class="mark">都度依頼・見積もり</span><small>修正のたびに費用と待ち時間</small></td><td class="suma"><span class="mark">自分で更新できる</span><small>料金表・実績は管理画面から</small></td></tr>
             <tr><th>塾業界の知見</th><td><span class="mark">サービスによる</span><small>業種特化は一部のみ</small></td><td><span class="mark">業種共通</span><small>業種を問わず制作</small></td><td class="suma"><span class="mark">個人塾・地域塾専門</span><small>代表が塾の現場を10年見てきた知見</small></td></tr>
           </tbody>
@@ -989,7 +996,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
       <div class="tbl-total">
         <div class="sec-head rv">
           <h3 class="sec-title">「月◯円」ではなく、<br>「終わるまでにいくら払うか」で比べてください。</h3>
-          <p class="sec-lede">塾向けのホームページサービスは、月額制が主流です。月額だけを見ると安く見えますが、<b>36か月契約の例が複数あります。</b>3年払い終わるまでの総額に直すと、こうなります。</p>
+          <p class="sec-lede">月額制のサービスを、仮に<b>「初期0円・月8,800円・36か月契約」</b>で契約した場合、3年で払う総額はこうなります。下の表は、いずれも条件を置いた計算例です。</p>
         </div>
         <div class="tbl rv tbl-scroll tbl--wide">
           <table>
@@ -997,14 +1004,14 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
               <tr><th></th><th>初期費用</th><th>月額</th><th>最低契約期間</th><th>3年で払う総額（サーバー・ドメイン実費を除く）</th><th>3年後にやめたら</th></tr>
             </thead>
             <tbody>
-              <tr><th>月額制の例①</th><td data-label="初期費用"><span class="mark">0円</span></td><td data-label="月額"><span class="mark">8,800円</span></td><td data-label="最低契約期間"><span class="mark">36か月</span></td><td data-label="3年で払う総額（サーバー・ドメイン実費を除く）"><span class="mark">316,800円</span></td><td data-label="3年後にやめたら"><span class="mark">規約による（解約後にサイトが残らない例が多い）</span></td></tr>
-              <tr><th>月額制の例②</th><td data-label="初期費用"><span class="mark">5,000円</span></td><td data-label="月額"><span class="mark">9,800円</span></td><td data-label="最低契約期間"><span class="mark">36か月</span></td><td data-label="3年で払う総額（サーバー・ドメイン実費を除く）"><span class="mark">357,800円</span></td><td data-label="3年後にやめたら"><span class="mark">規約による（解約後にサイトが残らない例が多い）</span></td></tr>
-              <tr><th>一般的な制作会社</th><td data-label="初期費用"><span class="mark">30〜100万円</span></td><td data-label="月額"><span class="mark">5,000〜30,000円</span></td><td data-label="最低契約期間"><span class="mark">—</span></td><td data-label="3年で払う総額（サーバー・ドメイン実費を除く）"><span class="mark">48〜208万円</span></td><td data-label="3年後にやめたら"><span class="mark">規約による（サイトが残る例が多い）</span></td></tr>
+              <tr><th>月額制の計算例①</th><td data-label="初期費用"><span class="mark">0円</span></td><td data-label="月額"><span class="mark">8,800円</span></td><td data-label="最低契約期間"><span class="mark">36か月</span></td><td data-label="3年で払う総額（サーバー・ドメイン実費を除く）"><span class="mark">316,800円</span></td><td data-label="3年後にやめたら"><span class="mark">契約条件によります（各社の規約をご確認ください）</span></td></tr>
+              <tr><th>月額制の計算例②</th><td data-label="初期費用"><span class="mark">5,000円</span></td><td data-label="月額"><span class="mark">9,800円</span></td><td data-label="最低契約期間"><span class="mark">36か月</span></td><td data-label="3年で払う総額（サーバー・ドメイン実費を除く）"><span class="mark">357,800円</span></td><td data-label="3年後にやめたら"><span class="mark">契約条件によります（各社の規約をご確認ください）</span></td></tr>
+              <tr><th>制作会社型の計算例</th><td data-label="初期費用"><span class="mark">30〜100万円</span></td><td data-label="月額"><span class="mark">5,000〜30,000円</span></td><td data-label="最低契約期間"><span class="mark">—</span></td><td data-label="3年で払う総額（サーバー・ドメイン実費を除く）"><span class="mark">48〜208万円</span></td><td data-label="3年後にやめたら"><span class="mark">契約条件によります（各社の規約をご確認ください）</span></td></tr>
               <tr class="is-suma"><th class="suma">スマ塾 Lite</th><td class="suma" data-label="初期費用"><span class="mark">55,000円</span><small>税込・5ページまで</small></td><td class="suma" data-label="月額"><span class="mark">月額保守費0円</span></td><td class="suma" data-label="最低契約期間"><span class="mark">なし</span></td><td class="suma" data-label="3年で払う総額（サーバー・ドメイン実費を除く）"><span class="mark">55,000円</span></td><td class="suma" data-label="3年後にやめたら"><span class="mark">サイトもドメインも塾のもの</span></td></tr>
             </tbody>
           </table>
         </div>
-        <p class="tbl-note rv">※例は、2026年9月時点で公開されている塾向けサービスの料金体系を参考にした計算例で、特定の会社を示すものではありません。契約条件は必ず各社にご確認ください。<br>※どのサービスでも、サーバー代・独自ドメイン代（月1,000〜1,300円程度）は塾さまのご負担として別途かかります。当社も同じです。</p>
+        <p class="tbl-note rv">※計算例は仮定の条件によるもので、特定の会社を示すものではありません。<br>※サーバー代・独自ドメイン代（月1,000〜1,300円程度）は当社の場合も別途かかります。他社についてはご確認ください。</p>
         <div class="prob-punch rv">
           <p>商談で1つだけ聞いてほしい質問があります。<br><em>「そのHPは、解約したら手元に残りますか？」</em></p>
         </div>
@@ -1077,7 +1084,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
             <li>アクセス解析（GA4）の設置と、初回のレポート</li>
             <li>2週間後に「何をどう変えたか」の1枚レポート</li>
           </ul>
-          <p class="p-note">当社が学習塾のホームページを診断した結果では、スマホ表示に課題があったのは18.3%（82塾中）でしたが、Googleマップは51.5%、AI検索での見つかりやすさは63.6%（いずれも33塾中）に課題がありました。「作る」段階は終わっていて、「見つけてもらう」段階が手つかずの塾が多いということです。<a class="inline-link" href="/report/juku-hp-shindan-matome.html">診断の集計を見る</a></p>
+          <p class="p-note">当社が学習塾のホームページを診断した結果では、スマホ表示に課題があったのは18.3%（82塾中）でした。Googleマップは51.5%、AI検索での見つかりやすさは63.6%（いずれも33塾中）でした。対象・時期の異なる当社診断の集計で、直接の比較ではありません。<a class="inline-link" href="/report/juku-hp-shindan-matome.html">診断の集計を見る</a></p>
           <a class="btn btn-ghost" href="#diagnosis">このプランで相談する</a>
         </div>
         <div class="plan reco rv rv-d1">
@@ -1227,7 +1234,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
         <h2 class="sec-title">ご相談の流れ</h2>
       </div>
       <div class="flow-list">
-        <div class="flow-item rv"><h3>無料HP診断</h3><p>フォームからご連絡ください。いまのホームページを1件ずつ確認し、伝わっている強みと「問い合わせにつながりやすい改善点3つ」を1枚のレポートにしてお送りします。</p><span class="dur">1営業日</span></div>
+        <div class="flow-item rv"><h3>無料HP診断</h3><p>フォームからご連絡ください。いまのホームページを1件ずつ確認し、伝わっている強みと「問い合わせにつながりやすい改善点3つ」を1枚のレポートにしてお送りします。</p><span class="dur">通常1営業日</span></div>
         <div class="flow-item rv rv-d1"><h3>15分の解説</h3><p>レポートの中身をオンラインで解説します。どこから手をつけると効きやすいかを一緒に決めます。相談だけでもOK、無理な営業はしません。</p><span class="dur">オンライン15分</span></div>
         <div class="flow-item rv rv-d2"><h3>ご提案・お見積り</h3><p>塾の状況に合わせて、HPの構成案と「マップ・AI検索・AI活用をどこまでやるか」をご提案。金額は料金表と単価表のとおりです。</p><span class="dur">2〜3日</span></div>
         <div class="flow-item rv rv-d3"><h3>着手日の確保</h3><p>制作枠を押さえ、着手日を決めます。着手日を決めたうえで、必要な素材がそろった日から10営業日（最短2週間）を目安に公開します。</p><span class="dur">制作枠を確保</span></div>
@@ -1450,7 +1457,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
       <span class="diag-badge rv">無料・オンライン完結</span>
       <p class="sec-label rv">FREE CHECK</p>
       <h2 class="rv">あなたの塾の&ldquo;保護者への伝わり方&rdquo;を、<br>無料でチェックします。</h2>
-      <p class="rv rv-d1">HPがある塾には、いま伝わっている強みと「問い合わせにつながりやすい改善点3つ」を1枚のレポートに。HPがない塾には、開設前に決めておきたい設計メモを。通常1営業日以内（申込が集中した場合は2営業日以内）にメールでお送りします（無理な営業はいたしません）。</p>
+      <p class="rv rv-d1">HPがある塾には、いま伝わっている強みと「問い合わせにつながりやすい改善点3つ」を1枚のレポートに。HPがない塾には、開設前に決めておきたい設計メモを。通常1営業日以内（申込が集中する時期は2営業日以内）にメールでお送りします（無理な営業はいたしません）。</p>
 
       <p class="diag-secondary rv rv-d1">診断で見る8つの視点は <a href="#shindan-points">こちら</a>。</p>
 
@@ -1552,7 +1559,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
         </form>
         <div class="form-done">
           <h3>受付ました。</h3>
-          <p class="form-done-report" id="diagDoneReport">通常1営業日以内（申込が集中した場合は2営業日以内）に、<br>ご入力のメールアドレスへレポートをお送りします。しばらくお待ちください。</p>
+          <p class="form-done-report" id="diagDoneReport">通常1営業日以内（申込が集中する時期は2営業日以内）に、<br>ご入力のメールアドレスへレポートをお送りします。しばらくお待ちください。</p>
           <div class="diag-book" id="diagConsultBook" hidden>
             <p class="diag-book-lead" id="diagBookLead">オンラインでの相談をご希望とのことですので、<br>ご都合のよい面談枠を下記からご予約いただけます。</p>
             <a class="btn" href="https://timerex.net/s/oda_d465_d8f9/441d345c" target="_blank" rel="noopener noreferrer" id="diagBookBtn">ご希望の面談枠を予約する</a>
