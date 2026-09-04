@@ -715,22 +715,29 @@ details .ans{color:var(--ink)}
   .hero-copy{padding:104px 24px 30px}
   .hero h1{font-size:clamp(1.75rem,8.6vw,2.2rem)}
   .hero-price{font-size:1.4rem;white-space:normal;margin-top:20px}
-  /* 390px：紺の面を詰めて、人物の頭が少しのスクロールで入るようにする。
-     面の中は「見出し2行＋根拠2行（Edu-NEWS・82塾）＋名前」に絞る */
-  .hero-visual{min-height:300px;background-position:0 26px;
+  /* ≤640px：文字と人物を重ねない。面の中は「ラベル→人物→見出し→根拠→名前」の
+     縦一列にして、文字はすべて全幅。人物は右寄せで、下端を全幅の罫線に接して立たせる。
+     面はその分だけ縦に伸びてよい（高さの上限は設けない） */
+  .hero-visual{display:flex;flex-direction:column;min-height:0;
+    padding:20px 24px;background-position:0 26px;
     background-image:repeating-linear-gradient(to bottom,
       rgba(255,255,255,.14) 0 1px, transparent 1px 28px)}
   .hero-visual::before{left:20px}
-  .hero-visual::after{height:64%;right:2%;bottom:10%}
-  /* 見出しは面の幅いっぱいに置いて2行を保つ。その下だけ左に寄せ、
-     空いた右下に人物を入れる（人物の頭を最初の画面に入れるための組み） */
-  .panel-in{padding:20px 0 20px 24px;max-width:none}
-  .panel-h{font-size:1.02rem;line-height:1.7;padding-right:24px}
-  .panel-list{margin-top:12px;max-width:236px}
+  .hero-visual::after{height:34%;right:2%;top:4%;bottom:auto}
+  /* 包みを外して、ラベル・人物・本文を面の直接の子として1列に並べる */
+  .panel-in{display:contents}
+  .panel-label{order:1}
+  .panel-body{order:3;margin:0 -24px;padding:20px 24px 0;
+    border-top:1px solid rgba(255,255,255,.16)}
+  .panel-h{font-size:1.02rem;line-height:1.7;padding-right:0}
+  .panel-list{margin-top:12px;max-width:none}
   .panel-list li{font-size:.74rem;line-height:1.65;padding:7px 0}
   .panel-list li.pl-career{display:none}   /* 390pxは根拠2行（Edu-NEWS・82塾）だけ */
-  .panel-name{margin-top:12px;font-size:.8rem;max-width:236px}
-  .panel-person{height:44%;right:-16px}
+  .panel-name{margin-top:12px;font-size:.8rem;max-width:none}
+  /* 人物はラベルの直後。幅は面の57〜60%・右寄せ、下端は本文側の罫線に接する。
+     左に空く余白には何も置かない。右へ少しはみ出させて四角い枠に見せない */
+  .panel-person{order:2;position:relative;z-index:1;display:block;
+    right:auto;bottom:auto;height:auto;width:65%;margin:10px -24px 0 auto}
   .say{padding:56px 0}
   .reading{padding:56px 0}
   .flow-list{grid-template-columns:1fr}
@@ -781,10 +788,9 @@ details .ans{color:var(--ink)}
   .plan-band-price{text-align:left}
 }
 
-/* 390pxより狭い端末。人物と根拠の列をもう一段ずつ詰めて重なりを0に保つ */
+/* 390pxより狭い端末。文字は全幅のまま、人物の比率だけ揃え直す */
 @media(max-width:389px){
-  .panel-list,.panel-name{max-width:210px}
-  .panel-person{height:40%}
+  .panel-person{width:68%}
 }
 </style>
 </head>
