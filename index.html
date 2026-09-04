@@ -321,9 +321,6 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 /* 左に細い縦罫1本（出席簿の綴じ側） */
 .hero-visual::before{content:"";position:absolute;left:36px;top:0;bottom:0;width:1px;
   background:rgba(255,255,255,.14)}
-/* 奥行き用の円（装飾はこれ1つだけ）。直径＝面の高さの70% */
-.hero-visual::after{content:"";position:absolute;right:6%;bottom:8%;
-  height:70%;aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.06)}
 
 /* 面の上の文言。人物と重ならない左側に組む。
    幅は「見出しが2行に収まる」ことから決めている（1行目15字・2行目16字ぶん） */
@@ -398,25 +395,28 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .services{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .svc-feature{
   display:grid;grid-template-columns:1.3fr .8fr;gap:48px;align-items:start;
-  background:linear-gradient(150deg,#EDF2FA,#F7F9FD);border:1px solid rgba(36,81,158,.3);border-radius:var(--r-md);
+  background:var(--white);border:1px solid var(--line);border-radius:var(--r-md);
   padding:40px 52px;position:relative;
 }
 .svc-idx{display:flex;align-items:baseline;gap:12px}
 .svc-idx .cat{font-size:.74rem;font-weight:700;letter-spacing:.16em;color:var(--ink-soft)}
 .svc-feature h3{font-family:var(--serif);font-weight:700;font-size:clamp(1.4rem,2.4vw,1.8rem);margin:16px 0 4px;letter-spacing:.04em}
 .svc-feature p.desc{margin:12px 0 20px;font-size:.95rem;color:var(--ink-soft)}
-.svc-ul{display:flex;flex-direction:column;gap:10px}
-.svc-ul li{font-size:.86rem;padding-left:24px;position:relative}
-.svc-ul li::before{content:"";position:absolute;left:2px;top:.62em;width:12px;height:6px;border-left:2px solid var(--blue);border-bottom:2px solid var(--blue);transform:rotate(-45deg)}
-.svc-price{border-left:1px solid rgba(36,81,158,.25);padding-left:40px;align-self:stretch;display:flex;flex-direction:column;justify-content:center}
+/* 箇条書きはアイコンを使わず、月額プラン（.rate-item）と同じ罫線行にそろえる */
+.svc-ul{border-bottom:1px solid var(--line)}
+.svc-ul li{padding:11px 2px;border-top:1px solid var(--line);text-wrap:pretty}
+.svc-price{border-left:1px solid var(--line);padding-left:40px;align-self:stretch;display:flex;flex-direction:column;justify-content:center}
 .svc-price .n{font-weight:900;font-size:clamp(2.4rem,4vw,3.2rem);color:var(--blue);line-height:1.2;letter-spacing:.01em}
 .svc-price .n small{font-size:.5em}
 .svc-price .u{font-size:.86rem;font-weight:700;margin-top:6px}
 .svc-price .note{font-size:.8rem;color:var(--ink-soft);margin-top:14px}
-.svc-rest{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:48px}
-.svc-item{border-top:1.5px solid var(--ink);padding-top:26px}
-.svc-item h3{font-family:var(--serif);font-weight:700;font-size:1.3rem;margin:14px 0 4px;letter-spacing:.04em}
-.svc-item p.desc{margin:10px 0 18px;font-size:.86rem;color:var(--ink-soft)}
+/* 3列の同形カードにしない（DESIGN.md 禁止）。左＝名前、右＝説明の罫線リスト1本にする */
+.svc-rest{margin-top:44px;border-bottom:1px solid var(--line)}
+.svc-item{display:grid;grid-template-columns:minmax(200px,250px) 1fr;gap:6px 44px;
+  align-items:start;padding:24px 2px;border-top:1px solid var(--line)}
+.svc-item h3{font-family:var(--serif);font-weight:700;font-size:1.3rem;margin:6px 0 0;letter-spacing:.04em}
+.svc-item p.desc{margin:0;text-wrap:pretty}
+.svc-do{margin-top:10px;font-size:.86rem;line-height:1.9;text-wrap:pretty}
 
 
 /* ---------- works ---------- */
@@ -535,7 +535,7 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 /* ---------- person ---------- */
 .person{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .person-grid{display:grid;grid-template-columns:.85fr 1.5fr;gap:56px;align-items:start}
-.person-photo{aspect-ratio:4/5;border-radius:var(--r-md);background:linear-gradient(160deg,#E9EDF4,#D8DEE9);position:relative;overflow:hidden;display:flex;align-items:flex-end;border:1px solid var(--line)}
+.person-photo{aspect-ratio:4/5;border-radius:var(--r-md);background:var(--paper);position:relative;overflow:hidden;display:flex;align-items:flex-end;border:1px solid var(--line)}
 .person-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
 .person-photo .ph-note{width:100%;padding:16px;font-size:.74rem;color:var(--ink-soft);text-align:center;letter-spacing:.1em;background:rgba(255,255,255,.7)}
 .person-body h3{font-family:var(--serif);font-weight:700;font-size:1.7rem;letter-spacing:.08em}
@@ -698,8 +698,8 @@ details .ans{color:var(--ink)}
   .panel-list{margin-top:14px}
   .panel-person{width:auto;height:88%;right:-16px}
   .svc-feature{grid-template-columns:1fr;gap:28px;padding:40px 32px}
-  .svc-price{border-left:none;border-top:1px dashed rgba(36,81,158,.3);padding-left:0;padding-top:24px}
-  .svc-rest{grid-template-columns:1fr;gap:36px;margin-top:44px}
+  .svc-price{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:24px}
+  .svc-item{grid-template-columns:1fr;gap:4px}
   .works-grid{grid-template-columns:1fr}
   .flow-list{grid-template-columns:1fr}
   .person-grid{grid-template-columns:1fr}
@@ -732,7 +732,6 @@ details .ans{color:var(--ink)}
     background-image:repeating-linear-gradient(to bottom,
       rgba(255,255,255,.14) 0 1px, transparent 1px 28px)}
   .hero-visual::before{left:20px}
-  .hero-visual::after{height:34%;right:2%;top:4%;bottom:auto}
   /* 包みを外して、ラベル・人物・本文を面の直接の子として1列に並べる */
   .panel-in{display:contents}
   .panel-label{order:1}
@@ -941,34 +940,34 @@ details .ans{color:var(--ink)}
       </div>
       <div class="svc-rest">
         <div class="svc-item rv">
-          <div class="svc-idx"><span class="cat">Googleマップ</span></div>
-          <h3>Googleマップ対策<span style="font-size:.6em;font-weight:600">（MEO）</span></h3>
-          <p class="desc">保護者の塾探しは「地域名＋塾」のマップ検索から始まります。近所の保護者に見つけてもらう土台を整えます。</p>
-          <ul class="svc-ul">
-            <li>Googleビジネスプロフィールの初期整備（写真・営業時間・カテゴリ）</li>
-            <li>ホームページと塾名・住所・電話番号を完全に<span class="nb">統一</span></li>
-            <li>口コミを集める導線づくりと、写真・投稿の運用サポート</li>
-          </ul>
+          <div>
+            <div class="svc-idx"><span class="cat">Googleマップ</span></div>
+            <h3>Googleマップ対策<span style="font-size:.6em;font-weight:600">（MEO）</span></h3>
+          </div>
+          <div>
+            <p class="desc">保護者の塾探しは「地域名＋塾」のマップ検索から始まります。近所の保護者に見つけてもらう土台を整えます。</p>
+            <p class="svc-do">Googleビジネスプロフィールの初期整備（写真・営業時間・カテゴリ）／ホームページと塾名・住所・電話番号を<span class="nb">完全に統一</span>／口コミを集める導線づくりと、<span class="nb">写真・投稿の運用サポート</span></p>
+          </div>
         </div>
         <div class="svc-item rv rv-d1">
-          <div class="svc-idx"><span class="cat">AI検索</span></div>
-          <h3>AI検索対策<span style="font-size:.6em;font-weight:600">（AIO）</span></h3>
-          <p class="desc">ChatGPTなどのAIに「◯◯市でおすすめの塾は？」と聞いて候補を絞る保護者が出てきました。AIが塾の情報を正しく読み取れる状態にしておきます。</p>
-          <ul class="svc-ul">
-            <li>料金・対象学年・住所・営業時間を、AIが読める文字情報として明示</li>
-            <li>よくある質問を、AIが答えの根拠に使える形で<span class="nb">掲載</span></li>
-            <li>AI検索での見え方を定期的に確認し、<span class="nb">古い情報や誤りが</span><span class="nb">出ていないかをチェック</span></li>
-          </ul>
+          <div>
+            <div class="svc-idx"><span class="cat">AI検索</span></div>
+            <h3>AI検索対策<span style="font-size:.6em;font-weight:600">（AIO）</span></h3>
+          </div>
+          <div>
+            <p class="desc">ChatGPTなどのAIに「◯◯市でおすすめの塾は？」と聞いて候補を絞る保護者が出てきました。AIが塾の情報を正しく読み取れる状態にしておきます。</p>
+            <p class="svc-do">料金・対象学年・住所・営業時間を、<span class="nb">AIが読める文字情報として明示</span>／よくある質問を、AIが答えの根拠に使える形で<span class="nb">掲載</span>／AI検索での見え方を定期的に確認し、<span class="nb">古い情報や誤りが出ていないかをチェック</span></p>
+          </div>
         </div>
         <div class="svc-item rv rv-d2">
-          <div class="svc-idx"><span class="cat">AI活用</span></div>
-          <h3>AI活用サポート</h3>
-          <p class="desc">「AIが気になるけど、何から始めれば…」に応えます。難しい設定は不要。塾の実務でそのまま使える形にしてお渡しします。</p>
-          <ul class="svc-ul">
-            <li>保護者向け連絡文面・講習告知文をAIで<span class="nb">時短作成</span></li>
-            <li>ブログ・お知らせの下書きを毎月のネタ付きで</li>
-            <li>面談準備・教材づくりに使える指示文（プロンプト）集</li>
-          </ul>
+          <div>
+            <div class="svc-idx"><span class="cat">AI活用</span></div>
+            <h3>AI活用サポート</h3>
+          </div>
+          <div>
+            <p class="desc">「AIが気になるけど、何から始めれば…」に応えます。難しい設定は不要。塾の実務でそのまま使える形にしてお渡しします。</p>
+            <p class="svc-do">保護者向け連絡文面・講習告知文をAIで<span class="nb">時短作成</span>／ブログ・お知らせの下書きを<span class="nb">毎月のネタ付きで</span>／面談準備・教材づくりに使える<span class="nb">指示文（プロンプト）集</span></p>
+          </div>
         </div>
       </div>
     </div>
