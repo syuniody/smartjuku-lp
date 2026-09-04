@@ -377,8 +377,6 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .check-src{font-size:.8rem;color:var(--ink-soft);margin-top:18px;line-height:1.9}
 
 /* ---------- 無料HP診断で見る8つの視点 ---------- */
-.points{border-top:1px solid var(--line)}
-.points-note{margin-top:22px;font-size:.86rem;color:var(--ink-soft);line-height:1.9}
 
 /* 本文内から記事への導線 */
 .inline-link{color:var(--blue);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;font-weight:700}
@@ -461,19 +459,19 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 /* ---------- price ---------- */
 .price{background:var(--paper);border-top:1px solid var(--line)}
 .price-foot{text-align:center;margin-top:24px;font-size:.8rem;color:var(--ink-soft)}
-/* 料金は縦積み（DESIGN.md）。Lite帯 → Standard帯 → 共通の面。左右比較表にしない。
-   帯はクリームの面（.price）に乗る白いカード。罫線リストの流儀は月額プランと同じ。
-   Lite の強調は既存の紺（.suma）を価格部分にだけ使う。Standard を「おすすめ」にしない。 */
+/* 料金は縦積み（DESIGN.md）。Lite段 → Standard段 → 共通の面。左右比較表にしない。
+   2つのプランは「1枚の紙の上下2段」。枠を2つ並べると、それだけで同形カードの反復になる。
+   価格の書式は両プランで完全に同じ（塗り・枠で片方を推さない）。 */
+.plan-bands{margin-top:24px;background:var(--white);border:1px solid var(--line);
+  border-radius:var(--r-md);overflow:hidden}
 .plan-band{display:grid;grid-template-columns:minmax(240px,290px) 1fr;gap:22px 44px;
-  background:var(--white);border:1.5px solid var(--ink);border-radius:var(--r-md);
-  padding:30px 32px;margin-top:24px}
+  padding:30px 32px}
+.plan-band+.plan-band{border-top:1px solid var(--line)}
 .plan-band-name{font-size:1.02rem;font-weight:900;letter-spacing:.02em;line-height:1.7}
 .plan-band-price{display:inline-block;margin-top:12px;font-weight:900;color:var(--blue);line-height:1.2}
 .plan-band-price .n{font-size:2.1rem;letter-spacing:.01em}
 .plan-band-price small{font-size:.45em;font-weight:900}
 .plan-band-price .tax{display:block;margin-top:4px;font-size:.8rem;font-weight:400;color:var(--ink-soft)}
-.plan-band-price.suma{background:var(--blue);color:#fff;border-radius:var(--r-sm);padding:10px 16px 12px}
-.plan-band-price.suma .tax{color:#fff}
 .plan-band-for{margin-top:12px;font-size:.86rem;color:var(--ink-soft);text-wrap:pretty}
 .plan-band-list{border-bottom:1px solid var(--line)}
 .plan-row{display:grid;grid-template-columns:7.5em 1fr;gap:4px 20px;align-items:baseline;
@@ -563,6 +561,10 @@ details .ans::before{content:"A";font-family:var(--serif);font-weight:700;color:
 .cta .sec-label::before{background:#fff}
 .cta h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.6rem,3.8vw,2.7rem);line-height:1.8;margin-bottom:22px;letter-spacing:.04em}
 .cta p{font-size:.95rem;opacity:.9;max-width:640px;margin:0 auto 42px}
+/* 旧「診断の中身」節をここに畳んだぶん（見出しの"8項目"が2回出ていた） */
+.cta p+.diag-items{margin-top:-28px}
+.cta .inline-link{color:#fff}
+.cta .inline-link:hover{background:var(--marker);color:var(--ink)}
 .cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 .cta .btn{background:#fff;color:var(--blue-deep);border-color:#fff;padding:18px 44px;font-size:1.02rem}
 .cta .btn:hover{background:var(--marker);border-color:var(--marker);color:var(--ink)}
@@ -649,7 +651,6 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
    個別ルールを上書きするため、基本スタイルの最後に置いている。 */
 .sec-lede,
 .check-item p,.check-foot p,
-.points-note,
 .svc-feature p.desc,.svc-ul li,.svc-item p.desc,
 .work .meta p,
 .switch-lead,
@@ -664,7 +665,6 @@ details .ans,
 
 .sec-lede,
 .check-item p,.check-foot p,
-.points-note,
 .svc-feature p.desc,.svc-ul li,.svc-item p.desc,
 .work .meta p,
 .switch-lead,
@@ -1049,15 +1049,17 @@ details .ans{color:var(--ink)}
   <section class="price" id="price">
     <div class="wrap">
       <div class="sec-head rv">
-        <h2 class="sec-title">料金</h2>
-        <p class="sec-lede"><b>どちらも同じHPができます。<span class="nb">違いは、</span><span class="nb">素材を出すか、</span><span class="nb">任せるか。</span></b><br>いまのHPがある塾は<span class="nb">Lite、</span>はじめて作る塾は<span class="nb">Standardが目安です。</span>表示は<b>税込</b>です。</p>
+        <p class="sec-label">料金</p>
+        <h2 class="sec-title">どちらも同じHPができます。<br><span class="nb">違いは、</span><span class="nb">素材を出すか、</span><span class="nb">任せるか。</span></h2>
+        <p class="sec-lede">いまのHPがある塾は<span class="nb">Lite、</span>はじめて作る塾は<span class="nb">Standardが目安です。</span>表示は<b>税込</b>です。</p>
       </div>
 
-      <!-- 料金は縦積み（DESIGN.md）。Lite帯 → Standard帯 → どちらにも含まれるものの面 -->
-      <div class="plan-band rv">
+      <!-- 料金は縦積み（DESIGN.md）。2プランは1枚の紙の上下2段 → どちらにも含まれるものの面 -->
+      <div class="plan-bands rv">
+        <div class="plan-band">
         <div class="plan-band-head">
           <h3 class="plan-band-name">スマ塾HP制作 Lite</h3>
-          <p class="plan-band-price suma"><span class="n">55,000</span><small>円</small><span class="tax">（税込）／<span class="nb">税別50,000円</span></span></p>
+          <p class="plan-band-price"><span class="n">55,000</span><small>円</small><span class="tax">（税込）／<span class="nb">税別50,000円</span></span></p>
           <p class="plan-band-for">素材をご用意いただける塾さま向け</p>
         </div>
         <dl class="plan-band-list">
@@ -1067,7 +1069,7 @@ details .ans{color:var(--ink)}
         </dl>
       </div>
 
-      <div class="plan-band rv">
+        <div class="plan-band">
         <div class="plan-band-head">
           <h3 class="plan-band-name">スマ塾HP制作 Standard</h3>
           <p class="plan-band-price"><span class="n">110,000</span><small>円</small><span class="tax">（税込）／<span class="nb">税別100,000円</span></span></p>
@@ -1078,6 +1080,7 @@ details .ans{color:var(--ink)}
           <div class="plan-row"><dt>写真</dt><dd>ご支給写真の選定と、不足分の<span class="nb">フリー素材の手配</span></dd></div>
           <div class="plan-row"><dt>旧サイトの<span class="nb">記事移行</span></dt><dd><span class="nb">本数の上限なし</span>（本数が多い場合は<span class="nb">公開日をご相談</span>）</dd></div>
         </dl>
+      </div>
       </div>
 
       <div class="plan-common rv">
@@ -1164,18 +1167,6 @@ details .ans{color:var(--ink)}
     </div>
   </section>
 
-  <!-- 診断で見る8項目（旧2×4グリッドは1行リストに） -->
-  <section class="points" id="shindan-points">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <p class="sec-label">診断の中身</p>
-        <h2 class="sec-title">無料HP診断で見る、8項目。</h2>
-        <p class="sec-lede">スマホ表示・ファーストビュー・問い合わせ導線・情報の鮮度・塾選びの必須情報・信頼要素・検索とAIでの見つかりやすさ・Googleマップ。<b>点数を出すことが目的ではなく、いちばん効く改善3つを選ぶための物差し</b>です。</p>
-      </div>
-      <p class="points-note rv"><a class="inline-link" href="/shindan/">診断の中身を詳しく見る</a></p>
-    </div>
-  </section>
-
   <!-- ============================================================
        無料HP診断フォーム（メインCV）
        ------------------------------------------------------------
@@ -1193,6 +1184,7 @@ details .ans{color:var(--ink)}
     <div class="wrap cta-in">
       <h2 class="rv">いまのホームページを、<br>8項目で無料診断します。</h2>
       <p class="rv rv-d1">HPがある塾には、いま伝わっている強みと「問い合わせにつながりやすい改善点3つ」を1枚のレポートに。HPがない塾には、開設前に決めておきたい設計メモを。通常1営業日以内（申込が集中する時期は2営業日以内）にメールでお送りします（無理な営業はいたしません）。</p>
+      <p class="rv rv-d1 diag-items">見るのは、スマホ表示・ファーストビュー・問い合わせ導線・情報の鮮度・塾選びの必須情報・信頼要素・検索とAIでの見つかりやすさ・Googleマップの8項目です。<b>点数を出すことが目的ではなく、いちばん効く改善3つを選ぶための物差し</b>です。<a class="inline-link" href="/shindan/">診断の中身を詳しく見る</a></p>
 
       <div class="form-wrap rv rv-d2" id="diagFormWrap">
         <!-- ★go-live時に差替え：Formspree送信先URL（診断専用エンドポイント） -->
