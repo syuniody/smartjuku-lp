@@ -7,7 +7,7 @@
 <meta name="googlebot" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
-<meta name="theme-color" content="#F7F4ED">
+<meta name="theme-color" content="#FFFFFF">
 <title>原田塾様 ホームページ診断レポート｜スマ塾</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -495,6 +495,28 @@ ul.bars{list-style:none;margin-top:1.4rem;padding:0;}
    カードを使わない設計なので、本文ブロックの影は一律で落とす（拡大表示 #lb は除く）。 */
 .pb,.gref,.br,.refex,.xnote,.item,.t3,.lead,.purpose,.whois,.cta,.scorebox,
 .pb-block,.pb-note,.samples,.sample,.shot,.shot img{box-shadow:none !important;}
+
+/* ---- 追修正3（2026-09-05）: 白ベース化＋級の記号を大きく ---- */
+/* 背景を白に。クリーム(#F7F4ED)は「うっすらした地」としてのみ残す。 */
+body{background:#FFFFFF;}
+.pb-note{background:#F7F4ED !important;border-color:rgba(34,37,43,.14) !important;}
+.bt{background:rgba(27,61,120,.15);}          /* 白地でバーの溝が沈まないよう少し濃く */
+.rule,hr{border-color:rgba(34,37,43,.18);}
+
+/* 級の記号と語をはっきり大きく（8項目の詳細） */
+.badge{font-size:1.65rem !important;line-height:1.15 !important;}
+.badge .gl{font-size:.82rem !important;line-height:1.5 !important;letter-spacing:.02em;
+  color:var(--ink-soft) !important;margin-top:.15rem;}
+.item-h{align-items:center;}
+
+/* 評価の一望の記号も合わせて大きく */
+.bg{font-size:1.4rem;line-height:1.1;}
+.bl{font-size:.92rem;}
+.bn{font-size:.82rem;}
+.bar{grid-template-columns:1.9rem 1fr 4.4rem 1.9rem;padding:.62rem 0;}
+
+/* 一望の凡例（◎＝強み …）も読める大きさに */
+h2.sec .en{font-size:.82rem;line-height:1.9;}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLH0DEFEX9"></script>
 </head>
