@@ -481,6 +481,13 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .plan.addon .p-price .n{font-size:clamp(1.7rem,2.8vw,2.1rem);color:var(--ink)}
 .plan.addon .quote{font-size:.82rem;color:var(--ink-soft);line-height:1.7;margin:22px 0 22px;padding:12px 16px;border-left:2px solid var(--blue);background:#fff}
 
+/* ---------- 乗り換え診断 ---------- */
+.switch{background:var(--white);border-top:1px solid var(--line)}
+.switch .syn-box h3{margin-bottom:24px}
+.switch-lead{font-size:.94rem;line-height:2.1;color:var(--ink-soft)}
+.switch-lead b{color:var(--ink)}
+.switch-link{margin-top:22px;font-size:.9rem}
+
 /* ---------- flow ---------- */
 .flow-list{counter-reset:fl;display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
 .flow-item{border-top:1.5px solid var(--ink);padding:24px 8px 0 0;position:relative}
@@ -561,6 +568,12 @@ details .ans::before{content:"A";font-family:var(--serif);font-weight:700;color:
 .diag-radio:has(input:checked){border-color:var(--blue);background:#EDF2FA}
 .diag-radio:has(input:checked) .diag-radio-txt{font-weight:700}
 .form-hint{font-size:.78rem;color:var(--ink-soft);margin-top:8px;line-height:1.8}
+/* 資格判定4問（任意）。選択肢が短いので横に流し、フォームが長くなりすぎないようにする */
+.form-quals{margin:26px 0 20px;padding-top:22px;border-top:1px solid var(--line)}
+.form-lead{font-size:.8rem;color:var(--ink-soft);line-height:1.8;margin-bottom:18px}
+.diag-radio-list--inline{flex-direction:row;flex-wrap:wrap;gap:8px}
+.diag-radio--sm{padding:9px 13px;font-size:.82rem;gap:8px}
+.diag-radio--sm input{width:15px;height:15px;margin-top:1px}
 .form-error{color:var(--akapen);font-size:.8rem;font-weight:700;margin-top:8px}
 .form-row input.is-error,.form-row textarea.is-error{border-color:var(--akapen)}
 .diag-secondary{margin-top:28px;font-size:.88rem;opacity:.94;text-align:center;line-height:2}
@@ -668,9 +681,9 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
             塾が自分で<span class="nb">育てられる</span><br>ホームページ。
           </h1>
           <p class="hero-sub">
-            管理画面から、料金表・講習案内・ブログ・合格実績をいつでも更新。<br>
-            スマホ対応・問い合わせフォーム付きで、最短2週間で公開します。<br>
-            発信やGoogleマップまで任せたい場合だけ、月額サポートを追加できます。
+            Googleマップにも、AI検索にも見つかるところまで整えて公開します。<br>
+            料金表・講習案内・合格実績は、塾長がスマホから自分で差し替えられます。<br>
+            最短2週間。作ったあとの月額サポートは、<span class="nb">必要なときだけ。</span>
           </p>
           <div class="hero-ctas">
             <a class="btn" href="#diagnosis">今のHPを無料診断してもらう</a>
@@ -735,7 +748,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
       <div class="sec-head rv">
         <p class="sec-label">スマ塾ができること</p>
         <h2 class="sec-title">塾の「Web担当」を、<br>まるごと引き受けます。</h2>
-        <p class="sec-lede">入口はホームページ制作。そこから必要に応じて、<b>Googleマップ対策・AI検索対策・AI活用まで</b>広げられます。全部まとめてでも、ひとつずつでも大丈夫です。</p>
+        <p class="sec-lede">保護者に見つけてもらう入口は、いまGoogleマップとAI検索です。<b>その2つに効く設定をホームページ制作に込みで行う</b>のがスマ塾の型です。ホームページだけでも、マップ・AI検索・AI活用までまとめてでも大丈夫です。</p>
       </div>
       <div class="svc-feature rv">
         <span class="tag">まずはここから</span>
@@ -1250,6 +1263,19 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
     </div>
   </section>
 
+  <!-- 乗り換え診断（いま月額を払っている塾への導線） -->
+  <section class="switch" id="switch">
+    <div class="wrap">
+      <div class="syn-box rv">
+        <h3>いま月額を払っている塾へ。<br><em>3年でいくら払うか、計算してみませんか。</em></h3>
+        <p class="switch-lead">月額8,800円なら、3年で316,800円。<b>そのお金は、やめたときに何も残しません。</b><br>
+          無料HP診断のフォームで「いまの月額」をお選びいただければ、3年でいくら払うことになるか／スマ塾に乗り換えた場合いくら残るかを、診断レポートに1ページ足してお送りします。<br>
+          契約が残っている場合の正しい乗り換えの順番（先に解約してはいけない理由、これまでの記事とドメインを失わない方法）も、あわせてご案内します。</p>
+        <p class="switch-link"><a class="inline-link" href="/guide/juku-hp-norikae.html">記事で先に読む：塾のホームページ乗り換えで、記事とドメインを失わないための正しい順番</a></p>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================================================
        無料HP診断フォーム（メインCV）
        ------------------------------------------------------------
@@ -1280,6 +1306,8 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
         <form id="diagnosisForm" action="https://formspree.io/f/mlgqoqaz" method="POST" novalidate>
           <input type="hidden" name="_subject" value="【無料HP診断】お申込み">
           <input type="hidden" name="form_name" value="スマ塾_無料HP診断">
+          <!-- 資格判定4問から算出（送信時にJSが入れる）。GA4の lead_quality と同じ値 -->
+          <input type="hidden" name="lead_quality" id="d-lead-quality" value="">
           <!-- 悪用対策: honeypot（人間は触れない。ボットが値を入れたら Formspree/GAS 側で破棄） -->
           <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true"
                  style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none">
@@ -1303,6 +1331,46 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
             <label for="d-url">HPのURL<span class="req" data-url-required>必須</span></label>
             <input type="url" id="d-url" name="hp_url" required inputmode="url" placeholder="例：https://www.example.com">
             <p class="form-hint" data-url-hint hidden>HPをまだお持ちでない場合は空欄でOKです。オンラインでHP開設のご相談を承ります。あわせて開設前に決めておきたいことをまとめた「開設メモ」もメールでお送りします。</p>
+          </div>
+          <div class="form-quals">
+            <p class="form-lead">ここから4問は任意です。分かる範囲でお選びいただくと、いま払っている費用が3年でいくらになるかを、診断レポートに1ページ足してお送りします。</p>
+            <div class="form-row form-row--radio">
+              <label>いま、ホームページの制作・管理をお願いしている会社はありますか？<span class="opt">任意</span></label>
+              <div class="diag-radio-list diag-radio-list--inline">
+                <label class="diag-radio diag-radio--sm"><input type="radio" name="has_vendor" value="ある（月額を払っている）"><span class="diag-radio-txt">ある（月額を払っている）</span></label>
+                <label class="diag-radio diag-radio--sm"><input type="radio" name="has_vendor" value="ある（買い切りで作ってもらった）"><span class="diag-radio-txt">ある（買い切りで作ってもらった）</span></label>
+                <label class="diag-radio diag-radio--sm"><input type="radio" name="has_vendor" value="ない・自分で作った"><span class="diag-radio-txt">ない・自分で作った</span></label>
+                <label class="diag-radio diag-radio--sm"><input type="radio" name="has_vendor" value="わからない" checked><span class="diag-radio-txt">わからない</span></label>
+              </div>
+            </div>
+            <div class="form-row form-row--radio">
+              <label>ホームページに毎月かかっている費用<span class="opt">任意</span></label>
+              <div class="diag-radio-list diag-radio-list--inline">
+                <label class="diag-radio diag-radio--sm"><input type="radio" name="monthly_cost" value="0円"><span class="diag-radio-txt">0円</span></label>
+                <label class="diag-radio diag-radio--sm"><input type="radio" name="monthly_cost" value="〜5,000円"><span class="diag-radio-txt">〜5,000円</span></label>
+                <label class="diag-radio diag-radio--sm"><input type="radio" name="monthly_cost" value="5,001〜10,000円"><span class="diag-radio-txt">5,001〜10,000円</span></label>
+                <label class="diag-radio diag-radio--sm"><input type="radio" name="monthly_cost" value="10,001円以上"><span class="diag-radio-txt">10,001円以上</span></label>
+                <label class="diag-radio diag-radio--sm"><input type="radio" name="monthly_cost" value="わからない" checked><span class="diag-radio-txt">わからない</span></label>
+              </div>
+            </div>
+            <div class="form-row form-row--radio">
+              <label>いまの契約は、いつから見直せますか？<span class="opt">任意</span></label>
+              <div class="diag-radio-list diag-radio-list--inline">
+                <label class="diag-radio diag-radio--sm"><input type="radio" name="switch_timing" value="いつでも"><span class="diag-radio-txt">いつでも</span></label>
+                <label class="diag-radio diag-radio--sm"><input type="radio" name="switch_timing" value="半年以内"><span class="diag-radio-txt">半年以内</span></label>
+                <label class="diag-radio diag-radio--sm"><input type="radio" name="switch_timing" value="1年以上先"><span class="diag-radio-txt">1年以上先</span></label>
+                <label class="diag-radio diag-radio--sm"><input type="radio" name="switch_timing" value="契約書を確認していない・わからない" checked><span class="diag-radio-txt">契約書を確認していない</span></label>
+              </div>
+            </div>
+            <div class="form-row form-row--radio">
+              <label>ホームページの費用は、どなたが決められますか？<span class="opt">任意</span></label>
+              <div class="diag-radio-list diag-radio-list--inline">
+                <label class="diag-radio diag-radio--sm"><input type="radio" name="decision_maker" value="自分で決められる"><span class="diag-radio-txt">自分で決められる</span></label>
+                <label class="diag-radio diag-radio--sm"><input type="radio" name="decision_maker" value="家族・共同経営者と相談"><span class="diag-radio-txt">家族・共同経営者と相談</span></label>
+                <label class="diag-radio diag-radio--sm"><input type="radio" name="decision_maker" value="本部・法人の決裁が必要"><span class="diag-radio-txt">本部・法人の決裁が必要</span></label>
+                <label class="diag-radio diag-radio--sm"><input type="radio" name="decision_maker" value="わからない" checked><span class="diag-radio-txt">わからない</span></label>
+              </div>
+            </div>
           </div>
           <div class="form-row">
             <label for="d-message">相談したいこと<span class="opt">任意</span></label>
@@ -1334,7 +1402,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
         </div>
       </div>
 
-      <p class="diag-secondary rv">すでに制作のご相談内容が決まっている方は、メール（<a href="mailto:oda@syuni.jp">oda@syuni.jp</a>）・お電話でも承ります。</p>
+      <p class="diag-secondary rv">すでにご相談内容が決まっている方は、<a href="https://timerex.net/s/oda_d465_d8f9/441d345c" target="_blank" rel="noopener noreferrer">オンライン面談枠をそのままご予約</a>いただけます。メール（<a href="mailto:oda@syuni.jp">oda@syuni.jp</a>）・お電話でも承ります。</p>
     </div>
   </section>
 
@@ -1606,6 +1674,23 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
       if(typeof gtag==='function'){gtag('event','form_submit_attempt',{form_id:'diagnosisForm',form_name:'スマ塾_無料HP診断'});}
 
       var wasHpNone=isHpNoneSelected();
+
+      // 資格判定4問（任意）から見込みの質を出す。GA4・Formspree・シートで同じ値を見る
+      function pickAnswer(name){
+        var el=dForm.querySelector('input[name="'+name+'"]:checked');
+        return el?el.value:'';
+      }
+      var qVendor=pickAnswer('has_vendor'),qCost=pickAnswer('monthly_cost'),
+          qTiming=pickAnswer('switch_timing'),qDecide=pickAnswer('decision_maker');
+      var leadScore=0;
+      if(qVendor==='ある（月額を払っている）')leadScore++;
+      if(qCost==='5,001〜10,000円'||qCost==='10,001円以上')leadScore++;
+      if(qTiming==='いつでも'||qTiming==='半年以内')leadScore++;
+      if(qDecide==='自分で決められる')leadScore++;
+      var leadQuality=leadScore>=3?'A':(leadScore>=1?'B':'C');
+      var lqInput=document.getElementById('d-lead-quality');
+      if(lqInput)lqInput.value=leadQuality+'（'+leadScore+'/4）';
+
       if(dBtn){dBtn.disabled=true;dBtn.textContent='送信中…';}
       fetch(dForm.action,{
         method:'POST',
@@ -1631,7 +1716,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
               consultBook.hidden=true;
             }
           }
-          if(typeof gtag==='function'){gtag('event','generate_lead',{currency:'JPY',value:50000,form_id:'diagnosisForm',form_name:'スマ塾_無料HP診断'});}
+          if(typeof gtag==='function'){gtag('event','generate_lead',{currency:'JPY',value:50000,form_id:'diagnosisForm',form_name:'スマ塾_無料HP診断',lead_quality:leadQuality,lead_score:leadScore});}
           if(typeof fbq==='function'){fbq('track','Lead',{content_name:'スマ塾_無料HP診断',content_category:'lead_generation',value:50000,currency:'JPY'});}
           dWrap.scrollIntoView({behavior:'smooth',block:'center'});
         }else{
