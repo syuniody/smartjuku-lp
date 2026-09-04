@@ -896,6 +896,12 @@ if(!SJ_PREVIEW){
   syncToc();
   window.addEventListener('scroll', syncToc, { passive: true });
   window.addEventListener('resize', syncToc);
+  /* 保険：スクロールイベントが取れない環境向けに監視も併用する */
+  if (cover && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function(es){
+      document.body.classList.toggle('toc-hide', es[0].isIntersecting);
+    }, { threshold: 0 }).observe(cover);
+  }
 
   /* 現在地のハイライト */
   var links = [].slice.call(ol.querySelectorAll('a'));
