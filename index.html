@@ -521,6 +521,10 @@ details .ans::before{content:"A";font-family:var(--serif);font-weight:700;color:
 .form-check a{color:var(--blue);text-decoration:underline}
 .form-check .opt{color:var(--ink-soft);font-size:.72rem;font-weight:400;margin-left:8px}
 .form-wrap .btn{width:100%;padding:17px;font-size:1rem}
+/* .cta の白ボタン指定が白いフォームカードに乗ると文字だけに見えるため、主ボタン（紺地＋白文字）に戻す */
+.cta .form-wrap .btn{background:var(--blue);color:#fff;border-color:var(--blue)}
+.cta .form-wrap .btn:hover{background:var(--blue-deep);border-color:var(--blue-deep);color:#fff}
+.cta .form-wrap .btn:focus-visible{box-shadow:var(--sh-focus)}
 .form-note{font-size:.78rem;color:var(--ink-soft);text-align:center;margin-top:16px;line-height:1.9}
 .form-done{display:none;text-align:center;padding:30px 10px}
 .form-done h3{font-family:var(--serif);font-weight:700;font-size:1.4rem;margin-bottom:12px;color:var(--blue-deep)}
