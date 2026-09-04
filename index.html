@@ -1332,6 +1332,24 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
     els.forEach(function(el){el.classList.add('on')});
   }
 
+  // 折りたたみへのアンカー（#menu の単価表など）は、開いた状態で見せる
+  function openDetailsAt(hash){
+    if(!hash||hash.length<2)return;
+    var t;try{t=document.querySelector(hash)}catch(e){return}
+    if(!t)return;
+    if(t.tagName==='DETAILS')t.open=true;
+    // 直下の details だけ開く（#faq のように孫まで開くと折りたたみの意味がなくなる）
+    Array.prototype.forEach.call(t.querySelectorAll(':scope > details'),function(d){d.open=true});
+    var p=t.parentElement?t.parentElement.closest('details'):null;
+    while(p){p.open=true;p=p.parentElement?p.parentElement.closest('details'):null}
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target&&e.target.closest?e.target.closest('a[href^="#"]'):null;
+    if(a)openDetailsAt(a.getAttribute('href'));
+  });
+  window.addEventListener('hashchange',function(){openDetailsAt(location.hash)});
+  if(location.hash)openDetailsAt(location.hash);
+
   // mobile sticky CTA：ヒーローを過ぎたら表示、CTAセクションで非表示
   var mCta=document.getElementById('mCta');
   var hero=document.querySelector('.hero');
