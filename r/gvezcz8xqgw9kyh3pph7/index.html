@@ -439,11 +439,23 @@ footer.rfoot .note{margin-top:.7rem; padding-top:.7rem; border-top:1px dotted va
 </div>
 <div id="lb"><button class="close" type="button" aria-label="閉じる">&times;</button><img id="lbimg" alt=""></div>
 <script>
-/* 自己プレビュー除外：?preview=1 が付いていれば計測を一切行わない（社内確認用） */
+/* 自己プレビュー除外
+   ?preview=1 … その場で計測せず、さらに「この端末は社内」と記憶する（localStorage）
+   以後この端末では、素のURLを開いても計測しない（送信前の内容確認で計測が汚れるのを防ぐ）
+   ?preview=0 … 記憶を解除する（通常の閲覧者として計測する状態に戻す） */
 var SJ_PREVIEW = (function(){
   try{
     var q = (location.search||'') + (location.hash||'');
-    return /[?&#]preview=1\b/.test(q);
+    if(/[?&#]preview=0\b/.test(q)){
+      try{ localStorage.removeItem('sj_internal'); }catch(e){}
+      return false;
+    }
+    if(/[?&#]preview=1\b/.test(q)){
+      try{ localStorage.setItem('sj_internal','1'); }catch(e){}
+      return true;
+    }
+    try{ if(localStorage.getItem('sj_internal')==='1') return true; }catch(e){}
+    return false;
   }catch(e){ return false; }
 })();
 
