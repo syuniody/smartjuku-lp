@@ -414,12 +414,15 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
   align-items:start;padding:24px 2px;border-top:1px solid var(--line)}
 .svc-item h3{font-family:var(--serif);font-weight:700;font-size:1.3rem;margin:0;letter-spacing:.04em}
 .svc-item p.desc{margin:0;text-wrap:pretty}
-.svc-do{margin-top:10px;font-size:.86rem;line-height:1.9;text-wrap:pretty}
+.svc-do{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);
+  font-size:.86rem;line-height:1.9;text-wrap:pretty}
 
 
 /* ---------- works ---------- */
 .works{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+/* 実績と誤読されないよう、架空のサンプルであることを画面の外にも明記する */
+.works-note{margin-top:22px;font-size:.8rem;color:var(--ink-soft);text-align:center}
 .work{border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:var(--white);transition:box-shadow .3s,transform .3s;display:flex;flex-direction:column}
 .work:hover{box-shadow:var(--sh-1);transform:translateY(-3px)}
 .work .browser{background:#E7E3D9;padding:11px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--line)}
@@ -674,7 +677,7 @@ details .ans,
 details .ans{color:var(--ink)}
 
 /* 注記・キャプションは従来どおり補助色・小さめ */
-.check-src,.tbl-note,.rate-note,.price-foot,.form-note,.form-hint,.form-lead,
+.check-src,.tbl-note,.rate-note,.price-foot,.works-note,.form-note,.form-hint,.form-lead,
 .svc-price .note,.diag-book-memo,
 .form-row .opt,.form-check .opt,.consult-note{color:var(--ink-soft)}
 
@@ -1007,6 +1010,7 @@ details .ans{color:var(--ink)}
           </div>
         </div>
       </div>
+      <p class="works-note rv">※3枚とも架空の塾によるデザインサンプルです。実際の納品事例ではありません。</p>
     </div>
   </section>
 
