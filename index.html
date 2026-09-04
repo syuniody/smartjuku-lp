@@ -249,7 +249,7 @@ section{padding:110px 0}
    他の場所で赤ペンを装飾として使わないこと。 */
 .maru{position:relative;display:inline-block;white-space:nowrap;padding:0 .22em}
 .maru-ink{
-  position:absolute;left:0;top:50%;width:100%;height:auto;aspect-ratio:200/74;
+  position:absolute;left:-.6em;top:50%;width:calc(100% + 1.2em);height:auto;aspect-ratio:280/74;
   transform:translateY(-50%);overflow:visible;pointer-events:none;
 }
 /* 等倍スケール（preserveAspectRatio を既定のまま）にしないと pathLength の
@@ -314,6 +314,25 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .prob-punch{margin-top:64px;text-align:center}
 .prob-punch p{font-family:var(--serif);font-weight:700;font-size:clamp(1.3rem,3vw,2rem);line-height:2}
 .prob-punch em{font-style:normal;background:linear-gradient(transparent 60%,var(--marker) 60%)}
+
+/* ---------- セルフチェック（罫線リスト。カードを反復しない） ---------- */
+.selfcheck{background:var(--white);border-top:1px solid var(--line)}
+.check-list{border-bottom:1px solid var(--line)}
+.check-item{display:flex;gap:22px;padding:32px 4px;border-top:1px solid var(--line)}
+.check-item .q{font-family:var(--serif);font-weight:700;font-size:1.3rem;color:var(--blue);line-height:1.8;flex-shrink:0}
+.check-item h3{font-size:1.06rem;font-weight:900;line-height:1.8;margin-bottom:10px}
+.check-item p{font-size:.88rem;color:var(--ink-soft);line-height:1.95}
+.check-item .how,.check-item .dat{font-size:.84rem;margin-top:6px}
+.check-item .how b{color:var(--ink);font-weight:900;margin-right:10px}
+.check-item .dat b{color:var(--blue);font-weight:900}
+.check-foot{margin-top:44px;text-align:center}
+.check-foot p{font-size:.98rem;line-height:2;margin-bottom:24px}
+.check-src{font-size:.8rem;color:var(--ink-soft);margin-top:24px;line-height:1.9}
+
+/* ---------- 無料HP診断で見る8つの視点 ---------- */
+.points{border-top:1px solid var(--line)}
+.points-flow{margin-top:64px;background:var(--white)}
+.points-note{margin-top:30px;font-size:.88rem;color:var(--ink-soft);line-height:1.9}
 
 /* ---------- 代表からひとこと ---------- */
 .say{padding:96px 0;border-top:1px solid var(--line)}
@@ -737,7 +756,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
         <div class="hero-copy">
           <p class="hero-lead">個人塾・地域密着塾専門</p>
           <h1>
-            <span class="h1-price">55,000円<small>（税込）</small>・<span class="maru">月額保守費0円<svg class="maru-ink" viewBox="0 0 200 74" aria-hidden="true" focusable="false"><path pathLength="100" d="M186 24 C 176 10, 133 3, 96 5 C 46 7, 12 20, 13 38 C 14 56, 62 66, 108 65 C 158 64, 190 51, 191 33 C 192 23, 183 16, 171 11"/></svg></span>。</span>
+            <span class="h1-price">55,000円<small>（税込）</small>・<span class="maru">月額保守費0円<svg class="maru-ink" viewBox="0 0 280 74" aria-hidden="true" focusable="false"><path pathLength="100" d="M260 24 C 246 10, 186 3, 134 5 C 64 7, 17 20, 18 38 C 20 56, 87 66, 151 65 C 221 64, 266 51, 267 33 C 269 23, 256 16, 239 11"/></svg></span>。</span>
             塾が自分で<span class="nb">育てられる</span><br>ホームページ。
           </h1>
           <p class="hero-sub">
@@ -787,6 +806,51 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
       </div>
       <div class="prob-punch rv">
         <p>その悩み、原因はバラバラに見えて、<br>じつは<em>「塾にWeb担当がいない」</em>という一点です。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELF CHECK -->
+  <section class="selfcheck" id="selfcheck">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="sec-label">1分でできる確認</p>
+        <h2 class="sec-title">保護者はいま、こう探しています。</h2>
+        <p class="sec-lede">塾探しの入口は、ホームページより先に<b>Googleマップ</b>と<b>AI検索</b>に移りました。次の3つを、いまのご自身の塾で確かめてみてください。<b>どれも1分以内で終わります。</b></p>
+      </div>
+      <div class="check-list">
+        <div class="check-item rv">
+          <span class="q">一</span>
+          <div>
+            <h3>Googleで塾名を検索したとき、マップに写真・営業時間・口コミへの返信は出ますか？</h3>
+            <p class="why">マップの情報が空だと、保護者は電話する前に候補から外します。</p>
+            <p class="how"><b>確かめ方</b>スマホで塾名を検索し、右または上に出る地図の枠を見る（30秒）。</p>
+            <p class="dat">当社の診断では、Googleマップに課題があった塾は<b>51.5%</b>（33塾中）。</p>
+          </div>
+        </div>
+        <div class="check-item rv">
+          <span class="q">二</span>
+          <div>
+            <h3>ChatGPTなどのAIに「◯◯市 塾 おすすめ」と聞いたとき、貴塾は候補に出ますか？</h3>
+            <p class="why">AIは、文字として書かれた料金・住所・営業時間しか読めません。画像の中の文字は届きません。</p>
+            <p class="how"><b>確かめ方</b>AIに市区名＋塾と聞いて、出てきた候補と、その理由に書かれた内容を読む（1分）。</p>
+            <p class="dat">当社の診断では、検索とAIでの見つかりやすさに課題があった塾は<b>63.6%</b>（33塾中）。</p>
+          </div>
+        </div>
+        <div class="check-item rv">
+          <span class="q">三</span>
+          <div>
+            <h3>スマホでホームページを開いて、料金・対象学年・今年の講習案内が3秒で見えますか？</h3>
+            <p class="why">更新が止まったホームページは、「今もやっているのか」という不安を生みます。</p>
+            <p class="how"><b>確かめ方</b>自分のスマホで開き、上から3画面ぶんだけ見る（30秒）。</p>
+            <p class="dat">当社の診断では、情報の鮮度に課題があった塾は<b>40.2%</b>、信頼要素（塾長の顔・実名・実績）に課題があった塾は<b>35.4%</b>（いずれも82塾中）。</p>
+          </div>
+        </div>
+      </div>
+      <div class="check-foot rv">
+        <p>3つとも自信を持って「はい」と言えない場合は、<br>無料HP診断で8項目まとめてお調べします。</p>
+        <a class="btn" href="#diagnosis">無料でHP診断を受ける</a>
+        <p class="check-src">※数値は当社が学習塾のホームページを1件ずつ診断した集計です。母数は項目ごとに異なります（8月に診断項目を追加したため）。<a class="inline-link" href="/report/juku-hp-shindan-matome.html">診断の集計を見る</a></p>
       </div>
     </div>
   </section>
@@ -1363,6 +1427,36 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
          2) Formspree の Webhook 送信先を「＜GASの/exec＞?token=＜SHARED_SECRET＞」に設定
             （シート記録は Formspree→Webhook→GAS が担う。ブラウザ直書きはしない）
        ============================================================ -->
+  <!-- 無料HP診断で見る8つの視点（診断レポートの項目名・順序と同じ） -->
+  <section class="points" id="shindan-points">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="sec-label">診断の中身</p>
+        <h2 class="sec-title">無料HP診断で見る、8つの視点。</h2>
+        <p class="sec-lede">保護者が塾を選ぶ動線（検索する→見る→比べる→問い合わせる）に沿って、8つの視点で確認します。<b>点数を出すことが目的ではなく、いちばん効く改善3つを選ぶための物差し</b>です。診断レポートも、この8項目と同じ順番で並んでいます。</p>
+      </div>
+      <div class="prob-list">
+        <div class="prob-item rv"><span class="no">1</span><div><h3>スマホ表示</h3><p>保護者の7〜8割はスマホで見ます。文字の見切れ、横スクロール、タップのしやすさを確認します。</p></div></div>
+        <div class="prob-item rv"><span class="no">2</span><div><h3>ファーストビュー</h3><p>最初の画面で「どこの、誰向けの、何の塾か」が3秒で読めるかを確認します。</p></div></div>
+        <div class="prob-item rv"><span class="no">3</span><div><h3>問い合わせ導線</h3><p>電話・LINE・フォームへ何タップで着くか、電話番号がスマホでタップ発信できるかを確認します。</p></div></div>
+        <div class="prob-item rv"><span class="no">4</span><div><h3>情報の鮮度</h3><p>古い年度の講習案内が残っていないか、更新の痕跡があるかを確認します。</p></div></div>
+        <div class="prob-item rv"><span class="no">5</span><div><h3>塾選びの必須情報</h3><p>料金・対象学年・時間割・合格実績・生徒や保護者の声が、文字で載っているかを確認します。</p></div></div>
+        <div class="prob-item rv"><span class="no">6</span><div><h3>信頼要素</h3><p>塾長・講師の顔と実名、想いを伝えるページ、教室の写真があるかを確認します。</p></div></div>
+        <div class="prob-item rv"><span class="no">7</span><div><h3>検索とAIでの見つかりやすさ</h3><p>タイトルタグ・SSL・独自ドメイン・構造化データ・画像の代替テキストなど、機械が読める形になっているかを確認します。</p></div></div>
+        <div class="prob-item rv"><span class="no">8</span><div><h3>Googleマップ</h3><p>診断日に実際に検索し、写真の枚数・営業時間・口コミへの返信・最新の投稿を確認します。</p></div></div>
+      </div>
+      <div class="syn-box rv points-flow">
+        <h3>お申し込みのあとは、こう進みます。</h3>
+        <div class="syn-flow">
+          <div class="syn-step"><span class="k">①</span><h4>お申し込み</h4><p>塾名・メールアドレス・ホームページのURLをご記入ください。1分で終わります。</p></div>
+          <div class="syn-step"><span class="k">②</span><h4>1営業日以内にレポート</h4><p>スマホで読めるWeb版のレポートをメールでお送りします（申込が集中した場合は2営業日以内）。</p></div>
+          <div class="syn-step"><span class="k">③</span><h4>ご希望の方だけ15分の解説</h4><p>どこから手をつけると効きやすいかを、オンラインで解説します。ご希望がなければ、お送りして終わりです。</p></div>
+        </div>
+        <p class="points-note">こちらからお電話をかけることはしません。売り込みもしません。<a class="inline-link" href="/shindan/">無料HP診断のくわしい説明を見る</a></p>
+      </div>
+    </div>
+  </section>
+
   <!-- 旧「無料相談」フォーム(#contact)は無料診断フォーム(#diagnosis)へ集約し撤去（2026-07 単一フォーム化）。
        #contact への旧リンク切れ防止用アンカー。記事CTA等がフォーム先頭に着地するよう、セクションの直前に置く -->
   <div id="contact" aria-hidden="true" style="position:relative;top:-80px;height:0;overflow:hidden"></div>
@@ -1501,6 +1595,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
         <a href="#person">運営者</a>
         <a href="#faq">よくある質問</a>
         <a href="#diagnosis">無料相談・HP診断</a>
+        <a href="/shindan/">無料HP診断について</a>
         <a href="/case/">制作事例</a>
         <a href="/guide/">塾HPの基礎知識</a>
         <a href="/report/">調査レポート</a>
