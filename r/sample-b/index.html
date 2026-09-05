@@ -1,0 +1,210 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>原田塾様 ホームページ診断レポート｜スマ塾（デザイン案B）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F4ED; --ink:#22252B; --soft:#5A5F68; --navy:#1B3D78;
+  --rule:rgba(34,37,43,.15); --rule-strong:rgba(34,37,43,.32);
+  --serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:2.0;-webkit-text-size-adjust:100%;font-feature-settings:"palt";}
+.wrap{max-width:640px;margin:0 auto;padding:clamp(2rem,7vw,4rem) clamp(1.25rem,6vw,2.5rem) 5rem;}
+a{color:var(--navy);}
+hr.rule{border:0;border-top:1px solid var(--rule);margin:3.2rem 0;}
+hr.rule.tight{margin:1.6rem 0;}
+
+/* ---- 扉 ---- */
+.brand{font-size:.66rem;letter-spacing:.3em;color:var(--soft);}
+.kind{font-family:var(--serif);font-size:.86rem;letter-spacing:.22em;color:var(--navy);margin-top:1.6rem;}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.6rem,6.2vw,2.1rem);
+  line-height:1.45;margin:.5rem 0 0;letter-spacing:.04em;}
+h1 small{display:block;font-family:var(--sans);font-weight:400;font-size:.8rem;
+  letter-spacing:.16em;color:var(--soft);margin-top:.9rem;}
+.meta{font-size:.76rem;line-height:1.95;color:var(--soft);margin-top:1.5rem;}
+.meta a{word-break:break-all;}
+
+/* ---- 冒頭ことわり（箱にしない） ---- */
+.note{font-size:.8rem;line-height:2.05;color:var(--soft);margin-top:2.4rem;}
+.note p{margin:0 0 .7rem;}
+.note p:last-child{margin:0;}
+
+/* ---- スコア ---- */
+.score{display:flex;align-items:baseline;justify-content:space-between;
+  gap:1rem;padding:1.15rem 0;border-top:1px solid var(--rule-strong);border-bottom:1px solid var(--rule-strong);margin-top:2.4rem;}
+.score .k{font-size:.7rem;letter-spacing:.22em;color:var(--soft);}
+.score .v{font-family:var(--serif);font-size:2.5rem;line-height:1;color:var(--navy);letter-spacing:.02em;}
+.score .v i{font-style:normal;font-size:.8rem;color:var(--soft);letter-spacing:.06em;margin-left:.15rem;}
+
+/* ---- 節 ---- */
+h2{font-family:var(--serif);font-weight:600;font-size:1.16rem;letter-spacing:.07em;
+  margin:0 0 .4rem;}
+h2 + .sub{font-size:.73rem;letter-spacing:.1em;color:var(--soft);margin:0 0 1.6rem;}
+h2.solo{margin-bottom:1.6rem;}
+.lead{font-size:.98rem;line-height:2.15;margin:0;}
+
+/* ---- 良い点：罫だけ ---- */
+ul.good{list-style:none;margin:0;padding:0;}
+ul.good li{padding:1.15rem 0;border-top:1px solid var(--rule);font-size:.92rem;line-height:2.05;}
+ul.good li:first-child{border-top:0;padding-top:0;}
+
+/* ---- 8項目：カード廃止・罫と級で組む ---- */
+ul.items{list-style:none;margin:0;padding:0;}
+.it{display:grid;grid-template-columns:2.6rem 1fr auto;column-gap:.6rem;
+  align-items:start;padding:1.2rem 0;border-top:1px solid var(--rule);}
+.it-n,.it-name{line-height:1.5;}
+.it:first-child{border-top:0;padding-top:0;}
+.it-n{font-family:var(--serif);font-size:.82rem;color:var(--soft);letter-spacing:.06em;}
+.it-name{font-family:var(--serif);font-size:1.02rem;letter-spacing:.04em;}
+.it-g{font-family:var(--serif);font-size:1.1rem;color:var(--navy);white-space:nowrap;
+  text-align:right;line-height:1.35;}
+.it-g small{display:block;font-family:var(--sans);font-size:.6rem;letter-spacing:.06em;
+  color:var(--soft);line-height:1.4;}
+.it-r{grid-column:2 / -1;margin:.3rem 0 0;font-size:.88rem;line-height:1.95;color:var(--soft);}
+
+/* ---- 改善3つ ---- */
+.t3{padding:1.8rem 0;border-top:1px solid var(--rule);}
+.t3:first-of-type{border-top:0;padding-top:0;}
+.t3n{font-size:.66rem;letter-spacing:.24em;color:var(--soft);margin:0;}
+.t3t{font-family:var(--serif);font-weight:600;font-size:1.1rem;line-height:1.7;
+  letter-spacing:.04em;margin:.5rem 0 1.1rem;}
+.t3d{margin:0;}
+.t3r{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;margin-bottom:.7rem;}
+.t3r dt{font-size:.68rem;letter-spacing:.12em;color:var(--soft);padding-top:.42rem;}
+.t3r dd{margin:0;font-size:.89rem;line-height:2.0;}
+
+/* ---- 差出人 ---- */
+.who .k{font-size:.68rem;letter-spacing:.22em;color:var(--soft);}
+.who .n{font-family:var(--serif);font-size:1.25rem;letter-spacing:.06em;margin:.55rem 0 0;}
+.who .n span{font-family:var(--sans);font-size:.74rem;letter-spacing:.1em;color:var(--soft);margin-left:.7rem;}
+.who p{font-size:.88rem;line-height:2.1;color:var(--soft);margin:.9rem 0 0;}
+.who .f{font-size:.76rem;letter-spacing:.04em;color:var(--soft);margin-top:1rem;padding-top:.9rem;border-top:1px solid var(--rule);}
+
+/* ---- CTA：角丸をやめ、面で見せる ---- */
+.cta h2{margin-bottom:.9rem;}
+.cta p{font-size:.89rem;line-height:2.05;color:var(--soft);margin:0 0 1.4rem;}
+.book{display:block;background:var(--navy);color:#fff;text-decoration:none;
+  padding:1.05rem 1.2rem;text-align:center;letter-spacing:.08em;}
+.book b{display:block;font-family:var(--serif);font-size:1.02rem;font-weight:600;}
+.book small{display:block;font-size:.7rem;opacity:.82;margin-top:.35rem;letter-spacing:.06em;}
+.cta .alt{font-size:.8rem;color:var(--soft);margin:1.1rem 0 0;line-height:2.0;}
+
+/* ---- 奥付 ---- */
+footer{margin-top:3.6rem;padding-top:1.5rem;border-top:1px solid var(--rule);
+  font-size:.73rem;line-height:2.0;color:var(--soft);}
+footer .fn{font-size:.68rem;line-height:1.95;margin-top:1rem;}
+</style></head><body><div class="wrap">
+
+<p class="brand">SUMAJUKU — WEB DESIGN FOR JUKU</p>
+<p class="kind">ホームページ診断レポート</p>
+<h1>原田塾 様<small>デザイン案B（比較用サンプル）</small></h1>
+<p class="meta">診断対象：<a href="https://yumiyukisouharada.wixsite.com/haradajyuku">https://yumiyukisouharada.wixsite.com/haradajyuku</a><br>
+2026年9月4日に、パソコン表示・スマートフォン表示（375px幅）・HTMLソースを実際に確認して作成しています。</p>
+
+<div class="note">
+  <p>このレポートは、学習塾専門のホームページ制作「スマ塾」が、ご提案に先立って保護者の目線で貴塾のサイトを実際に開いて確認したものです。売り込みのための資料ではなく、今日からご自身で直せる点をお伝えするためにお送りしています。</p>
+  <p>以下の点数は、保護者が塾を選ぶときに見る順番に沿って機械的に付けたもので、貴塾の指導の質を評価したものではありません。ご不要でしたら、このまま破棄していただいて構いません。</p>
+</div>
+
+<div class="score"><span class="k">総合スコア</span><span class="v">68<i>／100</i></span></div>
+
+<hr class="rule">
+<h2 class="solo">はじめに ― 拝見しての所感</h2>
+<p class="lead">入塾費と管理費は一切いただかない、教材費も実費のみという料金の考え方を、はっきり言い切っていらっしゃるのが印象に残りました。学年別の空き状況まで公開されていて、通わせる前に知りたいことがきちんと開かれています。ただ、その丁寧さがスマートフォンでは伝わりにくく、文字の小ささと最初の画面の作りで損をしている状態でした。</p>
+
+<hr class="rule">
+<h2 class="solo">貴塾ホームページの良い点</h2>
+<ul class="good"><li>入塾費・管理費は0円、教材費も実費のみと言い切り、他塾と比べてほしいとまで書いていらっしゃいます。追加費用の不安が先に消える、保護者の方にとって親切な料金の見せ方です。</li><li>中3満席、中1は残り2席というように、学年ごとの空き状況を公開されています。今このタイミングで入れるのかが分かり、問い合わせるかどうかを判断しやすい作りです。</li></ul>
+
+<hr class="rule">
+<h2>8項目の評価</h2>
+<p class="sub">保護者が塾を選ぶ動線に沿って確認しました</p>
+<ul class="items"><li class="it">
+   <span class="it-n">01</span>
+   <span class="it-name">スマホ表示</span>
+   <span class="it-g">△<small>改善余地</small></span>
+   <p class="it-r">横の見切れは0pxでした。ただし画面の幅指定が320px固定で、本文の文字が10pxと小さく表示されます。さらに画面の一番上をサイト作成サービスの広告帯が占めている状態でした。</p>
+ </li><li class="it">
+   <span class="it-n">02</span>
+   <span class="it-name">ファーストビュー</span>
+   <span class="it-g">△<small>改善余地</small></span>
+   <p class="it-r">中学受験・高校受験に対応した塾であることは伝わります。一方で最初の画面の上半分は広告帯とメニューで埋まり、堺市中区という地域名や少人数指導という強みはこの画面に入っていません。</p>
+ </li><li class="it">
+   <span class="it-n">03</span>
+   <span class="it-name">問い合わせ導線</span>
+   <span class="it-g">◎<small>強み</small></span>
+   <p class="it-r">電話はタップ発信に対応し、問い合わせフォーム、公式LINE、Instagramと入口が4つ用意されています。LINEはQRコードとリンクの両方があり、保護者の方が使いやすい手段を選べます。</p>
+ </li><li class="it">
+   <span class="it-n">04</span>
+   <span class="it-name">情報の鮮度</span>
+   <span class="it-g">◯<small>良好</small></span>
+   <p class="it-r">学年別の空き状況が掲載され、公式LINE開設のお知らせは2026年5月28日付です。ブログにも指導に関する記事があり、今動いている塾であることが日付で確認できます。</p>
+ </li><li class="it">
+   <span class="it-n">05</span>
+   <span class="it-name">塾選びの必須情報</span>
+   <span class="it-g">△<small>改善余地</small></span>
+   <p class="it-r">対象学年とコースは5種類が具体的に書かれ、開講時間も明記されています。一方で拝見した範囲では、月々の授業料の金額と、生徒・保護者の方の声は確認できませんでした。</p>
+ </li><li class="it">
+   <span class="it-n">06</span>
+   <span class="it-name">信頼要素</span>
+   <span class="it-g">△<small>改善余地</small></span>
+   <p class="it-r">学生アルバイトはおらず教員課程を修めたプロ講師のみ、という方針がはっきり書かれています。ただ拝見した範囲では、塾長や講師の方のお名前とお顔は確認できませんでした。</p>
+ </li><li class="it">
+   <span class="it-n">07</span>
+   <span class="it-name">検索とAIでの見つかりやすさ</span>
+   <span class="it-g">◎<small>強み</small></span>
+   <p class="it-r">教室情報の構造化データ、ページ説明文、大見出し、よくある質問が揃っています。画像の代替テキストも100%記述され、住所・電話・対象学年もテキストで書かれています。</p>
+ </li><li class="it">
+   <span class="it-n">08</span>
+   <span class="it-name">Googleマップ</span>
+   <span class="it-g">◯<small>良好</small></span>
+   <p class="it-r">評価5.0、お写真10枚、営業時間と公式サイトも登録済みで、地図側の作り込みは十分です。クチコミは3件と少なく、最新が2026年3月で約6ヶ月前になっています。</p>
+ </li></ul>
+
+<hr class="rule">
+<h2>特に効く改善 3つ</h2>
+<p class="sub">それぞれ上の8項目のどれに対応するかを明記しています</p>
+<article class="t3">
+  <p class="t3n">改善 01</p>
+  <h3 class="t3t">スマホの文字を大きくし、上部の広告帯を外す</h3>
+  <dl class="t3d"><div class="t3r"><dt>現状</dt><dd>画面の幅が320px固定で本文が10pxと小さく、一番上をサイト作成サービスの広告帯が占めています。</dd></div><div class="t3r"><dt>ご提案</dt><dd>幅の指定を端末に合わせる設定に変え、本文を16pxに。有料プランで広告帯と独自ドメインを外せます。</dd></div><div class="t3r"><dt>効果</dt><dd>保護者の方が拡大せずに読めるようになり、塾のサイトとして見てもらえます。</dd></div><div class="t3r"><dt>理由</dt><dd>スマートフォンで見る方が大半で、読みにくさは中身を読む前の離脱に直結するためです。</dd></div></dl>
+</article><article class="t3">
+  <p class="t3n">改善 02</p>
+  <h3 class="t3t">授業料の目安を金額で書く</h3>
+  <dl class="t3d"><div class="t3r"><dt>現状</dt><dd>入塾費と管理費が0円という点は明記されていますが、月々の授業料は体験授業でお伝えする形になっています。</dd></div><div class="t3r"><dt>ご提案</dt><dd>「中1・週2時間で月◯円」のように代表例を1つだけでも書き、実費のテキスト代も添えてください。</dd></div><div class="t3r"><dt>効果</dt><dd>0円という強みが金額として伝わり、他塾と比べてもらえるようになります。</dd></div><div class="t3r"><dt>理由</dt><dd>入塾費0円の価値は、月謝の相場が分かって初めて保護者の方に伝わるためです。</dd></div></dl>
+</article><article class="t3">
+  <p class="t3n">改善 03</p>
+  <h3 class="t3t">通った生徒さんの声を載せる</h3>
+  <dl class="t3d"><div class="t3r"><dt>現状</dt><dd>通塾例として学習課題は書かれていますが、拝見した範囲では、通った後の変化を本人や保護者の言葉で伝える欄は確認できませんでした。</dd></div><div class="t3r"><dt>ご提案</dt><dd>通塾例のすぐ下に、保護者の方の一言を3件ほど、学年と一緒に短く載せてください。</dd></div><div class="t3r"><dt>効果</dt><dd>少人数指導の良さが実感として伝わり、体験授業の申込みにつながります。</dd></div><div class="t3r"><dt>理由</dt><dd>指導方針より、実際に通った方の言葉のほうが判断材料にされやすいためです。</dd></div></dl>
+</article>
+
+<hr class="rule">
+<section class="who">
+  <p class="k">このレポートを作成した人</p>
+  <p class="n">小田 一勲<span>合同会社SyUNi 代表／スマ塾</span></p>
+  <p>教育業界で、これまで300校以上の学習塾のホームページと集客に携わってきました。その中で、指導は良いのにホームページで損をしている塾があまりに多いと感じ、学習塾に特化したホームページ制作「スマ塾」を始めました。制作をご依頼いただかなくても、このレポートの内容はそのままお使いいただけます。</p>
+  <p class="f">学習塾専門のホームページ制作　／　買い切り5万円〜（税別）・月額0円　／　公開後は塾さまご自身で更新　／　大阪市中央区谷町</p>
+</section>
+
+<hr class="rule">
+<section class="cta">
+  <h2>このレポートについて、10分ほどご説明できます</h2>
+  <p>お読みいただいて気になった点や、「これはうちだとどうなるか」といったご質問に、画面を一緒に見ながらお答えします。無理な営業はいたしません。</p>
+  <a class="book" href="https://timerex.net/s/oda_d465_d8f9/441d345c" target="_blank" rel="noopener noreferrer">
+    <b>ご都合のよい枠を予約する</b><small>オンライン10分／空いている時間を選ぶだけ</small></a>
+  <p class="alt">日程が合わなければ、お送りしたメールへのご返信でも承ります。「3つのうちどれから手をつけるべきか」だけでも構いません。</p>
+</section>
+
+<footer>
+  <div>発行日：2026年9月4日</div>
+  <div>発行元：スマ塾（合同会社SyUNi）　担当：小田 一勲</div>
+  <div>スマ塾LP：<a href="https://smart-juku.syuni.jp">https://smart-juku.syuni.jp</a></div>
+  <p class="fn">※これはデザイン比較用のサンプルです。MEO・AIO・スクリーンショットの各節は本番では同じ組み方で続きます。閲覧計測は入れていません。</p>
+</footer>
+
+</div></body></html>
