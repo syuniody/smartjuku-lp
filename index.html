@@ -475,6 +475,9 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .plan-band+.plan-band{border-top:1px solid var(--ink)}
 .plan-band-name{font-size:1.02rem;font-weight:900;letter-spacing:.02em;line-height:1.7}
 .plan-band-price{display:inline-block;margin-top:12px;font-weight:900;color:var(--blue);line-height:1.2}
+/* 買い切りであることを価格と同じ行で先に言う。数字の約6割（1.3rem＝8段階の小見出し）で、
+   色は --ink。両プランで完全に同じ書式にする（片方だけ推さない） */
+.plan-band-price .buy{font-size:1.3rem;letter-spacing:.02em;color:var(--ink);margin-right:.42em}
 .plan-band-price .n{font-size:2.1rem;letter-spacing:.01em}
 .plan-band-price small{font-size:.45em;font-weight:900}
 .plan-band-price .tax{display:block;margin-top:4px;font-size:.8rem;font-weight:400;color:var(--ink-soft)}
@@ -816,6 +819,7 @@ details .ans{color:var(--ink)}
      共通の面の罫線リストは1列に落とす */
   .plan-band{grid-template-columns:1fr;gap:20px;padding:26px 20px}
   .plan-band-price .n{font-size:1.7rem}
+  .plan-band-price .buy{font-size:1.02rem;margin-right:.38em}
   .plan-row{grid-template-columns:1fr;gap:2px;padding:15px 2px}
   .plan-common{padding:26px 20px}
   .plan-common-list{grid-template-columns:1fr;gap:0}
@@ -1075,7 +1079,7 @@ details .ans{color:var(--ink)}
         <div class="plan-band">
         <div class="plan-band-head">
           <h3 class="plan-band-name">スマ塾HP制作 Lite</h3>
-          <p class="plan-band-price"><span class="n">55,000</span><small>円</small><span class="tax">（税込）／<span class="nb">税別50,000円</span></span></p>
+          <p class="plan-band-price"><span class="buy">買い切り</span><span class="n">55,000</span><small>円</small><span class="tax">（税込）／<span class="nb">税別50,000円</span>・<span class="nb">月額保守費0円</span></span></p>
           <p class="plan-band-for">素材をご用意いただける塾さま向け</p>
         </div>
         <dl class="plan-band-list">
@@ -1088,7 +1092,7 @@ details .ans{color:var(--ink)}
         <div class="plan-band">
         <div class="plan-band-head">
           <h3 class="plan-band-name">スマ塾HP制作 Standard</h3>
-          <p class="plan-band-price"><span class="n">110,000</span><small>円</small><span class="tax">（税込）／<span class="nb">税別100,000円</span></span></p>
+          <p class="plan-band-price"><span class="buy">買い切り</span><span class="n">110,000</span><small>円</small><span class="tax">（税込）／<span class="nb">税別100,000円</span>・<span class="nb">月額保守費0円</span></span></p>
           <p class="plan-band-for">原稿づくりから任せたい塾さま向け</p>
         </div>
         <dl class="plan-band-list">
