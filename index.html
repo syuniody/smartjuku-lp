@@ -383,17 +383,19 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .inline-link:hover{background:var(--marker);text-decoration:none}
 
 /* お役立ち情報（記事の一覧。中身は scripts/build.py が生成） */
-.reading{padding:96px 0;border-top:1px solid var(--line)}
+.reading{padding:96px 0;background:var(--paper);border-top:1px solid var(--line)}
 
 .read-more{margin-top:34px;display:flex;gap:28px;flex-wrap:wrap}
 .read-more a{font-size:.86rem;font-weight:700;color:var(--blue);text-decoration:underline;text-underline-offset:4px}
 .read-more a:hover{background:var(--marker);text-decoration:none}
 
 /* ---------- services ---------- */
-.services{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+/* 地色は白とクリームを1つおき（DESIGN.md）。services は白 */
+.services{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .svc-feature{
   display:grid;grid-template-columns:1.3fr .8fr;gap:48px;align-items:start;
-  background:var(--white);border:1px solid var(--line);border-radius:var(--r-md);
+  /* 節が白地になったので、カードはクリームの面にする（白地に白いカードは輪郭が消える） */
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);
   padding:40px 52px;position:relative;
 }
 .svc-idx{display:flex;align-items:baseline;gap:12px}
