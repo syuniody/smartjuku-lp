@@ -271,6 +271,7 @@ section{padding:64px 0}   /* 本文が16pxになるぶん節の上下を詰め�
 @keyframes maru-draw{to{stroke-dashoffset:0}}
 @media (prefers-reduced-motion:reduce){
   .maru-ink path{animation:none;stroke-dashoffset:0}
+  .m-cta{transition:none}
 }
 html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 
@@ -646,10 +647,20 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
 .foot-legal{display:flex;gap:20px;flex-wrap:wrap}
 .foot-legal a:hover{color:#fff;text-decoration:underline}
 
-/* ---------- sticky mobile cta ---------- */
-.m-cta{position:fixed;left:12px;right:12px;bottom:12px;z-index:90;display:none;opacity:0;transform:translateY(16px);transition:opacity .35s,transform .35s;pointer-events:none}
-.m-cta.is-visible{opacity:1;transform:none;pointer-events:auto}
-.m-cta a{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--blue);color:#fff;font-weight:900;padding:16px;border-radius:var(--r-md);box-shadow:var(--sh-2);font-size:.95rem}
+/* ---------- スマホの固定CTA（≤640px のみ） ----------
+   白地・上罫線1本の帯。左に注記、右に既存と同じ「無料HP診断を申し込む」（CTAは1種）。
+   影・グラデーション・アイコンは使わない。ヘッダーは上端固定なので重ならない。
+   フッターが隠れないよう、≤640px はフッターの下余白を帯の高さぶん足している。 */
+.m-cta{position:fixed;left:0;right:0;bottom:0;z-index:90;display:none;
+  align-items:center;justify-content:space-between;gap:10px;
+  min-height:56px;padding:6px 14px calc(6px + env(safe-area-inset-bottom,0px));
+  background:var(--white);border-top:1px solid var(--line);
+  visibility:hidden;transform:translateY(100%);
+  transition:transform .3s,visibility .3s;pointer-events:none}
+.m-cta.is-visible{visibility:visible;transform:none;pointer-events:auto}
+.m-cta-note{font-size:.8rem;line-height:1.5;color:var(--ink-soft)}
+.m-cta .btn{padding:10px 16px;font-size:.86rem;line-height:1.5;white-space:nowrap}
+.m-cta .btn:hover{transform:none}
 
 /* ---------- 本文の型（2026-09-04：白地に合わせて引き直し） ----------
    本文は 16px・--ink。--ink-soft は注記・キャプション・ヒントだけに残す。
@@ -755,7 +766,9 @@ details .ans{color:var(--ink)}
     margin:10px -24px 0 auto}
   .reading{padding:56px 0}
   .flow-list{grid-template-columns:1fr}
-  .m-cta{display:block}
+  .m-cta{display:flex}
+  /* 固定CTAの帯にフッターが隠れないよう、地色が続くフッター側で余白を持つ */
+  footer{padding-bottom:96px}
   .header-cta{display:none}
   .band p span{display:block;height:0;overflow:hidden;margin:0}
   .band p{line-height:2.1}
@@ -1444,7 +1457,10 @@ details .ans{color:var(--ink)}
   </div>
 </footer>
 
-<div class="m-cta" id="mCta"><a href="#diagnosis">無料HP診断を申し込む</a></div>
+<div class="m-cta" id="mCta">
+  <p class="m-cta-note">無料・1営業日以内に結果</p>
+  <a class="btn" href="#diagnosis">無料HP診断を申し込む</a>
+</div>
 
 <script>
 (function(){
@@ -1487,21 +1503,25 @@ details .ans{color:var(--ink)}
   window.addEventListener('hashchange',function(){openDetailsAt(location.hash)});
   if(location.hash)openDetailsAt(location.hash);
 
-  // mobile sticky CTA：ヒーローを過ぎたら表示、CTAセクションで非表示
+  // スマホの固定CTA（≤640px）：ファーストビューを通過したら出し、
+  // 着地先の #diagnosis が画面内にある間は引っ込める。IntersectionObserver で監視する。
   var mCta=document.getElementById('mCta');
   var hero=document.querySelector('.hero');
-  // 主CTAの着地先（診断セクション）に到達したら固定CTAを隠す。無ければ従来の#contact。
+  // 主CTAの着地先（診断セクション）。無ければ従来の #contact。
   var contact=document.getElementById('diagnosis')||document.getElementById('contact');
-  function onScrollCta(){
-    if(!mCta)return;
-    var heroBottom=hero.getBoundingClientRect().bottom;
-    var contactTop=contact.getBoundingClientRect().top;
-    var show=heroBottom<0 && contactTop>window.innerHeight*0.7;
-    mCta.classList.toggle('is-visible',show);
+  if(mCta&&hero&&contact&&'IntersectionObserver' in window){
+    var pastHero=false,atForm=false;
+    var syncCta=function(){mCta.classList.toggle('is-visible',pastHero&&!atForm)};
+    new IntersectionObserver(function(es){
+      var e=es[0];
+      pastHero=!e.isIntersecting&&e.boundingClientRect.top<0;
+      syncCta();
+    },{threshold:0}).observe(hero);
+    new IntersectionObserver(function(es){
+      atForm=es[0].isIntersecting;
+      syncCta();
+    },{threshold:0}).observe(contact);
   }
-  window.addEventListener('scroll',onScrollCta,{passive:true});
-  window.addEventListener('resize',onScrollCta);
-  onScrollCta();
 
   // 無料HP診断フォーム（#diagnosisForm）— 単一フォームに集約済み
   var dForm=document.getElementById('diagnosisForm');
