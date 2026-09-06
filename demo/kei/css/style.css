@@ -1,0 +1,425 @@
+@charset "UTF-8";
+/* ============================================================
+ * Template D「継（けい）」 — 塾だより型・老舗の個別指導塾テンプレート
+ *
+ * このファイルは DESIGN.md のトークンをそのまま実装したもの。
+ * 新しい色・角丸・余白・影をここで発明しないこと。
+ *   - 文字サイズは7段階＋題字だけ（--fs-* 以外の値を書かない）
+ *   - 角丸なし・影なし・グラデーションなし・ピルなし
+ *   - 色面（深緑）は1ページ2か所まで
+ * ============================================================ */
+
+/* ---------- トークン ---------- */
+:root{
+  /* 色。ブランド色（--green / --org / --amber）は
+     build.js が site-info.json の colors から <style id="brand-colors"> で上書きする */
+  --green:#2f6b4f;
+  --green-deep:#245640;
+  --green-pale:#e8efe9;
+  --org:#b3542a;
+  --org-deep:#933f1c;
+  --amber:#d9822b;
+
+  --ink:#22201d;          /* 本文の墨 */
+  --ink-mid:#4a4236;      /* 補足 */
+  --ink-weak:#7a6f5e;     /* いちばん弱い文字。これより薄い色を作らない */
+  --paper:#fbf8f1;        /* 紙面 */
+  --cream:#f5efe3;        /* 地 */
+  --white:#fff;
+  --rule:#d8cfbc;         /* 罫線 */
+  --rule-strong:#22201d;  /* 太罫（題字まわり） */
+
+  /* 文字サイズ7段階。ルート17px。新しい値を足さない */
+  --fs-xs:.8125rem;
+  --fs-s:.875rem;
+  --fs-sm:.9375rem;
+  --fs-m:1rem;
+  --fs-l:1.0625rem;
+  --fs-xl:1.375rem;
+  --fs-xxl:1.625rem;
+
+  --gut:24px;
+  --maxw:1080px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{font-size:17px;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:"BIZ UDPGothic","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  font-size:var(--fs-m);
+  line-height:1.9;
+  overflow-x:clip;           /* hidden は sticky を壊すため clip */
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--green);text-underline-offset:3px}
+a:hover{color:var(--org)}
+h1,h2,h3,h4{margin:0;line-height:1.5;font-weight:700}
+p{margin:0 0 1em}
+ul,ol,dl,dd{margin:0;padding:0}
+li{list-style:none}
+table{border-collapse:collapse;width:100%}
+:focus-visible{outline:2px solid var(--org);outline-offset:2px}
+
+.container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+/* 折り返しで1文字だけ落とさないための塊。狭い画面では解除する（横溢れの最大の原因） */
+.nb{white-space:nowrap}
+@media (max-width:720px){.nb{white-space:normal}}
+.mincho{font-family:"Zen Old Mincho","Hiragino Mincho ProN",serif;font-weight:600}
+.num{font-family:"Space Grotesk","BIZ UDPGothic",sans-serif;font-weight:700;font-feature-settings:"tnum"}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- ボタン ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:.5em;
+  padding:13px 22px;border:1px solid var(--green);
+  background:var(--white);color:var(--green);
+  font-size:var(--fs-sm);font-weight:700;line-height:1.4;
+  text-decoration:none;transition:background .15s,color .15s;
+}
+.btn:hover{background:var(--green);color:var(--white)}
+.btn--org{background:var(--org);border-color:var(--org);color:var(--white)}
+.btn--org:hover{background:var(--org-deep);border-color:var(--org-deep);color:var(--white)}
+.btn--onDark{background:transparent;border-color:rgba(255,255,255,.7);color:var(--white)}
+.btn--onDark:hover{background:var(--white);color:var(--green)}
+.btn .arw{width:.7em;height:.7em;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg);flex:none}
+.btnrow{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+
+/* ---------- ヘッダー ---------- */
+.header{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--rule)}
+.header.is-scrolled{border-bottom-color:var(--ink)}
+.header__inner{max-width:1180px;margin:0 auto;padding:10px var(--gut);display:flex;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);flex:none}
+.brand__mark{
+  width:38px;height:38px;flex:none;display:grid;place-items:center;
+  background:var(--green);color:var(--white);
+  font-family:"Zen Old Mincho",serif;font-weight:700;font-size:var(--fs-l);
+}
+.brand__name{display:block;font-family:"Zen Old Mincho",serif;font-weight:700;font-size:var(--fs-l);line-height:1.3}
+.brand__sub{display:block;font-size:var(--fs-xs);color:var(--ink-weak);line-height:1.4}
+.gnav{display:flex;flex-wrap:nowrap;gap:0 14px;margin-left:auto;font-size:var(--fs-xs)}
+.gnav a{color:var(--ink);text-decoration:none;padding:4px 0;border-bottom:2px solid transparent;white-space:nowrap}
+.gnav a:hover{color:var(--green);border-bottom-color:var(--green)}
+.header__tel{display:none;flex:none;text-align:right}
+.header__tel-num{display:block;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:var(--fs-l);color:var(--ink);text-decoration:none;letter-spacing:.02em}
+.header__tel-note{font-size:var(--fs-xs);color:var(--ink-weak)}
+.header__cta{display:none;flex:none;padding:10px 16px;background:var(--org);color:var(--white);font-size:var(--fs-xs);font-weight:700;text-decoration:none}
+.header__cta:hover{background:var(--org-deep);color:var(--white)}
+.hamb{display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:40px;margin-left:auto;padding:0 10px;background:none;border:1px solid var(--rule);cursor:pointer}
+.hamb span{display:block;height:2px;background:var(--ink);transition:transform .2s,opacity .2s}
+.hamb.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamb.is-open span:nth-child(2){opacity:0}
+.hamb.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mnav{position:fixed;inset:0;z-index:49;background:var(--paper);padding:76px var(--gut) 40px;overflow-y:auto;display:none;flex-direction:column;gap:2px}
+.mnav.is-open{display:flex}
+.mnav a{padding:14px 2px;border-bottom:1px solid var(--rule);color:var(--ink);text-decoration:none;font-size:var(--fs-sm)}
+.mnav__tel{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:var(--fs-xl);border-bottom:0}
+@media (min-width:1000px){
+  .hamb{display:none}
+  .header__tel,.header__cta{display:block}
+  .gnav{margin-left:auto}
+}
+@media (max-width:999px){.gnav{display:none}}
+
+/* ============================================================
+ * トップ：塾だより型
+ * ============================================================ */
+
+/* 1. 題字 */
+.masthead{background:var(--paper);border-bottom:3px double var(--rule-strong)}
+.masthead__inner{max-width:var(--maxw);margin:0 auto;padding:34px var(--gut) 20px}
+.masthead__over{
+  display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;
+  font-size:var(--fs-xs);color:var(--ink-weak);
+  padding-bottom:12px;border-bottom:1px solid var(--rule);margin-bottom:16px;
+}
+.masthead__over b{color:var(--ink);font-weight:700}
+.masthead__title{
+  font-family:"Zen Old Mincho","Hiragino Mincho ProN",serif;font-weight:700;
+  font-size:clamp(1.5rem,7.3vw,3.4rem);line-height:1.24;letter-spacing:.04em;
+  margin:0 0 10px;color:var(--ink);
+}
+.masthead__title em{font-style:normal;color:var(--green)}
+.masthead__sub{
+  font-family:"Zen Old Mincho",serif;font-size:var(--fs-l);color:var(--ink-mid);
+  margin:0;max-width:36em;line-height:1.8;
+}
+
+/* 2. 3秒で分かる帯 */
+.quickbar{background:var(--green);color:var(--white)}
+.quickbar__inner{max-width:var(--maxw);margin:0 auto;padding:20px var(--gut);display:grid;gap:18px}
+.quickfacts{display:grid;gap:0;border-top:1px solid rgba(255,255,255,.28)}
+.quickfacts>div{display:flex;gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.28)}
+.quickfacts dt{flex:none;width:5.2em;font-size:var(--fs-xs);color:rgba(255,255,255,.78)}
+.quickfacts dd{font-size:var(--fs-sm);line-height:1.6}
+.quickfacts dd b{font-family:"Space Grotesk",sans-serif;font-size:var(--fs-l);letter-spacing:.01em}
+.quickbar__act{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.quickbar__tel{display:block}
+.quickbar__tel a,.quickbar__tel span.telnum{
+  font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:var(--fs-xl);
+  color:var(--white);text-decoration:none;letter-spacing:.02em;
+}
+.quickbar__tel small{display:block;font-size:var(--fs-xs);color:rgba(255,255,255,.78);font-weight:400}
+@media (min-width:860px){
+  .quickbar__inner{grid-template-columns:1fr auto;align-items:center;gap:32px;padding:22px var(--gut)}
+  .quickfacts{grid-template-columns:1fr 1fr;column-gap:30px}
+  .quickbar__act{flex-direction:column;align-items:flex-start;gap:10px}
+}
+
+/* 3. 表紙写真 */
+.cover{background:var(--cream);padding:26px 0 0}
+.cover__fig{margin:0}
+.cover__fig img{width:100%;aspect-ratio:16/7;object-fit:cover;border:1px solid var(--rule)}
+.cover__cap{
+  margin:9px 0 0;font-size:var(--fs-xs);color:var(--ink-weak);
+  display:flex;gap:10px;align-items:baseline;
+}
+.cover__cap b{flex:none;color:var(--green);font-weight:700}
+
+/* セクション共通 */
+.sec{padding:52px 0}
+.sec--paper{background:var(--paper);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.sec--white{background:var(--white);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.sec--green{background:var(--green);color:var(--white)}
+.sec--green a{color:var(--white)}
+.sechead{margin-bottom:26px}
+.sechead__kicker{
+  display:block;font-size:var(--fs-xs);color:var(--ink-weak);letter-spacing:.02em;margin-bottom:6px;
+  padding-bottom:6px;border-bottom:1px solid var(--rule);
+}
+.sec--green .sechead__kicker{color:rgba(255,255,255,.75);border-bottom-color:rgba(255,255,255,.3)}
+.sechead__title{font-size:var(--fs-xl);line-height:1.5;letter-spacing:.01em}
+.sechead__lead{margin:10px 0 0;font-size:var(--fs-sm);color:var(--ink-mid);max-width:36em}
+.sec--green .sechead__lead{color:rgba(255,255,255,.85)}
+
+/* 4. 塾長から */
+.master{display:grid;gap:24px}
+.master__fig{margin:0}
+.master__fig img{width:100%;aspect-ratio:3/4;object-fit:cover;border:1px solid var(--rule)}
+/* 実写真が来るまでは枠のまま（文字を入れない） */
+.photoframe{
+  aspect-ratio:3/4;border:1px dashed var(--rule);background:var(--cream);
+  display:grid;place-items:center;color:var(--ink-weak);font-size:var(--fs-xs);letter-spacing:.3em;
+}
+.master__fig figcaption{margin-top:8px;font-size:var(--fs-xs);color:var(--ink-weak)}
+.master__quote{margin:0;border-left:3px solid var(--green);padding:2px 0 2px 20px}
+.master__quote p{
+  font-family:"Zen Old Mincho",serif;font-weight:600;
+  font-size:clamp(1.2rem,3.4vw,1.625rem);line-height:1.75;margin:0 0 .5em;color:var(--ink);
+}
+.master__quote cite{display:block;font-style:normal;font-size:var(--fs-s);color:var(--ink-weak)}
+.master__txt{margin-top:20px;font-size:var(--fs-sm);color:var(--ink-mid);max-width:44em}
+@media (min-width:860px){
+  .master{grid-template-columns:260px minmax(0,1fr);gap:36px;align-items:start}
+}
+
+/* 5. 看板に書いてあるとおり（写真2点） */
+.signs{display:grid;gap:22px}
+.signs__item{margin:0}
+.signs__item img{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--rule)}
+.signs__item figcaption{margin-top:9px;font-size:var(--fs-s);color:var(--ink-mid)}
+.signs__item figcaption b{display:block;font-size:var(--fs-sm);color:var(--ink)}
+.plainlines{margin:0 0 24px;max-width:36em}
+.plainlines li{
+  padding:10px 0 10px 1.2em;border-bottom:1px solid var(--rule);
+  font-size:var(--fs-l);line-height:1.7;position:relative;
+}
+.plainlines li::before{content:"";position:absolute;left:0;top:1.05em;width:.55em;height:1px;background:var(--org)}
+@media (min-width:760px){.signs{grid-template-columns:1fr 1fr;gap:26px}}
+
+/* 6. 英語教室（白面） */
+.eng{display:grid;gap:22px;align-items:center}
+.eng__body h2{font-size:var(--fs-xl);line-height:1.5;margin-bottom:12px}
+.eng__body p{font-size:var(--fs-sm);color:var(--ink-mid);max-width:36em}
+.eng__seal{
+  border:1px solid var(--green);padding:20px;text-align:center;background:var(--green-pale);
+}
+.eng__seal b{display:block;font-family:"Zen Old Mincho",serif;font-size:var(--fs-xl);color:var(--green);line-height:1.5}
+.eng__seal small{display:block;margin-top:6px;font-size:var(--fs-xs);color:var(--ink-mid)}
+@media (min-width:760px){.eng{grid-template-columns:minmax(0,1fr) 260px;gap:36px}}
+
+/* 7. 生徒の声（大きな引用1本） */
+.voice1{max-width:36em;border-left:3px solid var(--green);padding-left:22px}
+.voice1__q{
+  font-family:"Zen Old Mincho","Hiragino Mincho ProN",serif;font-weight:600;
+  font-size:clamp(1.25rem,3.8vw,1.625rem);line-height:1.8;margin:0 0 14px;color:var(--ink);
+}
+.voice1__body{margin:0 0 10px;font-size:var(--fs-sm);color:var(--ink-mid)}
+.voice1__who{font-size:var(--fs-s);color:var(--ink-weak)}
+
+/* 8. お知らせ・新しい記事（統合） */
+.twocol{display:grid;gap:34px}
+@media (min-width:860px){.twocol{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px}}
+.colhead{font-size:var(--fs-l);padding-bottom:8px;border-bottom:1px solid var(--ink);margin-bottom:6px}
+.linelist li{border-bottom:1px solid var(--rule)}
+.linelist a,.linelist .noline{
+  display:grid;grid-template-columns:6.2em minmax(0,1fr);gap:4px 12px;
+  padding:12px 2px;text-decoration:none;color:var(--ink);align-items:baseline;
+}
+.linelist a:hover{background:var(--green-pale);color:var(--ink)}
+.linelist time{font-family:"Space Grotesk",sans-serif;font-size:var(--fs-xs);color:var(--ink-weak);white-space:nowrap}
+.linelist .ttl{font-size:var(--fs-sm);line-height:1.65}
+.linelist .cat{display:block;font-family:"BIZ UDPGothic",sans-serif;font-size:var(--fs-xs);color:var(--green);white-space:nowrap}
+
+/* 9. 別紙 受講料（行リスト） */
+.plist{border-top:1px solid var(--ink)}
+.prow{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 16px;align-items:baseline;
+  padding:15px 2px;border-bottom:1px solid var(--rule);text-decoration:none;color:var(--ink);
+}
+a.prow:hover{background:var(--green-pale);color:var(--ink)}
+.prow__name{font-size:var(--fs-l);font-weight:700;line-height:1.5}
+.prow__target{grid-column:1;font-size:var(--fs-xs);color:var(--ink-weak)}
+.prow__price{grid-row:1/3;grid-column:2;text-align:right;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:var(--fs-xl);color:var(--green);white-space:nowrap}
+.prow__price small{font-family:"BIZ UDPGothic",sans-serif;font-weight:400;font-size:var(--fs-xs);color:var(--ink-weak);margin-left:.3em}
+.note{font-size:var(--fs-s);color:var(--ink-mid);max-width:44em;margin-top:16px}
+
+/* CTA帯 */
+.cta{background:var(--green);color:var(--white);padding:44px 0}
+.cta__inner{display:grid;gap:22px}
+.cta__title{font-family:"Zen Old Mincho",serif;font-size:var(--fs-xxl);line-height:1.5;margin-bottom:10px}
+.cta__lead{font-size:var(--fs-sm);color:rgba(255,255,255,.88);max-width:36em}
+.cta__tel{margin:14px 0 0}
+.cta__tel a,.cta__tel .telnum{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:var(--fs-xl);color:var(--white);text-decoration:none}
+.cta__tel small{display:block;font-size:var(--fs-xs);color:rgba(255,255,255,.75)}
+@media (min-width:860px){.cta__inner{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:center}}
+
+/* ---------- 下層ページ ---------- */
+.phead{background:var(--paper);border-bottom:1px solid var(--rule);padding:34px 0 28px}
+.crumbs{font-size:var(--fs-xs);color:var(--ink-weak);margin-bottom:12px}
+.crumbs a{color:var(--ink-weak)}
+.phead__title{font-size:var(--fs-xxl);line-height:1.45}
+.phead__lead{margin:12px 0 0;font-size:var(--fs-sm);color:var(--ink-mid);max-width:44em}
+.prose{max-width:44em}
+.prose h2{font-size:var(--fs-xl);margin:38px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--rule)}
+.prose h3{font-size:var(--fs-l);margin:26px 0 10px}
+.prose p{font-size:var(--fs-sm);color:var(--ink-mid)}
+.prose ul{margin:0 0 1em}
+.prose ul li{padding:6px 0 6px 1.1em;position:relative;font-size:var(--fs-sm);color:var(--ink-mid)}
+.prose ul li::before{content:"";position:absolute;left:0;top:1em;width:.5em;height:1px;background:var(--org)}
+.prose ol{margin:0 0 1em;counter-reset:n}
+.prose ol li{counter-increment:n;padding:6px 0 6px 1.8em;position:relative;font-size:var(--fs-sm);color:var(--ink-mid)}
+.prose ol li::before{content:counter(n) ".";position:absolute;left:0;font-family:"Space Grotesk",sans-serif;color:var(--green)}
+.prose blockquote{margin:0 0 1em;border-left:3px solid var(--green);padding-left:16px;font-family:"Zen Old Mincho",serif;font-size:var(--fs-l);line-height:1.85}
+.prose img{margin:16px 0;border:1px solid var(--rule)}
+.prose hr{border:0;border-top:1px solid var(--rule);margin:28px 0}
+
+.facts{border-top:1px solid var(--ink);max-width:44em}
+.facts>div{display:grid;grid-template-columns:6.4em minmax(0,1fr);gap:12px;padding:12px 2px;border-bottom:1px solid var(--rule)}
+.facts dt{font-size:var(--fs-xs);color:var(--ink-weak);padding-top:.25em}
+.facts dd{font-size:var(--fs-sm)}
+
+.tblwrap{overflow-x:auto;margin:0 0 1em}
+.tbl{min-width:520px}
+.tbl th,.tbl td{border:1px solid var(--rule);padding:10px 12px;font-size:var(--fs-s);text-align:left;vertical-align:top}
+.tbl th{background:var(--paper);font-weight:700}
+.tbl td b{font-family:"Space Grotesk",sans-serif}
+
+.faq{border-top:1px solid var(--ink);max-width:44em}
+.faq__item{border-bottom:1px solid var(--rule);padding:18px 0}
+.faq__q{font-size:var(--fs-l);line-height:1.6;margin:0 0 8px;padding-left:1.6em;position:relative}
+.faq__q::before{content:"Q";position:absolute;left:0;font-family:"Space Grotesk",sans-serif;color:var(--org)}
+.faq__a{font-size:var(--fs-sm);color:var(--ink-mid);margin:0;padding-left:1.6em;position:relative}
+.faq__a::before{content:"A";position:absolute;left:0;font-family:"Space Grotesk",sans-serif;color:var(--green)}
+
+.gk{border-top:1px solid var(--ink);max-width:44em}
+.gk__row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:11px 2px;border-bottom:1px solid var(--rule)}
+.gk__name{font-size:var(--fs-sm)}
+.gk__n{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:var(--fs-l);color:var(--green)}
+.gk__n small{font-family:"BIZ UDPGothic",sans-serif;font-weight:400;font-size:var(--fs-xs);color:var(--ink-weak);margin-left:.2em}
+.gk__group{margin-top:30px}
+.gk__group h3{font-size:var(--fs-l);margin-bottom:6px}
+
+.vlist{display:grid;gap:22px;max-width:44em}
+.vitem{border-left:3px solid var(--rule);padding-left:18px}
+.vitem__hl{font-family:"Zen Old Mincho",serif;font-weight:600;font-size:var(--fs-l);line-height:1.7;margin:0 0 8px}
+.vitem__body{font-size:var(--fs-sm);color:var(--ink-mid);margin:0 0 6px}
+.vitem__who{font-size:var(--fs-xs);color:var(--ink-weak)}
+
+/* フォーム */
+.form{max-width:38em}
+.form__row{margin-bottom:20px}
+.form label{display:block;font-size:var(--fs-s);font-weight:700;margin-bottom:6px}
+.form .req{color:var(--org);font-size:var(--fs-xs);margin-left:.4em}
+.form input[type=text],.form input[type=tel],.form input[type=email],.form select,.form textarea{
+  width:100%;padding:11px 12px;border:1px solid var(--rule);background:var(--white);
+  font-family:inherit;font-size:var(--fs-sm);color:var(--ink);
+}
+.form textarea{min-height:150px;line-height:1.8}
+.form__choices{display:flex;flex-wrap:wrap;gap:8px 20px}
+.form__choices label{display:flex;align-items:center;gap:7px;font-weight:400;font-size:var(--fs-sm);margin:0}
+.form__note{font-size:var(--fs-xs);color:var(--ink-weak);margin-top:6px}
+.form__agree{display:flex;gap:9px;align-items:flex-start;font-size:var(--fs-s);color:var(--ink-mid)}
+.hp{position:absolute;left:-9999px}
+
+/* 地図 */
+.mapbox{border:1px solid var(--rule);background:var(--paper)}
+.mapbox iframe{display:block;width:100%;height:340px;border:0}
+
+/* ブログ */
+.postmeta{font-size:var(--fs-xs);color:var(--ink-weak);margin-bottom:14px}
+.postmeta time{font-family:"Space Grotesk",sans-serif}
+.pager{display:flex;justify-content:space-between;gap:14px;margin-top:40px;padding-top:18px;border-top:1px solid var(--rule);font-size:var(--fs-s)}
+
+/* フッター */
+.footer{background:var(--ink);color:#e8e3d8;padding:40px 0 26px;font-size:var(--fs-s)}
+.footer a{color:#e8e3d8;text-decoration:none}
+.footer a:hover{color:var(--amber)}
+.footer__grid{display:grid;gap:26px}
+.footer__brand{font-family:"Zen Old Mincho",serif;font-size:var(--fs-l);margin-bottom:8px}
+.footer__nap{font-size:var(--fs-xs);color:#b8b1a3;line-height:1.9;overflow-wrap:anywhere}
+.footer__nav{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;font-size:var(--fs-xs)}
+.footer__copy{margin:26px 0 0;padding-top:16px;border-top:1px solid #3c3831;font-size:var(--fs-xs);color:#8f887b}
+@media (min-width:760px){.footer__grid{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px}}
+
+/* SP固定CTAバー */
+.ctabar{
+  position:fixed;left:0;right:0;bottom:0;z-index:48;display:none;
+  border-top:1px solid var(--green-deep);
+}
+.ctabar.is-visible{display:grid;grid-template-columns:1fr 1.4fr}
+.ctabar a{padding:14px 8px;text-align:center;font-size:var(--fs-s);font-weight:700;text-decoration:none}
+.ctabar__tel{background:var(--green);color:var(--white)}
+.ctabar__trial{background:var(--org);color:var(--white)}
+@media (min-width:1000px){.ctabar.is-visible{display:none}}
+@media (max-width:999px){body{padding-bottom:0}.ctabar.is-visible~*{}}
+
+/* 印刷・モーション配慮 */
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ============================================================
+ * 折り返しの最終行に1文字だけ残さない（design-gate の減点項目）
+ * 見出し・引用は balance で行を割り、本文は pretty で最終行を守る。
+ * 日本語は行数が変わるので、必ず本番の日本語で 1440 / 390 を目視すること。
+ * ============================================================ */
+h1,h2,h3,
+.masthead__title,.masthead__sub,
+.sechead__title,.phead__title,
+.voice1__q,.master__quote p,.faq__q,.cta__title,
+.colhead,.eng__seal b,.vitem__hl,.signs__item figcaption b{
+  text-wrap:balance;
+}
+.sechead__lead,.phead__lead,.note,.cta__lead,
+.cover__cap span,.signs__item figcaption,.linelist .ttl,
+.faq__a,.vitem__body,.voice1__body,.master__txt,.prose p,
+.cta__tel small,.quickbar__tel small,.master__fig figcaption{
+  text-wrap:pretty;
+}
+
+/* 受講料の行リスト：狭い画面では1列に落として、コース名を折り返さない */
+@media (max-width:600px){
+  .prow{grid-template-columns:minmax(0,1fr);gap:2px}
+  .prow__price{grid-row:auto;grid-column:1;text-align:left;margin-top:4px}
+}
+
+
+/* 題字は390pxでも1行に収める（このテンプレートのSignature）。
+   塾名が長くて2行に割れるときは、題字のほうを短くする（フォントを小さくしない）。 */
+@media (max-width:600px){
+  .masthead__title{letter-spacing:.01em}
+  /* 塾長の写真枠が、実写真が入るまでSPで巨大な空白にならないようにする */
+  .master__fig{max-width:190px}
+}
