@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="塾長の写真を入れる枠（差し替え用のプレースホルダー）">
+  <rect width="800" height="1000" fill="#f2f4f5"/>
+  <g fill="none" stroke="#175873" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity=".55">
+    <circle cx="400" cy="405" r="118"/>
+    <path d="M212 762c0-104 84-188 188-188s188 84 188 188"/>
+    <path d="M120 880h560"/>
+  </g>
+  <rect x="24" y="24" width="752" height="952" fill="none" stroke="#175873" stroke-width="3" opacity=".25"/>
+</svg>
