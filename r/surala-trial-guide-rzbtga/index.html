@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#f4f7fb">
+<title>すらら無料体験ID 利用ガイド</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root {
+    --paper: #f4f7fb;
+    --surface: #ffffff;
+    --surface-2: #eef3f9;
+    --line: #dbe4ef;
+    --line-strong: #c3d2e3;
+    --ink: #17202c;
+    --ink-2: #45566b;
+    --ink-3: #6d7f95;
+    --accent: #2f6fb8;
+    --accent-soft: #e6eff9;
+    --accent-ink: #235a99;
+    --sura-cyan: #0099dd;
+    --sura-orange: #e08c00;
+    --sura-pink: #d94a78;
+    --warn-bg: #fdf3e3;
+    --warn-line: #e9c98b;
+    --warn-ink: #8a5a10;
+    --shadow: 0 1px 2px rgba(23, 32, 44, .05), 0 8px 24px -14px rgba(23, 32, 44, .28);
+    --measure: 42rem;
+    --nav-w: 15.5rem;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0f151d;
+      --surface: #161e29;
+      --surface-2: #1c2734;
+      --line: #2a3646;
+      --line-strong: #3a4b60;
+      --ink: #e7edf5;
+      --ink-2: #b3c1d2;
+      --ink-3: #8494a8;
+      --accent: #7db2ec;
+      --accent-soft: #1b2b3e;
+      --accent-ink: #a9cdf5;
+      --sura-cyan: #47bdf5;
+      --sura-orange: #f0ac3a;
+      --sura-pink: #ef7ba1;
+      --warn-bg: #2c2417;
+      --warn-line: #5f4a22;
+      --warn-ink: #e8c383;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 10px 30px -16px rgba(0, 0, 0, .8);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #0f151d;
+    --surface: #161e29;
+    --surface-2: #1c2734;
+    --line: #2a3646;
+    --line-strong: #3a4b60;
+    --ink: #e7edf5;
+    --ink-2: #b3c1d2;
+    --ink-3: #8494a8;
+    --accent: #7db2ec;
+    --accent-soft: #1b2b3e;
+    --accent-ink: #a9cdf5;
+    --sura-cyan: #47bdf5;
+    --sura-orange: #f0ac3a;
+    --sura-pink: #ef7ba1;
+    --warn-bg: #2c2417;
+    --warn-line: #5f4a22;
+    --warn-ink: #e8c383;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 10px 30px -16px rgba(0, 0, 0, .8);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent-ink); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+  /* ---------- shell ---------- */
+  .wrap { max-width: 60rem; margin: 0 auto; padding: 0 1.25rem 5rem; }
+  .col { max-width: var(--measure); }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .masthead__inner {
+    max-width: 60rem; margin: 0 auto; padding: 2.75rem 1.25rem 2rem;
+    display: flex; flex-direction: column; gap: 1.1rem;
+  }
+  .eyebrow {
+    font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--ink-3); font-weight: 700;
+    display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+  }
+  .logo-marks { display: inline-flex; gap: .22rem; }
+  .logo-marks i { width: .62rem; height: .62rem; border-radius: 2px; display: block; }
+  .logo-marks i:nth-child(1) { background: var(--sura-cyan); }
+  .logo-marks i:nth-child(2) { background: var(--sura-orange); }
+  .logo-marks i:nth-child(3) { background: var(--sura-pink); }
+
+  h1 {
+    font-family: "M PLUS 1", "Noto Sans JP", sans-serif;
+    font-weight: 800; font-size: clamp(1.85rem, 1.2rem + 2.4vw, 2.9rem);
+    line-height: 1.3; letter-spacing: .01em; margin: 0; text-wrap: balance;
+  }
+  h1 .sub { display: block; font-size: .46em; font-weight: 700; color: var(--accent); letter-spacing: .04em; margin-bottom: .5rem; }
+  .lede { max-width: var(--measure); margin: 0; color: var(--ink-2); font-size: 1.02rem; }
+
+  .meta {
+    display: flex; flex-wrap: wrap; gap: .4rem 1.6rem;
+    font-size: .82rem; color: var(--ink-3);
+    border-top: 1px solid var(--line); padding-top: 1rem; margin-top: .3rem;
+  }
+  .meta b { color: var(--ink-2); font-weight: 500; }
+
+  /* ---------- left fixed nav ---------- */
+  .sidenav {
+    position: fixed; top: 0; left: 0; bottom: 0; z-index: 20;
+    width: var(--nav-w);
+    background: var(--surface); border-right: 1px solid var(--line);
+    padding: 1.75rem 1.1rem 1.5rem;
+    display: flex; flex-direction: column; gap: 1.5rem;
+    overflow-y: auto; overscroll-behavior: contain;
+  }
+  .content { margin-left: var(--nav-w); }
+
+  .sidenav__brand {
+    display: flex; flex-direction: column; gap: .55rem;
+    text-decoration: none; color: inherit;
+  }
+  .sidenav__brand b {
+    display: block;
+    font-family: "M PLUS 1", "Noto Sans JP", sans-serif;
+    font-weight: 800; font-size: .95rem; line-height: 1.5; color: var(--ink);
+  }
+  .sidenav__brand span.kicker {
+    font-size: .68rem; letter-spacing: .14em; font-weight: 700; color: var(--ink-3);
+  }
+
+  .sidenav__nav { display: flex; flex-direction: column; gap: .1rem; }
+  .sidenav__label {
+    font-size: .66rem; letter-spacing: .16em; font-weight: 700;
+    color: var(--ink-3); text-transform: uppercase; margin-bottom: .5rem;
+  }
+  .sidenav__nav a {
+    display: flex; align-items: baseline; gap: .6rem;
+    text-decoration: none; color: var(--ink-2);
+    font-size: .86rem; font-weight: 500; line-height: 1.5;
+    padding: .45rem .6rem; border-radius: 5px;
+    border-left: 2px solid transparent;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .sidenav__nav a .n {
+    font-family: "IBM Plex Mono", monospace; font-size: .68rem; font-weight: 600;
+    color: var(--ink-3); flex: 0 0 1.6rem; letter-spacing: .04em;
+    transition: color .15s;
+  }
+  .sidenav__nav a:hover { background: var(--surface-2); color: var(--ink); }
+  .sidenav__nav a[aria-current="true"] {
+    background: var(--accent-soft); color: var(--accent-ink);
+    border-left-color: var(--accent); font-weight: 700;
+  }
+  .sidenav__nav a[aria-current="true"] .n { color: var(--accent); }
+
+  .sidenav__foot {
+    margin: auto 0 0; padding-top: 1rem; border-top: 1px solid var(--line);
+    font-size: .72rem; line-height: 1.7; color: var(--ink-3);
+  }
+
+  @media (max-width: 62rem) {
+    .sidenav {
+      position: sticky; inset: 0 auto auto 0; width: auto; bottom: auto;
+      flex-direction: row; align-items: center; gap: .5rem;
+      padding: .5rem .9rem;
+      border-right: 0; border-bottom: 1px solid var(--line);
+      overflow-x: auto; overflow-y: hidden; scrollbar-width: thin;
+    }
+    .content { margin-left: 0; }
+    .sidenav__brand, .sidenav__foot, .sidenav__label { display: none; }
+    .sidenav__nav { flex-direction: row; gap: .3rem; }
+    .sidenav__nav a {
+      flex: 0 0 auto; white-space: nowrap; border-left: 0;
+      border-radius: 999px; padding: .3rem .75rem;
+    }
+    .sidenav__nav a .n { display: none; }
+    section { scroll-margin-top: 3.5rem; }
+  }
+
+  /* ---------- sections ---------- */
+  section { padding-top: 3.4rem; }
+  section + section { border-top: 1px solid var(--line); margin-top: 3.4rem; padding-top: 3.4rem; }
+
+  .step-head { display: flex; gap: 1rem; align-items: baseline; margin-bottom: .4rem; }
+  .step-num {
+    font-family: "IBM Plex Mono", monospace; font-weight: 600; font-size: .8rem;
+    color: var(--accent); letter-spacing: .08em; padding-top: .35rem;
+    flex: 0 0 auto;
+  }
+  h2 {
+    font-family: "M PLUS 1", "Noto Sans JP", sans-serif;
+    font-weight: 800; font-size: clamp(1.35rem, 1.1rem + 1vw, 1.7rem);
+    line-height: 1.45; margin: 0; text-wrap: balance;
+  }
+  h3 {
+    font-family: "M PLUS 1", "Noto Sans JP", sans-serif;
+    font-weight: 700; font-size: 1.05rem; line-height: 1.6;
+    margin: 2.4rem 0 .6rem; text-wrap: balance;
+  }
+  p { margin: 0 0 1rem; max-width: var(--measure); }
+  p:last-child { margin-bottom: 0; }
+  .muted { color: var(--ink-2); }
+  .small { font-size: .88rem; }
+
+  /* ---------- figure ---------- */
+  figure { margin: 1.6rem 0 0; }
+  figure img {
+    display: block; width: 100%; height: auto;
+    border: 1px solid var(--line-strong); border-radius: 6px;
+    background: var(--surface);
+  }
+  figcaption {
+    font-size: .8rem; color: var(--ink-3); margin-top: .55rem;
+    padding-left: .8rem; border-left: 2px solid var(--line-strong);
+    line-height: 1.7;
+  }
+
+  /* ---------- callout ---------- */
+  .callout {
+    background: var(--warn-bg); border: 1px solid var(--warn-line);
+    border-radius: 6px; padding: .9rem 1.1rem; margin: 1.4rem 0 0;
+    max-width: var(--measure);
+  }
+  .callout__label {
+    font-family: "M PLUS 1", sans-serif; font-weight: 700; font-size: .78rem;
+    letter-spacing: .08em; color: var(--warn-ink); display: block; margin-bottom: .15rem;
+  }
+  .callout p { color: var(--warn-ink); margin: 0; font-size: .94rem; }
+
+  /* ---------- numbered procedure ---------- */
+  ol.proc { list-style: none; counter-reset: p; margin: 1.2rem 0 0; padding: 0; max-width: var(--measure); }
+  ol.proc li {
+    counter-increment: p; position: relative; padding-left: 2.2rem; margin-bottom: .75rem;
+  }
+  ol.proc li::before {
+    content: counter(p); position: absolute; left: 0; top: .38rem;
+    width: 1.5rem; height: 1.5rem; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent-ink);
+    font-family: "IBM Plex Mono", monospace; font-size: .78rem; font-weight: 600;
+    display: grid; place-items: center; line-height: 1;
+  }
+
+  /* ---------- two-up usage cards ---------- */
+  .usage { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); margin-top: 1.4rem; }
+  .usage > div {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+    padding: 1.25rem 1.35rem; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: .5rem;
+  }
+  .usage h4 {
+    font-family: "M PLUS 1", sans-serif; font-weight: 700; font-size: 1rem;
+    margin: 0; line-height: 1.6; color: var(--accent-ink);
+  }
+  .usage .who {
+    font-size: .72rem; letter-spacing: .12em; font-weight: 700;
+    color: var(--ink-3); text-transform: uppercase;
+  }
+  .usage p { font-size: .9rem; color: var(--ink-2); margin: 0; }
+
+  /* ---------- unit tables ---------- */
+  .grade { margin-top: 2.2rem; }
+  .grade__head { display: flex; align-items: center; gap: .6rem; margin-bottom: .7rem; }
+  .grade__dot { width: .7rem; height: .7rem; border-radius: 2px; flex: 0 0 auto; }
+  .grade--e .grade__dot { background: var(--sura-cyan); }
+  .grade--j .grade__dot { background: var(--sura-orange); }
+  .grade--h .grade__dot { background: var(--sura-pink); }
+  .grade__head h3 { margin: 0; font-size: 1rem; }
+  .grade__count { font-family: "IBM Plex Mono", monospace; font-size: .78rem; color: var(--ink-3); margin-left: auto; }
+
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: .9rem; }
+  thead th {
+    text-align: left; font-family: "M PLUS 1", sans-serif; font-weight: 700;
+    font-size: .74rem; letter-spacing: .1em; color: var(--ink-3);
+    padding: .6rem .9rem; border-bottom: 1px solid var(--line);
+    background: var(--surface-2); white-space: nowrap;
+  }
+  tbody td { padding: .62rem .9rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.subject { white-space: nowrap; color: var(--ink-2); font-weight: 500; }
+  td.code {
+    font-family: "IBM Plex Mono", monospace; font-size: .84rem; font-weight: 500;
+    white-space: nowrap; color: var(--accent-ink); font-variant-numeric: tabular-nums;
+  }
+  td.level { white-space: nowrap; color: var(--ink-3); font-size: .82rem; }
+
+  /* ---------- faq ---------- */
+  .faq { margin-top: 1.6rem; display: flex; flex-direction: column; gap: 1rem; max-width: var(--measure); }
+  .faq > div { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 1.2rem 1.35rem; }
+  .faq .q {
+    font-family: "M PLUS 1", sans-serif; font-weight: 700; font-size: .98rem;
+    line-height: 1.65; margin: 0 0 .55rem; display: flex; gap: .6rem;
+  }
+  .faq .q::before { content: "Q"; color: var(--accent); font-family: "IBM Plex Mono", monospace; flex: 0 0 auto; }
+  .faq .a { display: flex; gap: .6rem; margin: 0; font-size: .92rem; color: var(--ink-2); }
+  .faq .a::before { content: "A"; color: var(--ink-3); font-family: "IBM Plex Mono", monospace; font-weight: 600; flex: 0 0 auto; }
+
+  /* ---------- footer ---------- */
+  footer {
+    margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1.5rem;
+    font-size: .82rem; color: var(--ink-3); display: flex; flex-direction: column; gap: .35rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+<style>img{max-width:100%}</style>
+</head>
+<body>
+<aside class="sidenav">
+  <a class="sidenav__brand" href="#page-top">
+    <span class="logo-marks" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="kicker">すらら無料体験ID</span>
+    <b>利用ガイド</b>
+  </a>
+  <nav class="sidenav__nav" aria-label="目次">
+    <span class="sidenav__label">目次</span>
+    <a href="#login"><span class="n">01</span>ログイン方法</a>
+    <a href="#top"><span class="n">02</span>TOPページ</a>
+    <a href="#usage"><span class="n">03</span>おすすめ利用法</a>
+    <a href="#teacher"><span class="n">04</span>先生向け機能</a>
+    <a href="#units"><span class="n">05</span>おすすめユニット</a>
+    <a href="#faq"><span class="n">FAQ</span>よくある質問</a>
+  </nav>
+  <p class="sidenav__foot">2021.08.13版<br>株式会社すららネット</p>
+</aside>
+
+<div class="content" id="page-top">
+<header class="masthead">
+  <div class="masthead__inner">
+    <div class="eyebrow">
+      <span class="logo-marks" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>すららネット / 無料体験ID</span>
+    </div>
+    <h1><span class="sub">はじめてお使いになる方へ</span>「すらら無料体験ID」利用ガイド</h1>
+    <p class="lede">お申し込みいただいた無料体験IDで「すらら」をご体験いただくための手引きです。ログインから、体験時のおすすめの使い方、教材のおすすめユニットまでをまとめています。</p>
+    <div class="meta">
+      <span><b>対象</b>　無料体験IDをお持ちの塾・学校関係者さま</span>
+      <span><b>所要</b>　通読 約5分</span>
+      <span><b>資料版数</b>　2021.08.13</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="login">
+    <div class="step-head">
+      <span class="step-num">STEP 01</span>
+      <h2>ログイン方法</h2>
+    </div>
+    <p class="muted col">お送りしたメールに記載の「すららID」と「パスワード」を入力し、<b>ログイン</b>を押してください。</p>
+    <figure>
+      <img src="img/01-login.jpg" alt="すららのログイン画面。すららIDとパスワードの入力欄、ログインボタン、タブレットで学習する時の注意点へのリンクが並んでいる。">
+      <figcaption>ログイン画面。タブレットでご体験の場合は「タブレットで学習する時の注意点」を先にご確認ください。</figcaption>
+    </figure>
+  </section>
+
+  <section id="top">
+    <div class="step-head">
+      <span class="step-num">STEP 02</span>
+      <h2>「すらら」TOPページについて</h2>
+    </div>
+    <p class="muted col">ログイン後に表示される、生徒用のTOPページです。まずは手書き機能の設定から確認します。</p>
+
+    <h3>はじめに、手書き機能のオン／オフを設定する</h3>
+    <p class="muted col">画面右上のトグルで切り替えます。<b>PCでご体験いただく場合は、必ず「オフ」に設定してください。</b>タブレット＋タッチペンでご体験の場合は「オン」のままお使いいただけます。</p>
+    <figure>
+      <img src="img/02-tegaki.jpg" alt="すららTOPページ右上の手書き切り替えトグルを赤枠で示した画面。「手書きのオンオフはこちらから。」の吹き出しが付いている。">
+      <figcaption>手書きのオン／オフは画面右上から切り替えます。</figcaption>
+    </figure>
+
+    <div class="callout">
+      <span class="callout__label">PCでご体験の場合</span>
+      <p>手書き機能がオンのままだとマウス操作では書きづらくなります。設定を「オフ」にしてからお進みください。</p>
+    </div>
+
+    <h3>TOPページの各メニュー</h3>
+    <p class="muted col">学習の入り口は大きく2つ。<b>「単元リスト」「体系図」「教科書」から選ぶ</b>と、あらかじめ設定した<b>「目標」から学習する</b>方法です。日本語学習教材「すららにほんご」は「その他」から開きます。</p>
+    <figure>
+      <img src="img/03-top-menu.jpg" alt="すららTOPページの各メニューを赤枠と吹き出しで解説した画面。単元リスト・体系図・教科書から好きな教科や単元を選べること、左側の目標から学習できること、その他からすららにほんごを開けることが示されている。">
+      <figcaption>左側の「目標」＝設定した目標から学習／中央の3つ＝好きな教科・単元を選択／「その他」＝すららにほんご。</figcaption>
+    </figure>
+  </section>
+
+  <section id="usage">
+    <div class="step-head">
+      <span class="step-num">STEP 03</span>
+      <h2>体験時のおすすめ利用法</h2>
+    </div>
+    <p class="muted col">どなたがお使いになるかで、選んでいただきたい単元が変わります。</p>
+    <div class="usage">
+      <div>
+        <span class="who">生徒が使う場合</span>
+        <h4>いま学校で学習している単元を「すらら」で学習</h4>
+        <p>「すらら」は0ベースで学べる教材です。今まさに学校で習っている単元を、「すらら」ではどのように教えるのかをぜひご体験ください。</p>
+      </div>
+      <div>
+        <span class="who">先生（大人）が使う場合</span>
+        <h4>お好きな教科・単元を「すらら」で学習</h4>
+        <p>内容をご存じのぶん退屈に感じる箇所もあるかと思いますが、子どもになったつもりでレクチャーからしっかりお聞きください。中学生版の国語（ステージ9）や高校生版の数学など、ご自身が理解しきれていない箇所をご覧になるのもおすすめです。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="teacher">
+    <div class="step-head">
+      <span class="step-num">STEP 04</span>
+      <h2>先生用機能の一部を生徒IDから見る</h2>
+    </div>
+    <p class="muted col">ご契約前は先生用の管理画面そのものはご体験いただけませんが、<b>一部の機能は生徒用IDからご覧いただけます。</b>TOPページ左下の「学習計画をたてる」「学習記録をみる」の2つです。</p>
+    <figure>
+      <img src="img/04-teacher-features.jpg" alt="すららTOPページ左下の「学習計画をたてる」「学習記録をみる」を枠で囲み、それぞれ目標を設定できる・学習履歴を確認できる（先生用管理画面と同様）と吹き出しで説明した画面。">
+      <figcaption>「学習計画をたてる」＝目標の設定／「学習記録をみる」＝学習履歴の確認。いずれも先生用管理画面と同様の機能です。</figcaption>
+    </figure>
+
+    <h3>学習計画をたてる（ラーニングデザイナー）</h3>
+    <p class="muted col">目標（カリキュラム）を設定する画面です。次の4ステップで作成します。</p>
+    <ol class="proc">
+      <li>目標名を入れる</li>
+      <li>「すららから選ぶ」または「教科書から選ぶ」でユニットを選択する</li>
+      <li>「目標として追加する」を押す</li>
+      <li>「目標を保存する」で保存する</li>
+    </ol>
+    <figure>
+      <img src="img/05-learning-designer.jpg" alt="ラーニングデザイナーの画面。目標名の入力欄、すららから選ぶ／教科書から選ぶのタブ、目標として追加するボタン、目標を保存するボタンにそれぞれ番号付きの吹き出しが付いている。">
+      <figcaption>ラーニングデザイナーの画面。①目標名 → ②学習範囲の選択 → ③目標として追加 → ④保存、の順に操作します。</figcaption>
+    </figure>
+
+    <h3>学習記録をみる</h3>
+    <p class="muted col">学習ログを確認する画面です。<b>「学習履歴」タブ</b>で、学習日・学習時間・単元箇所などを一覧できます。表示する項目は<b>「表示項目の変更」</b>から選べます。</p>
+    <figure>
+      <img src="img/06-learning-log.jpg" alt="学習記録の画面。学習履歴タブと表示項目の変更ボタンが赤枠で示され、学習日・種類・学年科目・単元箇所・学習時間などが並ぶ一覧表が表示されている。">
+      <figcaption>学習ログは「学習履歴」タブから。ログイン回数・クリアユニット数・学習時間も確認できます。</figcaption>
+    </figure>
+  </section>
+
+  <section id="units">
+    <div class="step-head">
+      <span class="step-num">STEP 05</span>
+      <h2>おすすめユニット一覧</h2>
+    </div>
+    <p class="muted col">どの単元から見るか迷われたときは、こちらからお選びください。ユニットコードは「単元リスト」から検索・選択できます。</p>
+
+    <div class="grade grade--e">
+      <div class="grade__head">
+        <span class="grade__dot" aria-hidden="true"></span>
+        <h3>小学生</h3>
+        <span class="grade__count">7 units</span>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>版</th><th>教科</th><th>ユニットコード</th><th>単元名</th></tr></thead>
+          <tbody>
+            <tr><td class="level">小学校低学年版</td><td class="subject">国語</td><td class="code">文_ステージ6-1-3 (2/2)</td><td>事実と感想の区別</td></tr>
+            <tr><td class="level">小学校高学年版</td><td class="subject">国語</td><td class="code">P1-2-3A</td><td>修飾語がつながるのはどの言葉?</td></tr>
+            <tr><td class="level">小学校低学年版</td><td class="subject">算数</td><td class="code">LM_B31-1</td><td>掛け算</td></tr>
+            <tr><td class="level">小学校高学年版</td><td class="subject">算数</td><td class="code">11-2-1</td><td>垂直と平行</td></tr>
+            <tr><td class="level">小学校高学年版</td><td class="subject">算数</td><td class="code">9-1-1B</td><td>速さを求める</td></tr>
+            <tr><td class="level">小学校高学年版</td><td class="subject">理科</td><td class="code">エネルギー分野ステージ2-1-2-A</td><td>極のせいしつ</td></tr>
+            <tr><td class="level">小学校高学年版</td><td class="subject">社会</td><td class="code">小学地理 stage1-1-1</td><td>地図を読んでみよう</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="grade grade--j">
+      <div class="grade__head">
+        <span class="grade__dot" aria-hidden="true"></span>
+        <h3>中学生</h3>
+        <span class="grade__count">10 units</span>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>版</th><th>教科</th><th>ユニットコード</th><th>単元名</th></tr></thead>
+          <tbody>
+            <tr><td class="level">中学校版</td><td class="subject">数学</td><td class="code">17-1-1</td><td>三平方の定理</td></tr>
+            <tr><td class="level">中学校版</td><td class="subject">数学</td><td class="code">8-6-1B</td><td>文章題の解き方</td></tr>
+            <tr><td class="level">中学校版</td><td class="subject">数学</td><td class="code">7-1-1</td><td>平方根を理解しよう</td></tr>
+            <tr><td class="level">中学校版</td><td class="subject">英語</td><td class="code">5-2-9A</td><td>比較級</td></tr>
+            <tr><td class="level">中学校版</td><td class="subject">英語</td><td class="code">6-2-11A</td><td>現在完了</td></tr>
+            <tr><td class="level">中学校版</td><td class="subject">英語</td><td class="code">5-6-18A</td><td>受動態</td></tr>
+            <tr><td class="level">中学校版</td><td class="subject">国語</td><td class="code">5-59-1B</td><td>言葉と言葉のつながりの意味を理解しよう（重文・複文）</td></tr>
+            <tr><td class="level">中学校版</td><td class="subject">国語</td><td class="code">6-65-1</td><td>文脈把握：指示内容を把握しよう</td></tr>
+            <tr><td class="level">中学校版</td><td class="subject">理科</td><td class="code">エネルギー分野14-2</td><td>力が働く物体の運動</td></tr>
+            <tr><td class="level">中学校版</td><td class="subject">理科</td><td class="code">地球分野3-3-1</td><td>月の動きと見え方</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="grade grade--h">
+      <div class="grade__head">
+        <span class="grade__dot" aria-hidden="true"></span>
+        <h3>高校生</h3>
+        <span class="grade__count">12 units</span>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>版</th><th>教科</th><th>ユニットコード</th><th>単元名</th></tr></thead>
+          <tbody>
+            <tr><td class="level">高校生版</td><td class="subject">英語</td><td class="code">5-1-1</td><td>仮定法</td></tr>
+            <tr><td class="level">高校生版</td><td class="subject">英語</td><td class="code">2-5-4</td><td>不定詞完了形</td></tr>
+            <tr><td class="level">高校生版</td><td class="subject">英語</td><td class="code">5-1-2B</td><td>仮定法過去</td></tr>
+            <tr><td class="level">高校生版</td><td class="subject">英語</td><td class="code">2-9-1A</td><td>分詞構文</td></tr>
+            <tr><td class="level">高校生版</td><td class="subject">国語</td><td class="code">2-0-1</td><td>必要な知識を身につけよう</td></tr>
+            <tr><td class="level">高校生版</td><td class="subject">国語</td><td class="code">1-1-1</td><td>文脈把握：指示内容を把握しよう</td></tr>
+            <tr><td class="level">高校生版</td><td class="subject">国語</td><td class="code">2-6-1A</td><td>必要な知識を身につけよう</td></tr>
+            <tr><td class="level">高校生版</td><td class="subject">国語</td><td class="code">1-1-1A</td><td>文脈把握：指示内容を把握しよう</td></tr>
+            <tr><td class="level">高校生版</td><td class="subject">数学</td><td class="code">4-1-1</td><td>集合</td></tr>
+            <tr><td class="level">高校生版</td><td class="subject">数学</td><td class="code">15-1A</td><td>場合の数</td></tr>
+            <tr><td class="level">高校生版</td><td class="subject">数学</td><td class="code">5-1-1B</td><td>2次関数</td></tr>
+            <tr><td class="level">高校生版</td><td class="subject">数学</td><td class="code">15-3-1B</td><td>組み合わせ（発展）</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="step-head">
+      <span class="step-num">FAQ</span>
+      <h2>よくある質問</h2>
+    </div>
+    <div class="faq">
+      <div>
+        <p class="q">手書き機能がオンになっていて、PCで使いづらいです。</p>
+        <p class="a">TOPページの「設定」より「手書き機能オフ」に設定をお願いします。</p>
+      </div>
+      <div>
+        <p class="q">テスト機能が利用できません。</p>
+        <p class="a">お渡ししている体験IDでは「テスト機能」はご利用になれません。各ユニットのレクチャーとドリルのみのご体験となります。</p>
+      </div>
+      <div>
+        <p class="q">先生用の管理画面も体験したいのですが。</p>
+        <p class="a">先生用の管理画面は弊社ノウハウのため、ご契約前にご体験いただくことはできません。生徒用TOPページにある「ラーニングデザイナー」「学習履歴」が先生用管理画面の一部機能となりますので、こちらをご確認いただき、参考にしていただければと思います。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>「すらら無料体験ID」利用ガイド（2021.08.13版）／ 株式会社すららネット</span>
+    <span>本ページは体験IDをお申し込みいただいた方向けの限定公開ページです。URLの再配布はご遠慮ください。</span>
+    <span>ご不明な点は、体験IDをご案内した弊社担当者までお問い合わせください。</span>
+  </footer>
+
+</main>
+</div>
+
+<script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.sidenav__nav a'));
+    if (!links.length) { return; }
+    var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+    var ticking = false;
+
+    function update() {
+      ticking = false;
+      var line = window.innerHeight * 0.25;
+      var idx = 0;
+      sections.forEach(function (s, i) {
+        if (s && s.getBoundingClientRect().top <= line) { idx = i; }
+      });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        idx = sections.length - 1;
+      }
+      links.forEach(function (a, i) {
+        a.setAttribute('aria-current', i === idx ? 'true' : 'false');
+      });
+    }
+
+    function onScroll() {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+    }
+
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+  })();
+</script>
+</body>
+</html>
