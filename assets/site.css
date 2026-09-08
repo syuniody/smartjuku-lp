@@ -249,6 +249,43 @@ ul,ol{list-style:none}
 .article-cta .btn{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--blue-deep);font-weight:700;padding:16px 40px;border-radius:var(--r-sm);text-decoration:none;transition:background .25s,transform .25s}
 .article-cta .btn:hover{background:var(--marker);color:var(--ink);transform:translateY(-2px)}
 
+/* 記事中CTA（site.js が本文の最初のh2の直前に1つだけ差し込む）
+   バナーにしない。罫線1本と本文の書体だけで、読む流れを止めないこと。
+   地はクリームのまま（背景を敷かない）。h2の太い罫線とは64pxの間があるので二重線には見えない。 */
+.article-body .article-mid-cta{margin-top:44px;padding-top:22px;border-top:1px solid var(--line)}
+.article-body .article-mid-cta p{font-size:.95rem;line-height:2;color:var(--ink-soft)}
+.article-body .article-mid-cta .mid-link{display:inline-block;margin-top:6px;
+  font-size:.95rem;font-weight:700;color:var(--blue);text-decoration:underline}
+
+/* 記事の追従CTA（≤640px・記事末のCTAを持つ記事だけ。site.js が差し込む）
+   LPの固定CTA（.m-cta）と同じ流儀。白地・上罫線1本・高さ56px。影・アイコン・角丸の帯にしない。
+   JSが動かない環境では要素そのものが無い（何も出ない）。 */
+.article-mcta{position:fixed;left:0;right:0;bottom:0;z-index:90;display:none;
+  align-items:center;justify-content:space-between;gap:10px;
+  min-height:56px;padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px)) 14px;
+  background:var(--white);border-top:1px solid var(--line);
+  visibility:hidden;transform:translateY(100%);
+  transition:transform .3s,visibility .3s;pointer-events:none}
+.article-mcta.is-visible{visibility:visible;transform:none;pointer-events:auto}
+.article-mcta-note{font-size:.8rem;line-height:1.5;color:var(--ink-soft)}
+.article-mcta-btn{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;
+  background:var(--blue);color:#fff;font-weight:700;border:1.5px solid var(--blue);
+  padding:10px 16px;border-radius:var(--r-sm);font-size:.86rem;line-height:1.5;
+  white-space:nowrap;text-decoration:none;transition:background .25s}
+.article-mcta-btn:hover{background:var(--blue-deep);border-color:var(--blue-deep)}
+/* 閉じるボタン。押した記事ではセッション中もう出さない（判定は site.js 側） */
+.article-mcta-close{flex-shrink:0;width:36px;height:36px;padding:0;
+  display:flex;align-items:center;justify-content:center;
+  background:transparent;border:0;border-radius:var(--r-xs);cursor:pointer;
+  font-family:var(--sans);font-size:.95rem;line-height:1;color:var(--ink-soft)}
+.article-mcta-close:hover,.article-mcta-close:focus-visible{color:var(--ink)}
+/* 記事の先頭から28%までを覆う目印。この帯が画面の上へ抜けたら追従CTAを出す。
+   高さを持たせるのは、1pxの点だと一気にスクロールしたとき交差の状態が変わらず、
+   IntersectionObserver が呼ばれないため。見た目には出ない。 */
+.has-cta-anchor{position:relative}
+.article-cta-anchor{position:absolute;left:0;top:0;width:1px;height:28%;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.article-mcta{transition:none}}
+
 /* 関連記事 */
 .related{padding:60px 0 0;max-width:var(--measure)}
 .related h2{font-family:var(--serif);font-weight:700;font-size:1.2rem;margin-bottom:18px;letter-spacing:.04em}
@@ -287,6 +324,10 @@ ul,ol{list-style:none}
   .survey-meta dd{margin-bottom:10px}
 }
 @media(max-width:640px){
+  .article-mcta{display:flex}
+  /* 帯にフッターが隠れないよう、帯を出した記事だけフッターの下余白を足す
+     （bodyに余白を足すと、暗いフッターの下に白帯が出る） */
+  body.has-article-mcta .site-footer{padding-bottom:96px}
   .list-head{padding:40px 0 32px}
   .article-head{padding:32px 0 30px}
   .article-body{padding:40px 0 30px}
@@ -297,6 +338,6 @@ ul,ol{list-style:none}
 
 /* 印刷 */
 @media print{
-  .site-header,.article-cta,.related,.site-footer{display:none}
+  .site-header,.article-cta,.article-mid-cta,.article-mcta,.related,.site-footer{display:none}
   body{background:#fff}
 }
