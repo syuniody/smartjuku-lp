@@ -19,6 +19,21 @@
 <meta name="color-scheme" content="light">
 <link rel="icon" href="data:,">
 <title>2027年春開校の逆算表</title>
+<!-- Google Analytics 4（サイト本体と同一） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JLH0DEFEX9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JLH0DEFEX9');
+  // フォームへのクリックを便（D1/D2/D3）付きで記録
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href*="docs.google.com/forms"]');
+    if (!a) return;
+    var m = a.href.match(/entry\.764286377=(D\d)/);
+    gtag('event', 'form_click', { wave: m ? m[1] : 'none', link_place: a.className || 'link' });
+  });
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=Zen+Old+Mincho:wght@400;600;700&display=swap">
