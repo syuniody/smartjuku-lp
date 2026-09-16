@@ -138,6 +138,11 @@ table.hyo{border-collapse:collapse; width:100%; margin:10px 0 16px; font-family:
 .tokuten h4{margin:0 0 8px; font-family:"Zen Old Mincho",serif; font-size:20px; font-weight:700; line-height:1.5; text-wrap:balance}
 .tokuten p{font-size:14.5px; line-height:1.9; max-width:42em; text-indent:0; text-align:left}
 .tokuten small{display:block; font-family:"BIZ UDPGothic",sans-serif; font-size:11.5px; color:var(--ink-2); margin-top:8px}
+.peek{grid-column:1 / -1; display:block; position:relative; overflow:hidden; border:1px solid var(--line); background:var(--paper); text-decoration:none; color:inherit}
+.peek img{display:block; width:100%; height:auto}
+.peek::after{content:""; position:absolute; left:0; right:0; bottom:0; height:96px; background:linear-gradient(rgba(255,255,255,0), var(--paper) 82%)}
+.peek span{position:absolute; left:0; right:0; bottom:10px; z-index:1; text-align:center; font-family:"BIZ UDPGothic",sans-serif; font-size:12px; letter-spacing:.04em; color:var(--ink-2)}
+.peek:focus-visible{outline:2px solid var(--shu); outline-offset:3px}
 .soudan{font-family:"BIZ UDPGothic",sans-serif; font-size:12.5px; color:var(--ink-2); margin:8px 0 0}
 .btn{
   font-family:"BIZ UDPGothic",sans-serif; font-size:14px; font-weight:700; letter-spacing:.06em;
@@ -172,6 +177,8 @@ table.hyo{border-collapse:collapse; width:100%; margin:10px 0 16px; font-family:
   figure.zu svg.mob{display:block}
   figure.zu .mob{display:block}
   .tokuten{grid-template-columns:1fr}
+  .peek::after{display:none}
+  .peek span{position:static; display:block; padding:6px 8px 8px; font-size:11px; background:var(--paper)}
   .now dl{grid-template-columns:1fr; gap:4px 0}
   .now dd{margin-bottom:8px}
   .v{grid-template-columns:120px 1fr; gap:12px}
@@ -452,6 +459,10 @@ table.hyo{border-collapse:collapse; width:100%; margin:10px 0 16px; font-family:
     </section>
 
     <div class="tokuten">
+      <a class="peek" href="https://docs.google.com/forms/d/e/1FAIpQLSfdvJkwKkBHmCK5-SNQEoK8dQxLCZvL-jC6mvH7ZYBrWbYZ8A/viewform?usp=pp_url&amp;entry.764286377=D1" rel="noopener">
+        <picture><source media="(max-width:700px)" srcset="sched_peek_m.jpg"><img src="sched_peek.jpg" alt="スケジュール表の一部。作業ごとに開始日と終了日が入り、週単位の帯で表示される" width="1600" height="599" loading="lazy"></picture>
+        <span>スケジュール表の一部（3月1日開校・融資あり・標準ペースで作成した56工程のうち冒頭）</span>
+      </a>
       <div>
         <p class="t">読者用ツール</p>
         <h4>ご自身の開校日で、週単位のスケジュール表を作れます</h4>
