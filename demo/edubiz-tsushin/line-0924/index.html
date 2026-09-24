@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>公式LINE配信の確認｜Edu-Biz 先週の3本（9/24）</title>
+<meta name="description" content="すららネット学習塾向け公式LINEで配信予定の、Edu-Bizチャンネル先週分3本のカルーセル（導入塾向け・見込み客向け）の確認用ページ。">
+<meta property="og:title" content="公式LINE配信の確認｜Edu-Biz 先週の3本（9/24）">
+<meta property="og:description" content="導入塾向け・見込み客向けのカルーセル内容と配信対象の確認用。">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://smart-juku.syuni.jp/demo/edubiz-tsushin/line-0924/images/01_goritekihairyo.jpg">
+<meta property="og:url" content="https://smart-juku.syuni.jp/demo/edubiz-tsushin/line-0924/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@600;700&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F7F5F0; }
+  body { font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', Meiryo, sans-serif; color: #2A2723; }
+  a { color: #C73E2E; text-decoration: none; }
+  a:hover { color: #9C2F22; }
+  img { max-width: 100%; display: block; }
+
+  .site-header { background: #1B2A4A; padding: 0 32px; height: 62px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .brand-title { color: #FFFFFF; font-size: 19px; font-weight: 700; font-family: 'Zen Old Mincho', 'Hiragino Mincho ProN', serif; letter-spacing: 0.05em; }
+  .brand-sub { color: #A9B4CC; font-size: 11px; letter-spacing: 0.1em; }
+
+  .wrap { display: flex; justify-content: center; padding: 0 20px; }
+  .col { width: min(880px, 100%); }
+
+  .lead { padding: 56px 0 28px 0; }
+  .eyebrow { display: flex; align-items: center; gap: 12px; }
+  .eyebrow-bar { width: 28px; height: 3px; background: #C73E2E; flex-shrink: 0; }
+  .eyebrow-text { color: #8B8578; font-size: 13px; letter-spacing: 0.14em; }
+  h1 { font-size: clamp(23px, 5vw, 32px); font-weight: 700; line-height: 1.55; color: #1B2A4A;
+       font-family: 'Zen Old Mincho', 'Hiragino Mincho ProN', serif; letter-spacing: 0.02em;
+       margin: 18px 0 0 0; word-break: auto-phrase; text-wrap: balance; }
+  .masthead-rule { border-top: 3px solid #1B2A4A; border-bottom: 1px solid #D9D4CA; padding: 14px 0 16px 0; margin-top: 18px; }
+  .masthead-data { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; font-size: 13px; line-height: 1.7; }
+  .masthead-data dt { color: #8B8578; letter-spacing: 0.18em; white-space: nowrap; }
+  .masthead-data dd { margin: 0; color: #4A463F; word-break: auto-phrase; }
+  .lead-text { font-size: 15px; line-height: 1.95; color: #4A463F; margin: 20px 0 0 0; text-wrap: pretty; }
+
+  .label { color: #8B8578; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; white-space: nowrap; }
+  .rule-row { display: flex; align-items: center; gap: 12px; }
+  .rule { height: 1px; background: #D9D4CA; flex-grow: 1; }
+
+  .version { margin-top: 56px; }
+  .version h2 { font-size: clamp(20px, 4.4vw, 25px); font-weight: 700; color: #1B2A4A; margin: 14px 0 0 0;
+                font-family: 'Zen Old Mincho', 'Hiragino Mincho ProN', serif; }
+  .spec { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13px; }
+  .spec th, .spec td { border: 1px solid #E2DDD2; padding: 10px 12px; text-align: left; vertical-align: top; line-height: 1.75; background: #FFFFFF; }
+  .spec th { color: #8B8578; font-weight: 700; white-space: nowrap; width: 112px; letter-spacing: 0.06em; }
+  .spec td { word-break: break-word; }
+  .spec .num { font-weight: 700; color: #1B2A4A; }
+  .spec .note { color: #8B8578; font-size: 12px; }
+
+  /* LINE上の並びに近い見た目 */
+  .talk { margin-top: 18px; background: #8CA9C9; padding: 18px 0 18px 18px; }
+  .carousel { display: flex; gap: 10px; overflow-x: auto; padding-right: 18px; scroll-snap-type: x mandatory; }
+  .lcard { flex: 0 0 calc((100% - 30px) / 4); min-width: 190px; background: #FFFFFF; display: flex; flex-direction: column; scroll-snap-align: start; }
+  .lcard img { width: 100%; height: auto; aspect-ratio: 1.51 / 1; object-fit: cover; }
+  .lcard-body { padding: 12px 14px 10px 14px; display: flex; flex-direction: column; gap: 5px; flex: 1 1 auto; }
+  .lcard-title { font-size: 14px; font-weight: 700; color: #111; line-height: 1.45; }
+  .lcard-text { font-size: 12.5px; line-height: 1.6; color: #555; flex: 1 1 auto; }
+  .lcard-btn { border-top: 1px solid #ECECEC; padding: 11px 0; font-size: 13px; color: #3B6FB6; text-align: center; }
+  .lcard-diff { outline: 3px solid #C73E2E; outline-offset: -3px; }
+  .talk-note { color: #FFFFFF; font-size: 11px; margin-top: 10px; letter-spacing: 0.04em; }
+
+  .links { margin: 16px 0 0 0; padding: 0; list-style: none; font-size: 13px; line-height: 1.8; }
+  .links li { display: grid; grid-template-columns: 76px 1fr; gap: 8px; border-bottom: 1px solid #ECE8DF; padding: 6px 0; }
+  .links .k { color: #8B8578; }
+  .links a { word-break: break-all; }
+
+  .notes { margin-top: 60px; border-top: 1px solid #D9D4CA; padding-top: 22px; }
+  .notes ol { margin: 14px 0 0 0; padding-left: 1.4em; }
+  .notes li { font-size: 14px; line-height: 1.95; color: #4A463F; margin-bottom: 10px; text-wrap: pretty; }
+  .notes strong { color: #1B2A4A; }
+
+  .site-footer { margin-top: 64px; padding: 22px 20px 32px 20px; text-align: center; font-size: 11px; color: #8B8578; letter-spacing: 0.08em; }
+
+  @media (max-width: 680px) {
+    .site-header { padding: 10px 20px; height: auto; }
+    .lead { padding: 40px 0 20px 0; }
+    .spec th { width: auto; }
+    .lcard { flex-basis: 220px; min-width: 220px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand-title">Edu-biz 通信</div>
+  <div class="brand-sub">公式LINE配信の確認用</div>
+</header>
+
+<div class="wrap">
+  <div class="col">
+
+    <section class="lead">
+      <div class="eyebrow">
+        <div class="eyebrow-bar"></div>
+        <div class="eyebrow-text">確認依頼｜2026年9月24日</div>
+      </div>
+      <h1>公式LINEで送る「先週の3本」の確認</h1>
+      <div class="masthead-rule">
+        <dl class="masthead-data">
+          <dt>配信元</dt><dd>すららネット学習塾向けお問い合わせ窓口（Lステップ）</dd>
+          <dt>収録</dt><dd>Edu-Bizチャンネルで2026年9月14日〜20日に公開した3本</dd>
+          <dt>形式</dt><dd>カルーセル4枚を1通で。導入塾向けと見込み客向けの2種類</dd>
+          <dt>状態</dt><dd>Lステップにテンプレートとして保存済み。<strong>配信日時は未定・未送信</strong></dd>
+        </dl>
+      </div>
+      <p class="lead-text">1〜3枚目の動画は両方とも同じで、違うのは4枚目だけです。導入塾にはチャンネルへの誘導、見込み客には無料オンラインセミナーの案内を出します。赤枠のカードが両者で違う部分です（スマホでは横にスクロールできます）。</p>
+    </section>
+
+    <!-- ================= 導入塾向け ================= -->
+    <section class="version">
+      <div class="rule-row"><div class="label">A</div><div class="rule"></div></div>
+      <h2>導入塾向け</h2>
+      <table class="spec">
+        <tr><th>配信対象</th><td><span class="num">114人</span>　<span class="note">次のタグのいずれかを持つ人：カテゴリ＿導入塾／カテゴリ＿（申請中）導入塾／流入＿旧導入塾アカウント</span></td></tr>
+        <tr><th>通知の文言</th><td>【Edu-Biz】合理的配慮が学習指導要領の「総則」へ｜先週公開の3本<br><span class="note">ロック画面・トーク一覧に出るのはこの一文だけです</span></td></tr>
+      </table>
+      <div class="talk">
+        <div class="carousel">
+          <div class="lcard">
+            <img src="images/01_goritekihairyo.jpg" alt="合理的配慮が「総則」へ" width="600" height="397">
+            <div class="lcard-body">
+              <div class="lcard-title">合理的配慮が「総則」へ</div>
+              <div class="lcard-text">通常学級・通級の支援をどう見直すか。8月31日公表の文科省素案を解説します。（9:30）</div>
+            </div>
+            <div class="lcard-btn">動画を見る</div>
+          </div>
+          <div class="lcard">
+            <img src="images/02_pisa2025.jpg" alt="PISA2025を1から解説" width="600" height="397">
+            <div class="lcard-body">
+              <div class="lcard-title">PISA2025を1から解説</div>
+              <div class="lcard-text">日本はOECDで3分野1位。一方で読解力は13点低下。順位と得点の読み方から問題例まで。（32:18）</div>
+            </div>
+            <div class="lcard-btn">動画を見る</div>
+          </div>
+          <div class="lcard">
+            <img src="images/03_toritsu10tai0.jpg" alt="都立高入試に「10対0」" width="600" height="397">
+            <div class="lcard-body">
+              <div class="lcard-title">都立高入試に「10対0」</div>
+              <div class="lcard-text">北園・武蔵野北で、内申あり・なしの高い方を採用。内申点の廃止ではありません。（18:50）</div>
+            </div>
+            <div class="lcard-btn">動画を見る</div>
+          </div>
+          <div class="lcard lcard-diff">
+            <img src="images/04a_channel_banner.jpg" alt="他の動画もチャンネルで" width="600" height="397">
+            <div class="lcard-body">
+              <div class="lcard-title">他の動画もチャンネルで</div>
+              <div class="lcard-text">Edu-Bizチャンネルでは毎週、塾経営と教育制度の動画を公開しています。</div>
+            </div>
+            <div class="lcard-btn">チャンネルを見る</div>
+          </div>
+        </div>
+        <div class="talk-note">赤枠が見込み客向けと違うカード</div>
+      </div>
+      <ul class="links">
+        <li><span class="k">1枚目</span><a href="https://www.youtube.com/watch?v=_H0srMkOTEE" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=_H0srMkOTEE</a></li>
+        <li><span class="k">2枚目</span><a href="https://www.youtube.com/watch?v=VWoPxnANqfk" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=VWoPxnANqfk</a></li>
+        <li><span class="k">3枚目</span><a href="https://www.youtube.com/watch?v=IL8YK7Vxoks" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=IL8YK7Vxoks</a></li>
+        <li><span class="k">4枚目</span><span><a href="https://www.youtube.com/@Edu_Biz_Surala_juku?sub_confirmation=1" target="_blank" rel="noopener noreferrer">https://www.youtube.com/@Edu_Biz_Surala_juku?sub_confirmation=1</a><br><span class="note" style="color:#8B8578;font-size:12px;">開くとチャンネル登録の確認が出ます</span></span></li>
+      </ul>
+    </section>
+
+    <!-- ================= 見込み客向け ================= -->
+    <section class="version">
+      <div class="rule-row"><div class="label">B</div><div class="rule"></div></div>
+      <h2>見込み客向け</h2>
+      <table class="spec">
+        <tr><th>配信対象</th><td><span class="num">約177人</span>　<span class="note">上の3タグを<strong>どれも持たない</strong>人（独立・既存塾・フリースクールのほか、カテゴリ未設定の人を含む）</span></td></tr>
+        <tr><th>通知の文言</th><td>【Edu-Biz】合理的配慮が学習指導要領の「総則」へ｜先週公開の3本</td></tr>
+      </table>
+      <div class="talk">
+        <div class="carousel">
+          <div class="lcard">
+            <img src="images/01_goritekihairyo.jpg" alt="合理的配慮が「総則」へ" width="600" height="397">
+            <div class="lcard-body">
+              <div class="lcard-title">合理的配慮が「総則」へ</div>
+              <div class="lcard-text">通常学級・通級の支援をどう見直すか。8月31日公表の文科省素案を解説します。（9:30）</div>
+            </div>
+            <div class="lcard-btn">動画を見る</div>
+          </div>
+          <div class="lcard">
+            <img src="images/02_pisa2025.jpg" alt="PISA2025を1から解説" width="600" height="397">
+            <div class="lcard-body">
+              <div class="lcard-title">PISA2025を1から解説</div>
+              <div class="lcard-text">日本はOECDで3分野1位。一方で読解力は13点低下。順位と得点の読み方から問題例まで。（32:18）</div>
+            </div>
+            <div class="lcard-btn">動画を見る</div>
+          </div>
+          <div class="lcard">
+            <img src="images/03_toritsu10tai0.jpg" alt="都立高入試に「10対0」" width="600" height="397">
+            <div class="lcard-body">
+              <div class="lcard-title">都立高入試に「10対0」</div>
+              <div class="lcard-text">北園・武蔵野北で、内申あり・なしの高い方を採用。内申点の廃止ではありません。（18:50）</div>
+            </div>
+            <div class="lcard-btn">動画を見る</div>
+          </div>
+          <div class="lcard lcard-diff">
+            <img src="images/04b_seminar_banner.jpg" alt="無料オンラインセミナー" width="600" height="397">
+            <div class="lcard-body">
+              <div class="lcard-title">無料オンラインセミナー</div>
+              <div class="lcard-text">塾の集客・教室運営・教材活用をテーマに開催しています。日程とお申し込みはこちら。</div>
+            </div>
+            <div class="lcard-btn">日程を見る</div>
+          </div>
+        </div>
+        <div class="talk-note">赤枠が導入塾向けと違うカード</div>
+      </div>
+      <ul class="links">
+        <li><span class="k">1〜3枚目</span><span>導入塾向けと同じ</span></li>
+        <li><span class="k">4枚目</span><a href="https://suralajuku.jp/seminar/?utm_source=line&amp;utm_medium=lstep&amp;utm_campaign=edubiz_0924" target="_blank" rel="noopener noreferrer">https://suralajuku.jp/seminar/?utm_source=line&amp;utm_medium=lstep&amp;utm_campaign=edubiz_0924</a></li>
+      </ul>
+    </section>
+
+    <section class="notes">
+      <div class="label">確認していただきたい点</div>
+      <ol>
+        <li><strong>3本の選び方は妥当か。</strong>9月14日〜20日に公開したのがちょうどこの3本でした。9月23日公開の「次期学習指導要領の素案を解説」に差し替えることもできます。</li>
+        <li><strong>導入塾と見込み客で、1〜3枚目を同じにしてよいか。</strong>制度・教育動向の解説なので両方に効くと判断し、違いは4枚目（出口）だけにしています。</li>
+        <li><strong>カードの文言に誤りや言い過ぎがないか。</strong>特に「内申点の廃止ではありません」「日本はOECDで3分野1位」は、動画の概要欄の記載に合わせています（3分野1位はOECD加盟国中の順位）。</li>
+        <li><strong>見込み客向けにセミナー案内を出してよいか。</strong>リンク先は <a href="https://suralajuku.jp/seminar/" target="_blank" rel="noopener noreferrer">suralajuku.jp/seminar/</a> で、効果測定用に <code>utm_campaign=edubiz_0924</code> を付けています。</li>
+        <li><strong>配信日時。</strong>塾長は夕方以降が授業なので、午前〜昼過ぎを想定しています。</li>
+      </ol>
+    </section>
+
+  </div>
+</div>
+
+<footer class="site-footer">© 株式会社すららネット｜Edu-biz 通信（社内確認用）</footer>
+
+</body>
+</html>
