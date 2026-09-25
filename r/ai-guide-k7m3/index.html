@@ -168,8 +168,8 @@ details.faq summary:hover{background:#faf8f1}
 <td>✕ 通常触らない</td>
 </tr>
 <tr>
-<td><code>netlify.toml</code>・<code>package.json</code></td>
-<td>公開サーバーの設定</td>
+<td><code>functions/</code>・<code>_redirects</code>・<code>package.json</code></td>
+<td>公開サーバーの設定（お問い合わせフォームの送信処理・転送設定など）</td>
 <td>✕ 通常触らない</td>
 </tr>
 </tbody>
@@ -420,10 +420,12 @@ data/内のJSONから、build.js（node build.js）でindex.html等を生成す�
 <li><strong>渡すファイル</strong>：1ページ型＝<code>template.html</code>／複数ページ型＝<code>templates/contact.html</code></li>
 </ul>
 <pre><code>お問い合わせフォームに「お子さまの学校名（任意）」の
-入力欄を追加してください。このフォームはNetlify Forms
-（送信内容がメールで届く仕組み）を使っているので、
+入力欄を追加してください。このフォームの送信内容は、
+functions/ フォルダ内の処理がメールで届けているので、
 その仕組みを壊さないように、既存の項目と同じ書き方で
 追加してください。必須ではなく任意項目にしてください。
+届くメールにもこの項目が載るようにしたい場合は、
+どのファイルをどう直せばよいかを先に教えてください。
 </code></pre>
 <h3>例9　スマホで見たときの文字サイズを調整したい</h3>
 <ul>
@@ -487,13 +489,13 @@ JSONの構造（項目名やカッコの対応）は絶対に崩さず、
 <h3>7-1．全体の流れ</h3>
 <pre><code>① 原本を修正（AIの修正版をGitHubに保存＝コミット）
         ↓
-② Netlify（公開サーバー）が保存を検知し、自動で
+② Cloudflare Pages（公開サーバー）が保存を検知し、自動で
    「node build.js」を実行してサイトを組み立て直す
         ↓
 ③ 数分で本番サイトに反映
 </code></pre>
 <blockquote>
-<p><strong>Netlify（ネットリファイ）とは</strong>：あなたのサイトを実際にインターネット上に公開しているサーバーサービスです。GitHubと接続済みで、<strong>GitHubに保存（コミット）するたびに自動でビルド（<code>node build.js</code>）が走り、最新の内容が公開されます</strong>。管理画面から「公開」した更新が数分で反映されるのも、この仕組みです。</p>
+<p><strong>Cloudflare Pages（クラウドフレア ページズ）とは</strong>：あなたのサイトを実際にインターネット上に公開しているサーバーサービスです。GitHubと接続済みで、<strong>GitHubに保存（コミット）するたびに自動でビルド（<code>node build.js</code>）が走り、最新の内容が公開されます</strong>。管理画面から「公開」した更新が数分で反映されるのも、この仕組みです。</p>
 </blockquote>
 <p>つまり、<strong>あなたがやることは「原本ファイルをGitHub上で保存する」ところまで</strong>です。組み立てと公開は自動で行われます。</p>
 <h3>7-2．GitHub上での保存（コミット）の手順</h3>
@@ -529,7 +531,7 @@ JSONの構造（項目名やカッコの対応）は絶対に崩さず、
 </ul>
 <h3>その3　確認せずに公開する</h3>
 <p>「たぶん大丈夫」でコミットを重ねると、どの変更で崩れたのか分からなくなります。<strong>1変更ずつ、確認してから保存</strong>。これだけで、トラブル対応の時間が10分の1になります。</p>
-<p>このほか、<code>admin/</code>・<code>netlify.toml</code>・<code>build.js</code> は、サイトの土台を支える設定ファイルです。変更が必要になる場面はまずないので、AIが「build.jsも修正しましょう」と提案してきた場合は、一度スマ塾にご相談いただくのが安全です。</p>
+<p>このほか、<code>admin/</code>・<code>functions/</code>・<code>_redirects</code>・<code>build.js</code> は、サイトの土台を支える設定ファイルです。変更が必要になる場面はまずないので、AIが「build.jsも修正しましょう」と提案してきた場合は、一度スマ塾にご相談いただくのが安全です。</p>
 <hr />
 <h2 id="sec-10">第9章　壊れたときの戻し方</h2>
 <h3>9-1．あわてなくて大丈夫です</h3>
