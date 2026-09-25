@@ -220,6 +220,40 @@ footer.foot{margin-top:22px; padding-top:14px; border-top:1px solid var(--line);
   .ramp-in .arw{display:none}
   .ramp-in input{font-size:20px}
 }
+/* 指導の形 */
+.kata-sub{margin-top:16px}
+.kata-note{margin:10px 0 0; font-size:12px; color:var(--ink-2); line-height:1.8}
+.ramp-in.kata-in{grid-template-columns:repeat(4,minmax(0,1fr)); max-width:820px; align-items:start}
+.kata-in .chips{margin-top:5px}
+.cmp{margin-top:8px}
+.cmp-lede{margin:0 0 12px; font-size:12.5px; color:var(--ink-2); line-height:1.8}
+.cmp-t{overflow-x:auto; background:var(--sheet); border:1px solid var(--line-2)}
+.cmp-t table{min-width:640px; font-size:13px}
+.cmp-t th{position:static; text-align:right; font-size:11.5px; white-space:normal; line-height:1.5; padding:9px 12px}
+.cmp-t th small{display:block; font-weight:400; font-size:10px; color:var(--bar-ink-2)}
+.cmp-t th.main{background:var(--ai); color:var(--on-ai)}
+.cmp-t td{padding:9px 12px; vertical-align:top}
+.cmp-t td:first-child{font-family:inherit; font-weight:700; font-size:12px; color:var(--ink-2); white-space:normal; position:static}
+.cmp-t td small{display:block; font-family:"BIZ UDPGothic",sans-serif; font-size:10.5px; color:var(--ink-3); white-space:normal}
+.cmp-t td.main{background:var(--ai-soft); font-weight:600}
+.legend .lg-k i{display:inline-block; width:18px; height:0; border-top:2px solid var(--c)}
+.cmp-notes{margin-top:14px; background:var(--sheet); border:1px solid var(--line); padding:12px 18px}
+.cmp-notes .k{margin:0 0 4px; font-size:11px; letter-spacing:.12em; font-weight:700; color:var(--ink-3)}
+.cmp-notes ul{margin:0; padding-left:1.2em; font-size:12px; color:var(--ink-2); line-height:1.85}
+.cmp-notes li b{color:var(--ink)}
+@media (max-width:640px){
+  .ramp-in.kata-in{grid-template-columns:1fr 1fr}
+  /* 比較表：項目名の下に3つの値を横並び */
+  .cmp-t{overflow:visible}
+  .cmp-t table{min-width:0; font-size:12px}
+  .cmp-t tr{display:grid; grid-template-columns:repeat(3,minmax(0,1fr))}
+  .cmp-t th:first-child{display:none}
+  .cmp-t th{padding:8px 6px; font-size:10.5px; text-align:center}
+  .cmp-t td{padding:6px; text-align:center; font-size:12px; border-bottom:0}
+  .cmp-t td:first-child{grid-column:1 / -1; text-align:left; padding:9px 10px 2px; border-top:1px solid var(--line); font-size:11.5px}
+  .cmp-t td small{display:none}
+  .cmp-t tbody tr:first-child td:first-child{border-top:0}
+}
 /* アコーディオン */
 .adj summary.adj-h{display:block; list-style:none; cursor:pointer; position:relative; padding-right:26px}
 .adj summary.adj-h::-webkit-details-marker{display:none}
@@ -295,7 +329,7 @@ footer.foot{margin-top:22px; padding-top:14px; border-top:1px solid var(--line);
 <div class="wrap">
   <header class="top">
     <h1>年間収支計画（3年）</h1>
-    <p class="lede">8つの質問に答えると、開校から36か月分の収支が月ごとに出ます。生徒が何月に何名入るか、現金がいつ底を打つか、いつ黒字に転じるか。細かい前提は結果の画面で直せます。</p>
+    <p class="lede">9つの質問に答えると、開校から36か月分の収支が月ごとに出ます。生徒が何月に何名入るか、現金がいつ底を打つか、いつ黒字に転じるか。細かい前提は結果の画面で直せます。</p>
   </header>
 
   <div id="wizard">
@@ -347,6 +381,28 @@ footer.foot{margin-top:22px; padding-top:14px; border-top:1px solid var(--line);
     </div>
     </div>
 
+    <section class="cmp">
+      <h2 class="sec">同じ条件で、ほかの形だと<em>指導の形の比較</em></h2>
+      <p class="cmp-lede">開校月・生徒の立ち上がり・月謝・家賃・生活費・自己資金・融資はそのままにして、指導の形だけを変えた計算です。講師の時給やロイヤリティは「前提を変える」の「講師・FC」で直せます。</p>
+      <div class="cmp-t"><table id="cmpTable"></table></div>
+      <div class="chartbox">
+        <p class="chart-title">現金残高の比較</p>
+        <p class="chart-sub">3つの形の現金残高を重ねています。太い線が選んだ形です。</p>
+        <div class="legend" id="cmpLegend"></div>
+        <svg class="chart" id="chartCmp" role="img" aria-label="指導の形ごとの現金残高の推移"></svg>
+        <div class="tip" id="tipK"></div>
+      </div>
+      <div class="cmp-notes">
+        <p class="k">この表に入らない違い</p>
+        <ul>
+          <li><b>塾長の時間の使い方</b>　講師型・フランチャイズでは、講師の採用・シフト・研修に塾長の時間が取られます。ICT型では塾長1名で40〜50名が目安です（同時に教室にいるのは20名程度）。</li>
+          <li><b>講師の確保</b>　大学生講師は卒業や就職で入れ替わります。採用が追いつかないと、生徒を受けられる数が講師の数で決まります。</li>
+          <li><b>ブランドと本部の支援</b>　フランチャイズは看板・集客・運営の仕組みを受ける代わりに、ロイヤリティと加盟金を払います。立ち上がりが早まるかどうかは本部によるため、この計算では同じ立ち上がりで比べています。</li>
+          <li><b>月謝の水準</b>　講師が付く個別指導は、月謝を高めに設定する塾も多い形です。比べるときは月謝を変えて見てください（3つの形すべてに同じ月謝が入ります）。</li>
+        </ul>
+      </div>
+    </section>
+
     <div class="toolbar">
       <button class="btn" id="dl">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
@@ -377,6 +433,7 @@ footer.foot{margin-top:22px; padding-top:14px; border-top:1px solid var(--line);
       <p><b>初期費用の内訳</b>　20140726_塾開業シミュレーション_原本.xlsx の初期投資シートに合わせて6つに分けています。記入例の合計は325.5万円（物件取得40万＋内外装看板30万＋什器備品99.3万＋開業前広告100万＋すらら研修40万＋その他16.2万）。<b>敷金は退去時に戻るため、回収対象外として別に表示</b>しています。</p>
       <p><b>減価償却</b>　物件取得を除いた初期費用を、指定した年数（初期値5年）で月割りして経費に計上します。記入例だと月47,583円。<b>現金は開校時にすでに出ているので、現金収支の計算では足し戻しています。</b>営業利益は下がりますが、現金は減りません。</p>
       <p><b>現金の計算</b>　期首現金＝自己資金＋借入額−初期必要資金。以降は毎月、営業利益に減価償却を足し戻し、事業主給与と返済（元金＋利息）を引いて積み上げます。税金は含めていません。</p>
+      <p><b>指導の形の違い</b>　講師型とフランチャイズでは、すらら利用料・ID利用料・すらら研修（40万円）を外し、代わりに<b>講師代＝生徒数×週コマ数×52÷12÷（講師1人が見る生徒数）×時給×1コマで払う時間×（1＋上乗せ率）</b>を売上原価に入れています。フランチャイズはさらに<b>ロイヤリティ（売上×率）</b>を売上原価に、<b>加盟金</b>を初期費用に加えます。講師の時給・上乗せ率・加盟金は目安として置いた数字です。</p>
       <p><b>入会金と季節講習</b>　入会金はその月の新規入塾者数にかけています。季節講習は年額を12で割って毎月ならしています。</p>
       <p><b>ご注意</b>　現時点で入手可能な情報に基づく試算です。年商・利益を保証するものではないことをご承知おきください。</p>
     </div>
@@ -413,6 +470,11 @@ const RATIO = [
 
 const NEVER = () => false;   // 最初の質問では聞かず、結果画面で直す項目
 const STEPS = [
+  { g:"指導の形", t:"kata", k:"kata", l:"どの形で塾を開きますか？",
+    opts:[["ICT","ICT型（すらら）","指導は塾長1名。講師の人件費なし"],
+          ["講師","講師を雇う個別指導","大学生講師が1対2などで教える"],
+          ["FC","フランチャイズの個別指導","講師型にロイヤリティと加盟金が加わる"]],
+    hint:"ここで選んだ形が結果の中心になります。結果の画面には、<b>同じ条件のまま3つの形を並べた比較</b>も出ます。" },
   { g:"開校", t:"month", k:"openYM", l:"いつ開校しますか？",
     hint:"開校月によって立ち上がりが変わります。新規入塾は<b>3月・4月・9月</b>に山が来るため、その直前に開けるほど初速が出ます。" },
   { g:"生徒", t:"ramp", k:"ramp", l:"生徒はどう増えていく想定にしますか？",
@@ -477,8 +539,24 @@ const STEPS = [
     hint:"据え置き中は元金の返済が始まらず<b>利息だけ</b>です。生徒が少ない開校直後を助けます。公庫では最長5年（60か月）まで設定できます。" },
   { g:"資金", t:"num", k:"loanRate", s:"年利", ask:NEVER, when:isLoan, l:"年利は何%ですか？", u:"%", v:2.0, step:0.1, chips:[1.5,2,2.5,3],
     hint:"日本政策金融公庫の新規開業資金は、担保・保証人や条件により幅がありますが、<b>おおむね年2%前後</b>が一つの目安です。金利は情勢で動きますので、実際の数字は金融機関にご確認のうえ入力してください。" },
+  { g:"講師・FC", t:"num", k:"jikyu", s:"講師の時給", ask:NEVER, l:"講師の時給はいくらですか？", u:"円", v:1200, step:50, chips:[1000,1200,1500],
+    hint:"大学生アルバイト講師の時給です。1,200〜1,500円が一つの目安です。" },
+  { g:"講師・FC", t:"num", k:"komaH", s:"1コマで払う時間", ask:NEVER, l:"1コマで何時間分を払いますか？", u:"時間", v:1.5, step:0.25,
+    hint:"授業時間に、準備と報告の時間を足した分です。80〜90分授業なら1.5時間ほどを見ておきます。" },
+  { g:"講師・FC", t:"num", k:"uwanose", s:"保険・交通費などの上乗せ", ask:NEVER, l:"時給への上乗せは何%ですか？", u:"%", v:10, step:1,
+    hint:"時給のほかに塾が払う分です。法律で決まった保険は、労災保険が<b>0.3%</b>（全員が対象・全額塾の負担）、雇用保険が<b>0.85%</b>（週20時間以上で、昼間の大学生でない場合）。週に数コマの大学生講師なら、保険は労災の0.3%だけで済むことがほとんどです。残りは交通費・研修中の時給・有給休暇（アルバイトにも付きます）・採用広告などで、合わせて10%で置いています。所得税や住民税は講師の給与から天引きするもので、塾の負担ではありません。" },
+  { g:"講師・FC", t:"num", k:"ratio", s:"講師1人が見る生徒", ask:NEVER, l:"講師1人が同時に見る生徒は何名ですか？", u:"名", v:2, step:1, chips:[1,2,3],
+    hint:"1対2なら2です。" },
+  { g:"講師・FC", t:"num", k:"komaW", s:"生徒1人の週コマ数", ask:NEVER, l:"生徒1人は週に何コマ受けますか？", u:"コマ", v:2, step:1,
+    hint:"生徒1人が1週間に受けるコマ数の平均です。月の講師代は、週コマ数×52週÷12か月で計算します。" },
+  { g:"講師・FC", t:"num", k:"royalty", s:"ロイヤリティ（売上の）", ask:NEVER, l:"ロイヤリティは売上の何%ですか？", u:"%", v:10, step:1, chips:[5,10,15],
+    hint:"本部に払う売上の割合です。本部や契約によって幅があるため、5・10・15%から近いものを選んで比べてください。" },
+  { g:"講師・FC", t:"num", k:"kamei", s:"加盟金", ask:NEVER, l:"加盟金はいくらですか？", u:"万円", v:300, step:10, chips:[100,300,500],
+    hint:"加盟時に本部へ払う費用です。安い本部で100万円ほど、高い本部では1,000万円ほどまで幅があります。100・300・500万円から近いものを選んでください（標準は300万円）。初期費用に加え、ほかの初期費用と同じ年数で償却します。" },
 ];
-const state = { loanUse:"あり", openYM:null, ramp:"標準", shokiMode:"標準" };
+const KATA = { ICT:"ICT型（すらら）", "講師":"講師を雇う個別指導", FC:"フランチャイズの個別指導" };
+const KATA_SHORT = { ICT:"ICT型", "講師":"講師型", FC:"フランチャイズ" };
+const state = { loanUse:"あり", openYM:null, ramp:"標準", shokiMode:"標準", kata:"ICT" };
 const RAMPS = { "標準":[20, 40, 55, 65], "控えめ":[14, 28, 40, 45] };
 const RAMP_KEYS = ["m3", "m12", "m24", "m36"];
 const SHOKI_KEYS = ["c1", "c2", "c3", "c4", "c5", "c6"];
@@ -523,7 +601,19 @@ function defaultOpen(){
   if (m > 12){ m -= 12; y += 1; }
   return `${y}-${String(m).padStart(2, "0")}`;
 }
-function plan(){
+function teacherCost(){          // 生徒1人あたりの講師代（月）
+  return state.komaW * 52 / 12 / Math.max(1, state.ratio) * state.jikyu * state.komaH * (1 + state.uwanose / 100);
+}
+function effState(kata){
+  const st = { ...state };
+  if (kata !== "ICT"){ st.surala = 0; st.idFee = 0; st.c5 = 0; }   // すららを使わない。すらら研修もなし
+  st.kamei = kata === "FC" ? state.kamei : 0;
+  st.teach = kata === "ICT" ? 0 : teacherCost();
+  st.roy = kata === "FC" ? state.royalty / 100 : 0;
+  return st;
+}
+function plan(kata){
+  kata = kata || state.kata;
   if (!state.openYM) state.openYM = defaultOpen();
   const [oy, om] = state.openYM.split("-").map(Number);
 
@@ -551,36 +641,39 @@ function plan(){
   });
 
   const rows = [];
-  const shokiTotal = (state.c1 + state.c2 + state.c3 + state.c4 + state.c5 + state.c6) * 10000;
-  const shokyakuBase = (state.c2 + state.c3 + state.c4 + state.c5 + state.c6) * 10000;
-  const genka3 = state.shoukyaku > 0 ? shokyakuBase / state.shoukyaku / 12 : 0;
-  let cash = (state.jiko + (isLoan() ? state.loanAmt : 0)) * 10000 - shokiTotal;
+  const st = effState(kata);
+  const shokiTotal = (st.c1 + st.c2 + st.c3 + st.c4 + st.c5 + st.c6 + st.kamei) * 10000;
+  const shokyakuBase = (st.c2 + st.c3 + st.c4 + st.c5 + st.c6 + st.kamei) * 10000;
+  const genka3 = st.shoukyaku > 0 ? shokyakuBase / st.shoukyaku / 12 : 0;
+  let cash = (st.jiko + (isLoan() ? st.loanAmt : 0)) * 10000 - shokiTotal;
   const openingCash = cash;
   let prev = 0;
   for (let m = 0; m < 36; m++){
     const cum = Math.max(0, zaiseki[m]);
-    const taijuku = prev * (state.churn / 100);
+    const taijuku = prev * (st.churn / 100);
     const shinki = Math.max(0, cum - prev + taijuku);
     prev = cum;
     let ym = om + m - 1, yy = oy + Math.floor(ym / 12), mo = (ym % 12) + 1;
 
-    const uriage = state.gessha * cum + state.nyukai * shinki + (state.kisetsu / 12) * cum;
-    const genka = state.surala + state.idFee * cum;
-    const keihi = state.rent + state.other;
-    const shokyaku = m < state.shoukyaku * 12 ? genka3 : 0;
+    const uriage = st.gessha * cum + st.nyukai * shinki + (st.kisetsu / 12) * cum;
+    const jinken = st.teach * cum;                 // 講師代（講師型・FC）
+    const royalty = st.roy * uriage;               // ロイヤリティ（FC）
+    const genka = st.surala + st.idFee * cum + jinken + royalty;
+    const keihi = st.rent + st.other;
+    const shokyaku = m < st.shoukyaku * 12 ? genka3 : 0;
     const eigyo = uriage - genka - keihi - shokyaku;
     const hensai = loanPayAt(m);
-    const genkin = eigyo + shokyaku - state.pay - hensai;   // 償却は現金が出ない
+    const genkin = eigyo + shokyaku - st.pay - hensai;   // 償却は現金が出ない
     cash += genkin;
-    rows.push({ m, y:yy, mo, shinki, taijuku, cum, uriage, genka, keihi, shokyaku, eigyo,
-                pay:state.pay, hensai, genkin, cash });
+    rows.push({ m, y:yy, mo, shinki, taijuku, cum, uriage, genka, jinken, royalty, keihi, shokyaku, eigyo,
+                pay:st.pay, hensai, genkin, cash });
   }
   const turn = rows.find(r => r.eigyo > 0);
   const bottom = rows.reduce((a, r) => r.cash < a.cash ? r : a, rows[0]);
   const y1 = rows.slice(0, 12), y2 = rows.slice(12, 24), y3 = rows.slice(24, 36);
   const sumOf = (a, k) => a.reduce((s, r) => s + r[k], 0);
-  return { rows, openingCash, turn, bottom, shokiTotal, shokyakuBase, genka3,
-           shikikin: state.c1 * 10000,
+  return { kata, st, rows, openingCash, turn, bottom, shokiTotal, shokyakuBase, genka3,
+           shikikin: st.c1 * 10000,
            years:[y1, y2, y3].map(a => ({ uriage:sumOf(a, "uriage"), eigyo:sumOf(a, "eigyo"),
                                           genkin:sumOf(a, "genkin"), shinki:sumOf(a, "shinki") })) };
 }
@@ -620,6 +713,63 @@ function drawStage(){
       box.appendChild(b);
     });
     stage.appendChild(box);
+  } else if (s.t === "kata"){
+    const box = el("div", "choice");
+    const btns = {};
+    const sub = el("div", "kata-sub");
+    const drawSub = () => {
+      for (const v in btns) btns[v].className = state.kata === v ? "on" : "";
+      sub.innerHTML = "";
+      if (state.kata === "ICT"){
+        sub.appendChild(el("p", "kata-note", "教材はすらら、指導は塾長1名。講師の人件費はかかりません。費用は、すらら利用料（1校舎あたり固定）と、ID利用料（1人あたり月2,500円）です。"));
+        return;
+      }
+      const g = el("div", "ramp-in kata-in");
+      const note = el("p", "kata-note");
+      const upd = () => { note.textContent = `生徒1人あたりの講師代は月 約${yen(teacherCost())}円（週${state.komaW}コマ・1コマ${state.komaH}時間分・保険や交通費の上乗せ${state.uwanose}%）。細かい前提は結果の画面で直せます。`; };
+      const f = (k, label, unit, chips) => {
+        const w = el("div", "ri");
+        w.appendChild(el("span", null, label));
+        const bx = el("div", "rbox");
+        const inp = document.createElement("input");
+        inp.type = "number"; inp.min = 0; inp.step = FIELD[k].step; inp.inputMode = "decimal"; inp.value = state[k];
+        inp.setAttribute("aria-label", label);
+        inp.addEventListener("input", () => {
+          const v = Number(inp.value);
+          if (inp.value === "" || !Number.isFinite(v) || v < 0) return;
+          state[k] = v; upd();
+        });
+        bx.appendChild(inp); bx.appendChild(el("span", "u", unit));
+        w.appendChild(bx);
+        const ch = el("div", "chips");
+        chips.forEach(c => {
+          const b = document.createElement("button"); b.type = "button"; b.textContent = c.toLocaleString("ja-JP");
+          b.addEventListener("click", () => { state[k] = c; inp.value = c; upd(); });
+          ch.appendChild(b);
+        });
+        w.appendChild(ch);
+        g.appendChild(w);
+      };
+      f("jikyu", "講師の時給", "円", [1200, 1500]);
+      f("ratio", "講師1人が見る生徒", "名", [1, 2, 3]);
+      if (state.kata === "FC"){
+        f("royalty", "ロイヤリティ（売上の）", "%", [5, 10, 15]);
+        f("kamei", "加盟金", "万円", [100, 300, 500]);
+      }
+      sub.appendChild(g);
+      sub.appendChild(note); upd();
+    };
+    s.opts.forEach(([val, label, sm]) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.appendChild(document.createTextNode(label));
+      if (sm) b.appendChild(el("small", null, sm));
+      b.addEventListener("click", () => { state.kata = val; drawSub(); });
+      btns[val] = b; box.appendChild(b);
+    });
+    stage.appendChild(box);
+    stage.appendChild(sub);
+    drawSub();
   } else if (s.t === "ramp"){
     const box = el("div", "choice");
     const btns = {};
@@ -738,19 +888,19 @@ document.getElementById("reset").addEventListener("click", () => {
 
 
 /* ============ 条件の要約と「前提を変える」欄 ============ */
-const PANEL_GROUPS = ["生徒", "売上", "費用", "初期費用", "給与", "資金"];
+const PANEL_GROUPS = ["生徒", "売上", "費用", "初期費用", "給与", "資金", "講師・FC"];
 const fmtN = v => Number(v).toLocaleString("ja-JP", { maximumFractionDigits:1 });
 const isAdv = s => !!s.ask;                       // 最初の8問では聞かない（標準値で計算する）項目
 const changed = s => isAdv(s) && state[s.k] !== s.v;
 function resetAll(){
-  state.loanUse = "あり"; state.ramp = "標準"; state.shokiMode = "標準";
+  state.loanUse = "あり"; state.ramp = "標準"; state.shokiMode = "標準"; state.kata = "ICT";
   STEPS.forEach(s => { if (s.t === "num") state[s.k] = s.v; });
 }
 function drawCond(r){
   const [oy, om] = state.openYM.split("-").map(Number);
   const ramp = `${state.ramp === "自分で" ? "自分で入力" : state.ramp}（${RAMP_KEYS.map(k => fmtN(state[k])).join("→")}名）`;
   const items = [
-    ["開校", `${oy}年${om}月`], ["立ち上がり", ramp], ["月謝の平均", `${yen(state.gessha)}円`],
+    ["指導の形", KATA[state.kata]], ["開校", `${oy}年${om}月`], ["立ち上がり", ramp], ["月謝の平均", `${yen(state.gessha)}円`],
     ["家賃", `${yen(state.rent)}円`], ["初期費用", `${fmtN(r.shokiTotal / 10000)}万円`],
     ["生活費", `${yen(state.pay)}円`], ["自己資金", `${fmtN(state.jiko)}万円`],
     ["融資", isLoan() ? `あり ${fmtN(state.loanAmt)}万円` : "なし"],
@@ -759,7 +909,7 @@ function drawCond(r){
     items.map(([k, v]) => `<span><i>${k}</i><b>${v}</b></span>`).join("");
   const n = STEPS.filter(s => s.t === "num" && (!s.when || s.when()) && changed(s)).length;
   document.getElementById("stdNote").innerHTML =
-    `このほかの項目（退塾率・入会金・季節講習・すらら利用料・償却年数・融資の年数と金利など）は、原本の標準値で計算しています。` +
+    `このほかの項目（退塾率・入会金・季節講習・すらら利用料・償却年数・融資の年数と金利・講師の時給・ロイヤリティなど）は、原本の標準値で計算しています。` +
     `<span class="wide">右の</span><span class="narrow">下の</span>「前提を変える」で直すと、その場で計算し直します。` +
     (n ? `　<b>標準から変えた項目：${n}件</b>` : "");
 }
@@ -792,6 +942,11 @@ function buildPanel(){
   }
   ym.value = state.openYM;
   ym.addEventListener("change", () => { state.openYM = ym.value; render(); });
+  const kt = document.createElement("select");
+  Object.keys(KATA).forEach(v => kt.appendChild(new Option(KATA_SHORT[v] === "ICT型" ? "ICT型（すらら）" : KATA_SHORT[v], v)));
+  kt.value = state.kata;
+  kt.addEventListener("change", () => { state.kata = kt.value; render(); });
+  selRow("指導の形", kt);
   selRow("開校月", ym);
   const rp = document.createElement("select"); rp.id = "adjRamp";
   ["標準", "控えめ", "自分で"].forEach(v => rp.appendChild(new Option(v === "標準" ? "研修の標準" : v === "自分で" ? "自分で入力" : v, v)));
@@ -851,7 +1006,7 @@ function buildPanel(){
     });
     det.appendChild(f);
   });
-  const rs = el("button", "reset-all", "標準値に戻す（最初の8問の回答はそのまま）"); rs.type = "button";
+  const rs = el("button", "reset-all", "標準値に戻す（最初の質問の回答はそのまま）"); rs.type = "button";
   rs.addEventListener("click", () => {
     STEPS.forEach(s => { if (s.t === "num" && isAdv(s)) state[s.k] = s.v; });
     state.ramp = "標準"; state.shokiMode = "標準";
@@ -925,6 +1080,7 @@ function render(){
 
   drawCombo(r.rows);
   drawCash(r.rows, r.turn);
+  drawCmp();
   drawTable(r);
 }
 
@@ -1075,6 +1231,102 @@ function drawCombo(rows){
     document.getElementById("tipS").style.opacity = 0;
   };
 }
+/* ---------- 指導の形の比較 ---------- */
+const KCOL = { ICT:"var(--ai)", "講師":"#8A7648", FC:"var(--shu)" };
+let CMP = null;
+function cmpData(){
+  const res = {};
+  Object.keys(KATA).forEach(k => {
+    const r = plan(k), st = r.st;
+    const fixed = st.surala + st.rent + st.other;
+    const unitRev = st.gessha + st.kisetsu / 12;
+    const unitCost = st.idFee + st.teach + st.roy * unitRev;
+    const lm = loanMonths();
+    const loanPay = isLoan() ? loanPayAt(Math.min(lm.grace, lm.total - 1)) : 0;
+    const margin = unitRev - unitCost;
+    const need = margin > 0 ? Math.ceil((fixed + st.pay + loanPay) / margin) : null;
+    const y3 = r.rows.slice(24, 36);
+    res[k] = { r, fixed, unitCost, need,
+      jinken3: y3.reduce((a, x) => a + x.jinken, 0), roy3: y3.reduce((a, x) => a + x.royalty, 0) };
+  });
+  return res;
+}
+function drawCmp(){
+  CMP = cmpData();
+  const ks = Object.keys(KATA), main = state.kata;
+  const rows = [
+    ["初期費用", k => `${fmtN(CMP[k].r.shokiTotal / 10000)}万円`, k => k === "FC" ? `加盟金 ${fmtN(state.kamei)}万円を含む` : k === "講師" ? "すらら研修の40万円を除く" : ""],
+    ["毎月の固定費", k => `${yen(CMP[k].fixed)}円`, k => k === "ICT" ? "すらら利用料を含む" : "家賃・光熱・広告など"],
+    ["生徒1人あたりの費用（月）", k => `${yen(CMP[k].unitCost)}円`, k => k === "ICT" ? "ID利用料" : k === "講師" ? "講師代" : `講師代＋ロイヤリティ${fmtN(state.royalty)}%`],
+    ["給与・返済まで賄える生徒数", k => CMP[k].need ? `${CMP[k].need}名` : "届かない", () => "目安（入会金を除く）"],
+    ["黒字転換（営業利益）", k => CMP[k].r.turn ? `${CMP[k].r.turn.m + 1}か月目` : "3年以内はなし", () => ""],
+    ["現金の底", k => `${yen(CMP[k].r.bottom.cash)}円`, k => `${CMP[k].r.bottom.m + 1}か月目`],
+    ["3年目の講師代（年）", k => CMP[k].jinken3 ? `${man(CMP[k].jinken3)}万円` : "—", () => ""],
+    ["3年目のロイヤリティ（年）", k => CMP[k].roy3 ? `${man(CMP[k].roy3)}万円` : "—", () => ""],
+    ["3年目の営業利益（年）", k => `${man(CMP[k].r.years[2].eigyo)}万円`, () => ""],
+    ["3年後の現金残高", k => `${man(CMP[k].r.rows[35].cash)}万円`, () => ""],
+  ];
+  const neg = (label, k) => (label === "現金の底" && CMP[k].r.bottom.cash < 0) ||
+    (label === "3年後の現金残高" && CMP[k].r.rows[35].cash < 0) ||
+    (label === "3年目の営業利益（年）" && CMP[k].r.years[2].eigyo < 0);
+  const t = document.getElementById("cmpTable");
+  t.innerHTML = `<thead><tr><th></th>${ks.map(k => `<th class="${k === main ? "main" : ""}">${KATA[k]}${k === main ? "<small>選んだ形</small>" : ""}</th>`).join("")}</tr></thead>` +
+    `<tbody>${rows.map(([label, v, d]) => `<tr><td>${label}</td>${ks.map(k =>
+      `<td class="${k === main ? "main" : ""}${neg(label, k) ? " neg" : ""}">${v(k)}${d(k) ? `<small>${d(k)}</small>` : ""}</td>`).join("")}</tr>`).join("")}</tbody>`;
+  document.getElementById("cmpLegend").innerHTML = ks.map(k =>
+    `<span class="lg-k" style="--c:${KCOL[k]}"><i></i>${KATA_SHORT[k]}${k === main ? "（選んだ形）" : ""}</span>`).join("");
+  drawCmpChart();
+}
+function drawCmpChart(){
+  if (!CMP) return;
+  const svg = document.getElementById("chartCmp");
+  svg.innerHTML = "";
+  const G = geom(svg), W = G.W, H = G.H, FS = G.FS;
+  const PD = { l:G.narrow ? 64 : 82, r:20, t:16, b:30 };
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  const ks = Object.keys(KATA), main = state.kata;
+  const all = ks.flatMap(k => CMP[k].r.rows.map(x => x.cash));
+  let lo = Math.min(0, ...all), hi = Math.max(0, ...all);
+  const pad = (hi - lo) * .08 || 1; lo -= pad; hi += pad;
+  const X = i => PD.l + ((i + .5) / 36) * (W - PD.l - PD.r);
+  const Y = v => PD.t + (1 - (v - lo) / (hi - lo)) * (H - PD.t - PD.b);
+  const st = niceStep((hi - lo) / 4);
+  for (let v = Math.ceil(lo / st) * st; v <= hi; v += st){
+    svg.appendChild(mk("line", { x1:PD.l, x2:W - PD.r, y1:Y(v), y2:Y(v),
+      stroke: Math.abs(v) < 1e-6 ? "var(--ink-3)" : "var(--line)", "stroke-width": Math.abs(v) < 1e-6 ? 1.2 : 1 }));
+    const t = mk("text", { x:PD.l - 8, y:Y(v) + 4, "text-anchor":"end", fill:"var(--ink-3)", "font-size":FS,
+      "font-family":"IBM Plex Mono, monospace" });
+    t.textContent = Math.abs(v) < 1e-6 ? "0" : `${(v / 10000).toLocaleString("ja-JP", { maximumFractionDigits:0 })}万`;
+    svg.appendChild(t);
+  }
+  xAxis(svg, X, H, PD, FS);
+  [...ks.filter(k => k !== main), main].forEach(k => {
+    const d = CMP[k].r.rows.map((x, i) => `${i ? "L" : "M"}${X(i).toFixed(2)},${Y(x.cash).toFixed(2)}`).join("");
+    svg.appendChild(mk("path", { d, fill:"none", stroke:KCOL[k], "stroke-width": k === main ? 2.8 : 1.6,
+      "stroke-dasharray": k === main ? "" : "6 4", "stroke-linejoin":"round", "stroke-linecap":"round" }));
+  });
+  svg.appendChild(mk("line", { x1:0, x2:0, y1:PD.t, y2:H - PD.b, stroke:"var(--ink-3)", "stroke-width":1, opacity:0, class:"hl" }));
+  svg.appendChild(mk("rect", { x:PD.l, y:PD.t, width:W - PD.l - PD.r, height:H - PD.t - PD.b, fill:"transparent" }));
+  svg.onmousemove = ev => {
+    const rect = svg.getBoundingClientRect(), sx = W / rect.width;
+    let i = Math.floor((((ev.clientX - rect.left) * sx - PD.l) / (W - PD.l - PD.r)) * 36);
+    i = Math.max(0, Math.min(35, i));
+    const hl = svg.querySelector(".hl");
+    hl.setAttribute("x1", X(i)); hl.setAttribute("x2", X(i)); hl.setAttribute("opacity", .5);
+    const row = CMP[main].r.rows[i], tip = document.getElementById("tipK");
+    tip.innerHTML = `${row.y}年${row.mo}月（${i + 1}か月目）の現金残高` + ks.map(k => {
+      const v = CMP[k].r.rows[i].cash;
+      return `<br>${KATA_SHORT[k]} <b class="${v < 0 ? "neg" : ""}">${yen(v)}円</b>`;
+    }).join("");
+    const box = svg.parentElement.getBoundingClientRect();
+    const px = rect.left - box.left + X(i) / sx, py = rect.top - box.top + PD.t / sx;
+    tip.style.opacity = 1;
+    tip.style.left = `${Math.max(4, Math.min(box.width - tip.offsetWidth - 4, px - tip.offsetWidth / 2))}px`;
+    tip.style.top = `${Math.max(4, py)}px`;
+  };
+  svg.onmouseleave = () => { svg.querySelector(".hl").setAttribute("opacity", 0); document.getElementById("tipK").style.opacity = 0; };
+}
+
 /* ---------- 現金残高（線・左）と営業利益（棒・右）。0の位置を左右でそろえる ---------- */
 let cashBasis = "eigyo";
 document.getElementById("cashSeg").addEventListener("click", e => {
@@ -1179,6 +1431,7 @@ window.addEventListener("resize", () => {
     lastNarrow = n;
     drawCombo(P.rows);
     drawCash(P.rows, P.turn);
+    drawCmpChart();
   }, 150);
 });
 
@@ -1237,6 +1490,10 @@ async function buildWorkbook(){
   set(ws, row, 2, `${oy}年${om}月`, { font:{ name:"Arial", size:10, bold:true }, border:allThin,
                                       alignment:{ horizontal:"right" }, ...fill(ARGB.amber) });
   row++;
+  set(ws, row, 1, "指導の形", { font:{ name:"Arial", size:10 }, border:allThin, ...fill(ARGB.gray) });
+  set(ws, row, 2, KATA[state.kata], { font:{ name:"Arial", size:10, bold:true }, border:allThin,
+                                   alignment:{ horizontal:"right" }, ...fill(ARGB.amber) });
+  row++;
   set(ws, row, 1, "生徒の立ち上がり", { font:{ name:"Arial", size:10 }, border:allThin, ...fill(ARGB.gray) });
   set(ws, row, 2, state.ramp === "自分で" ? "自分で入力" : state.ramp, { font:{ name:"Arial", size:10, bold:true }, border:allThin,
                                    alignment:{ horizontal:"right" }, ...fill(ARGB.amber) });
@@ -1285,6 +1542,39 @@ async function buildWorkbook(){
                              alignment:{ vertical:"middle", wrapText:true } });
     ws.getRow(row + i).height = 22;
   });
+
+  // 指導の形の比較
+  const ks = wb.addWorksheet("指導の形の比較");
+  ks.columns = [{width:30},{width:18},{width:18},{width:18}];
+  const kk = Object.keys(KATA);
+  ["", ...kk.map(k => KATA[k] + (k === state.kata ? "（選んだ形）" : ""))].forEach((t, i) => {
+    const c = ks.getCell(1, i + 1); c.value = t;
+    Object.assign(c, { font:{ name:"Arial", size:10, bold:true, color:{argb:ARGB.white} }, border:allThin,
+                       alignment:{ horizontal:"center", wrapText:true }, ...fill(ARGB.head) });
+  });
+  const C = CMP || cmpData();
+  [["初期費用", k => Math.round(C[k].r.shokiTotal)],
+   ["毎月の固定費", k => Math.round(C[k].fixed)],
+   ["生徒1人あたりの費用（月）", k => Math.round(C[k].unitCost)],
+   ["給与・返済まで賄える生徒数（目安）", k => C[k].need || "届かない"],
+   ["黒字転換（営業利益）", k => C[k].r.turn ? `${C[k].r.turn.m + 1}か月目` : "3年以内はなし"],
+   ["現金の底", k => Math.round(C[k].r.bottom.cash)],
+   ["3年目の講師代（年）", k => Math.round(C[k].jinken3)],
+   ["3年目のロイヤリティ（年）", k => Math.round(C[k].roy3)],
+   ["3年目の営業利益（年）", k => Math.round(C[k].r.years[2].eigyo)],
+   ["3年後の現金残高", k => Math.round(C[k].r.rows[35].cash)]].forEach(([label, f], i) => {
+    const c0 = ks.getCell(i + 2, 1); c0.value = label;
+    Object.assign(c0, { font:{ name:"Arial", size:10 }, border:allThin, ...fill(ARGB.gray) });
+    kk.forEach((k, j) => {
+      const v = f(k), c = ks.getCell(i + 2, j + 2); c.value = v;
+      Object.assign(c, { font:{ name:"Arial", size:10, bold: k === state.kata }, border:allThin,
+                         numFmt: typeof v === "number" ? "#,##0" : undefined, alignment:{ horizontal:"right" } });
+    });
+  });
+  ks.mergeCells(13, 1, 13, 4);
+  Object.assign(ks.getCell(13, 1), { value:`※ 同じ条件で指導の形だけを変えた計算。講師の時給 ${state.jikyu}円・1対${state.ratio}・週${state.komaW}コマ・1コマ${state.komaH}時間分・上乗せ${state.uwanose}%、ロイヤリティ ${state.royalty}%、加盟金 ${state.kamei}万円。`,
+    font:{ name:"Arial", size:8, italic:true, color:{argb:"FF66625C"} }, alignment:{ wrapText:true } });
+  ks.getRow(13).height = 30;
 
   const ms = wb.addWorksheet("月別収支", { views:[{ state:"frozen", xSplit:1, ySplit:1 }] });
   ms.columns = [{width:11},{width:9},{width:9},{width:9},{width:14},{width:13},{width:13},{width:12},{width:13},{width:13},{width:12},{width:13},{width:14}];
