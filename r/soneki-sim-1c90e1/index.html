@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 検索エンジンからの完全除外（robots.txt の Disallow: /r/ と併用） -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, max-snippet:0, max-image-preview:none, max-video-preview:0">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot-news" content="noindex, nofollow">
+<meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="msnbot" content="noindex, nofollow">
+<meta name="slurp" content="noindex, nofollow">
+<meta name="duckduckbot" content="noindex, nofollow">
+<meta name="baiduspider" content="noindex, nofollow">
+<meta name="yandex" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#F4F2ED">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="/favicon.ico">
+<title>損益分岐シミュレーション｜すらら独立開業サポート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Zen+Old+Mincho:wght@600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
+<style>
+/* 単一テーマ（紙のような明るい面）で統一。強い色は差し色のみ。 */
+:root{
+  --paper:#F4F2ED; --sheet:#FCFBF8; --sheet-2:#F0EEE8;
+  --ink:#2A2724; --ink-2:#66625C; --ink-3:#9B968E;
+  --line:#E2DED5; --line-2:#CBC5B9;
+  --ai:#43536B; --ai-2:#586a85; --ai-soft:#E9EBEF;
+  --shu:#8E4A3E; --shu-soft:#F0E6E2;
+  --kin:#856C33; --kin-soft:#EEE8DA;
+  --midori:#4B6A55; --midori-soft:#E4EAE4;
+  --bar:#34353A; --bar-ink:#F5F3EF; --bar-ink-2:#A7A39C; --bar-track:#4A4B50;
+  --on-ai:#FFFFFF;
+  --hair:0 1px 2px rgba(42,39,36,.04);
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--paper); color:var(--ink);
+  font-family:"BIZ UDPGothic","Hiragino Sans","Yu Gothic UI",system-ui,sans-serif;
+  font-size:14px; line-height:1.75; -webkit-font-smoothing:antialiased}
+.wrap{max-width:1020px; margin:0 auto; padding:30px 20px 64px}
+a{color:var(--ai)}
+
+header.top{border-bottom:1px solid var(--line-2); padding-bottom:16px; margin-bottom:24px}
+h1{font-family:"Zen Old Mincho",serif; font-weight:600; font-size:clamp(21px,2.8vw,27px);
+  line-height:1.3; letter-spacing:.03em; margin:0 0 6px}
+.lede{margin:0; color:var(--ink-2); font-size:12.5px; max-width:56ch}
+h2.sec{font-family:"Zen Old Mincho",serif; font-size:16px; font-weight:600; margin:30px 0 11px;
+  display:flex; align-items:baseline; gap:11px; flex-wrap:wrap; letter-spacing:.02em}
+h2.sec em{font-style:normal; font-size:11.5px; color:var(--ink-2);
+  font-family:"BIZ UDPGothic",sans-serif; font-weight:400}
+
+/* ---------- ウィザード ---------- */
+.prog{margin-bottom:16px}
+.prog-top{display:flex; align-items:baseline; gap:10px 16px; flex-wrap:wrap; margin-bottom:7px}
+.prog-step{font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-2); letter-spacing:.05em}
+.prog-step b{color:var(--ink); font-size:13.5px; font-weight:500}
+.prog-bar{height:3px; background:var(--line); overflow:hidden}
+.prog-bar i{display:block; height:100%; background:var(--ai); transition:width .2s ease}
+.stage{background:var(--sheet); border:1px solid var(--line-2); box-shadow:var(--hair);
+  padding:26px 28px 24px; min-height:260px; display:flex; flex-direction:column; gap:16px}
+.eyebrow{display:flex; align-items:center; gap:9px; flex-wrap:wrap}
+.eyebrow .cat{font-size:10.5px; letter-spacing:.16em; font-weight:700; color:var(--ink-2);
+  border:1px solid var(--line-2); padding:2px 9px}
+.q{margin:0; font-size:clamp(17px,2.4vw,21px); font-weight:700; line-height:1.6; text-wrap:balance}
+.bigbox{display:flex; align-items:stretch; border:1px solid var(--line-2);
+  background:var(--sheet-2); overflow:hidden; max-width:320px}
+.bigbox input{flex:1; min-width:0; border:0; background:transparent; color:var(--ink);
+  font-family:"IBM Plex Mono",monospace; font-size:27px; font-variant-numeric:tabular-nums;
+  text-align:right; padding:10px 12px; font-weight:500}
+.bigbox input:focus{outline:none}
+.bigbox:focus-within{border-color:var(--ai)}
+.bigbox .u{display:flex; align-items:center; padding:0 14px; font-size:13px; color:var(--ink-2);
+  background:var(--sheet); border-left:1px solid var(--line)}
+.chips{display:flex; flex-wrap:wrap; gap:6px}
+.chips button{font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-2);
+  background:var(--sheet); border:1px solid var(--line-2); padding:4px 11px; cursor:pointer}
+.chips button:hover{background:var(--sheet-2); color:var(--ink); border-color:var(--ink-3)}
+.choice{display:flex; gap:10px; flex-wrap:wrap}
+.choice button{flex:1 1 190px; font-family:inherit; font-size:15px; font-weight:700; padding:15px 18px;
+  border:1px solid var(--line-2); background:var(--sheet-2); color:var(--ink-2); cursor:pointer;
+  text-align:left; transition:border-color .12s ease, background .12s ease}
+.choice button small{display:block; font-weight:400; font-size:11.5px; color:var(--ink-3); margin-top:3px}
+.choice button:hover{border-color:var(--ink-3)}
+.choice button.on{background:var(--ai); border-color:var(--ai); color:var(--on-ai)}
+.choice button.on small{color:rgba(255,255,255,.72)}
+.hint{margin:0; background:var(--sheet-2); border-left:2px solid var(--line-2);
+  padding:11px 14px; font-size:12.5px; color:var(--ink-2); line-height:1.85}
+.hint b{color:var(--ink); font-weight:700}
+.nav{display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center; margin-top:16px}
+.nav .spacer{flex:1}
+.kbhint{font-size:11px; color:var(--ink-3); font-family:"IBM Plex Mono",monospace}
+
+/* ---------- 条件サマリー ---------- */
+.cond{display:flex; flex-wrap:wrap; gap:6px 20px; background:var(--sheet); border:1px solid var(--line);
+  padding:12px 16px; margin-bottom:18px; font-size:11.5px; color:var(--ink-2)}
+.cond span{display:flex; align-items:baseline; gap:6px}
+.cond i{font-style:normal; font-size:9.5px; letter-spacing:.12em; color:var(--ink-3)}
+.cond b{font-family:"IBM Plex Mono",monospace; color:var(--ink); font-weight:500; font-size:12.5px}
+
+/* ---------- 結果 ---------- */
+.results{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:1px;
+  background:var(--line); border:1px solid var(--line)}
+.rcard{background:var(--sheet); padding:16px 18px; display:flex; flex-direction:column; gap:3px}
+.rcard .k{font-size:11px; letter-spacing:.08em; color:var(--ink-2); font-weight:700}
+.rcard .k::before{content:""; display:inline-block; width:8px; height:8px; margin-right:7px;
+  vertical-align:0; background:var(--ink-3)}
+.rcard.c2 .k::before{background:var(--kin)}
+.rcard.c3 .k::before{background:var(--midori)}
+.rcard .n{font-family:"IBM Plex Mono",monospace; font-size:33px; font-weight:500; line-height:1.1;
+  font-variant-numeric:tabular-nums; color:var(--ink)}
+.rcard .n small{font-size:14px; margin-left:3px; font-family:"BIZ UDPGothic",sans-serif; color:var(--ink-2)}
+.rcard .d{font-size:11.5px; color:var(--ink-2); line-height:1.7}
+.rcard .over{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-3)}
+
+/* ---------- 人数を指定して見る ---------- */
+.pick{background:var(--sheet); border:1px solid var(--line-2); box-shadow:var(--hair);
+  margin-top:14px; padding:18px 20px}
+.pick-head{display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; margin-bottom:14px}
+.pick-head .lab{font-size:12.5px; font-weight:700}
+.pick-box{display:flex; border:1px solid var(--line-2); background:var(--sheet-2); overflow:hidden}
+.pick-box input{width:82px; border:0; background:transparent; color:var(--ink); padding:7px 10px;
+  font-family:"IBM Plex Mono",monospace; font-size:20px; font-variant-numeric:tabular-nums; text-align:right}
+.pick-box input:focus{outline:none}
+.pick-box:focus-within{border-color:var(--ai)}
+.pick-box .u{display:flex; align-items:center; padding:0 10px; font-size:12px; color:var(--ink-2);
+  background:var(--sheet); border-left:1px solid var(--line)}
+.pick input[type=range]{flex:1 1 220px; min-width:160px; accent-color:var(--ai)}
+.pick-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px;
+  background:var(--line); border:1px solid var(--line)}
+.pick-grid div{background:var(--sheet); padding:11px 14px; display:flex; flex-direction:column; gap:2px}
+.pick-grid dt{font-size:10.5px; letter-spacing:.08em; color:var(--ink-2); margin:0}
+.pick-grid dd{margin:0; font-family:"IBM Plex Mono",monospace; font-size:19px; font-weight:500;
+  font-variant-numeric:tabular-nums}
+.pick-grid dd small{font-size:11.5px; color:var(--ink-2); margin-left:2px; font-family:"BIZ UDPGothic",sans-serif}
+.pick-grid .big dd{font-size:23px}
+.pick-grid dd.neg{color:var(--shu)}
+.pick-note{margin:12px 0 0; font-size:11.5px; color:var(--ink-2); line-height:1.75}
+
+/* ---------- チャート ---------- */
+.chartbox{background:var(--sheet); border:1px solid var(--line-2); box-shadow:var(--hair);
+  padding:16px 18px 12px; margin-top:14px; position:relative}
+.chart-title{margin:0 0 2px; font-size:13px; font-weight:700}
+.chart-sub{margin:0 0 10px; font-size:11.5px; color:var(--ink-2)}
+svg.chart{display:block; width:100%; height:auto; overflow:visible}
+.tip{position:absolute; pointer-events:none; background:var(--bar); color:var(--bar-ink);
+  padding:7px 11px; font-size:11.5px; line-height:1.65; white-space:nowrap;
+  opacity:0; transition:opacity .1s ease; z-index:5}
+.tip b{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
+.tip .neg{color:#E9A79B}
+
+/* ---------- テーブル ---------- */
+.tablewrap{overflow-x:auto; background:var(--sheet); border:1px solid var(--line-2); margin-top:14px}
+table{border-collapse:collapse; width:100%; min-width:620px; font-size:12.5px}
+th,td{padding:7px 12px; text-align:right; border-bottom:1px solid var(--line); white-space:nowrap}
+th{background:var(--bar); color:var(--bar-ink); font-size:11px; font-weight:700; position:sticky; top:0}
+th:first-child,td:first-child{text-align:left}
+td{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
+tr.hit{background:var(--sheet-2)}
+tr.hit td{font-weight:700}
+tr.now td{background:var(--ai-soft); font-weight:700}
+td.neg{color:var(--shu)}
+tbody tr:last-child td{border-bottom:0}
+
+/* ---------- 汎用 ---------- */
+.toolbar{display:flex; flex-wrap:wrap; align-items:center; gap:12px 18px; margin:18px 0}
+.btn{font-family:inherit; font-size:13px; font-weight:700; color:var(--on-ai); background:var(--ai);
+  border:1px solid var(--ai); padding:10px 18px; cursor:pointer;
+  display:inline-flex; align-items:center; gap:9px; transition:background .13s ease}
+.btn:hover{background:var(--ai-2); border-color:var(--ai-2)}
+.btn:disabled{opacity:.45; cursor:not-allowed}
+.btn:focus-visible{outline:2px solid var(--shu); outline-offset:2px}
+.btn.ghost{background:transparent; color:var(--ai); border-color:var(--line-2); font-weight:400}
+.btn.ghost:hover{background:var(--sheet-2)}
+.btn svg{width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round}
+.note-inline{font-size:12px; color:var(--ink-2)}
+.note-inline.err{color:var(--shu); font-weight:700}
+.notes{margin-top:22px; display:grid; gap:1px; background:var(--line); border:1px solid var(--line)}
+.notes p{margin:0; background:var(--sheet); padding:11px 16px; font-size:12px; color:var(--ink-2); line-height:1.8}
+.notes p b{color:var(--ink); font-weight:700}
+.vid{display:flex; align-items:flex-start; gap:10px; text-decoration:none; color:inherit;
+  background:var(--sheet); border:1px solid var(--line); border-left:2px solid var(--shu);
+  padding:9px 12px; transition:background .13s ease}
+.vid:hover{background:var(--sheet-2)}
+.vid .play{flex:none; margin-top:4px; width:0; height:0; border-style:solid; border-width:5px 0 5px 8px;
+  border-color:transparent transparent transparent var(--shu)}
+.vid .t{font-size:11.5px; line-height:1.6; font-weight:700; min-width:0}
+.vid .t span{display:block; font-weight:400; color:var(--ink-2); font-size:10.5px;
+  font-family:"IBM Plex Mono",monospace; letter-spacing:.03em}
+.vidgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:10px}
+.chan{margin:12px 0 0; font-size:11.5px; color:var(--ink-2)}
+.cta-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:12px}
+.cta-card{display:flex; flex-direction:column; gap:6px; text-decoration:none; color:inherit;
+  background:var(--sheet); border:1px solid var(--line-2); padding:17px 19px 15px; transition:background .13s ease}
+.cta-card:hover{background:var(--sheet-2)}
+.cta-card .k{font-size:10.5px; letter-spacing:.14em; font-weight:700; color:var(--ink-2)}
+.cta-card strong{font-family:"Zen Old Mincho",serif; font-size:17px; font-weight:600; line-height:1.45}
+.cta-card p{margin:0; font-size:12px; color:var(--ink-2); line-height:1.8; flex:1}
+.cta-card .go{align-self:flex-start; margin-top:5px; font-size:12px; font-weight:700; color:var(--on-ai);
+  background:var(--ai); padding:7px 15px}
+.cta-card .go::after{content:" →"}
+.cta-card.line .go{background:#3B7A55}
+.tools{margin-top:34px}
+.toolgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px}
+.toolcard{display:flex; flex-direction:column; gap:4px; text-decoration:none; color:inherit;
+  background:var(--sheet); border:1px solid var(--line); padding:13px 16px; transition:background .13s ease}
+.toolcard:hover{background:var(--sheet-2)}
+.toolcard strong{font-size:13px; font-weight:700; line-height:1.5}
+.toolcard strong::after{content:" →"; color:var(--ai)}
+.toolcard p{margin:0; font-size:11.5px; color:var(--ink-2); line-height:1.7}
+footer.foot{margin-top:22px; padding-top:14px; border-top:1px solid var(--line);
+  font-size:11.5px; color:var(--ink-3); line-height:1.8}
+@media (max-width:640px){ .wrap{padding:20px 12px 48px} .stage{padding:20px 18px} }
+@media (prefers-reduced-motion:reduce){ *{transition:none !important} }
+</style>
+<style>
+:root{color-scheme:light}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>損益分岐シミュレーション</h1>
+    <p class="lede">家賃・経費・月謝・融資の返済を入れると、生徒が何名で経費をまかなえ、何名で目標の月収に届くかが出ます。</p>
+  </header>
+
+  <div id="wizard">
+    <div class="prog">
+      <div class="prog-top"><span class="prog-step" id="progStep"></span></div>
+      <div class="prog-bar"><i id="progBar" style="width:0%"></i></div>
+    </div>
+    <div class="stage" id="stage"></div>
+    <div class="nav">
+      <button class="btn ghost" id="prev">← 戻る</button>
+      <button class="btn" id="next">次へ →</button>
+      <span class="spacer"></span>
+      <span class="kbhint">Enter で次へ、←→ で移動</span>
+    </div>
+  </div>
+
+  <div id="result" hidden>
+    <div class="toolbar" style="margin:0 0 16px">
+      <button class="btn ghost" id="backEdit">← 条件を入力しなおす</button>
+    </div>
+    <div class="cond" id="condSummary"></div>
+
+    <h2 class="sec">分岐生徒数<em>営業利益がそのまま塾長給与になる前提</em></h2>
+    <div class="results">
+      <div class="rcard c1">
+        <span class="k">コストペイポイント</span>
+        <span class="n" id="r1">—</span>
+        <span class="d">塾長給与を除く月々の経費をまかなえる生徒数</span>
+        <span class="over" id="r1o"></span>
+      </div>
+      <div class="rcard c2">
+        <span class="k">損益分岐点</span>
+        <span class="n" id="r2">—</span>
+        <span class="d" id="r2d">最低必要生活費に届く生徒数</span>
+        <span class="over" id="r2o"></span>
+      </div>
+      <div class="rcard c3">
+        <span class="k">希望月収到達分岐点</span>
+        <span class="n" id="r3">—</span>
+        <span class="d" id="r3d">塾長希望月収に届く生徒数</span>
+        <span class="over" id="r3o"></span>
+      </div>
+    </div>
+
+    <h2 class="sec">生徒数を指定して見る<em>その人数のときの売上と利益</em></h2>
+    <div class="pick">
+      <div class="pick-head">
+        <span class="lab">生徒数</span>
+        <div class="pick-box">
+          <input type="number" id="pickNum" min="0" max="120" step="1">
+          <span class="u">名</span>
+        </div>
+        <input type="range" id="pickRange" min="0" max="80" step="1" aria-label="生徒数">
+      </div>
+      <div class="pick-grid" id="pickGrid"></div>
+      <p class="pick-note" id="pickNote"></p>
+    </div>
+
+    <div class="chartbox">
+      <p class="chart-title">生徒数と営業利益（＝塾長給与）</p>
+      <p class="chart-sub">グラフ上にカーソルを合わせると、その生徒数の売上と利益が出ます。</p>
+      <svg class="chart" id="chart" role="img" aria-label="生徒数ごとの営業利益の推移"></svg>
+      <div class="tip" id="tip"></div>
+    </div>
+
+    <div class="toolbar">
+      <button class="btn" id="dl">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
+        Excel で書き出す
+      </button>
+      <button class="btn ghost" id="reset">初期値に戻す</button>
+      <span class="note-inline" id="dlNote"></span>
+    </div>
+
+    <h2 class="sec">数値で見る<em>0〜70名</em></h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>生徒数</th><th>総売上高</th><th>売上原価</th><th>販管費</th><th>うち融資返済</th><th>営業利益</th></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="notes">
+      <p><b>コストペイポイント</b>　塾長給与を除く月々の塾の経費をまかなうために必要な、分岐生徒数の目安です。</p>
+      <p><b>損益分岐点</b>　入力した最低必要生活費（月収）に到達するために必要な、分岐生徒数の目安です。</p>
+      <p><b>希望月収到達分岐点</b>　入力した塾長希望月収に到達するために必要な、分岐生徒数の目安です。</p>
+      <p id="loanNote"><b>融資の返済</b>　—</p>
+      <p><b>入塾金と季節講習会</b>　どちらも1年で均等割にして月額に含めています。入塾金は原本の計算式にあわせ、生徒数にかかわらず年1回分（÷12）として計上しています。徴収しない場合は0を入力してください。</p>
+      <p><b>固定の前提</b>　すららID利用料 2,000円／人、E-teセット 500円／人、消耗品費 総売上の5%、雑費 総売上の1%、人件費 0円（塾長1名運営）。校舎により経費は変わりますので、入力値を修正してご利用ください。</p>
+      <p><b>ご注意</b>　現時点で入手可能な情報に基づく試算です。年商・利益を保証するものではないことをご承知おきください。</p>
+    </div>
+
+    <h2 class="sec">資金と経営の参考動画<em>Edu-Bizチャンネル by すららネット</em></h2>
+    <div class="vidgrid" id="vids"></div>
+    <p class="chan">すべて <a href="https://www.youtube.com/channel/UCUWf8KJxy898pTgEyxFKBFg" target="_blank" rel="noopener">Edu-Bizチャンネル by すららネット</a> の動画です。</p>
+
+    <h2 class="sec">数字を見ながら相談する<em>すららネット</em></h2>
+    <div class="cta-grid">
+      <a class="cta-card" href="https://suralajuku.jp/seminar/dokuritsuwsseminar" target="_blank" rel="noopener">
+        <span class="k">無料セミナー</span>
+        <strong>すらら独立開業セミナー</strong>
+        <p>料金設計、損益分岐、集客までを通しで。開催日程はこちらから確認できます。</p>
+        <span class="go">日程を見る</span>
+      </a>
+      <a class="cta-card line" href="https://liff.line.me/2009879529-HjsNyL9C/landing?follow=%40917wxvha&amp;lp=wAfbgA&amp;liff_id=2009879529-HjsNyL9C" target="_blank" rel="noopener">
+        <span class="k">公式LINE</span>
+        <strong>この数字でいけますか？</strong>
+        <p>入力した条件のまま相談できます。月謝設計や経費の見直しもこちらから。</p>
+        <span class="go">友だち追加</span>
+      </a>
+    </div>
+  </div>
+
+
+  <footer class="foot">出典：20140315_損益分岐シミュレーション_原本.xlsx（すらら独立開業サポート）／損益の計算式は原本のままです。融資返済は本ページで追加した項目です。</footer>
+</div>
+
+<script>
+"use strict";
+/* ============ 入力定義 ============ */
+const STEPS = [
+  { g:"基本情報", t:"num", k:"tsubo", l:"教室の広さは何坪ですか？", u:"坪", v:10, step:1, chips:[8,10,15,20,25],
+    hint:"英知ゼミは10坪規模から始めています。坪数は家賃の妥当性（坪単価）を見るのにも使います。" },
+  { g:"基本情報", t:"num", k:"rent", l:"家賃は月いくらですか？", u:"円", v:100000, step:1000, chips:[60000,80000,100000,150000,200000],
+    hint:"塾の平均坪単価は<b>1坪8,000円程度</b>が目安。melaboは駐車場込みで約11万円でした。" },
+
+  { g:"売上", t:"num", k:"gessha", l:"月謝の平均はいくらですか？", u:"円", v:20000, step:1000, chips:[12000,16000,20000,25000,30000],
+    hint:"全学年・全コースをならした1人あたりの平均月謝です。ひな型の料金表では中3の週3回が26,000円＋管理費2,000円。" },
+  { g:"売上", t:"num", k:"nyukai", l:"入会金はいくらですか？", u:"円", v:10000, step:1000, chips:[0,10000,20000,30000],
+    hint:"年1回分として<b>1/12</b>を月額に含めます。徴収しない場合は0を入れてください。" },
+  { g:"売上", t:"num", k:"kisetsu", l:"季節講習会の年額（1人あたり）は？", u:"円", v:40000, step:1000, chips:[0,30000,40000,60000,100000],
+    hint:"春・夏・冬の合計を1人あたりの年額で。<b>1/12</b>を月額にならして計上します。" },
+  { g:"売上", t:"num", k:"coach", l:"すららコーチフィーはいくらですか？", u:"円", v:0, step:1000, chips:[0],
+    hint:"すららコーチを使わない場合は<b>0</b>のままで結構です。" },
+
+  { g:"経費", t:"num", k:"surala", l:"すららサービス利用料は月いくらですか？", u:"円", v:45000, step:1000, chips:[30000,40000,45000,55000],
+    hint:"中学生版3万円に、小学校高学年版＋1万円、高校生版＋1万円、低学年版＋5,000円を積み上げた額（1校舎あたりの固定費）。" },
+  { g:"経費", t:"num", k:"koukoku", l:"広告宣伝費は月いくらですか？", u:"円", v:20000, step:1000, chips:[0,20000,50000,130000],
+    hint:"melaboは業者に頼まず自分でポスティングして費用を抑えました。英知ゼミは折込チラシで反応ゼロ、ポスティング2,000枚で3件の問い合わせ。" },
+  { g:"経費", t:"num", k:"kounetsu", l:"水道光熱費は月いくらですか？", u:"円", v:20000, step:1000, chips:[10000,20000,30000] },
+  { g:"経費", t:"num", k:"tsushin", l:"通信費は月いくらですか？", u:"円", v:20000, step:1000, chips:[5000,10000,20000],
+    hint:"ネット回線と電話。すららはブラウザで動くので、専用機材の追加費用はかかりません。" },
+
+  { g:"融資", t:"choice", k:"loanUse", l:"融資を受けますか？",
+    opts:[["あり","受ける","借入額・返済年数・据え置き期間・年利を入力します"],
+          ["なし","受けない","この先の4問をとばして給与の設定に進みます"]],
+    hint:"開業資金を借りる場合、毎月の返済が固定費として乗ります。<b>返済額を入れずに損益分岐を見ると、必要な生徒数を少なく見積もることになります。</b>" },
+  { g:"融資", t:"num", k:"loanAmt", when:isLoan, l:"いくら借りますか？", u:"万円", v:300, step:10, chips:[100,200,300,500,1000],
+    hint:"実例では melabo が日本政策金融公庫から<b>350万円</b>、英知ゼミが<b>330万円</b>。初期費用の目安は300万円、1年目トータルでは600万円を見ておく想定です。" },
+  { g:"融資", t:"num", k:"loanYears", when:isLoan, l:"返済期間は何年ですか？", u:"年", v:7, step:1, chips:[5,7,10,15],
+    hint:"日本政策金融公庫の新規開業資金は、設備資金で20年以内、運転資金で10年以内が上限。実務では<b>5〜10年</b>で組むことが多い範囲です。" },
+  { g:"融資", t:"num", k:"loanGrace", when:isLoan, l:"据え置き期間は何か月ですか？", u:"か月", v:6, step:1, chips:[0,6,12,24],
+    hint:"据え置き期間中は<b>元金の返済が始まらず、利息だけ</b>を払います。開校直後の生徒が少ない時期を助けますが、そのぶん据え置き明けの返済額は上がります。公庫では最長5年（60か月）まで設定できます。" },
+  { g:"融資", t:"num", k:"loanRate", when:isLoan, l:"年利は何%ですか？", u:"%", v:2.0, step:0.1, chips:[1.5,2,2.5,3],
+    hint:"日本政策金融公庫の新規開業資金は、担保・保証人や条件により幅がありますが、<b>おおむね年2%前後</b>が一つの目安です。金利は情勢で動きますので、実際の数字は公庫や金融機関にご確認のうえ入力してください。" },
+
+  { g:"給与", t:"num", k:"minLife", l:"生活に最低限必要な月収はいくらですか？", u:"円", v:160000, step:10000, chips:[120000,160000,200000,250000],
+    hint:"これを下回ると生活が回りません。<b>損益分岐点</b>の基準になる数字です。" },
+  { g:"給与", t:"num", k:"wantPay", l:"塾長として希望する月収はいくらですか？", u:"円", v:250000, step:10000, chips:[200000,250000,300000,400000],
+    hint:"melaboは損益分岐（生徒11〜12名）を<b>開校後3〜4か月</b>で超えました。ここに届く人数が、教室の目標生徒数になります。" },
+];
+const CONST = { idFee:2000, eteFee:500, shomo:0.05, zappi:0.01, jinken:0 };
+const state = { loanUse:"なし" };
+STEPS.forEach(s => { if (s.t === "num") state[s.k] = s.v; });
+function isLoan(){ return state.loanUse === "あり"; }
+
+/* ============ 融資の返済計算 ============ */
+function loanMonths(){
+  const total = Math.max(1, Math.round(state.loanYears * 12));
+  const grace = Math.max(0, Math.min(Math.round(state.loanGrace), total - 1));
+  return { total, grace, pay: total - grace };
+}
+/* 据え置き明けの毎月返済額（元利均等）。損益分岐はここを基準にする。 */
+function loanMonthly(){
+  if (!isLoan()) return 0;
+  const P = (state.loanAmt || 0) * 10000;
+  if (P <= 0) return 0;
+  const { pay } = loanMonths();
+  const r = (state.loanRate || 0) / 100 / 12;
+  if (r <= 0) return P / pay;
+  return P * r / (1 - Math.pow(1 + r, -pay));
+}
+/* 据え置き期間中の毎月の利息だけの支払額 */
+function loanGracePay(){
+  if (!isLoan()) return 0;
+  const P = (state.loanAmt || 0) * 10000;
+  return P * ((state.loanRate || 0) / 100 / 12);
+}
+function loanTotalPay(){
+  if (!isLoan()) return 0;
+  const { grace, pay } = loanMonths();
+  return loanGracePay() * grace + loanMonthly() * pay;
+}
+
+/* ============ 損益（原本のPL＋融資返済） ============ */
+function pl(n){
+  const uriage = state.gessha * n + state.nyukai / 12 + (state.kisetsu / 12) * n + state.coach;
+  const genka = state.surala + CONST.idFee * n + CONST.eteFee * n;
+  const arari = uriage - genka;
+  const loan = loanMonthly();
+  const kanri = state.kounetsu + state.koukoku + state.tsushin
+              + CONST.shomo * uriage + CONST.zappi * uriage;
+  const hankan = kanri + state.rent + CONST.jinken + loan;
+  return { n, uriage, genka, arari, hankan, loan, eigyo: arari - hankan };
+}
+const MAXN = 200;
+function findN(threshold){
+  for (let n = 0; n <= MAXN; n++) if (pl(n).eigyo > threshold) return n;
+  return null;
+}
+function results(){
+  return { cost: findN(0), be: findN(state.minLife), want: findN(state.wantPay) };
+}
+
+const el = (t, c, x) => { const n = document.createElement(t); if (c) n.className = c; if (x != null) n.textContent = x; return n; };
+const yen = v => Math.round(v).toLocaleString("ja-JP");
+const man = v => (v / 10000).toFixed(1);
+
+/* ============ ウィザード ============ */
+const stage = document.getElementById("stage");
+const wizard = document.getElementById("wizard");
+const resultEl = document.getElementById("result");
+let step = 0;
+const visible = () => STEPS.filter(s => !s.when || s.when());
+const visIndex = () => visible().indexOf(STEPS[step]);
+
+function firstVisible(from, dir){
+  let i = from;
+  while (i >= 0 && i < STEPS.length){
+    const s = STEPS[i];
+    if (!s.when || s.when()) return i;
+    i += dir;
+  }
+  return dir > 0 ? STEPS.length : -1;
+}
+
+function drawStage(){
+  const s = STEPS[step];
+  stage.innerHTML = "";
+  const eb = el("div", "eyebrow");
+  eb.appendChild(el("span", "cat", s.g));
+  stage.appendChild(eb);
+  stage.appendChild(el("p", "q", s.l));
+
+  let first = null;
+  if (s.t === "choice"){
+    const box = el("div", "choice");
+    s.opts.forEach(([val, label, sub]) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = state[s.k] === val ? "on" : "";
+      b.appendChild(document.createTextNode(label));
+      if (sub) b.appendChild(el("small", null, sub));
+      b.addEventListener("click", () => { state[s.k] = val; goStep(1); });
+      box.appendChild(b);
+    });
+    stage.appendChild(box);
+  } else {
+    const box = el("div", "bigbox");
+    const inp = document.createElement("input");
+    inp.type = "number"; inp.min = 0; inp.step = s.step || 1; inp.value = state[s.k]; inp.id = "wizIn";
+    inp.addEventListener("input", () => {
+      const v = Number(inp.value);
+      state[s.k] = Number.isFinite(v) && v >= 0 ? v : 0;
+    });
+    first = inp;
+    box.appendChild(inp);
+    box.appendChild(el("span", "u", s.u));
+    stage.appendChild(box);
+
+    if (s.chips){
+      const ch = el("div", "chips");
+      s.chips.forEach(v => {
+        const b = document.createElement("button");
+        b.type = "button"; b.textContent = v.toLocaleString("ja-JP");
+        b.addEventListener("click", () => { state[s.k] = v; inp.value = v; inp.focus(); });
+        ch.appendChild(b);
+      });
+      stage.appendChild(ch);
+    }
+  }
+
+  if (s.hint){
+    const p = el("p", "hint");
+    p.innerHTML = s.hint;
+    stage.appendChild(p);
+  }
+  if (s.k === "loanRate" || s.k === "loanGrace"){
+    const p = el("p", "hint");
+    const m = loanMonths();
+    p.innerHTML = `現在の入力だと、据え置き明けの返済は毎月 <b>${yen(loanMonthly())}円</b>（${m.pay}回）。` +
+      (m.grace > 0 ? `据え置き期間中は利息のみで毎月 <b>${yen(loanGracePay())}円</b>（${m.grace}か月）。` : "") +
+      `返済総額は <b>${yen(loanTotalPay())}円</b> です。`;
+    stage.appendChild(p);
+  }
+
+  const vis = visible();
+  document.getElementById("progStep").innerHTML =
+    `STEP <b>${vis.indexOf(s) + 1}</b> / ${vis.length}　${s.g}`;
+  document.getElementById("progBar").style.width = `${((vis.indexOf(s) + 1) / vis.length) * 100}%`;
+  document.getElementById("prev").disabled = firstVisible(step - 1, -1) < 0;
+  document.getElementById("next").textContent =
+    firstVisible(step + 1, 1) >= STEPS.length ? "結果を見る →" : "次へ →";
+  setTimeout(() => first && first.focus(), 0);
+}
+
+function goStep(d){
+  const nx = firstVisible(step + d, d > 0 ? 1 : -1);
+  if (nx < 0) return;
+  if (nx >= STEPS.length){ showResult(); return; }
+  step = nx; drawStage();
+  window.scrollTo({ top:0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+}
+function showResult(){
+  wizard.hidden = true; resultEl.hidden = false;
+  state.pick = results().be ?? 20;
+  render();
+  window.scrollTo({ top:0, behavior:"auto" });
+}
+document.getElementById("prev").addEventListener("click", () => goStep(-1));
+document.getElementById("next").addEventListener("click", () => goStep(1));
+document.getElementById("backEdit").addEventListener("click", () => {
+  resultEl.hidden = true; wizard.hidden = false; drawStage();
+  window.scrollTo({ top:0, behavior:"auto" });
+});
+document.addEventListener("keydown", e => {
+  if (!resultEl.hidden) return;
+  if (e.key === "Enter"){ e.preventDefault(); goStep(1); }
+  else if (e.key === "ArrowRight" && document.activeElement.id !== "wizIn") goStep(1);
+  else if (e.key === "ArrowLeft" && document.activeElement.id !== "wizIn") goStep(-1);
+});
+document.getElementById("reset").addEventListener("click", () => {
+  state.loanUse = "なし";
+  STEPS.forEach(s => { if (s.t === "num") state[s.k] = s.v; });
+  state.pick = results().be ?? 20;
+  render();
+});
+
+/* ============ 結果の描画 ============ */
+const NMAX_VIEW = 70;
+
+function render(){
+  const r = results();
+  const show = (id, n, over, base) => {
+    document.getElementById(id).innerHTML = n == null ? "—" : `${n}<small>名</small>`;
+    document.getElementById(over).textContent =
+      n == null ? "200名まででは届きません" : `この人数のときの営業利益 ${yen(pl(n).eigyo)}円`;
+    if (base) document.getElementById(base).textContent =
+      base === "r2d" ? `最低必要生活費 ${yen(state.minLife)}円に届く生徒数`
+                     : `塾長希望月収 ${yen(state.wantPay)}円に届く生徒数`;
+  };
+  show("r1", r.cost, "r1o");
+  show("r2", r.be, "r2o", "r2d");
+  show("r3", r.want, "r3o", "r3d");
+
+  const items = STEPS.filter(s => s.t === "num" && (!s.when || s.when()))
+    .map(s => `<span><i>${s.g}</i>${s.l.replace(/は.*$/, "").replace(/\？$/, "")} <b>${yen(state[s.k])}${s.u}</b></span>`);
+  items.splice(10, 0, `<span><i>融資</i>融資 <b>${state.loanUse}</b></span>`);
+  document.getElementById("condSummary").innerHTML = items.join("");
+
+  const m = loanMonths();
+  document.getElementById("loanNote").innerHTML = isLoan()
+    ? `<b>融資の返済</b>　借入 ${yen(state.loanAmt * 10000)}円／年利 ${state.loanRate}%／返済 ${state.loanYears}年／据え置き ${state.loanGrace}か月。` +
+      `販管費には<b>据え置き明けの毎月返済額 ${yen(loanMonthly())}円</b>（元利均等・${m.pay}回）を計上しています。` +
+      (m.grace > 0 ? `据え置き期間中は利息のみで毎月 ${yen(loanGracePay())}円です。` : "") +
+      `返済総額は ${yen(loanTotalPay())}円。金利は情勢で動きますので、実際の条件は金融機関にご確認ください。`
+    : `<b>融資の返済</b>　融資を受けない設定のため、返済は計上していません。`;
+
+  drawPick();
+  drawChart(r);
+  drawTable(r);
+}
+
+/* ---------- 生徒数を指定して見る ---------- */
+function drawPick(){
+  const numI = document.getElementById("pickNum");
+  const rngI = document.getElementById("pickRange");
+  if (state.pick == null) state.pick = 20;
+  numI.value = state.pick; rngI.value = Math.min(80, state.pick);
+  const p = pl(state.pick);
+  const g = document.getElementById("pickGrid");
+  g.innerHTML = "";
+  const cell = (k, v, cls, big) => {
+    const d = el("div", big ? "big" : null);
+    d.appendChild(el("dt", null, k));
+    const dd = el("dd", cls);
+    dd.innerHTML = v;
+    d.appendChild(dd);
+    g.appendChild(d);
+  };
+  cell("総売上高", `${yen(p.uriage)}<small>円</small>`);
+  cell("売上原価", `${yen(p.genka)}<small>円</small>`);
+  cell("販管費", `${yen(p.hankan)}<small>円</small>`);
+  if (isLoan()) cell("うち融資返済", `${yen(p.loan)}<small>円</small>`);
+  cell("営業利益（塾長給与）", `${yen(p.eigyo)}<small>円</small>`, p.eigyo >= 0 ? null : "neg", true);
+
+  const r = results();
+  const note = [];
+  if (r.cost != null) note.push(state.pick >= r.cost ? "経費はまかなえています。" : `経費をまかなうにはあと${r.cost - state.pick}名必要です。`);
+  if (r.be != null && state.pick < r.be) note.push(`最低必要生活費まではあと${r.be - state.pick}名。`);
+  else if (r.be != null) note.push("最低必要生活費には届いています。");
+  if (r.want != null) note.push(state.pick >= r.want ? "希望月収にも届いています。" : `希望月収まではあと${r.want - state.pick}名。`);
+  document.getElementById("pickNote").textContent = note.join("　");
+}
+document.getElementById("pickNum").addEventListener("input", e => {
+  const v = Math.max(0, Math.min(120, Math.round(Number(e.target.value) || 0)));
+  state.pick = v; drawPick(); drawTable(results());
+});
+document.getElementById("pickRange").addEventListener("input", e => {
+  state.pick = Number(e.target.value); drawPick(); drawTable(results());
+});
+
+/* ---------- チャート ---------- */
+const SVG = "http://www.w3.org/2000/svg";
+const mk = (t, a) => { const n = document.createElementNS(SVG, t); for (const k in a) n.setAttribute(k, a[k]); return n; };
+let chartMap = null;
+
+function drawChart(r){
+  const svg = document.getElementById("chart");
+  svg.innerHTML = "";
+  const W = 900, H = 330, P = { l:74, r:22, t:16, b:34 };
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+
+  const nMax = Math.max(NMAX_VIEW, (r.want != null ? r.want + 8 : 0));
+  const pts = [];
+  for (let n = 0; n <= nMax; n++) pts.push(pl(n));
+  const ys = pts.map(p => p.eigyo).concat([0, state.minLife, state.wantPay]);
+  let yMin = Math.min(...ys), yMax = Math.max(...ys);
+  const padY = (yMax - yMin) * 0.08 || 1;
+  yMin -= padY; yMax += padY;
+
+  const X = n => P.l + (n / nMax) * (W - P.l - P.r);
+  const Y = v => P.t + (1 - (v - yMin) / (yMax - yMin)) * (H - P.t - P.b);
+  chartMap = { X, Y, nMax, P, W, H };
+
+  const st = niceStep((yMax - yMin) / 5);
+  for (let v = Math.ceil(yMin / st) * st; v <= yMax; v += st){
+    svg.appendChild(mk("line", { x1:P.l, x2:W - P.r, y1:Y(v), y2:Y(v), stroke:"var(--line)", "stroke-width":1 }));
+    const tx = mk("text", { x:P.l - 8, y:Y(v) + 4, "text-anchor":"end", fill:"var(--ink-3)",
+      "font-size":11, "font-family":"IBM Plex Mono, monospace" });
+    tx.textContent = `${man(v)}万`;
+    svg.appendChild(tx);
+  }
+  for (let n = 0; n <= nMax; n += 10){
+    const tx = mk("text", { x:X(n), y:H - 12, "text-anchor":"middle", fill:"var(--ink-3)",
+      "font-size":11, "font-family":"IBM Plex Mono, monospace" });
+    tx.textContent = n;
+    svg.appendChild(tx);
+  }
+  const xl = mk("text", { x:W - P.r, y:H - 12, "text-anchor":"end", fill:"var(--ink-2)", "font-size":11 });
+  xl.textContent = "生徒数（名）";
+  svg.appendChild(xl);
+
+  const refLine = (v, color, label) => {
+    if (v < yMin || v > yMax) return;
+    svg.appendChild(mk("line", { x1:P.l, x2:W - P.r, y1:Y(v), y2:Y(v), stroke:color,
+      "stroke-width":1.2, "stroke-dasharray":"5 4" }));
+    const t = mk("text", { x:P.l + 6, y:Y(v) - 6, fill:color, "font-size":11, "font-weight":700 });
+    t.textContent = label;
+    svg.appendChild(t);
+  };
+  refLine(0, "var(--ink-3)", "利益ゼロ");
+  refLine(state.minLife, "var(--kin)", `最低必要生活費 ${man(state.minLife)}万円`);
+  refLine(state.wantPay, "var(--midori)", `塾長希望月収 ${man(state.wantPay)}万円`);
+
+  const d = pts.map((p, i) => `${i ? "L" : "M"}${X(p.n).toFixed(2)},${Y(p.eigyo).toFixed(2)}`).join("");
+  svg.appendChild(mk("path", { d, fill:"none", stroke:"var(--ai)", "stroke-width":2,
+    "stroke-linejoin":"round", "stroke-linecap":"round" }));
+
+  const marker = (n, color, label) => {
+    if (n == null || n > nMax) return;
+    const p = pl(n);
+    svg.appendChild(mk("line", { x1:X(n), x2:X(n), y1:Y(p.eigyo), y2:H - P.b, stroke:color,
+      "stroke-width":1, "stroke-dasharray":"3 3", opacity:.7 }));
+    svg.appendChild(mk("circle", { cx:X(n), cy:Y(p.eigyo), r:4.5, fill:color,
+      stroke:"var(--sheet)", "stroke-width":2 }));
+    const t = mk("text", { x:X(n), y:Y(p.eigyo) - 12, "text-anchor":"middle", fill:color,
+      "font-size":11, "font-weight":700 });
+    t.textContent = `${label} ${n}名`;
+    svg.appendChild(t);
+  };
+  marker(r.cost, "var(--ink-2)", "経費まで");
+  marker(r.be, "var(--kin)", "生活費まで");
+  marker(r.want, "var(--midori)", "希望月収まで");
+
+  svg.appendChild(mk("line", { x1:0, x2:0, y1:P.t, y2:H - P.b, stroke:"var(--ink-3)",
+    "stroke-width":1, opacity:0, id:"hoverLine" }));
+  svg.appendChild(mk("circle", { r:4.5, fill:"var(--ai)", stroke:"var(--sheet)", "stroke-width":2, opacity:0, id:"hoverDot" }));
+  svg.appendChild(mk("rect", { x:P.l, y:P.t, width:W - P.l - P.r, height:H - P.t - P.b, fill:"transparent" }));
+}
+function niceStep(raw){
+  const p = Math.pow(10, Math.floor(Math.log10(Math.abs(raw) || 1)));
+  const n = raw / p;
+  return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 5 ? 5 : 10) * p;
+}
+
+const tip = document.getElementById("tip");
+const chartEl = document.getElementById("chart");
+function onMove(ev){
+  if (!chartMap) return;
+  const rect = chartEl.getBoundingClientRect();
+  const sx = chartMap.W / rect.width;
+  const vx = (ev.clientX - rect.left) * sx;
+  const { X, Y, nMax, P } = chartMap;
+  let n = Math.round(((vx - P.l) / (chartMap.W - P.l - P.r)) * nMax);
+  n = Math.max(0, Math.min(nMax, n));
+  const p = pl(n);
+  const line = document.getElementById("hoverLine");
+  const dot = document.getElementById("hoverDot");
+  if (!line || !dot) return;
+  line.setAttribute("x1", X(n)); line.setAttribute("x2", X(n)); line.setAttribute("opacity", .5);
+  dot.setAttribute("cx", X(n)); dot.setAttribute("cy", Y(p.eigyo)); dot.setAttribute("opacity", 1);
+  tip.innerHTML = `生徒 <b>${n}名</b><br>総売上 <b>${yen(p.uriage)}円</b><br>営業利益 <b class="${p.eigyo >= 0 ? "" : "neg"}">${yen(p.eigyo)}円</b>`;
+  const box = chartEl.parentElement.getBoundingClientRect();
+  const px = rect.left - box.left + X(n) / sx;
+  const py = rect.top - box.top + Y(p.eigyo) / sx;
+  tip.style.opacity = 1;
+  const tw = tip.offsetWidth;
+  tip.style.left = `${Math.max(4, Math.min(box.width - tw - 4, px - tw / 2))}px`;
+  tip.style.top = `${Math.max(4, py - tip.offsetHeight - 14)}px`;
+}
+function onLeave(){
+  tip.style.opacity = 0;
+  const l = document.getElementById("hoverLine"), d = document.getElementById("hoverDot");
+  if (l) l.setAttribute("opacity", 0);
+  if (d) d.setAttribute("opacity", 0);
+}
+chartEl.addEventListener("mousemove", onMove);
+chartEl.addEventListener("mouseleave", onLeave);
+chartEl.addEventListener("touchmove", e => { if (e.touches[0]) onMove(e.touches[0]); }, { passive:true });
+chartEl.addEventListener("touchend", onLeave);
+
+/* ---------- テーブル（0〜70名） ---------- */
+function drawTable(r){
+  const tb = document.getElementById("tbody");
+  tb.innerHTML = "";
+  const marks = [r.cost, r.be, r.want].filter(x => x != null);
+  const set = new Set();
+  for (let n = 0; n <= NMAX_VIEW; n += 5) set.add(n);
+  marks.forEach(m => { if (m <= NMAX_VIEW) set.add(m); });
+  if (state.pick != null && state.pick <= 120) set.add(state.pick);
+  [...set].filter(n => n >= 0).sort((a, b) => a - b).forEach(n => {
+    const p = pl(n);
+    const tr = document.createElement("tr");
+    if (n === state.pick) tr.className = "now";
+    else if (marks.includes(n)) tr.className = "hit";
+    const tag = n === r.cost ? "（経費まで）" : n === r.be ? "（生活費まで）" : n === r.want ? "（希望月収まで）" : "";
+    tr.appendChild(el("td", null, `${n}名${tag}`));
+    [p.uriage, p.genka, p.hankan, p.loan].forEach(v => tr.appendChild(el("td", null, yen(v))));
+    tr.appendChild(el("td", p.eigyo >= 0 ? null : "neg", yen(p.eigyo)));
+    tb.appendChild(tr);
+  });
+}
+
+/* ---------- 動画 ---------- */
+const YT = id => `https://www.youtube.com/watch?v=${id}`;
+[
+  { id:"LzhZ7UmyuHw", t:"学習塾開業の現実！初期費用220万・融資330万で実現した分岐点15名の黒字経営術", d:"2025-08-20" },
+  { id:"ECEJLdeEh50", t:"塾開業に本当に必要なお金は？200万円で始めた現実（個別学習塾melabo）", d:"2025-12-25" },
+  { id:"3Z8G1BtDy5w", t:"【未経験からの塾開業】お金をかけるべきこと・節約すべきこと｜融資は受けるべきか", d:"2025-02-19" },
+  { id:"qrTKTdZmeYg", t:"【塾開業】最速で黒字化するための生徒募集ノウハウ｜早期に20名を集めることが黒字化の鍵", d:"2024-10-04" },
+].forEach(v => {
+  const a = document.createElement("a");
+  a.className = "vid"; a.href = YT(v.id); a.target = "_blank"; a.rel = "noopener";
+  a.appendChild(el("i", "play"));
+  const t = el("div", "t", v.t);
+  t.appendChild(el("span", null, `Edu-Bizチャンネル ・ ${v.d} 公開`));
+  a.appendChild(t);
+  document.getElementById("vids").appendChild(a);
+});
+
+drawStage();
+window.addEventListener("resize", () => { if (chartMap && !resultEl.hidden) drawChart(results()); });
+
+/* ============ Excel ============ */
+const ARGB = { white:"FFFFFFFF", line:"FFDCD8CF", head:"FF34353A", ai:"FF43536B",
+               aiSoft:"FFE9EBEF", gray:"FFF0EEE8", amber:"FFEEE8DA", green:"FFE4EAE4" };
+const thin = { style:"thin", color:{argb:ARGB.line} };
+const allThin = { top:thin, left:thin, bottom:thin, right:thin };
+const btn = document.getElementById("dl");
+const dlNote = document.getElementById("dlNote");
+
+async function buildWorkbook(){
+  const r = results();
+  const wb = new ExcelJS.Workbook();
+  wb.creator = "損益分岐シミュレーション";
+  wb.created = new Date();
+  const fill = a => ({ fill:{ type:"pattern", pattern:"solid", fgColor:{argb:a} } });
+  const ws = wb.addWorksheet("損益分岐シミュレーション");
+  ws.columns = [{width:30},{width:15},{width:7},{width:32},{width:16},{width:7}];
+  const set = (row, col, v, st) => { const c = ws.getCell(row, col); c.value = v; if (st) Object.assign(c, st); return c; };
+
+  set(1, 1, "損益分岐生徒数シミュレーション", { font:{ name:"Arial", size:16, bold:true } });
+  ws.getRow(1).height = 26;
+  let row = 3;
+  ["基本情報", "売上", "経費", "融資", "給与"].forEach(g => {
+    set(row, 1, `【${g}】`, { font:{ name:"Arial", size:11, bold:true, color:{argb:ARGB.ai} } });
+    row++;
+    if (g === "融資"){
+      set(row, 1, "融資を受けるか", { font:{ name:"Arial", size:10 }, border:allThin, ...fill(ARGB.gray) });
+      set(row, 2, state.loanUse, { font:{ name:"Arial", size:10, bold:true }, border:allThin,
+                                   alignment:{ horizontal:"right" }, ...fill(ARGB.amber) });
+      row++;
+    }
+    STEPS.filter(s => s.t === "num" && s.g === g && (!s.when || s.when())).forEach(s => {
+      set(row, 1, s.l.replace(/\？$/, ""), { font:{ name:"Arial", size:10 }, border:allThin, ...fill(ARGB.gray) });
+      set(row, 2, state[s.k], { font:{ name:"Arial", size:10, bold:true }, border:allThin,
+                                numFmt:"#,##0.#", alignment:{ horizontal:"right" }, ...fill(ARGB.amber) });
+      set(row, 3, s.u, { font:{ name:"Arial", size:9, color:{argb:"FF66625C"} } });
+      row++;
+    });
+    if (g === "基本情報"){
+      set(row, 1, "坪単価", { font:{ name:"Arial", size:10 }, border:allThin, ...fill(ARGB.gray) });
+      set(row, 2, state.tsubo > 0 ? Math.round(state.rent / state.tsubo) : 0,
+          { font:{ name:"Arial", size:10 }, border:allThin, numFmt:"#,##0", alignment:{ horizontal:"right" } });
+      set(row, 3, "円/坪", { font:{ name:"Arial", size:9, color:{argb:"FF66625C"} } });
+      row++;
+    }
+    if (g === "融資" && isLoan()){
+      const m = loanMonths();
+      [["据え置き明けの毎月返済額", Math.round(loanMonthly()), "円"],
+       ["据え置き中の毎月支払（利息のみ）", Math.round(loanGracePay()), "円"],
+       ["返済回数（据え置き明け）", m.pay, "回"],
+       ["返済総額", Math.round(loanTotalPay()), "円"]].forEach(([k, v, u]) => {
+        set(row, 1, k, { font:{ name:"Arial", size:10 }, border:allThin, ...fill(ARGB.gray) });
+        set(row, 2, v, { font:{ name:"Arial", size:10 }, border:allThin, numFmt:"#,##0", alignment:{ horizontal:"right" } });
+        set(row, 3, u, { font:{ name:"Arial", size:9, color:{argb:"FF66625C"} } });
+        row++;
+      });
+    }
+    row++;
+  });
+
+  let rr = 3;
+  set(rr, 4, "【分岐生徒数】", { font:{ name:"Arial", size:11, bold:true, color:{argb:ARGB.ai} } }); rr++;
+  [["コストペイポイント", r.cost, ARGB.gray],
+   ["損益分岐点（最低必要生活費）", r.be, ARGB.amber],
+   ["希望月収到達分岐点", r.want, ARGB.green]].forEach(([k, v, bg]) => {
+    set(rr, 4, k, { font:{ name:"Arial", size:10 }, border:allThin, ...fill(ARGB.gray) });
+    set(rr, 5, v == null ? "200名まででは届きません" : v,
+        { font:{ name:"Arial", size:11, bold:true }, border:allThin, alignment:{ horizontal:"right" }, ...fill(bg) });
+    set(rr, 6, v == null ? "" : "名", { font:{ name:"Arial", size:9, color:{argb:"FF66625C"} } });
+    rr++;
+  });
+  rr++;
+  set(rr, 4, "【指定した生徒数】", { font:{ name:"Arial", size:11, bold:true, color:{argb:ARGB.ai} } }); rr++;
+  const pp = pl(state.pick ?? 0);
+  [["生徒数", state.pick ?? 0, "名"], ["総売上高", Math.round(pp.uriage), "円"],
+   ["売上原価", Math.round(pp.genka), "円"], ["販管費", Math.round(pp.hankan), "円"],
+   ["うち融資返済", Math.round(pp.loan), "円"], ["営業利益（塾長給与）", Math.round(pp.eigyo), "円"]].forEach(([k, v, u]) => {
+    set(rr, 4, k, { font:{ name:"Arial", size:10 }, border:allThin, ...fill(ARGB.gray) });
+    set(rr, 5, v, { font:{ name:"Arial", size:10, bold:k.startsWith("営業利益") }, border:allThin,
+                    numFmt:"#,##0", alignment:{ horizontal:"right" } });
+    set(rr, 6, u, { font:{ name:"Arial", size:9, color:{argb:"FF66625C"} } });
+    rr++;
+  });
+
+  const notes = [
+    "※1 コストペイポイントは、塾長給与を除く月々の塾の経費をまかなうために必要な分岐生徒数の目安です。",
+    "※2 損益分岐点は、入力した最低必要生活費（月収）に到達するために必要な分岐生徒数の目安です。",
+    "※3 希望月収到達分岐点は、入力した塾長希望月収に到達するために必要な分岐生徒数の目安です。",
+    isLoan()
+      ? "※4 融資返済は元利均等で計算し、据え置き明けの毎月返済額を販管費に計上しています（据え置き期間中は利息のみ）。日本政策金融公庫の新規開業資金の金利はおおむね年2%前後が目安ですが、条件と情勢で変わります。実際の条件は金融機関にご確認ください。"
+      : "※4 融資を受けない設定のため、返済額は計上していません。",
+    "※5 入塾金と季節講習会は1年で均等割にして月額に含めています。入塾金は原本の計算式にあわせ、生徒数にかかわらず年1回分（÷12）で計上しています。",
+    "※6 固定の前提：すららID利用料2,000円/人、E-teセット500円/人、消耗品費 総売上の5%、雑費 総売上の1%、人件費0円。",
+    "※7 現時点で入手可能な情報に基づく試算です。年商・利益を保証するものではありません。",
+  ];
+  const nTop = Math.max(row, rr) + 1;
+  notes.forEach((t, i) => {
+    ws.mergeCells(nTop + i, 1, nTop + i, 6);
+    set(nTop + i, 1, t, { font:{ name:"Arial", size:8, italic:true, color:{argb:"FF66625C"} },
+                          alignment:{ vertical:"middle", wrapText:true } });
+    ws.getRow(nTop + i).height = 20;
+  });
+
+  const ps = wb.addWorksheet("PL", { views:[{ state:"frozen", xSplit:1, ySplit:1 }] });
+  ps.columns = [{width:10},{width:14},{width:14},{width:14},{width:14},{width:14},{width:14},{width:20}];
+  ["生徒数","総売上高","売上原価","売上総利益","販管費","うち融資返済","営業利益","分岐点"].forEach((t, i) => {
+    ps.getCell(1, i + 1).value = t;
+  });
+  ps.getRow(1).eachCell(c => Object.assign(c, {
+    font:{ name:"Arial", size:10, bold:true, color:{argb:ARGB.white} },
+    alignment:{ horizontal:"center" }, border:allThin, ...fill(ARGB.head) }));
+  const upto = Math.max(NMAX_VIEW, (r.want || 0) + 10);
+  for (let n = 0; n <= upto; n++){
+    const p = pl(n);
+    const mark = n === r.cost ? "コストペイポイント" : n === r.be ? "損益分岐点" : n === r.want ? "希望月収到達" : "";
+    [n, Math.round(p.uriage), Math.round(p.genka), Math.round(p.arari), Math.round(p.hankan),
+     Math.round(p.loan), Math.round(p.eigyo), mark].forEach((v, i) => {
+      const c = ps.getCell(n + 2, i + 1);
+      c.value = v;
+      Object.assign(c, { font:{ name:"Arial", size:9, bold: !!mark }, border:allThin,
+                         numFmt: i === 0 || i === 7 ? undefined : "#,##0" });
+      if (mark) Object.assign(c, fill(ARGB.aiSoft));
+    });
+  }
+  return wb;
+}
+
+btn.addEventListener("click", async () => {
+  btn.disabled = true; dlNote.className = "note-inline"; dlNote.textContent = "作成中…";
+  try {
+    const wb = await buildWorkbook();
+    const buf = await wb.xlsx.writeBuffer();
+    const blob = new Blob([buf], { type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+    const r = results();
+    const filename = `損益分岐シミュレーション_分岐${r.be == null ? "未到達" : r.be + "名"}.xlsx`;
+    const downloads = await window.claude?.use?.("downloads");
+    if (downloads){ await downloads.save({ filename, data: blob }); dlNote.textContent = "保存しました。"; }
+    else {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 4000);
+      dlNote.textContent = "";
+    }
+  } catch (err) {
+    const code = err && err.code;
+    if (code === "declined") dlNote.textContent = "";
+    else if (code === "rate_limited"){ dlNote.className = "note-inline err"; dlNote.textContent = "少し待ってからもう一度お試しください。"; }
+    else { dlNote.className = "note-inline err"; dlNote.textContent = "この画面では書き出せませんでした。"; }
+  } finally {
+    btn.disabled = false;
+    setTimeout(() => { if (dlNote.textContent === "保存しました。") dlNote.textContent = ""; }, 4000);
+  }
+});
+</script>
+</body>
+</html>
