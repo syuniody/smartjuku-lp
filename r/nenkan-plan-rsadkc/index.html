@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 検索エンジンからの完全除外（robots.txt の Disallow: /r/ と併用） -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, max-snippet:0, max-image-preview:none, max-video-preview:0">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot-news" content="noindex, nofollow">
+<meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="msnbot" content="noindex, nofollow">
+<meta name="slurp" content="noindex, nofollow">
+<meta name="duckduckbot" content="noindex, nofollow">
+<meta name="baiduspider" content="noindex, nofollow">
+<meta name="yandex" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#F4F2ED">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="/favicon.ico">
+<title>年間収支計画（3年）｜すらら独立開業サポート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Zen+Old+Mincho:wght@600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
+<style>
+:root{
+  --paper:#F4F2ED; --sheet:#FCFBF8; --sheet-2:#F0EEE8;
+  --ink:#2A2724; --ink-2:#66625C; --ink-3:#9B968E;
+  --line:#E2DED5; --line-2:#CBC5B9;
+  --ai:#43536B; --ai-2:#586a85; --ai-soft:#E9EBEF;
+  --shu:#8E4A3E; --shu-soft:#F0E6E2;
+  --kin:#856C33; --kin-soft:#EEE8DA;
+  --midori:#4B6A55; --midori-soft:#E4EAE4;
+  --bar:#34353A; --bar-ink:#F5F3EF; --bar-ink-2:#A7A39C; --bar-track:#4A4B50;
+  --on-ai:#FFFFFF;
+  --hair:0 1px 2px rgba(42,39,36,.04);
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--paper); color:var(--ink);
+  font-family:"BIZ UDPGothic","Hiragino Sans","Yu Gothic UI",system-ui,sans-serif;
+  font-size:14px; line-height:1.75; -webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px; margin:0 auto; padding:30px 20px 64px}
+a{color:var(--ai)}
+header.top{border-bottom:1px solid var(--line-2); padding-bottom:16px; margin-bottom:24px}
+h1{font-family:"Zen Old Mincho",serif; font-weight:600; font-size:clamp(21px,2.8vw,27px);
+  line-height:1.3; letter-spacing:.03em; margin:0 0 6px}
+.lede{margin:0; color:var(--ink-2); font-size:12.5px; max-width:58ch}
+h2.sec{font-family:"Zen Old Mincho",serif; font-size:16px; font-weight:600; margin:30px 0 11px;
+  display:flex; align-items:baseline; gap:11px; flex-wrap:wrap; letter-spacing:.02em}
+h2.sec em{font-style:normal; font-size:11.5px; color:var(--ink-2);
+  font-family:"BIZ UDPGothic",sans-serif; font-weight:400}
+
+/* ウィザード */
+.prog{margin-bottom:16px}
+.prog-step{font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-2); letter-spacing:.05em; display:block; margin-bottom:7px}
+.prog-step b{color:var(--ink); font-size:13.5px; font-weight:500}
+.prog-bar{height:3px; background:var(--line); overflow:hidden}
+.prog-bar i{display:block; height:100%; background:var(--ai); transition:width .2s ease}
+.stage{background:var(--sheet); border:1px solid var(--line-2); box-shadow:var(--hair);
+  padding:26px 28px 24px; min-height:260px; display:flex; flex-direction:column; gap:16px}
+.eyebrow .cat{font-size:10.5px; letter-spacing:.16em; font-weight:700; color:var(--ink-2);
+  border:1px solid var(--line-2); padding:2px 9px}
+.q{margin:0; font-size:clamp(17px,2.4vw,21px); font-weight:700; line-height:1.6; text-wrap:balance}
+.bigbox{display:flex; border:1px solid var(--line-2); background:var(--sheet-2); overflow:hidden; max-width:320px}
+.bigbox input{flex:1; min-width:0; border:0; background:transparent; color:var(--ink);
+  font-family:"IBM Plex Mono",monospace; font-size:27px; font-variant-numeric:tabular-nums;
+  text-align:right; padding:10px 12px; font-weight:500}
+.bigbox input:focus{outline:none}
+.bigbox:focus-within{border-color:var(--ai)}
+.bigbox .u{display:flex; align-items:center; padding:0 14px; font-size:13px; color:var(--ink-2);
+  background:var(--sheet); border-left:1px solid var(--line)}
+.qrows{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px 18px}
+.qrow{display:flex; align-items:center; gap:10px}
+.qrow label{flex:1; font-size:13px; color:var(--ink-2)}
+.qrow .box{display:flex; border:1px solid var(--line-2); background:var(--sheet-2); overflow:hidden; flex:none}
+.qrow input{width:96px; border:0; background:transparent; color:var(--ink); padding:8px 10px;
+  font-family:"IBM Plex Mono",monospace; font-size:16px; font-variant-numeric:tabular-nums; text-align:right}
+.qrow input:focus{outline:none}
+.qrow .box:focus-within{border-color:var(--ai)}
+.qrow .u{display:flex; align-items:center; padding:0 9px; font-size:11px; color:var(--ink-2);
+  background:var(--sheet); border-left:1px solid var(--line)}
+.chips{display:flex; flex-wrap:wrap; gap:6px}
+.chips button{font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-2);
+  background:var(--sheet); border:1px solid var(--line-2); padding:4px 11px; cursor:pointer}
+.chips button:hover{background:var(--sheet-2); color:var(--ink); border-color:var(--ink-3)}
+.choice{display:flex; gap:10px; flex-wrap:wrap}
+.choice button{flex:1 1 190px; font-family:inherit; font-size:15px; font-weight:700; padding:15px 18px;
+  border:1px solid var(--line-2); background:var(--sheet-2); color:var(--ink-2); cursor:pointer; text-align:left}
+.choice button small{display:block; font-weight:400; font-size:11.5px; color:var(--ink-3); margin-top:3px}
+.choice button:hover{border-color:var(--ink-3)}
+.choice button.on{background:var(--ai); border-color:var(--ai); color:var(--on-ai)}
+.choice button.on small{color:rgba(255,255,255,.72)}
+select.month{font-family:"IBM Plex Mono",monospace; font-size:20px; color:var(--ink);
+  background:var(--sheet-2); border:1px solid var(--line-2); padding:9px 12px; max-width:220px}
+.hint{margin:0; background:var(--sheet-2); border-left:2px solid var(--line-2);
+  padding:11px 14px; font-size:12.5px; color:var(--ink-2); line-height:1.85}
+.hint b{color:var(--ink); font-weight:700}
+.nav{display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center; margin-top:16px}
+.nav .spacer{flex:1}
+.kbhint{font-size:11px; color:var(--ink-3); font-family:"IBM Plex Mono",monospace}
+
+/* 結果 */
+.cond{display:flex; flex-wrap:wrap; gap:6px 20px; background:var(--sheet); border:1px solid var(--line);
+  padding:12px 16px; margin-bottom:18px; font-size:11.5px; color:var(--ink-2)}
+.cond span{display:flex; align-items:baseline; gap:6px}
+.cond i{font-style:normal; font-size:9.5px; letter-spacing:.12em; color:var(--ink-3)}
+.cond b{font-family:"IBM Plex Mono",monospace; color:var(--ink); font-weight:500; font-size:12.5px}
+.results{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1px;
+  background:var(--line); border:1px solid var(--line)}
+.results{grid-template-columns:repeat(6,minmax(0,1fr))}
+.results .rcard{grid-column:span 2}
+.results .rcard:nth-child(n+4){grid-column:span 3}
+@media (max-width:560px){
+  .results{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .results .rcard, .results .rcard:nth-child(n+4){grid-column:span 1}
+  .results .rcard:nth-child(5){grid-column:span 2}
+}
+.rcard{background:var(--sheet); padding:16px 18px; display:flex; flex-direction:column; gap:3px}
+.rcard .k{font-size:11px; letter-spacing:.08em; color:var(--ink-2); font-weight:700}
+.rcard .n{font-family:"IBM Plex Mono",monospace; font-size:28px; font-weight:500; line-height:1.15;
+  font-variant-numeric:tabular-nums}
+.rcard .n small{font-size:13px; margin-left:3px; font-family:"BIZ UDPGothic",sans-serif; color:var(--ink-2)}
+.rcard .n.neg{color:var(--shu)}
+.rcard .d{font-size:11.5px; color:var(--ink-2); line-height:1.7}
+.verdict{background:var(--sheet); border:1px solid var(--line-2); border-left:3px solid var(--ai);
+  box-shadow:var(--hair); padding:16px 20px; margin-top:14px}
+.verdict.warn{border-left-color:var(--shu)}
+.verdict.ok{border-left-color:var(--midori)}
+.verdict h3{margin:0 0 6px; font-family:"Zen Old Mincho",serif; font-size:17px; font-weight:600}
+.verdict.warn h3{color:var(--shu)} .verdict.ok h3{color:var(--midori)}
+.verdict p{margin:0; font-size:12.5px; color:var(--ink-2); line-height:1.85}
+.verdict p b{color:var(--ink)}
+
+.chartbox{background:var(--sheet); border:1px solid var(--line-2); box-shadow:var(--hair);
+  padding:16px 18px 12px; margin-top:14px; position:relative}
+.chart-title{margin:0 0 2px; font-size:13px; font-weight:700}
+.chart-sub{margin:0 0 10px; font-size:11.5px; color:var(--ink-2)}
+svg.chart{display:block; width:100%; height:auto; overflow:visible}
+.legend{display:flex; gap:18px; margin:-2px 0 6px; font-size:11px; color:var(--ink-2)}
+.legend span{display:flex; align-items:center; gap:6px}
+.legend .lg-line::before{content:""; width:18px; height:2px; background:var(--ai)}
+.legend .lg-pos::before{content:""; width:10px; height:10px; background:var(--midori-soft); border:1px solid #9DB3A3}
+.legend .lg-neg::before{content:""; width:10px; height:10px; background:var(--shu-soft); border:1px solid #D4A79E}
+.legend .lg-note{color:var(--ink-3)}
+.seg.cash-seg{display:inline-flex; margin:0 0 10px}
+.cash-seg button{padding:5px 12px}
+.legend{flex-wrap:wrap; row-gap:4px}
+.legend .lg-bar::before{content:""; width:10px; height:10px; background:var(--kin-soft); border:1px solid #CDBF9C}
+.tip{position:absolute; pointer-events:none; background:var(--bar); color:var(--bar-ink);
+  padding:7px 11px; font-size:11.5px; line-height:1.65; white-space:nowrap; opacity:0;
+  transition:opacity .1s ease; z-index:5}
+.tip b{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
+.tip .neg{color:#E9A79B}
+
+.tablewrap{overflow:auto; max-height:560px; background:var(--sheet); border:1px solid var(--line-2); margin-top:14px}
+table{border-collapse:collapse; width:100%; min-width:900px; font-size:12px}
+th,td{padding:6px 10px; text-align:right; border-bottom:1px solid var(--line); white-space:nowrap}
+th{background:var(--bar); color:var(--bar-ink); font-size:10.5px; font-weight:700; position:sticky; top:0; z-index:2}
+th:first-child,td:first-child{text-align:left; position:sticky; left:0; background:var(--sheet)}
+th:first-child{background:var(--bar); z-index:3}
+td{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
+tr.yearend td{border-bottom:2px solid var(--line-2)}
+tr.bottom td:first-child,tr.bottom td{background:var(--shu-soft)}
+tr.turn td{background:var(--midori-soft)}
+td.neg{color:var(--shu)}
+
+.toolbar{display:flex; flex-wrap:wrap; align-items:center; gap:12px 18px; margin:18px 0}
+.btn{font-family:inherit; font-size:13px; font-weight:700; color:var(--on-ai); background:var(--ai);
+  border:1px solid var(--ai); padding:10px 18px; cursor:pointer;
+  display:inline-flex; align-items:center; gap:9px; transition:background .13s ease}
+.btn:hover{background:var(--ai-2); border-color:var(--ai-2)}
+.btn:disabled{opacity:.45; cursor:not-allowed}
+.btn:focus-visible{outline:2px solid var(--shu); outline-offset:2px}
+.btn.ghost{background:transparent; color:var(--ai); border-color:var(--line-2); font-weight:400}
+.btn.ghost:hover{background:var(--sheet-2)}
+.btn svg{width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round}
+.note-inline{font-size:12px; color:var(--ink-2)}
+.note-inline.err{color:var(--shu); font-weight:700}
+.notes{margin-top:22px; display:grid; gap:1px; background:var(--line); border:1px solid var(--line)}
+.notes p{margin:0; background:var(--sheet); padding:11px 16px; font-size:12px; color:var(--ink-2); line-height:1.8}
+.notes p b{color:var(--ink); font-weight:700}
+.cta-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:12px}
+.cta-card{display:flex; flex-direction:column; gap:6px; text-decoration:none; color:inherit;
+  background:var(--sheet); border:1px solid var(--line-2); padding:17px 19px 15px; transition:background .13s ease}
+.cta-card:hover{background:var(--sheet-2)}
+.cta-card .k{font-size:10.5px; letter-spacing:.14em; font-weight:700; color:var(--ink-2)}
+.cta-card strong{font-family:"Zen Old Mincho",serif; font-size:17px; font-weight:600; line-height:1.45}
+.cta-card p{margin:0; font-size:12px; color:var(--ink-2); line-height:1.8; flex:1}
+.cta-card .go{align-self:flex-start; margin-top:5px; font-size:12px; font-weight:700; color:var(--on-ai);
+  background:var(--ai); padding:7px 15px}
+.cta-card .go::after{content:" →"}
+.cta-card.line .go{background:#3B7A55}
+.tools{margin-top:34px}
+.toolgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:10px}
+.toolcard{display:flex; flex-direction:column; gap:4px; text-decoration:none; color:inherit;
+  background:var(--sheet); border:1px solid var(--line); padding:13px 16px; transition:background .13s ease}
+.toolcard:hover{background:var(--sheet-2)}
+.toolcard strong{font-size:13px; font-weight:700; line-height:1.5}
+.toolcard strong::after{content:" →"; color:var(--ai)}
+.toolcard p{margin:0; font-size:11.5px; color:var(--ink-2); line-height:1.7}
+footer.foot{margin-top:22px; padding-top:14px; border-top:1px solid var(--line);
+  font-size:11.5px; color:var(--ink-3); line-height:1.8}
+/* 立ち上がりの設問：選ぶと下の4つの人数が入れ替わる */
+.ramp-cap{margin:18px 0 6px; font-size:11px; letter-spacing:.12em; color:var(--ink-3); font-weight:700}
+.ramp-in{display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);
+  align-items:end; gap:8px; max-width:720px}
+.ramp-in .ri{display:flex; flex-direction:column; gap:5px}
+.ramp-in .ri > span{font-size:12px; color:var(--ink-2); font-weight:700}
+.ramp-in .rbox{display:flex; border:1px solid var(--line-2); background:var(--sheet-2)}
+.ramp-in .rbox:focus-within{border-color:var(--ai)}
+.ramp-in input{width:100%; min-width:0; border:0; background:transparent; color:var(--ink); padding:8px 10px;
+  font-family:"IBM Plex Mono",monospace; font-size:24px; font-variant-numeric:tabular-nums; text-align:right}
+.ramp-in input:focus{outline:none}
+.ramp-in .u{display:flex; align-items:center; padding:0 10px; font-size:12px; color:var(--ink-2);
+  background:var(--sheet); border-left:1px solid var(--line)}
+.ramp-in .arw{padding-bottom:12px; color:var(--ink-3); font-size:13px}
+@media (max-width:640px){
+  .ramp-in{grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px}
+  .ramp-in .arw{display:none}
+  .ramp-in input{font-size:20px}
+}
+/* アコーディオン */
+.adj summary.adj-h{display:block; list-style:none; cursor:pointer; position:relative; padding-right:26px}
+.adj summary.adj-h::-webkit-details-marker{display:none}
+.adj summary.adj-h::after, .acc > summary::after{content:""; position:absolute; right:5px; top:6px; width:8px; height:8px;
+  border-right:1.5px solid var(--ink-2); border-bottom:1.5px solid var(--ink-2); transform:rotate(45deg); transition:transform .15s ease}
+.adj details[open] > summary.adj-h::after, .acc[open] > summary::after{transform:rotate(-135deg); top:10px}
+.adj details:not([open]) > summary.adj-h{border-bottom:0; padding-bottom:0; margin-bottom:0}
+.adj summary.adj-h:hover b{color:var(--ai)}
+.acc{margin-top:30px; border-top:1px solid var(--line-2); border-bottom:1px solid var(--line-2)}
+.acc > summary{list-style:none; cursor:pointer; position:relative; display:flex; align-items:baseline; gap:14px;
+  padding:13px 28px 13px 2px}
+.acc > summary::-webkit-details-marker{display:none}
+.acc > summary::after{top:20px}
+.acc[open] > summary::after{top:24px}
+.acc > summary h2.sec{margin:0}
+.acc > summary .acc-k{font-size:11.5px; color:var(--ink-3); margin-left:auto}
+.acc[open] > summary .acc-k{visibility:hidden}
+.acc > summary:hover h2{color:var(--ai)}
+.acc .tablewrap{margin:0 0 16px}
+/* 結果画面：前提を変える欄 */
+.std-note{margin:10px 0 0; font-size:12px; color:var(--ink-2); line-height:1.8}
+.std-note b{color:var(--ink)}
+.std-note .narrow{display:none}
+.res-grid{display:grid; grid-template-columns:minmax(0,1fr) 300px; grid-template-rows:auto 1fr; column-gap:22px}
+.r-top{grid-column:1; grid-row:1; min-width:0}
+.r-rest{grid-column:1; grid-row:2; min-width:0}
+.adj{grid-column:2; grid-row:1 / span 2; align-self:start; position:sticky; top:14px;
+  max-height:calc(100vh - 28px); overflow:auto; margin-top:30px;
+  background:var(--sheet); border:1px solid var(--line-2); box-shadow:var(--hair); padding:14px 16px 14px}
+.adj-h{border-bottom:1px solid var(--line-2); padding-bottom:9px; margin-bottom:2px}
+.adj-h b{display:block; font-family:"Zen Old Mincho",serif; font-size:15px; font-weight:600}
+.adj-h span{font-size:11px; color:var(--ink-3); line-height:1.6}
+.adj fieldset{border:0; margin:0; padding:10px 0 6px; border-bottom:1px solid var(--line)}
+.adj fieldset:last-of-type{border-bottom:0}
+.adj legend{float:left; width:100%; font-size:10px; letter-spacing:.16em; color:var(--ink-3); font-weight:700; padding:0; margin:0 0 3px}
+.arow{clear:both; display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; column-gap:8px; padding:5px 0}
+.arow label{font-size:12px; color:var(--ink-2); line-height:1.4}
+.arow .box{display:flex; border:1px solid var(--line-2); background:var(--sheet-2)}
+.arow .box:focus-within{border-color:var(--ai)}
+.arow input{width:86px; border:0; background:transparent; color:var(--ink); padding:5px 7px;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; font-variant-numeric:tabular-nums; text-align:right}
+.arow input:focus{outline:none}
+.arow .u{display:flex; align-items:center; justify-content:center; min-width:30px; padding:0 6px; font-size:10.5px;
+  color:var(--ink-2); background:var(--sheet); border-left:1px solid var(--line)}
+.arow select{font-family:inherit; font-size:13px; color:var(--ink); background:var(--sheet-2);
+  border:1px solid var(--line-2); padding:5px 6px; max-width:150px}
+.arow .std{grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:0 9px; font-size:10.5px; color:var(--ink-3); margin-top:2px}
+.arow .std .mk{display:none; color:var(--kin); font-weight:700}
+.arow.chg label{color:var(--ink); font-weight:700}
+.arow.chg .box{border-color:var(--kin)}
+.arow.chg .std .mk{display:inline}
+.arow .why{border:0; background:none; padding:0; font:inherit; color:var(--ai); cursor:pointer;
+  text-decoration:underline; text-decoration-style:dotted; text-underline-offset:2px}
+.arow .why-t{grid-column:1 / -1; margin:5px 0 1px; padding:7px 9px; background:var(--sheet-2);
+  font-size:11px; color:var(--ink-2); line-height:1.75}
+.seg{display:flex; border:1px solid var(--line-2)}
+.seg button{font-family:inherit; font-size:12px; border:0; background:var(--sheet-2); color:var(--ink-2);
+  padding:5px 14px; cursor:pointer}
+.seg button + button{border-left:1px solid var(--line-2)}
+.seg button.on{background:var(--ai); color:var(--on-ai); font-weight:700}
+.adj .reset-all{margin-top:10px; width:100%; font-family:inherit; font-size:12px; color:var(--ink-2);
+  background:none; border:1px solid var(--line-2); padding:7px; cursor:pointer}
+.adj .reset-all:hover{background:var(--sheet-2)}
+@media (max-width:960px){
+  .res-grid{display:block}
+  .adj{position:static; max-height:none; overflow:visible; margin-top:18px}
+  .std-note .wide{display:none} .std-note .narrow{display:inline}
+}
+@media (max-width:640px){ .wrap{padding:20px 12px 48px} .stage{padding:20px 18px} .arow input{font-size:16px} }
+@media (prefers-reduced-motion:reduce){ *{transition:none !important} }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>年間収支計画（3年）</h1>
+    <p class="lede">8つの質問に答えると、開校から36か月分の収支が月ごとに出ます。生徒が何月に何名入るか、現金がいつ底を打つか、いつ黒字に転じるか。細かい前提は結果の画面で直せます。</p>
+  </header>
+
+  <div id="wizard">
+    <div class="prog">
+      <span class="prog-step" id="progStep"></span>
+      <div class="prog-bar"><i id="progBar" style="width:0%"></i></div>
+    </div>
+    <div class="stage" id="stage"></div>
+    <div class="nav">
+      <button class="btn ghost" id="prev">← 戻る</button>
+      <button class="btn" id="next">次へ →</button>
+      <span class="spacer"></span>
+      <span class="kbhint">Enter で次へ、←→ で移動</span>
+    </div>
+  </div>
+
+  <div id="result" hidden>
+    <div class="toolbar" style="margin:0 0 16px">
+      <button class="btn ghost" id="backEdit">← 条件を入力しなおす</button>
+    </div>
+    <div class="cond" id="condSummary"></div>
+    <p class="std-note" id="stdNote"></p>
+
+    <div class="res-grid">
+    <div class="r-top">
+    <h2 class="sec">3年間の見通し</h2>
+    <div class="results" id="summary"></div>
+    <div class="verdict" id="verdict"></div>
+    </div>
+    <aside class="adj" id="adj" aria-label="前提を変える"></aside>
+    <div class="r-rest">
+
+    <div class="chartbox">
+      <p class="chart-title">生徒数と売上の推移</p>
+      <p class="chart-sub">開校月からの36か月。売上は在籍数にほぼ比例し、入会金が入る月だけ一段上がります。</p>
+      <div class="legend"><span class="lg-line">在籍数（左の目盛り・名）</span><span class="lg-bar">月の売上（右の目盛り・円）</span></div>
+      <svg class="chart" id="chartStudents" role="img" aria-label="月ごとの在籍数と売上の推移"></svg>
+      <div class="tip" id="tipS"></div>
+    </div>
+
+    <div class="chartbox">
+      <p class="chart-title">現金残高と利益の推移</p>
+      <p class="chart-sub" id="cashSub"></p>
+      <div class="seg cash-seg" id="cashSeg"><button type="button" data-v="eigyo" class="on">営業利益</button><button type="button" data-v="genkin">給与・返済のあと</button></div>
+      <div class="legend"><span class="lg-line">現金残高（左の目盛り）</span><span class="lg-pos">黒字の月</span><span class="lg-neg">赤字の月</span><span class="lg-note">棒は右の目盛り</span></div>
+      <svg class="chart" id="chartCash" role="img" aria-label="月ごとの現金残高と営業利益の推移"></svg>
+      <div class="tip" id="tipC"></div>
+    </div>
+    </div>
+    </div>
+
+    <div class="toolbar">
+      <button class="btn" id="dl">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
+        Excel で書き出す
+      </button>
+      <button class="btn ghost" id="reset">初期値に戻す</button>
+      <span class="note-inline" id="dlNote"></span>
+    </div>
+
+    <details class="acc">
+    <summary><h2 class="sec">月別の収支<em>36か月</em></h2><span class="acc-k">表を開く</span></summary>
+    <div class="tablewrap">
+      <table>
+        <thead><tr>
+          <th>月</th><th>新規</th><th>退塾</th><th>在籍</th><th>売上</th><th>売上原価</th><th>経費</th><th>減価償却</th>
+          <th>営業利益</th><th>事業主給与</th><th>返済</th><th>現金収支</th><th>現金残高</th>
+        </tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    </details>
+
+    <div class="notes">
+      <p><b>生徒数の置き方</b>　入力するのは<b>在籍数のマイルストーン</b>（3か月後・1年後・2年後・3年後）です。区間のあいだは季節性の重みで按分し、そこから逆算して毎月の新規入塾者数を出しています。3か月で20名は、すららネットの開校前サポート研修の標準です（研修資料「開校３ヶ月で２０名達成するために」）。</p>
+      <p><b>入塾の季節性</b>　区間内の配分を月ごとにばらつかせています。比率は 20140726_塾開業シミュレーション_原本.xlsx にある実データ（某個別指導塾のシミュレーションデータ）をそのまま使いました。1年目は3月13%・4月21%・9月16%、2年目は3月17%・4月29%、3年目は3月16%・4月25%と、春に山が来ます。開校月がずれる場合は、その12か月に入る月の比率を正規化して配分します。</p>
+      <p><b>退塾率</b>　初期値は0%です。原本にも参考例にも退塾の想定がないため、こちらで数字を置くことはしていません。実績や想定があれば入力してください。月あたりの率で、累計生徒数から毎月引きます。</p>
+      <p id="loanNote"><b>融資の返済</b>　—</p>
+      <p><b>初期費用の内訳</b>　20140726_塾開業シミュレーション_原本.xlsx の初期投資シートに合わせて6つに分けています。記入例の合計は325.5万円（物件取得40万＋内外装看板30万＋什器備品99.3万＋開業前広告100万＋すらら研修40万＋その他16.2万）。<b>敷金は退去時に戻るため、回収対象外として別に表示</b>しています。</p>
+      <p><b>減価償却</b>　物件取得を除いた初期費用を、指定した年数（初期値5年）で月割りして経費に計上します。記入例だと月47,583円。<b>現金は開校時にすでに出ているので、現金収支の計算では足し戻しています。</b>営業利益は下がりますが、現金は減りません。</p>
+      <p><b>現金の計算</b>　期首現金＝自己資金＋借入額−初期必要資金。以降は毎月、営業利益に減価償却を足し戻し、事業主給与と返済（元金＋利息）を引いて積み上げます。税金は含めていません。</p>
+      <p><b>入会金と季節講習</b>　入会金はその月の新規入塾者数にかけています。季節講習は年額を12で割って毎月ならしています。</p>
+      <p><b>ご注意</b>　現時点で入手可能な情報に基づく試算です。年商・利益を保証するものではないことをご承知おきください。</p>
+    </div>
+
+    <h2 class="sec">数字を見ながら相談する<em>すららネット</em></h2>
+    <div class="cta-grid">
+      <a class="cta-card" href="https://suralajuku.jp/seminar/dokuritsuwsseminar" target="_blank" rel="noopener">
+        <span class="k">無料セミナー</span>
+        <strong>すらら独立開業セミナー</strong>
+        <p>資金計画、立ち上がりの作り方、集客までを通しで。開催日程はこちらから確認できます。</p>
+        <span class="go">日程を見る</span>
+      </a>
+      <a class="cta-card line" href="https://liff.line.me/2009879529-HjsNyL9C/landing?follow=%40917wxvha&amp;lp=wAfbgA&amp;liff_id=2009879529-HjsNyL9C" target="_blank" rel="noopener">
+        <span class="k">公式LINE</span>
+        <strong>この計画で持ちますか？</strong>
+        <p>入力した条件のまま相談できます。融資の組み方や立ち上がりの前提もこちらから。</p>
+        <span class="go">友だち追加</span>
+      </a>
+    </div>
+  </div>
+
+
+  <footer class="foot">出典：202210_すらら収支計画（参考例）.xlsx ／ 20140726_塾開業シミュレーション_原本.xlsx ／ 20181115_コンセプト（研修提出用）.pptx（すらら独立開業サポート）。月別入塾比率と初期投資の内訳は原本の実データ、3か月20名は研修資料によります。</footer>
+</div>
+
+<script>
+"use strict";
+/* ============ 月別入塾比率（20140726_塾開業シミュレーション_原本.xlsx より） ============ */
+const RATIO = [
+  {3:.13, 4:.21, 5:.09, 6:.04, 7:.10, 8:.07, 9:.16, 10:.04, 11:.03, 12:.05, 1:.04, 2:.03},
+  {3:.17, 4:.29, 5:.03, 6:.02, 7:.02, 8:.06, 9:.08, 10:.02, 11:.07, 12:.06, 1:.06, 2:.11},
+  {3:.16, 4:.25, 5:.05, 6:.03, 7:.03, 8:.08, 9:.11, 10:.03, 11:.05, 12:.05, 1:.05, 2:.08},
+];
+
+const NEVER = () => false;   // 最初の質問では聞かず、結果画面で直す項目
+const STEPS = [
+  { g:"開校", t:"month", k:"openYM", l:"いつ開校しますか？",
+    hint:"開校月によって立ち上がりが変わります。新規入塾は<b>3月・4月・9月</b>に山が来るため、その直前に開けるほど初速が出ます。" },
+  { g:"生徒", t:"ramp", k:"ramp", l:"生徒はどう増えていく想定にしますか？",
+    opts:[["標準","研修の標準で","3か月で20名。研修で目指す立ち上がり"],
+          ["控えめ","控えめに","標準の7割ほど"],
+          ["自分で","自分で入れる","下の人数を直して使う"]],
+    hint:"<b>3か月で20名</b>が、すららネットの開校前サポート研修の標準です（研修資料の表題が「開校３ヶ月で２０名達成するために」）。melaboも英知ゼミも開校1年で約40名でした。<b>控えめ</b>は標準の7割ほどを置いた仮の数字です。人数を直接書き換えると「自分で入れる」に切り替わります。退塾率などの細かい前提は、結果の画面で直せます。" },
+  { g:"生徒", t:"num", k:"m3", s:"3か月後の生徒", ask:NEVER, l:"開校3か月後、生徒は何名にしますか？", u:"名", v:20, step:1, chips:[10,15,20,25],
+    hint:"<b>3か月で20名</b>が、すららネットの開校前サポート研修の標準です（研修資料の表題が「開校３ヶ月で２０名達成するために」）。早期に20名を集めることが黒字化の鍵になります。損益分岐は英知ゼミで15名、melaboで11〜12名。melaboは開校後3〜4か月でそこを超えました。" },
+  { g:"生徒", t:"num", k:"m12", s:"1年後の生徒", ask:NEVER, l:"1年後は何名にしますか？", u:"名", v:40, step:1, chips:[30,35,40,50],
+    hint:"melaboは開校1年で約40名、英知ゼミも1年目で約40名です。<b>すららを使えば塾長1名で40〜50名</b>まで見られます（同時に教室にいるのは20名程度）。それを超える計画なら、講師の追加か2校舎目を考える段階になります。" },
+  { g:"生徒", t:"num", k:"m24", s:"2年後の生徒", ask:NEVER, l:"2年後は何名にしますか？", u:"名", v:55, step:1, chips:[45,50,55,65],
+    hint:"英知ゼミは2年目で50名超。1教室のキャパは塾長1名なら40〜50名、多い塾で80名です。" },
+  { g:"生徒", t:"num", k:"m36", s:"3年後の生徒", ask:NEVER, l:"3年後は何名にしますか？", u:"名", v:65, step:1, chips:[55,65,75,85] },
+  { g:"生徒", t:"num", k:"churn", s:"退塾率（毎月）", ask:NEVER, l:"毎月の退塾率は何%ですか？", u:"%", v:0, step:0.5, chips:[0,1,2,3],
+    hint:"在籍数に毎月かけて減らします。<b>上で入れた人数は在籍数の目標</b>なので、退塾率を入れると「その人数を維持するために毎月何名入れる必要があるか」が新規の欄に出ます。原本にも参考例にも退塾の想定がないため初期値は0%です。" },
+  { g:"売上", t:"num", k:"gessha", s:"月謝の平均", l:"月謝の平均はいくらですか？", u:"円", v:20000, step:1000, chips:[12000,16000,20000,25000,30000],
+    hint:"全学年・全コースをならした1人あたりの平均月謝です。参考例は20,000円で組んでいます。" },
+  { g:"売上", t:"num", k:"nyukai", s:"入会金", ask:NEVER, l:"入会金はいくらですか？", u:"円", v:10000, step:1000, chips:[0,10000,20000,30000],
+    hint:"その月の<b>新規入塾者数にかけて</b>計上します。参考例は10,800円（税込）でした。" },
+  { g:"売上", t:"num", k:"kisetsu", s:"季節講習（年額）", ask:NEVER, l:"季節講習会の年額（1人あたり）は？", u:"円", v:40000, step:1000, chips:[0,30000,40000,60000],
+    hint:"春・夏・冬の合計を1人あたりの年額で。12で割って毎月にならします。" },
+  { g:"費用", t:"num", k:"rent", s:"家賃", l:"家賃は月いくらですか？", u:"円", v:100000, step:1000, chips:[60000,88000,100000,150000],
+    hint:"塾の平均坪単価は1坪8,000円程度が目安。melaboは駐車場込みで約11万円でした。" },
+  { g:"初期費用", t:"choice", k:"shokiMode", l:"初期費用はどう見積もりますか？",
+    opts:[["標準","標準で計算する","原本の記入例 325.5万円（物件取得40万・内外装30万・什器99.3万・広告100万・研修40万・その他16.2万）"],
+          ["内訳","内訳を自分で入れる","6つの項目を順に入力します"]],
+    on: v => { if (v === "標準") applyShoki(); },
+    hint:"20140726_塾開業シミュレーション_原本.xlsx の初期投資シートにある記入例です。物件がまだ決まっていなければ標準のまま進めて、結果の画面で物件取得費だけ家賃に合わせて直す、という使い方もできます。" },
+  { g:"初期費用", t:"num", k:"c1", s:"物件取得", ask:isCustomShoki, l:"物件取得にいくらかかりますか？", u:"万円", v:40, step:5, chips:[40,65,90,120],
+    hint:"敷金・礼金・仲介手数料の合計です。原本の記入例は敷金30万（3か月分）＋礼金10万で<b>40万円</b>。概要シートの条件（20坪・坪家賃6,500円＝月13万）だと、保証金39万＋礼金13万＋仲介13万で65万円になります。<b>敷金は退去時に戻るぶんなので、投資の回収対象からは外して表示します。</b>" },
+  { g:"初期費用", t:"num", k:"c2", s:"内外装・看板", ask:isCustomShoki, l:"内外装・看板工事はいくらですか？", u:"万円", v:30, step:5, chips:[30,50,80,120],
+    hint:"外装・看板工事費です。原本の記入例は<b>30万円</b>。すららの工程表では「内外装発注・工事」「看板業者に発注」にあたります。" },
+  { g:"初期費用", t:"num", k:"c3", s:"什器備品", ask:isCustomShoki, l:"什器備品はいくらですか？", u:"万円", v:99.3, step:0.1, chips:[60,99.3,150,200],
+    hint:"原本の記入例の内訳は、備品関係（パーテーション・内装工事等）40万、PC 3万×10台＝30万、教室椅子 7千×10脚＝7万、教室机 1.1万×5台＝5.5万、コピー機 5万、教室書棚 2万、面談机 1.5万、面談椅子 7千×3脚＝2.1万、事務所机 1.5万、事務所椅子 7千、事務所書棚 1万、その他備品（空気清浄機・靴箱など）3万で<b>合計99.3万円</b>です。" },
+  { g:"初期費用", t:"num", k:"c4", s:"開校前の広告", ask:isCustomShoki, l:"開校前の広告宣伝費はいくらですか？", u:"万円", v:100, step:10, chips:[50,100,156,200],
+    hint:"チラシ・ホームページなどです。原本の記入例は<b>100万円</b>。研修の販促計画では、新聞折込7,400部×10回、ポスティング1日100軒を毎日、地域指定郵便1,000軒、校門配りを組み合わせます。<b>ここを削ると3か月で20名が遠のきます。</b>" },
+  { g:"初期費用", t:"num", k:"c5", s:"開業支援研修", ask:isCustomShoki, l:"すらら開業支援サポート研修はいくらですか？", u:"万円", v:40, step:5, chips:[0,40],
+    hint:"原本の記入例は<b>40万円</b>。3日間の開校前サポート研修と実地研修です。受けない場合は0を入れてください。" },
+  { g:"初期費用", t:"num", k:"c6", s:"その他の開業費", ask:isCustomShoki, l:"そのほかの開業費はいくらですか？", u:"万円", v:16.2, step:0.1, chips:[10,16.2,30,50],
+    hint:"開業前家賃（1か月分）10万、書籍・教材（教科書代など）5万、各種設定料・消耗品費 1.2万で、原本の記入例は<b>16.2万円</b>。開業前の人件費がかかる場合もここに入れてください。" },
+  { g:"初期費用", t:"num", k:"shoukyaku", s:"減価償却の年数", ask:NEVER, l:"減価償却は何年で行いますか？", u:"年", v:5, step:1, chips:[3,5,7],
+    hint:"物件取得を除いた初期費用を、この年数で毎月ならして経費に計上します。原本は<b>5年</b>。記入例（285.5万円）だと月47,583円です。現金は開校時に出ていくので、償却は<b>利益の見え方だけ</b>を変えます。" },
+  { g:"費用", t:"num", k:"surala", s:"すらら利用料", ask:NEVER, l:"すららサービス利用料は月いくらですか？", u:"円", v:45000, step:1000, chips:[30000,40000,45000,55000],
+    hint:"1校舎あたりの月額固定です。中学生版3万円に、小学校高学年版＋1万円、高校生版＋1万円、低学年版＋5,000円を積み上げます。<b>生徒が0名でもかかります。</b>" },
+  { g:"費用", t:"num", k:"idFee", s:"すららID（1人）", ask:NEVER, l:"すららID利用料は1人あたりいくらですか？", u:"円", v:2500, step:100, chips:[2500,2750],
+    hint:"5教科すべて使えて1人あたり月2,500円です。累計生徒数にかけて計上します。" },
+  { g:"費用", t:"num", k:"other", s:"その他の月次経費", ask:NEVER, l:"その他の月次経費はいくらですか？", u:"円", v:97200, step:1000, chips:[50000,97200,150000],
+    hint:"水道光熱費・通信費・広告宣伝費・旅費交通費・雑費などの合計です。参考例の内訳は水道光熱20,000＋通信7,200＋広告50,000＋旅費20,000＋雑費20,000＝117,200円（家賃を除く）。" },
+  { g:"給与", t:"num", k:"pay", s:"生活費（持ち出し）", l:"毎月いくら生活費として持ち出しますか？", u:"円", v:200000, step:10000, chips:[150000,200000,250000,300000],
+    hint:"事業主給与です。営業利益から毎月引きます。<b>ここが現金の減り方を決めます。</b>参考例は20万円。" },
+  { g:"資金", t:"num", k:"jiko", s:"自己資金", l:"自己資金はいくらありますか？", u:"万円", v:300, step:10, chips:[100,200,300,500],
+    hint:"開校時点で用意できる現金です。初期費用と合わせて、期首の現金残高が決まります。" },
+  { g:"資金", t:"choice", k:"loanUse", l:"融資を受けますか？",
+    opts:[["あり","受ける","借入額・返済年数・据え置き期間・年利を入力します"],
+          ["なし","受けない","この先の4問をとばして結果に進みます"]],
+    hint:"実例では melabo が日本政策金融公庫から350万円、英知ゼミが330万円。開校直後は生徒が少なく現金が減り続けるため、<b>借りるなら開校前</b>が原則です。" },
+  { g:"資金", t:"num", k:"loanAmt", s:"借入額", when:isLoan, l:"いくら借りますか？", u:"万円", v:300, step:10, chips:[100,200,300,500] },
+  { g:"資金", t:"num", k:"loanYears", s:"返済期間", ask:NEVER, when:isLoan, l:"返済期間は何年ですか？", u:"年", v:7, step:1, chips:[5,7,10,15],
+    hint:"日本政策金融公庫の新規開業資金は、設備資金で20年以内、運転資金で10年以内が上限。実務では5〜10年で組むことが多い範囲です。" },
+  { g:"資金", t:"num", k:"loanGrace", s:"据え置き", ask:NEVER, when:isLoan, l:"据え置き期間は何か月ですか？", u:"か月", v:6, step:1, chips:[0,6,12,24],
+    hint:"据え置き中は元金の返済が始まらず<b>利息だけ</b>です。生徒が少ない開校直後を助けます。公庫では最長5年（60か月）まで設定できます。" },
+  { g:"資金", t:"num", k:"loanRate", s:"年利", ask:NEVER, when:isLoan, l:"年利は何%ですか？", u:"%", v:2.0, step:0.1, chips:[1.5,2,2.5,3],
+    hint:"日本政策金融公庫の新規開業資金は、担保・保証人や条件により幅がありますが、<b>おおむね年2%前後</b>が一つの目安です。金利は情勢で動きますので、実際の数字は金融機関にご確認のうえ入力してください。" },
+];
+const state = { loanUse:"あり", openYM:null, ramp:"標準", shokiMode:"標準" };
+const RAMPS = { "標準":[20, 40, 55, 65], "控えめ":[14, 28, 40, 45] };
+const RAMP_KEYS = ["m3", "m12", "m24", "m36"];
+const SHOKI_KEYS = ["c1", "c2", "c3", "c4", "c5", "c6"];
+const FIELD = Object.fromEntries(STEPS.filter(s => s.t === "num").map(s => [s.k, s]));
+function isCustomRamp(){ return state.ramp === "自分で"; }
+function isCustomShoki(){ return state.shokiMode === "内訳"; }
+function applyRamp(v){ RAMPS[v].forEach((n, i) => { state[RAMP_KEYS[i]] = n; }); }
+function applyShoki(){ SHOKI_KEYS.forEach(k => { state[k] = FIELD[k].v; }); }
+function detectRamp(){
+  const cur = RAMP_KEYS.map(k => state[k]).join();
+  return Object.keys(RAMPS).find(k => RAMPS[k].join() === cur) || "自分で";
+}
+function detectShoki(){ return SHOKI_KEYS.every(k => state[k] === FIELD[k].v) ? "標準" : "内訳"; }
+STEPS.forEach(s => { if (s.t === "num") state[s.k] = s.v; });
+function isLoan(){ return state.loanUse === "あり"; }
+
+const el = (t, c, x) => { const n = document.createElement(t); if (c) n.className = c; if (x != null) n.textContent = x; return n; };
+const yen = v => Math.round(v).toLocaleString("ja-JP");
+const man = v => (v / 10000).toFixed(0);
+
+/* ============ 融資 ============ */
+function loanMonths(){
+  const total = Math.max(1, Math.round(state.loanYears * 12));
+  const grace = Math.max(0, Math.min(Math.round(state.loanGrace), total - 1));
+  return { total, grace, pay: total - grace };
+}
+function loanPayAt(m){            // 開校からmか月目（0始まり）の返済額
+  if (!isLoan()) return 0;
+  const P = (state.loanAmt || 0) * 10000;
+  if (P <= 0) return 0;
+  const { total, grace, pay } = loanMonths();
+  const r = (state.loanRate || 0) / 100 / 12;
+  if (m >= total) return 0;
+  if (m < grace) return P * r;
+  return r <= 0 ? P / pay : P * r / (1 - Math.pow(1 + r, -pay));
+}
+
+/* ============ 36か月の計画 ============ */
+function defaultOpen(){
+  const n = new Date();
+  let y = n.getFullYear(), m = n.getMonth() + 1 + 6;
+  if (m > 12){ m -= 12; y += 1; }
+  return `${y}-${String(m).padStart(2, "0")}`;
+}
+function plan(){
+  if (!state.openYM) state.openYM = defaultOpen();
+  const [oy, om] = state.openYM.split("-").map(Number);
+
+  // 区間：0-2か月（3か月で m3）、3-11か月（1年後 m12）、12-23か月（m24）、24-35か月（m36）
+  const segs = [
+    { from:0,  to:2,  start:0,          end:state.m3,  r:0 },
+    { from:3,  to:11, start:state.m3,   end:state.m12, r:0 },
+    { from:12, to:23, start:state.m12,  end:state.m24, r:1 },
+    { from:24, to:35, start:state.m24,  end:state.m36, r:2 },
+  ];
+  // 各月の在籍数を、季節性の重みで区間内を按分して決める
+  const zaiseki = new Array(36).fill(0);
+  segs.forEach(sg => {
+    const w = [];
+    for (let m = sg.from; m <= sg.to; m++){
+      const cal = ((om + m - 1) % 12) + 1;
+      w.push(RATIO[sg.r][cal] || 0);
+    }
+    const tot = w.reduce((a, x) => a + x, 0) || w.length;
+    let acc = 0;
+    for (let i = 0; i < w.length; i++){
+      acc += w[i] / tot;
+      zaiseki[sg.from + i] = sg.start + (sg.end - sg.start) * acc;
+    }
+  });
+
+  const rows = [];
+  const shokiTotal = (state.c1 + state.c2 + state.c3 + state.c4 + state.c5 + state.c6) * 10000;
+  const shokyakuBase = (state.c2 + state.c3 + state.c4 + state.c5 + state.c6) * 10000;
+  const genka3 = state.shoukyaku > 0 ? shokyakuBase / state.shoukyaku / 12 : 0;
+  let cash = (state.jiko + (isLoan() ? state.loanAmt : 0)) * 10000 - shokiTotal;
+  const openingCash = cash;
+  let prev = 0;
+  for (let m = 0; m < 36; m++){
+    const cum = Math.max(0, zaiseki[m]);
+    const taijuku = prev * (state.churn / 100);
+    const shinki = Math.max(0, cum - prev + taijuku);
+    prev = cum;
+    let ym = om + m - 1, yy = oy + Math.floor(ym / 12), mo = (ym % 12) + 1;
+
+    const uriage = state.gessha * cum + state.nyukai * shinki + (state.kisetsu / 12) * cum;
+    const genka = state.surala + state.idFee * cum;
+    const keihi = state.rent + state.other;
+    const shokyaku = m < state.shoukyaku * 12 ? genka3 : 0;
+    const eigyo = uriage - genka - keihi - shokyaku;
+    const hensai = loanPayAt(m);
+    const genkin = eigyo + shokyaku - state.pay - hensai;   // 償却は現金が出ない
+    cash += genkin;
+    rows.push({ m, y:yy, mo, shinki, taijuku, cum, uriage, genka, keihi, shokyaku, eigyo,
+                pay:state.pay, hensai, genkin, cash });
+  }
+  const turn = rows.find(r => r.eigyo > 0);
+  const bottom = rows.reduce((a, r) => r.cash < a.cash ? r : a, rows[0]);
+  const y1 = rows.slice(0, 12), y2 = rows.slice(12, 24), y3 = rows.slice(24, 36);
+  const sumOf = (a, k) => a.reduce((s, r) => s + r[k], 0);
+  return { rows, openingCash, turn, bottom, shokiTotal, shokyakuBase, genka3,
+           shikikin: state.c1 * 10000,
+           years:[y1, y2, y3].map(a => ({ uriage:sumOf(a, "uriage"), eigyo:sumOf(a, "eigyo"),
+                                          genkin:sumOf(a, "genkin"), shinki:sumOf(a, "shinki") })) };
+}
+
+/* ============ ウィザード ============ */
+const stage = document.getElementById("stage");
+const wizard = document.getElementById("wizard");
+const resultEl = document.getElementById("result");
+let step = 0;
+const shown = s => (!s.when || s.when()) && (!s.ask || s.ask());
+const visible = () => STEPS.filter(shown);
+function firstVisible(from, dir){
+  let i = from;
+  while (i >= 0 && i < STEPS.length){
+    if (shown(STEPS[i])) return i;
+    i += dir;
+  }
+  return dir > 0 ? STEPS.length : -1;
+}
+function drawStage(){
+  const s = STEPS[step];
+  stage.innerHTML = "";
+  const eb = el("div", "eyebrow");
+  eb.appendChild(el("span", "cat", s.g));
+  stage.appendChild(eb);
+  stage.appendChild(el("p", "q", s.l));
+  let first = null;
+
+  if (s.t === "choice"){
+    const box = el("div", "choice");
+    s.opts.forEach(([val, label, sub]) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = state[s.k] === val ? "on" : "";
+      b.appendChild(document.createTextNode(label));
+      if (sub) b.appendChild(el("small", null, sub));
+      b.addEventListener("click", () => { state[s.k] = val; if (s.on) s.on(val); goStep(1); });
+      box.appendChild(b);
+    });
+    stage.appendChild(box);
+  } else if (s.t === "ramp"){
+    const box = el("div", "choice");
+    const btns = {};
+    const ins = [];
+    const sync = fill => {
+      for (const v in btns) btns[v].className = state.ramp === v ? "on" : "";
+      if (fill) ins.forEach((inp, i) => { inp.value = state[RAMP_KEYS[i]]; });
+    };
+    s.opts.forEach(([val, label, sub]) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.appendChild(document.createTextNode(label));
+      if (sub) b.appendChild(el("small", null, sub));
+      b.addEventListener("click", () => {
+        state.ramp = val;
+        if (RAMPS[val]) applyRamp(val);
+        sync(true);
+        if (val === "自分で") ins[0].focus();
+      });
+      btns[val] = b; box.appendChild(b);
+    });
+    stage.appendChild(box);
+    stage.appendChild(el("p", "ramp-cap", "在籍数の目標"));
+    const grid = el("div", "ramp-in");
+    ["3か月後", "1年後", "2年後", "3年後"].forEach((t, i) => {
+      const w = el("label", "ri");
+      w.appendChild(el("span", null, t));
+      const bx = el("div", "rbox");
+      const inp = document.createElement("input");
+      inp.type = "number"; inp.min = 0; inp.step = 1; inp.inputMode = "numeric";
+      inp.addEventListener("input", () => {
+        const v = Number(inp.value);
+        if (inp.value === "" || !Number.isFinite(v) || v < 0) return;
+        state[RAMP_KEYS[i]] = v; state.ramp = detectRamp(); sync(false);
+      });
+      inp.addEventListener("change", () => { inp.value = state[RAMP_KEYS[i]]; });
+      bx.appendChild(inp); bx.appendChild(el("span", "u", "名"));
+      w.appendChild(bx);
+      grid.appendChild(w);
+      if (i < 3) grid.appendChild(el("span", "arw", "→"));
+      ins.push(inp);
+    });
+    stage.appendChild(grid);
+    sync(true);
+  } else if (s.t === "month"){
+    if (!state.openYM) state.openYM = defaultOpen();
+    const sel = document.createElement("select");
+    sel.className = "month";
+    const now = new Date();
+    for (let i = 0; i < 36; i++){
+      let y = now.getFullYear(), mo = now.getMonth() + 1 + i;
+      y += Math.floor((mo - 1) / 12); mo = ((mo - 1) % 12) + 1;
+      const v = `${y}-${String(mo).padStart(2, "0")}`;
+      sel.appendChild(new Option(`${y}年${mo}月`, v));
+    }
+    sel.value = state.openYM;
+    sel.addEventListener("change", () => { state.openYM = sel.value; });
+    stage.appendChild(sel);
+    first = sel;
+  } else {
+    const box = el("div", "bigbox");
+    const inp = document.createElement("input");
+    inp.type = "number"; inp.min = 0; inp.step = s.step || 1; inp.value = state[s.k]; inp.id = "wizIn";
+    inp.addEventListener("input", () => {
+      const v = Number(inp.value);
+      state[s.k] = Number.isFinite(v) && v >= 0 ? v : 0;
+    });
+    first = inp;
+    box.appendChild(inp); box.appendChild(el("span", "u", s.u));
+    stage.appendChild(box);
+    if (s.chips){
+      const ch = el("div", "chips");
+      s.chips.forEach(v => {
+        const b = document.createElement("button");
+        b.type = "button"; b.textContent = v.toLocaleString("ja-JP");
+        b.addEventListener("click", () => { state[s.k] = v; inp.value = v; inp.focus(); });
+        ch.appendChild(b);
+      });
+      stage.appendChild(ch);
+    }
+  }
+  if (s.hint){
+    const p = el("p", "hint"); p.innerHTML = s.hint; stage.appendChild(p);
+  }
+  const vis = visible();
+  document.getElementById("progStep").innerHTML = `STEP <b>${vis.indexOf(s) + 1}</b> / ${vis.length}　${s.g}`;
+  document.getElementById("progBar").style.width = `${((vis.indexOf(s) + 1) / vis.length) * 100}%`;
+  document.getElementById("prev").disabled = firstVisible(step - 1, -1) < 0;
+  document.getElementById("next").textContent =
+    firstVisible(step + 1, 1) >= STEPS.length ? "結果を見る →" : "次へ →";
+  setTimeout(() => first && first.focus(), 0);
+}
+function goStep(d){
+  const nx = firstVisible(step + d, d > 0 ? 1 : -1);
+  if (nx < 0) return;
+  if (nx >= STEPS.length){ showResult(); return; }
+  step = nx; drawStage();
+  window.scrollTo({ top:0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+}
+function showResult(){ wizard.hidden = true; resultEl.hidden = false; buildPanel(); render(); window.scrollTo({ top:0 }); }
+document.getElementById("prev").addEventListener("click", () => goStep(-1));
+document.getElementById("next").addEventListener("click", () => goStep(1));
+document.getElementById("backEdit").addEventListener("click", () => {
+  resultEl.hidden = true; wizard.hidden = false; step = 0; drawStage(); window.scrollTo({ top:0 });
+});
+document.addEventListener("keydown", e => {
+  if (!resultEl.hidden) return;
+  if (e.key === "Enter"){ e.preventDefault(); goStep(1); }
+  else if (e.key === "ArrowRight" && document.activeElement.tagName !== "INPUT") goStep(1);
+  else if (e.key === "ArrowLeft" && document.activeElement.tagName !== "INPUT") goStep(-1);
+});
+document.getElementById("reset").addEventListener("click", () => {
+  resetAll(); state.openYM = defaultOpen();
+  buildPanel(); render();
+});
+
+
+/* ============ 条件の要約と「前提を変える」欄 ============ */
+const PANEL_GROUPS = ["生徒", "売上", "費用", "初期費用", "給与", "資金"];
+const fmtN = v => Number(v).toLocaleString("ja-JP", { maximumFractionDigits:1 });
+const isAdv = s => !!s.ask;                       // 最初の8問では聞かない（標準値で計算する）項目
+const changed = s => isAdv(s) && state[s.k] !== s.v;
+function resetAll(){
+  state.loanUse = "あり"; state.ramp = "標準"; state.shokiMode = "標準";
+  STEPS.forEach(s => { if (s.t === "num") state[s.k] = s.v; });
+}
+function drawCond(r){
+  const [oy, om] = state.openYM.split("-").map(Number);
+  const ramp = `${state.ramp === "自分で" ? "自分で入力" : state.ramp}（${RAMP_KEYS.map(k => fmtN(state[k])).join("→")}名）`;
+  const items = [
+    ["開校", `${oy}年${om}月`], ["立ち上がり", ramp], ["月謝の平均", `${yen(state.gessha)}円`],
+    ["家賃", `${yen(state.rent)}円`], ["初期費用", `${fmtN(r.shokiTotal / 10000)}万円`],
+    ["生活費", `${yen(state.pay)}円`], ["自己資金", `${fmtN(state.jiko)}万円`],
+    ["融資", isLoan() ? `あり ${fmtN(state.loanAmt)}万円` : "なし"],
+  ];
+  document.getElementById("condSummary").innerHTML =
+    items.map(([k, v]) => `<span><i>${k}</i><b>${v}</b></span>`).join("");
+  const n = STEPS.filter(s => s.t === "num" && (!s.when || s.when()) && changed(s)).length;
+  document.getElementById("stdNote").innerHTML =
+    `このほかの項目（退塾率・入会金・季節講習・すらら利用料・償却年数・融資の年数と金利など）は、原本の標準値で計算しています。` +
+    `<span class="wide">右の</span><span class="narrow">下の</span>「前提を変える」で直すと、その場で計算し直します。` +
+    (n ? `　<b>標準から変えた項目：${n}件</b>` : "");
+}
+
+const rowsByKey = {};
+let panelOpen = window.innerWidth > 960;   // スマホでは閉じた状態から
+function buildPanel(){
+  const adj = document.getElementById("adj");
+  adj.innerHTML = "";
+  for (const k in rowsByKey) delete rowsByKey[k];
+  const det = document.createElement("details");
+  det.open = panelOpen;
+  det.addEventListener("toggle", () => { panelOpen = det.open; });
+  const h = el("summary", "adj-h");
+  h.appendChild(el("b", null, "前提を変える"));
+  h.appendChild(el("span", null, "数字を変えると、表とグラフがすぐ計算し直されます。"));
+  det.appendChild(h);
+  adj.appendChild(det);
+
+  // 開校月・立ち上がり・融資
+  const top = document.createElement("fieldset");
+  top.appendChild(el("legend", null, "前提"));
+  const selRow = (label, sel) => { const r = el("div", "arow"); const l = el("label", null, label); r.appendChild(l); r.appendChild(sel); top.appendChild(r); return r; };
+  const ym = document.createElement("select");
+  const now = new Date();
+  for (let i = 0; i < 36; i++){
+    let y = now.getFullYear(), mo = now.getMonth() + 1 + i;
+    y += Math.floor((mo - 1) / 12); mo = ((mo - 1) % 12) + 1;
+    ym.appendChild(new Option(`${y}年${mo}月`, `${y}-${String(mo).padStart(2, "0")}`));
+  }
+  ym.value = state.openYM;
+  ym.addEventListener("change", () => { state.openYM = ym.value; render(); });
+  selRow("開校月", ym);
+  const rp = document.createElement("select"); rp.id = "adjRamp";
+  ["標準", "控えめ", "自分で"].forEach(v => rp.appendChild(new Option(v === "標準" ? "研修の標準" : v === "自分で" ? "自分で入力" : v, v)));
+  rp.value = state.ramp;
+  rp.addEventListener("change", () => {
+    state.ramp = rp.value; if (RAMPS[rp.value]) applyRamp(rp.value);
+    render();
+  });
+  selRow("生徒の立ち上がり", rp);
+  const seg = el("div", "seg");
+  ["あり", "なし"].forEach(v => {
+    const b = el("button", state.loanUse === v ? "on" : "", v); b.type = "button";
+    b.addEventListener("click", () => { state.loanUse = v; buildPanel(); render(); });
+    seg.appendChild(b);
+  });
+  selRow("融資", seg);
+  det.appendChild(top);
+
+  PANEL_GROUPS.forEach(g => {
+    const fs = STEPS.filter(s => s.t === "num" && s.g === g && (!s.when || s.when()));
+    if (!fs.length) return;
+    const f = document.createElement("fieldset");
+    f.appendChild(el("legend", null, g));
+    fs.forEach(s => {
+      const row = el("div", "arow");
+      const id = `adj_${s.k}`;
+      const lab = el("label", null, s.s || s.l); lab.htmlFor = id;
+      const box = el("div", "box");
+      const inp = document.createElement("input");
+      inp.type = "number"; inp.min = 0; inp.step = s.step || 1; inp.id = id; inp.inputMode = "decimal";
+      inp.value = state[s.k];
+      inp.addEventListener("input", () => {
+        const v = Number(inp.value);
+        if (inp.value === "" || !Number.isFinite(v) || v < 0) return;
+        state[s.k] = v;
+        if (RAMP_KEYS.includes(s.k)) state.ramp = detectRamp();
+        if (SHOKI_KEYS.includes(s.k)) state.shokiMode = detectShoki();
+        render();
+      });
+      inp.addEventListener("change", () => { inp.value = state[s.k]; });
+      box.appendChild(inp); box.appendChild(el("span", "u", s.u));
+      row.appendChild(lab); row.appendChild(box);
+      const std = el("div", "std");
+      std.appendChild(el("span", null, isAdv(s) ? `標準 ${fmtN(s.v)}${s.u}` : "最初の質問で回答"));
+      std.appendChild(el("span", "mk", "標準から変更"));
+      let tip = null;
+      if (s.hint){
+        const w = el("button", "why", "根拠"); w.type = "button";
+        tip = el("p", "why-t"); tip.innerHTML = s.hint; tip.hidden = true;
+        w.addEventListener("click", () => { tip.hidden = !tip.hidden; });
+        std.appendChild(w);
+      }
+      row.appendChild(std);
+      if (tip) row.appendChild(tip);
+      f.appendChild(row);
+      rowsByKey[s.k] = { row, inp, s };
+    });
+    det.appendChild(f);
+  });
+  const rs = el("button", "reset-all", "標準値に戻す（最初の8問の回答はそのまま）"); rs.type = "button";
+  rs.addEventListener("click", () => {
+    STEPS.forEach(s => { if (s.t === "num" && isAdv(s)) state[s.k] = s.v; });
+    state.ramp = "標準"; state.shokiMode = "標準";
+    buildPanel(); render();
+  });
+  det.appendChild(rs);
+}
+function syncPanel(){
+  for (const k in rowsByKey){
+    const { row, inp, s } = rowsByKey[k];
+    row.classList.toggle("chg", changed(s));
+    if (document.activeElement !== inp) inp.value = state[k];
+  }
+  const rp = document.getElementById("adjRamp");
+  if (rp) rp.value = state.ramp;
+}
+
+/* ============ 結果 ============ */
+let P = null;
+function render(){
+  P = plan();
+  const r = P;
+  const sum = document.getElementById("summary");
+  sum.innerHTML = "";
+  const card = (k, v, d, neg) => {
+    const c = el("div", "rcard");
+    c.appendChild(el("span", "k", k));
+    const n = el("span", "n" + (neg ? " neg" : ""));
+    n.innerHTML = v;
+    c.appendChild(n);
+    c.appendChild(el("span", "d", d));
+    sum.appendChild(c);
+  };
+  const last = r.rows[35];
+  card("3か月後の生徒数", `${Math.round(r.rows[2].cum)}<small>名</small>`,
+       `研修の標準は20名。${r.rows[2].y}年${r.rows[2].mo}月時点`);
+  card("黒字転換", r.turn ? `${r.turn.m + 1}<small>か月目</small>` : "—",
+       r.turn ? `${r.turn.y}年${r.turn.mo}月に営業利益がプラスへ` : "3年間では営業利益がプラスになりません");
+  card("現金の底", `${yen(r.bottom.cash)}<small>円</small>`,
+       `${r.bottom.m + 1}か月目（${r.bottom.y}年${r.bottom.mo}月）`, r.bottom.cash < 0);
+  card("3年目の年商", `${man(r.years[2].uriage)}<small>万円</small>`,
+       `1年目 ${man(r.years[0].uriage)}万 → 2年目 ${man(r.years[1].uriage)}万／3年後 ${Math.round(last.cum)}名`);
+  card("初期必要資金", `${fmtN(r.shokiTotal / 10000)}<small>万円</small>`,
+       `うち回収対象外（敷金など） ${man(r.shikikin)}万円／毎月の減価償却 ${yen(r.genka3)}円`);
+
+  const v = document.getElementById("verdict");
+  if (r.bottom.cash < 0){
+    v.className = "verdict warn";
+    v.innerHTML = `<h3>資金がショートします</h3><p>${r.bottom.m + 1}か月目（${r.bottom.y}年${r.bottom.mo}月）に現金が <b>${yen(r.bottom.cash)}円</b> まで落ちます。` +
+      `不足額は <b>${yen(-r.bottom.cash)}円</b>。自己資金を増やすか、借入額を上げるか、事業主給与を下げるか、初期費用を抑えるかの検討が要ります。` +
+      `いま事業主給与は月 ${yen(state.pay)}円、初期必要資金は ${fmtN(r.shokiTotal / 10000)}万円です。</p>`;
+  } else if (r.bottom.cash < 500000){
+    v.className = "verdict";
+    v.innerHTML = `<h3>ぎりぎり持ちます</h3><p>現金の底は${r.bottom.m + 1}か月目の <b>${yen(r.bottom.cash)}円</b>。ショートはしませんが、` +
+      `想定より入塾が遅れると危うい水準です。開校前の助走（体験会・ポスティング）で初速を作れるかが分かれ目になります。</p>`;
+  } else {
+    v.className = "verdict ok";
+    v.innerHTML = `<h3>資金は持ちます</h3><p>現金の底は${r.bottom.m + 1}か月目の <b>${yen(r.bottom.cash)}円</b>で、期首の ${yen(r.openingCash)}円から大きくは割り込みません。` +
+      (r.turn ? `営業利益は<b>${r.turn.m + 1}か月目</b>にプラスへ転じます。` : "") + `</p>`;
+  }
+
+  drawCond(r);
+  syncPanel();
+
+  const lm = loanMonths();
+  document.getElementById("loanNote").innerHTML = isLoan()
+    ? `<b>融資の返済</b>　借入 ${yen(state.loanAmt * 10000)}円／年利 ${state.loanRate}%／返済 ${state.loanYears}年／据え置き ${state.loanGrace}か月。` +
+      (lm.grace > 0 ? `開校から${lm.grace}か月は利息のみで毎月 ${yen(loanPayAt(0))}円、その後は元利均等で毎月 ${yen(loanPayAt(lm.grace))}円です。` :
+                      `開校直後から元利均等で毎月 ${yen(loanPayAt(0))}円です。`)
+    : `<b>融資の返済</b>　融資を受けない設定のため、返済は計上していません。`;
+
+  drawCombo(r.rows);
+  drawCash(r.rows, r.turn);
+  drawTable(r);
+}
+
+/* ---------- 折れ線（単一系列） ---------- */
+const SVG = "http://www.w3.org/2000/svg";
+const mk = (t, a) => { const n = document.createElementNS(SVG, t); for (const k in a) n.setAttribute(k, a[k]); return n; };
+const charts = {};
+function drawLine(svgId, tipId, data, fmt, zeroLine){
+  const svg = document.getElementById(svgId);
+  svg.innerHTML = "";
+  const G = geom(svg), W = G.W, H = G.H, FS = G.FS, PD = { l:G.narrow ? 64 : 82, r:20, t:16, b:30 };
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  let yMin = Math.min(0, ...data), yMax = Math.max(...data);
+  const pad = (yMax - yMin) * .1 || 1; yMin -= pad; yMax += pad;
+  const X = i => PD.l + ((i + .5) / 36) * (W - PD.l - PD.r);
+  const Y = v => PD.t + (1 - (v - yMin) / (yMax - yMin)) * (H - PD.t - PD.b);
+  charts[svgId] = { X, Y, data, fmt, W, PD, tipId };
+
+  const st = niceStep((yMax - yMin) / 4);
+  for (let v = Math.ceil(yMin / st) * st; v <= yMax; v += st){
+    svg.appendChild(mk("line", { x1:PD.l, x2:W - PD.r, y1:Y(v), y2:Y(v), stroke:"var(--line)", "stroke-width":1 }));
+    const t = mk("text", { x:PD.l - 8, y:Y(v) + 4, "text-anchor":"end", fill:"var(--ink-3)",
+      "font-size":FS, "font-family":"IBM Plex Mono, monospace" });
+    t.textContent = Math.abs(yMax) > 100000 ? `${(v / 10000).toFixed(0)}万` : v.toFixed(0);
+    svg.appendChild(t);
+  }
+  if (zeroLine && yMin < 0){
+    svg.appendChild(mk("line", { x1:PD.l, x2:W - PD.r, y1:Y(0), y2:Y(0), stroke:"var(--shu)", "stroke-width":1.2 }));
+    const t = mk("text", { x:PD.l + 6, y:Y(0) - 6, fill:"var(--shu)", "font-size":FS, "font-weight":700 });
+    t.textContent = "現金ゼロ";
+    svg.appendChild(t);
+  }
+  xAxis(svg, X, H, PD, FS);
+  const d = data.map((v, i) => `${i ? "L" : "M"}${X(i).toFixed(2)},${Y(v).toFixed(2)}`).join("");
+  svg.appendChild(mk("path", { d, fill:"none", stroke:"var(--ai)", "stroke-width":2,
+    "stroke-linejoin":"round", "stroke-linecap":"round" }));
+  svg.appendChild(mk("line", { x1:0, x2:0, y1:PD.t, y2:H - PD.b, stroke:"var(--ink-3)",
+    "stroke-width":1, opacity:0, class:"hl" }));
+  svg.appendChild(mk("circle", { r:4.5, fill:"var(--ai)", stroke:"var(--sheet)", "stroke-width":2, opacity:0, class:"hd" }));
+  svg.appendChild(mk("rect", { x:PD.l, y:PD.t, width:W - PD.l - PD.r, height:H - PD.t - PD.b, fill:"transparent" }));
+
+  svg.onmousemove = ev => {
+    const c = charts[svgId], rect = svg.getBoundingClientRect(), sx = c.W / rect.width;
+    let i = Math.floor((((ev.clientX - rect.left) * sx - c.PD.l) / (c.W - c.PD.l - c.PD.r)) * 36);
+    i = Math.max(0, Math.min(35, i));
+    const v = c.data[i];
+    svg.querySelector(".hl").setAttribute("x1", c.X(i));
+    svg.querySelector(".hl").setAttribute("x2", c.X(i));
+    svg.querySelector(".hl").setAttribute("opacity", .5);
+    svg.querySelector(".hd").setAttribute("cx", c.X(i));
+    svg.querySelector(".hd").setAttribute("cy", c.Y(v));
+    svg.querySelector(".hd").setAttribute("opacity", 1);
+    const row = P.rows[i];
+    const tip = document.getElementById(tipId);
+    tip.innerHTML = `${row.y}年${row.mo}月（${i + 1}か月目）<br><b class="${v < 0 ? "neg" : ""}">${c.fmt(v)}</b>`;
+    const box = svg.parentElement.getBoundingClientRect();
+    const px = rect.left - box.left + c.X(i) / sx, py = rect.top - box.top + c.Y(v) / sx;
+    tip.style.opacity = 1;
+    tip.style.left = `${Math.max(4, Math.min(box.width - tip.offsetWidth - 4, px - tip.offsetWidth / 2))}px`;
+    tip.style.top = `${Math.max(4, py - tip.offsetHeight - 12)}px`;
+  };
+  svg.onmouseleave = () => {
+    svg.querySelector(".hl").setAttribute("opacity", 0);
+    svg.querySelector(".hd").setAttribute("opacity", 0);
+    document.getElementById(tipId).style.opacity = 0;
+  };
+}
+/* ---------- 共通：画面幅に応じた大きさと横軸 ---------- */
+function geom(svg){
+  const w = svg.getBoundingClientRect().width || 900;
+  const narrow = w < 600;
+  return { narrow, W: narrow ? 520 : 900, H: narrow ? 300 : 250, FS: narrow ? 15 : 11 };
+}
+function xAxis(svg, X, H, PD, FS){
+  // 年の切れ目に点線。1年目・2年目・3年目の頭に目盛り
+  [12, 24].forEach(i => svg.appendChild(mk("line", { x1:X(i - .5), x2:X(i - .5), y1:PD.t, y2:H - PD.b,
+    stroke:"var(--line-2)", "stroke-width":1, "stroke-dasharray":"3 3" })));
+  [[0, "開校", "start"], [12, "2年目", "middle"], [24, "3年目", "middle"], [35, "36か月", "end"]].forEach(([i, t, a]) => {
+    const n = mk("text", { x: i === 12 || i === 24 ? X(i - .5) : X(i), y:H - 9, "text-anchor":a, fill:"var(--ink-3)",
+      "font-size":FS, "font-family":"IBM Plex Mono, BIZ UDPGothic, monospace" });
+    n.textContent = t; svg.appendChild(n);
+  });
+}
+
+/* ---------- 生徒数（線・左）と売上（棒・右） ---------- */
+function drawCombo(rows){
+  const svg = document.getElementById("chartStudents");
+  svg.innerHTML = "";
+  const G = geom(svg), W = G.W, H = G.H, FS = G.FS;
+  const PD = { l:G.narrow ? 46 : 58, r:G.narrow ? 62 : 70, t:16, b:30 };
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  const stu = rows.map(r => r.cum), uri = rows.map(r => r.uriage);
+  // 左右とも0始まり・4目盛りにそろえて、横の罫線を共有する
+  const axis = max => {
+    const raw = max / 4, p = Math.pow(10, Math.floor(Math.log10(raw)));
+    return [1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10].map(n => n * p).find(st => st * 4 >= max);
+  };
+  // 売上は生徒数にほぼ比例するので、同じ高さだと線が棒の頭に重なる。右の目盛りを広げて棒を低めに置く
+  const sL = axis(Math.max(1, ...stu)), sR = axis(Math.max(1, ...uri) * 1.45);
+  const X = i => PD.l + ((i + .5) / 36) * (W - PD.l - PD.r);
+  const YL = v => PD.t + (1 - v / (sL * 4)) * (H - PD.t - PD.b);
+  const YR = v => PD.t + (1 - v / (sR * 4)) * (H - PD.t - PD.b);
+  for (let k = 0; k <= 4; k++){
+    const y = YL(sL * k);
+    svg.appendChild(mk("line", { x1:PD.l, x2:W - PD.r, y1:y, y2:y, stroke:"var(--line)", "stroke-width":1 }));
+    const a = mk("text", { x:PD.l - 8, y:y + 4, "text-anchor":"end", fill:"var(--ai)", "font-size":FS,
+      "font-family":"IBM Plex Mono, monospace" });
+    a.textContent = `${sL * k}`; svg.appendChild(a);
+    const b = mk("text", { x:W - PD.r + 8, y:y + 4, fill:"#8A7648", "font-size":FS,
+      "font-family":"IBM Plex Mono, monospace" });
+    b.textContent = k ? `${Math.round(sR * k / 10000)}万` : "0"; svg.appendChild(b);
+  }
+
+  const bw = (W - PD.l - PD.r) / 36 * .62;
+  uri.forEach((v, i) => svg.appendChild(mk("rect", { x:X(i) - bw / 2, y:YR(v), width:bw, height:Math.max(0, YR(0) - YR(v)),
+    fill:"var(--kin-soft)", stroke:"#CDBF9C", "stroke-width":.8, class:`b${i}` })));
+  xAxis(svg, X, H, PD, FS);
+  const d = stu.map((v, i) => `${i ? "L" : "M"}${X(i).toFixed(2)},${YL(v).toFixed(2)}`).join("");
+  svg.appendChild(mk("path", { d, fill:"none", stroke:"var(--ai)", "stroke-width":2.2,
+    "stroke-linejoin":"round", "stroke-linecap":"round" }));
+  svg.appendChild(mk("line", { x1:0, x2:0, y1:PD.t, y2:H - PD.b, stroke:"var(--ink-3)", "stroke-width":1, opacity:0, class:"hl" }));
+  svg.appendChild(mk("circle", { r:4.5, fill:"var(--ai)", stroke:"var(--sheet)", "stroke-width":2, opacity:0, class:"hd" }));
+  svg.appendChild(mk("rect", { x:PD.l, y:PD.t, width:W - PD.l - PD.r, height:H - PD.t - PD.b, fill:"transparent" }));
+
+  let lastBar = null;
+  svg.onmousemove = ev => {
+    const rect = svg.getBoundingClientRect(), sx = W / rect.width;
+    let i = Math.floor((((ev.clientX - rect.left) * sx - PD.l) / (W - PD.l - PD.r)) * 36);
+    i = Math.max(0, Math.min(35, i));
+    const hl = svg.querySelector(".hl"), hd = svg.querySelector(".hd");
+    hl.setAttribute("x1", X(i)); hl.setAttribute("x2", X(i)); hl.setAttribute("opacity", .5);
+    hd.setAttribute("cx", X(i)); hd.setAttribute("cy", YL(stu[i])); hd.setAttribute("opacity", 1);
+    if (lastBar) lastBar.setAttribute("fill", "var(--kin-soft)");
+    lastBar = svg.querySelector(`.b${i}`); lastBar.setAttribute("fill", "#DCCFAE");
+    const row = P.rows[i], tip = document.getElementById("tipS");
+    tip.innerHTML = `${row.y}年${row.mo}月（${i + 1}か月目）<br>在籍 <b>${stu[i].toFixed(0)}名</b>　売上 <b>${yen(uri[i])}円</b>` +
+      (row.shinki >= .5 ? `<br><span style="opacity:.75">うち新規 ${row.shinki.toFixed(1)}名分の入会金 ${yen(state.nyukai * row.shinki)}円</span>` : "");
+    const box = svg.parentElement.getBoundingClientRect();
+    const px = rect.left - box.left + X(i) / sx, py = rect.top - box.top + Math.min(YL(stu[i]), YR(uri[i])) / sx;
+    tip.style.opacity = 1;
+    tip.style.left = `${Math.max(4, Math.min(box.width - tip.offsetWidth - 4, px - tip.offsetWidth / 2))}px`;
+    tip.style.top = `${Math.max(4, py - tip.offsetHeight - 12)}px`;
+  };
+  svg.onmouseleave = () => {
+    svg.querySelector(".hl").setAttribute("opacity", 0);
+    svg.querySelector(".hd").setAttribute("opacity", 0);
+    if (lastBar) lastBar.setAttribute("fill", "var(--kin-soft)");
+    document.getElementById("tipS").style.opacity = 0;
+  };
+}
+/* ---------- 現金残高（線・左）と営業利益（棒・右）。0の位置を左右でそろえる ---------- */
+let cashBasis = "eigyo";
+document.getElementById("cashSeg").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  cashBasis = b.dataset.v;
+  document.querySelectorAll("#cashSeg button").forEach(x => x.classList.toggle("on", x === b));
+  drawCash(P.rows, P.turn);
+});
+function drawCash(rows, turn){
+  const eig = cashBasis === "eigyo";
+  document.getElementById("cashSub").textContent = eig
+    ? "線が現金残高、棒がその月の営業利益（事業主給与と返済を引く前）。現金残高は、営業利益から事業主給与と返済を引いた分だけ動くので、黒字の月でも現金が減ることがあります。"
+    : "線が現金残高、棒が事業主給与と返済を引いたあとに残る現金（現金収支）。棒が赤字の月は、その分だけ現金残高が減ります。";
+  if (!eig) turn = rows.find(r => r.genkin > 0) || null;
+  const svg = document.getElementById("chartCash");
+  svg.innerHTML = "";
+  const G = geom(svg), W = G.W, H = G.H, FS = G.FS;
+  const PD = { l:G.narrow ? 58 : 70, r:G.narrow ? 58 : 70, t:16, b:30 };
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  const cash = rows.map(r => r.cash), pr = rows.map(r => eig ? r.eigyo : r.genkin);
+  const step = (lo, hi) => {
+    const raw = (hi - lo) / 4 || 1, p = Math.pow(10, Math.floor(Math.log10(raw)));
+    return [1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10].map(n => n * p).find(st => st >= raw);
+  };
+  const loL = Math.min(0, ...cash), hiL = Math.max(0, ...cash), loR = Math.min(0, ...pr), hiR = Math.max(0, ...pr);
+  const sL = step(loL, hiL), sR = step(loR, hiR);
+  const nNeg = Math.max(Math.ceil(-loL / sL - 1e-9), Math.ceil(-loR / sR - 1e-9));
+  const nPos = Math.max(1, Math.ceil(hiL / sL - 1e-9), Math.ceil(hiR / sR - 1e-9));
+  const N = nNeg + nPos, ph = H - PD.t - PD.b;
+  const X = i => PD.l + ((i + .5) / 36) * (W - PD.l - PD.r);
+  const YL = v => PD.t + ((nPos - v / sL) / N) * ph;
+  const YR = v => PD.t + ((nPos - v / sR) / N) * ph;
+  const lab = v => v === 0 ? "0" : `${(v / 10000).toLocaleString("ja-JP", { maximumFractionDigits:1 })}万`;
+  for (let k = -nNeg; k <= nPos; k++){
+    const y = YL(k * sL);
+    svg.appendChild(mk("line", { x1:PD.l, x2:W - PD.r, y1:y, y2:y,
+      stroke: k === 0 ? "var(--ink-3)" : "var(--line)", "stroke-width": k === 0 ? 1.2 : 1 }));
+    const a = mk("text", { x:PD.l - 8, y:y + 4, "text-anchor":"end", fill:"var(--ai)", "font-size":FS,
+      "font-family":"IBM Plex Mono, monospace" });
+    a.textContent = lab(k * sL); svg.appendChild(a);
+    const b = mk("text", { x:W - PD.r + 8, y:y + 4, fill:"var(--ink-2)", "font-size":FS,
+      "font-family":"IBM Plex Mono, monospace" });
+    b.textContent = lab(k * sR); svg.appendChild(b);
+  }
+  const bw = (W - PD.l - PD.r) / 36 * .62;
+  pr.forEach((v, i) => svg.appendChild(mk("rect", { x:X(i) - bw / 2, y:Math.min(YR(v), YR(0)), width:bw,
+    height:Math.max(.5, Math.abs(YR(v) - YR(0))),
+    fill: v >= 0 ? "var(--midori-soft)" : "var(--shu-soft)", stroke: v >= 0 ? "#9DB3A3" : "#D4A79E",
+    "stroke-width":.8, class:`b${i}` })));
+  xAxis(svg, X, H, PD, FS);
+  if (turn && turn.m > 0){
+    const x = X(turn.m) - (W - PD.l - PD.r) / 72;
+    svg.appendChild(mk("line", { x1:x, x2:x, y1:PD.t, y2:H - PD.b, stroke:"var(--midori)", "stroke-width":1, "stroke-dasharray":"4 3" }));
+    const t = mk("text", { x:x + 5, y:PD.t + FS, fill:"var(--midori)", "font-size":FS, "font-weight":700 });
+    t.textContent = `${eig ? "黒字転換" : "手元の現金が増えはじめる"} ${turn.m + 1}か月目`; svg.appendChild(t);
+  }
+  const d = cash.map((v, i) => `${i ? "L" : "M"}${X(i).toFixed(2)},${YL(v).toFixed(2)}`).join("");
+  svg.appendChild(mk("path", { d, fill:"none", stroke:"var(--ai)", "stroke-width":2.2,
+    "stroke-linejoin":"round", "stroke-linecap":"round" }));
+  svg.appendChild(mk("line", { x1:0, x2:0, y1:PD.t, y2:H - PD.b, stroke:"var(--ink-3)", "stroke-width":1, opacity:0, class:"hl" }));
+  svg.appendChild(mk("circle", { r:4.5, fill:"var(--ai)", stroke:"var(--sheet)", "stroke-width":2, opacity:0, class:"hd" }));
+  svg.appendChild(mk("rect", { x:PD.l, y:PD.t, width:W - PD.l - PD.r, height:ph, fill:"transparent" }));
+
+  let lastBar = null, lastFill = null;
+  svg.onmousemove = ev => {
+    const rect = svg.getBoundingClientRect(), sx = W / rect.width;
+    let i = Math.floor((((ev.clientX - rect.left) * sx - PD.l) / (W - PD.l - PD.r)) * 36);
+    i = Math.max(0, Math.min(35, i));
+    const hl = svg.querySelector(".hl"), hd = svg.querySelector(".hd");
+    hl.setAttribute("x1", X(i)); hl.setAttribute("x2", X(i)); hl.setAttribute("opacity", .5);
+    hd.setAttribute("cx", X(i)); hd.setAttribute("cy", YL(cash[i])); hd.setAttribute("opacity", 1);
+    if (lastBar) lastBar.setAttribute("fill", lastFill);
+    lastBar = svg.querySelector(`.b${i}`); lastFill = lastBar.getAttribute("fill");
+    lastBar.setAttribute("fill", pr[i] >= 0 ? "#C9D6CC" : "#E6CCC6");
+    const row = rows[i], tip = document.getElementById("tipC");
+    tip.innerHTML = `${row.y}年${row.mo}月（${i + 1}か月目）<br>` +
+      `営業利益 <b class="${pr[i] < 0 ? "neg" : ""}">${yen(pr[i])}円</b>（${pr[i] >= 0 ? "黒字" : "赤字"}）<br>` +
+      `給与・返済のあとに残る現金 <b class="${row.genkin < 0 ? "neg" : ""}">${yen(row.genkin)}円</b><br>` +
+      `現金残高 <b class="${cash[i] < 0 ? "neg" : ""}">${yen(cash[i])}円</b>`;
+    const box = svg.parentElement.getBoundingClientRect();
+    const px = rect.left - box.left + X(i) / sx, py = rect.top - box.top + Math.min(YL(cash[i]), YR(pr[i]), YR(0)) / sx;
+    tip.style.opacity = 1;
+    tip.style.left = `${Math.max(4, Math.min(box.width - tip.offsetWidth - 4, px - tip.offsetWidth / 2))}px`;
+    tip.style.top = `${Math.max(4, py - tip.offsetHeight - 12)}px`;
+  };
+  svg.onmouseleave = () => {
+    svg.querySelector(".hl").setAttribute("opacity", 0);
+    svg.querySelector(".hd").setAttribute("opacity", 0);
+    if (lastBar) lastBar.setAttribute("fill", lastFill);
+    document.getElementById("tipC").style.opacity = 0;
+  };
+}
+
+// 画面幅が変わったらグラフだけ描き直す
+let rsT = null, lastNarrow = null;
+window.addEventListener("resize", () => {
+  clearTimeout(rsT);
+  rsT = setTimeout(() => {
+    if (!P || resultEl.hidden) return;
+    const n = geom(document.getElementById("chartCash")).narrow;
+    if (n === lastNarrow) return;
+    lastNarrow = n;
+    drawCombo(P.rows);
+    drawCash(P.rows, P.turn);
+  }, 150);
+});
+
+function niceStep(raw){
+  const p = Math.pow(10, Math.floor(Math.log10(Math.abs(raw) || 1)));
+  const n = raw / p;
+  return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 5 ? 5 : 10) * p;
+}
+
+function drawTable(r){
+  const tb = document.getElementById("tbody");
+  tb.innerHTML = "";
+  r.rows.forEach(x => {
+    const tr = document.createElement("tr");
+    if ((x.m + 1) % 12 === 0) tr.classList.add("yearend");
+    if (x.m === r.bottom.m) tr.classList.add("bottom");
+    else if (r.turn && x.m === r.turn.m) tr.classList.add("turn");
+    tr.appendChild(el("td", null, `${x.y}/${String(x.mo).padStart(2, "0")}`));
+    tr.appendChild(el("td", null, x.shinki.toFixed(1)));
+    tr.appendChild(el("td", null, x.taijuku > 0 ? "-" + x.taijuku.toFixed(1) : "0"));
+    tr.appendChild(el("td", null, x.cum.toFixed(1)));
+    [x.uriage, x.genka, x.keihi, x.shokyaku].forEach(v => tr.appendChild(el("td", null, yen(v))));
+    tr.appendChild(el("td", x.eigyo < 0 ? "neg" : null, yen(x.eigyo)));
+    tr.appendChild(el("td", null, yen(x.pay)));
+    tr.appendChild(el("td", null, yen(x.hensai)));
+    tr.appendChild(el("td", x.genkin < 0 ? "neg" : null, yen(x.genkin)));
+    tr.appendChild(el("td", x.cash < 0 ? "neg" : null, yen(x.cash)));
+    tb.appendChild(tr);
+  });
+}
+
+drawStage();
+window.addEventListener("resize", () => { if (P && !resultEl.hidden) render(); });
+
+/* ============ Excel ============ */
+const ARGB = { white:"FFFFFFFF", line:"FFDCD8CF", head:"FF34353A", ai:"FF43536B",
+               gray:"FFF0EEE8", amber:"FFEEE8DA", red:"FFF0E6E2", green:"FFE4EAE4" };
+const thin = { style:"thin", color:{argb:ARGB.line} };
+const allThin = { top:thin, left:thin, bottom:thin, right:thin };
+const btn = document.getElementById("dl");
+const dlNote = document.getElementById("dlNote");
+
+async function buildWorkbook(){
+  const r = P;
+  const wb = new ExcelJS.Workbook();
+  wb.creator = "年間収支計画";
+  wb.created = new Date();
+  const fill = a => ({ fill:{ type:"pattern", pattern:"solid", fgColor:{argb:a} } });
+  const ws = wb.addWorksheet("前提");
+  ws.columns = [{width:34},{width:16},{width:8}];
+  const set = (s, row, col, v, st) => { const c = s.getCell(row, col); c.value = v; if (st) Object.assign(c, st); return c; };
+  set(ws, 1, 1, "年間収支計画（3年）", { font:{ name:"Arial", size:16, bold:true } });
+  let row = 3;
+  const [oy, om] = state.openYM.split("-").map(Number);
+  set(ws, row, 1, "開校月", { font:{ name:"Arial", size:10 }, border:allThin, ...fill(ARGB.gray) });
+  set(ws, row, 2, `${oy}年${om}月`, { font:{ name:"Arial", size:10, bold:true }, border:allThin,
+                                      alignment:{ horizontal:"right" }, ...fill(ARGB.amber) });
+  row++;
+  set(ws, row, 1, "生徒の立ち上がり", { font:{ name:"Arial", size:10 }, border:allThin, ...fill(ARGB.gray) });
+  set(ws, row, 2, state.ramp === "自分で" ? "自分で入力" : state.ramp, { font:{ name:"Arial", size:10, bold:true }, border:allThin,
+                                   alignment:{ horizontal:"right" }, ...fill(ARGB.amber) });
+  row++;
+  set(ws, row, 1, "融資", { font:{ name:"Arial", size:10 }, border:allThin, ...fill(ARGB.gray) });
+  set(ws, row, 2, state.loanUse, { font:{ name:"Arial", size:10, bold:true }, border:allThin,
+                                   alignment:{ horizontal:"right" }, ...fill(ARGB.amber) });
+  row++;
+  STEPS.filter(s => s.t === "num" && (!s.when || s.when())).forEach(s => {
+    set(ws, row, 1, s.l.replace(/\？$/, ""), { font:{ name:"Arial", size:10 }, border:allThin, ...fill(ARGB.gray) });
+    set(ws, row, 2, state[s.k], { font:{ name:"Arial", size:10, bold:true }, border:allThin,
+                                  numFmt:"#,##0.#", alignment:{ horizontal:"right" }, ...fill(ARGB.amber) });
+    set(ws, row, 3, s.u, { font:{ name:"Arial", size:9, color:{argb:"FF66625C"} } });
+    row++;
+  });
+  row++;
+  [["初期必要資金（合計）", Math.round(r.shokiTotal)],
+   ["うち回収対象外（敷金・礼金など）", Math.round(r.shikikin)],
+   ["減価償却の対象額", Math.round(r.shokyakuBase)],
+   ["毎月の減価償却費", Math.round(r.genka3)],
+   ["期首現金（自己資金＋借入−初期必要資金）", Math.round(r.openingCash)],
+   ["現金の底", Math.round(r.bottom.cash)],
+   ["現金が底を打つ月", `${r.bottom.m + 1}か月目（${r.bottom.y}年${r.bottom.mo}月）`],
+   ["営業利益が黒字転換する月", r.turn ? `${r.turn.m + 1}か月目（${r.turn.y}年${r.turn.mo}月）` : "3年間では転換せず"],
+   ["3か月後の生徒数", Math.round(r.rows[2].cum)],
+   ["3年後の生徒数", Math.round(r.rows[35].cum)],
+   ["1年目 年商", Math.round(r.years[0].uriage)],
+   ["2年目 年商", Math.round(r.years[1].uriage)],
+   ["3年目 年商", Math.round(r.years[2].uriage)]].forEach(([k, v]) => {
+    set(ws, row, 1, k, { font:{ name:"Arial", size:10, bold:true }, border:allThin, ...fill(ARGB.gray) });
+    set(ws, row, 2, v, { font:{ name:"Arial", size:10, bold:true }, border:allThin,
+                         numFmt: typeof v === "number" ? "#,##0" : undefined, alignment:{ horizontal:"right" },
+                         ...fill(typeof v === "number" && v < 0 ? ARGB.red : ARGB.green) });
+    row++;
+  });
+  row++;
+  [
+    "※ 月別入塾比率は 20140726_塾開業シミュレーション_原本.xlsx の実データ（某個別指導塾のシミュレーションデータ）を使用しています。",
+    "※ 退塾率の初期値は0%です。原本・参考例に退塾の想定がないため、こちらで数字を置いていません。",
+    "※ 現金＝自己資金＋借入−初期費用を期首とし、毎月「営業利益−事業主給与−返済」を積み上げています。減価償却・税金は含みません。",
+    "※ 融資返済は元利均等。据え置き期間中は利息のみです。金利は情勢で変わりますので実際の条件は金融機関にご確認ください。",
+    "※ 現時点で入手可能な情報に基づく試算です。年商・利益を保証するものではありません。",
+  ].forEach((t, i) => {
+    ws.mergeCells(row + i, 1, row + i, 3);
+    set(ws, row + i, 1, t, { font:{ name:"Arial", size:8, italic:true, color:{argb:"FF66625C"} },
+                             alignment:{ vertical:"middle", wrapText:true } });
+    ws.getRow(row + i).height = 22;
+  });
+
+  const ms = wb.addWorksheet("月別収支", { views:[{ state:"frozen", xSplit:1, ySplit:1 }] });
+  ms.columns = [{width:11},{width:9},{width:9},{width:9},{width:14},{width:13},{width:13},{width:12},{width:13},{width:13},{width:12},{width:13},{width:14}];
+  ["月","新規","退塾","在籍","売上","売上原価","経費","減価償却","営業利益","事業主給与","融資返済","現金収支","現金残高"]
+    .forEach((t, i) => {
+      const c = ms.getCell(1, i + 1); c.value = t;
+      Object.assign(c, { font:{ name:"Arial", size:10, bold:true, color:{argb:ARGB.white} },
+                         alignment:{ horizontal:"center" }, border:allThin, ...fill(ARGB.head) });
+    });
+  r.rows.forEach((x, i) => {
+    const rw = i + 2;
+    const mark = i === r.bottom.m ? ARGB.red : (r.turn && i === r.turn.m ? ARGB.green : null);
+    [`${x.y}/${String(x.mo).padStart(2, "0")}`, +x.shinki.toFixed(1), -(+x.taijuku.toFixed(1)), +x.cum.toFixed(1),
+     Math.round(x.uriage), Math.round(x.genka), Math.round(x.keihi), Math.round(x.shokyaku), Math.round(x.eigyo),
+     Math.round(x.pay), Math.round(x.hensai), Math.round(x.genkin), Math.round(x.cash)]
+      .forEach((v, k) => {
+        const c = ms.getCell(rw, k + 1); c.value = v;
+        Object.assign(c, { font:{ name:"Arial", size:9, bold: !!mark }, border:allThin,
+                           numFmt: k === 0 ? undefined : (k <= 3 ? "0.0" : "#,##0") });
+        if (mark) Object.assign(c, fill(mark));
+      });
+  });
+  return wb;
+}
+
+btn.addEventListener("click", async () => {
+  btn.disabled = true; dlNote.className = "note-inline"; dlNote.textContent = "作成中…";
+  try {
+    const wb = await buildWorkbook();
+    const buf = await wb.xlsx.writeBuffer();
+    const blob = new Blob([buf], { type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+    const [oy, om] = state.openYM.split("-").map(Number);
+    const filename = `年間収支計画_${oy}年${om}月開校.xlsx`;
+    const downloads = await window.claude?.use?.("downloads");
+    if (downloads){ await downloads.save({ filename, data: blob }); dlNote.textContent = "保存しました。"; }
+    else {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 4000);
+      dlNote.textContent = "";
+    }
+  } catch (err) {
+    const code = err && err.code;
+    if (code === "declined") dlNote.textContent = "";
+    else if (code === "rate_limited"){ dlNote.className = "note-inline err"; dlNote.textContent = "少し待ってからもう一度お試しください。"; }
+    else { dlNote.className = "note-inline err"; dlNote.textContent = "この画面では書き出せませんでした。"; }
+  } finally {
+    btn.disabled = false;
+    setTimeout(() => { if (dlNote.textContent === "保存しました。") dlNote.textContent = ""; }, 4000);
+  }
+});
+</script>
+
