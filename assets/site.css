@@ -341,3 +341,36 @@ ul,ol{list-style:none}
   .site-header,.article-cta,.article-mid-cta,.article-mcta,.related,.site-footer{display:none}
   body{background:#fff}
 }
+
+/* 制作事例：修正前と公開後を並べる。
+   左右とも同じ大きさにする（公開後だけ大きくすると、比べる前に結論を押しつける見え方になる） */
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.ba figure{margin:0}
+.ba-label{font-size:.8rem;font-weight:900;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:10px;line-height:1.6}
+.ba-label.after{color:var(--blue)}
+.ba img{width:100%;height:auto;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--white)}
+.ba.sp{max-width:480px}
+.ba-note{font-size:.78rem;line-height:1.9;color:var(--ink-soft)}
+.article-body .ba + .ba-note{margin-top:13px}
+@media(max-width:560px){
+  .ba{grid-template-columns:1fr;gap:22px}
+  .ba.sp{grid-template-columns:1fr 1fr;gap:12px}
+}
+/* 枠の中の小見出しは、記事の h2（スマホで margin-top:52px）を受け継がない */
+.article-body .survey-meta h2{margin-top:0}
+.article-title .nb{display:inline-block}
+/* ページ全体の画像は枠の中でスクロールさせる（本文が画像で何千pxも伸びないように） */
+.ba .frame{display:block;max-height:720px;overflow-y:auto;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--white);overscroll-behavior:contain}
+.ba .frame img{border:none;border-radius:0}
+.ba.sp .frame{max-height:620px}
+.article-body .site-link{margin-top:14px;font-weight:700}
+@media(max-width:560px){.ba .frame{max-height:560px}.ba.sp .frame{max-height:480px}}
+/* 管理画面の画面は文字を読めてこそ意味があるので、横に並べず本文幅いっぱいで見せる */
+.ba.adm{grid-template-columns:1fr;gap:28px}
+@media print{.ba figure{break-inside:avoid}}
+/* 制作事例：塾長の声。いただいた文面をそのまま載せる枠（言い換えない） */
+.article-body .voice{background:var(--white);border:1px solid var(--line);border-radius:var(--r-md);padding:26px 28px}
+.article-body .voice p{line-height:2.1}
+.article-body .voice p + p{margin-top:12px}
+.article-body .voice footer{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:.86rem;font-weight:700;color:var(--ink-soft)}
+@media(max-width:560px){.article-body .voice{padding:20px 18px}}

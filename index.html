@@ -477,6 +477,31 @@ html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
 .work .meta p{font-size:.86rem;color:var(--ink-soft)}
 /* 架空デモを実際に開いて確かめてもらう導線。納品実績とは呼ばない */
 .work-demo{margin-top:14px}
+/* 実際の制作事例（2026-09-29）。白い節に置くのでカードはクリームの面。
+   架空の型（.work）より先に置き、実物と見本を見出しで分ける */
+.cases{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:56px}
+.case{border:1px solid var(--line);border-radius:var(--r-md);background:var(--paper);padding:22px 22px 24px;display:flex;flex-direction:column}
+.case-ba{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.case-ba figure{margin:0}
+.case-ba figcaption{font-size:.74rem;font-weight:700;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:6px}
+.case-ba figure + figure figcaption{color:var(--blue)}
+.case-ba img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:top center;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--white)}
+.case .cat{margin-top:20px;font-size:.74rem;font-weight:700;letter-spacing:.14em;color:var(--blue)}
+.case h3{font-family:var(--serif);font-weight:700;font-size:1.3rem;line-height:1.6;margin:8px 0 10px;letter-spacing:.03em}
+.case p{font-size:.86rem;color:var(--ink-soft)}
+.case p.case-voice{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-weight:700;color:var(--ink)}
+.case-voice span{display:inline-block;margin-left:10px;font-size:.8rem;font-weight:500;color:var(--ink-soft)}
+.case .work-demo{margin-top:auto;padding-top:14px;display:flex;flex-wrap:wrap;gap:6px 24px;align-items:baseline}
+.case-url{font-size:.86rem;color:var(--ink-soft)}
+.case-url .inline-link{font-weight:500}
+.works-sub{font-weight:700;font-size:1.02rem;padding-top:28px;border-top:1px solid var(--line);margin-bottom:6px}
+.works-sub-lede{font-size:.86rem;color:var(--ink-soft);margin-bottom:22px}
+/* 実例が入ったので、架空の型は「見本」として一段小さく置く（全高14,000px以内に収めるため） */
+.works-grid .work .shot{aspect-ratio:16/8}
+.works-grid .work .browser{padding:8px 12px}
+.works-grid .work .meta{padding:16px 20px 18px}
+.works-grid .work .meta h3{font-family:var(--sans);font-size:1.02rem;margin:6px 0 6px}
+.works-grid .work-demo{margin-top:8px}
 
 /* ---------- compare ---------- */
 /* 料金のうしろに置く。自社の総額・範囲・所有権を読んでから、仮定の計算例を見てもらう */
@@ -737,7 +762,7 @@ footer{background:var(--ink);color:rgba(247,244,237,.78);padding:64px 0 34px;fon
 .sec-lede,
 .check-item p,
 .svc-feature p.desc,.svc-ul li,.svc-item p.desc,.svc-rest-lead,
-.work .meta p,
+.work .meta p,.case p,
 .sample-row dd,
 .switch-lead,
 .rate-item p,
@@ -752,7 +777,7 @@ details .ans,
 .sec-lede,
 .check-item p,
 .svc-feature p.desc,.svc-ul li,.svc-item p.desc,.svc-rest-lead,
-.work .meta p,
+.work .meta p,.case p,
 .sample-row dd,
 .switch-lead,
 .rate-item p,
@@ -770,7 +795,7 @@ details .ans{color:var(--ink)}
 .sec-lede{font-size:1.08rem;line-height:1.9}
 
 /* 明朝は h1・h2 と主役の数字だけ。カードの h3 はゴシック700 */
-.svc-feature h3,.svc-item h3,.work .meta h3,
+.svc-feature h3,.svc-item h3,.work .meta h3,.case h3,
 .person-body h3,.form-done h3{font-family:var(--sans);font-weight:700;letter-spacing:.02em}
 
 /* ---------- responsive ---------- */
@@ -790,6 +815,7 @@ details .ans{color:var(--ink)}
   .sample-grid{grid-template-columns:1fr;gap:32px}
   .sample-fig{max-width:520px}
   .works-grid{grid-template-columns:1fr}
+  .cases{grid-template-columns:1fr;gap:20px;margin-bottom:44px}
   .flow-list{grid-template-columns:1fr}
   .person-grid{grid-template-columns:1fr}
   .person-photo{max-width:400px}
@@ -914,7 +940,7 @@ details .ans{color:var(--ink)}
     <a class="logo" href="#top"><span class="dot"></span><span>スマ塾<small>学習塾専門のWeb支援</small></span></a>
     <nav class="gnav">
       <a href="#sample">無料診断</a>
-      <a class="gnav-extra" href="#works">制作イメージ</a>
+      <a class="gnav-extra" href="#works">制作事例</a>
       <a class="gnav-extra" href="#services">サービス</a>
       <a href="#price">料金</a>
       <a class="gnav-extra" href="#compare">費用の比べ方</a>
@@ -997,10 +1023,35 @@ details .ans{color:var(--ink)}
   <section class="works" id="works">
     <div class="wrap">
       <div class="sec-head rv">
-        <p class="sec-label">制作イメージ</p>
-        <h2 class="sec-title">型は3つ。写真と文章を<span class="nb">差し替えて</span><br>2週間で公開します。</h2>
-        <p class="sec-lede">和モダン・モダン・王道の3タイプから選び、塾名・写真・合格実績・料金は貴塾の内容に差し替えます。色味やレイアウトの調整もできます。</p>
+        <p class="sec-label">制作事例</p>
+        <h2 class="sec-title">教室を持たない塾と、<span class="nb">開校25年の塾。</span><br>この秋、2つの塾のHPを<span class="nb">作り直しました。</span></h2>
+        <p class="sec-lede">どちらも無料HP診断から始まりました。左が以前のHP、右が公開後のHPです。</p>
       </div>
+      <div class="cases">
+        <article class="case rv">
+          <div class="case-ba">
+            <figure><figcaption>修正前</figcaption><img src="assets/case/direct-coaching-before-thumb.jpg" alt="ダイレクトコーチングの旧サイトのトップ画面" width="480" height="600" loading="lazy" decoding="async"></figure>
+            <figure><figcaption>公開後</figcaption><img src="assets/case/direct-coaching-after-thumb.jpg" alt="ダイレクトコーチングの新しいサイトのトップ画面。地域名と親子ゼミの申込口、塾長の写真" width="480" height="600" loading="lazy" decoding="async"></figure>
+          </div>
+          <span class="cat">山梨県｜ダイレクトコーチング</span>
+          <h3>無料の「親子ゼミ」を、<span class="nb">最初の画面と専用ページに</span></h3>
+          <p>教室を持たず、公共施設10会場で教えるコーチング塾。13年使った旧サイトを作り直し、親子ゼミの日程も内容も塾長が管理画面からいつでも更新します。</p>
+          <p class="work-demo"><span class="case-url">実際のHP：<a class="inline-link" href="https://direct-coaching.jp/" target="_blank" rel="noopener">direct-coaching.jp</a></span></p>
+        </article>
+        <article class="case rv rv-d1">
+          <div class="case-ba">
+            <figure><figcaption>修正前</figcaption><img src="assets/case/souei-seminar-before-thumb.jpg" alt="早英ゼミナールの旧サイトのトップ画面" width="480" height="600" loading="lazy" decoding="async"></figure>
+            <figure><figcaption>公開後</figcaption><img src="assets/case/souei-seminar-after-thumb.jpg" alt="早英ゼミナールの新しいサイトのトップ画面。開校年と駅からの距離、明朝体のキャッチコピー" width="480" height="600" loading="lazy" decoding="async"></figure>
+          </div>
+          <span class="cat">埼玉県上尾市｜早英ゼミナール</span>
+          <h3>塾長ブログ224本を、<span class="nb">新しいHPに引き継ぐ</span></h3>
+          <p>2001年開校の個別指導塾。月額制のサービスから塾名義の買い切りHPに切り替え、ブログ・お知らせ・料金は塾長が管理画面から更新します。</p>
+          <p class="case-voice">「仕上がりには満足しかありません」<span>矢頭 塾長</span></p>
+          <p class="work-demo"><a class="inline-link" href="case/souei-seminar.html">事例を読む</a><span class="case-url">実際のHP：<a class="inline-link" href="https://www.soueiseminar.jp/" target="_blank" rel="noopener">www.soueiseminar.jp</a></span></p>
+        </article>
+      </div>
+      <h3 class="works-sub rv">デザインの型は3つ。写真と文章を差し替えて、2週間で公開します。</h3>
+      <p class="works-sub-lede rv">和モダン・モダン・王道の3タイプから選び、塾名・写真・合格実績・料金は貴塾の内容に差し替えます。2週間は、原稿と写真がそろってからの目安です。</p>
       <div class="works-grid">
         <div class="work rv">
           <div class="browser"><i></i><i></i><i></i><span class="bar">haruoka-juku.example.jp</span></div>
@@ -1572,7 +1623,7 @@ details .ans{color:var(--ink)}
       </div>
       <nav class="foot-nav">
         <a href="#sample">無料診断で届くもの</a>
-        <a href="#works">制作イメージ</a>
+        <a href="#works">制作事例</a>
         <a href="#services">サービス</a>
         <a href="#price">料金</a>
         <a href="#compare">費用の比べ方</a>
