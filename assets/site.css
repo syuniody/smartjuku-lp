@@ -382,3 +382,9 @@ ul,ol{list-style:none}
 .wrap:has(> article) > .breadcrumb,
 .wrap > article,
 .wrap > .related{max-width:var(--measure);margin-inline:auto}
+
+/* 制作事例：冒頭に公開後のHP（パソコン＋スマホ）を見せる。画像側に枠と影があるので、ここでは枠を足さない */
+.case-hero{margin-top:30px;max-width:var(--measure)}
+.case-hero img{width:100%;height:auto;display:block}
+.case-hero figcaption{margin-top:10px;font-size:.78rem;line-height:1.9;color:var(--ink-soft)}
+.case-hero figcaption a{color:var(--blue);text-decoration:underline}
