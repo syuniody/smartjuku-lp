@@ -374,3 +374,11 @@ ul,ol{list-style:none}
 .article-body .voice p + p{margin-top:12px}
 .article-body .voice footer{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:.86rem;font-weight:700;color:var(--ink-soft)}
 @media(max-width:560px){.article-body .voice{padding:20px 18px}}
+
+/* 記事ページは、読む列（--measure）をページの中央に置く（2026-10-05）。
+   これまでは本文だけ720pxで左に寄り、見出しの下線・パンくずは1,072pxまで伸びていたため、
+   1440pxで右側に大きな空白ができて「横幅がおかしい」見え方になっていた。
+   一覧ページ（article を持たない）は対象外。 */
+.wrap:has(> article) > .breadcrumb,
+.wrap > article,
+.wrap > .related{max-width:var(--measure);margin-inline:auto}
