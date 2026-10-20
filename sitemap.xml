@@ -122,6 +122,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://smart-juku.syuni.jp/news/kakure-kyouikuhi-seifuku.html</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://smart-juku.syuni.jp/news/tutor-copilot-kaeshikata.html</loc>
     <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
