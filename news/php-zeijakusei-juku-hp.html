@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>鉄道も市役所もサイトを止めた「PHPの脆弱性」｜塾のホームページは関係ある？｜スマ塾</title>
+<meta name="description" content="2026年10月21日に公表されたPHPの重大な脆弱性で、鉄道会社や市役所がサイトを一時休止しました。大手のレンタルサーバーなら修正はサーバー会社が行うので多くの塾は慌てなくてよい一方、WordPressの塾は確かめたい点があります。塾長が確かめる3つと、HPの「鍵」の持ち方を整理しました。">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://smart-juku.syuni.jp/news/php-zeijakusei-juku-hp.html">
+
+<meta name="sj:category" content="news">
+<meta property="article:published_time" content="2026-10-22">
+<meta property="article:modified_time" content="2026-10-22">
+
+<!-- OGP -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="スマ塾｜学習塾専門のWeb支援">
+<meta property="og:title" content="鉄道も市役所もサイトを止めた「PHPの脆弱性」｜塾のホームページは関係ある？">
+<meta property="og:description" content="PHPの重大な脆弱性（深刻度9.2）で鉄道会社や市役所がサイトを一時休止。PHPはWordPressの自動更新では直りません。塾長が確かめる3つ（WordPressか／サーバーはどこか／PHPは8.2以上か）と、HPの「鍵」を塾長が持つ大切さをまとめました。">
+<meta property="og:url" content="https://smart-juku.syuni.jp/news/php-zeijakusei-juku-hp.html">
+<meta property="og:image" content="https://smart-juku.syuni.jp/assets/ogp/news-php-zeijakusei-juku-hp.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="sj:ogp-lead" content="PHPはWordPressの自動更新では直らない／塾長が確かめる3つ">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Shippori+Mincho:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+
+<!-- Meta Pixel -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2147777948929240');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2147777948929240&ev=PageView&noscript=1"/></noscript>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JLH0DEFEX9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JLH0DEFEX9');
+</script>
+
+<!-- 構造化データ：Article -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "鉄道も市役所もサイトを止めた「PHPの脆弱性」｜塾のホームページは関係ある？",
+  "description": "PHPの重大な脆弱性（深刻度9.2）で鉄道会社や市役所がサイトを一時休止。PHPはWordPressの自動更新では直りません。塾長が確かめる3つ（WordPressか／サーバーはどこか／PHPは8.2以上か）と、HPの「鍵」を塾長が持つ大切さをまとめました。",
+  "datePublished": "2026-10-22",
+  "dateModified": "2026-10-22",
+  "inLanguage": "ja",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://smart-juku.syuni.jp/news/php-zeijakusei-juku-hp.html" },
+  "image": "https://smart-juku.syuni.jp/assets/ogp/news-php-zeijakusei-juku-hp.png",
+  "author": {
+    "@type": "Person",
+    "name": "小田 一勲",
+    "jobTitle": "合同会社SyUNi 代表",
+    "url": "https://smart-juku.syuni.jp/#person"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "スマ塾（合同会社SyUNi）",
+    "url": "https://smart-juku.syuni.jp/",
+    "logo": { "@type": "ImageObject", "url": "https://smart-juku.syuni.jp/assets/ogp.png" }
+  }
+}
+</script>
+
+<!-- 構造化データ：パンくず -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://smart-juku.syuni.jp/" },
+    { "@type": "ListItem", "position": 2, "name": "教育ニュース", "item": "https://smart-juku.syuni.jp/news/" },
+    { "@type": "ListItem", "position": 3, "name": "鉄道も市役所もサイトを止めた「PHPの脆弱性」｜塾のホームページは関係ある？" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-in">
+    <a class="site-logo" href="/"><span class="dot"></span><span>スマ塾<small>学習塾専門のWeb支援</small></span></a>
+    <nav class="site-nav">
+      <a href="/case/">制作事例</a>
+      <a href="/guide/">塾HPの基礎知識</a>
+      <a href="/report/">調査レポート</a>
+      <a href="/news/" aria-current="page">教育ニュース</a>
+    </nav>
+    <a class="header-cta" href="/#contact">無料でHP診断を受ける</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <nav class="breadcrumb" aria-label="パンくず">
+      <ol>
+        <li><a href="/">ホーム</a></li>
+        <li><a href="/news/">教育ニュース</a></li>
+        <li>鉄道も市役所もサイトを止めた「PHPの脆弱性」｜</li>
+      </ol>
+    </nav>
+
+    <article>
+      <header class="article-head">
+        <div class="post-meta">
+          <span class="post-cat cat-news">教育ニュース</span>
+          <time datetime="2026-10-22">2026年10月22日</time>
+        </div>
+        <h1 class="article-title">鉄道も市役所もサイトを止めた「PHPの脆弱性」｜塾のホームページは関係ある？</h1>
+        <p class="article-lede">WordPressで作った塾のホームページは、裏でPHPが動いています。今回の脆弱性は、大手のレンタルサーバーならサーバー会社が直すので、多くの塾は慌てなくて大丈夫です。ただ、サーバーがどこか分からない、PHPが古いまま、という塾は確かめる必要があります。自分の塾がどちらに当たるのかを5分で見分ける手順と、制作会社への聞き方までまとめました。</p>
+      </header>
+
+      <div class="article-body plain-strong">
+
+        <p>2026年10月21日の夜から、関西の鉄道会社、市役所、大学などのホームページが次々と「一時休止」になりました。原因は、ホームページを動かすプログラム「PHP」に見つかった重大な脆弱性（弱点）です。塾のホームページの多くも、このPHPで動いています。</p>
+        <p>先に結論を書くと、<strong>ほとんどの塾は、慌てて何かをする必要はありません。</strong> ただ、一部の塾は自分で確かめる必要があります。そして一番困るのは、自分の塾がどちらに当たるのかを塾長が分かっていないことです。この記事では、何が起きたのか、塾長が確かめてほしい3つのこと、そして今回のことから考えたい「塾として大切なこと」を整理します。</p>
+        <p><strong>鉄道も市役所もサイトを止めた「PHPの脆弱性」｜塾のホームページは関係ある？</strong> <a href="https://youtu.be/VP_q0uSJ30Q" target="_blank" rel="noopener noreferrer">https://youtu.be/VP_q0uSJ30Q</a></p>
+        <figure><img src="/assets/news/php-zeijakusei-juku-hp/01.jpg" alt="解説スライド：10月21日〜、鉄道会社・市役所・大学のホームページが次々と「一時休止」。原因はPHP" loading="lazy" decoding="async"></figure>
+        <h2>何が起きたのか</h2>
+        <h3>PHPは、ホームページの「エンジン」</h3>
+        <p>PHPは、ホームページを動かすためのプログラムの言語です。塾のホームページでよく使われているWordPress（ワードプレス）も、PHPで動いています。車にたとえると、WordPressが車体や運転席で、PHPがエンジンです。WordPressで作った塾のホームページは、裏でこのエンジンが動いています。</p>
+        <figure><img src="/assets/news/php-zeijakusei-juku-hp/02.jpg" alt="解説スライド：WordPressは「車体」、PHPは「エンジン」" loading="lazy" decoding="async"></figure>
+        <h3>重大な弱点が2つ、深刻度は9.2</h3>
+        <p>今回、そのエンジンの部分に重大な弱点が2つ見つかりました（CVE-2026-109618／CVE-2026-109619、通称「php2shell」）。外からサーバーの中のプログラムを勝手に動かされるおそれがある種類のもので、深刻度は10点満点で<strong>9.2</strong>です。</p>
+        <p>10月21日に修正版（8.5.12／8.4.27／8.3.36／8.2.35）が公開され、22日にはIPA（情報処理推進機構）も注意喚起を出しました。これを受けて、エックスサーバー、ロリポップ、さくらといった大手のサーバー会社が緊急メンテナンスに入りました。管理画面が一時的に使えなくなっていたのは、このためです。</p>
+        <h3>止めたのは「被害」ではなく「予防」</h3>
+        <p>関西では、京阪・阪急・阪神・南海の私鉄4社が公式サイトを一時休止し、大阪府や守口市、京都府精華町が住民向けサービスの一部を止め、龍谷大学が学外からのアクセスを止めました。ここで大事なのは、どこも「攻撃による被害ではなく、予防のための措置」としていることです。</p>
+        <figure><img src="/assets/news/php-zeijakusei-juku-hp/03.jpg" alt="解説スライド：止めたのは「被害」ではなく「予防」。鉄道（京阪・阪急・阪神・南海）、自治体（大阪府・守口市・京都府精華町）、大学（龍谷大学）" loading="lazy" decoding="async"><figcaption>出典：MBSニュース（2026年10月22日）をもとに作成</figcaption></figure>
+        <p>実際に攻撃が始まっているのかについては、情報が分かれています。海外のセキュリティ会社の中には「攻撃の動きが出ている」とするところがある一方、IPAの注意喚起には攻撃を確認したという記述はありません。怖がりすぎず、でも放っておかない。これくらいの距離感がちょうどいいと思います。</p>
+        <h3>PHPは、WordPressの自動更新では直らない</h3>
+        <p>もう一つ大事な事実があります。<strong>PHPの更新は、WordPressの自動更新では行われません。</strong> WordPressの画面で「更新」ボタンを押しても、エンジンのPHPは入れ替わりません。PHPを直すのは、サーバーを管理している人です。</p>
+        <figure><img src="/assets/news/php-zeijakusei-juku-hp/04.jpg" alt="解説図：WordPressを更新しても、PHPは直らない。PHPを直すのはサーバーを管理している人" loading="lazy" decoding="async"></figure>
+        <h2>塾長が確かめてほしい3つのこと</h2>
+        <p>上から順に見ていくと、「うちは何もしなくていい」と分かる塾も多いはずです。</p>
+        <figure><img src="/assets/news/php-zeijakusei-juku-hp/05.jpg" alt="解説スライド：塾長が確かめてほしい3つのこと。①WordPress？ ②サーバーはどこ？ ③PHPは8.2以上？" loading="lazy" decoding="async"></figure>
+        <h3>① ホームページはWordPressで作られていますか？</h3>
+        <p>管理画面に入るときのアドレスが「…/wp-admin」や「…/wp-login.php」で終わっていれば、WordPressです。Wix・ペライチ・Jimdoなどのサービスで作っている場合は、サービス会社がまとめて管理しているので、塾長の作業は基本的にありません。</p>
+        <h3>② サーバーは、どこと契約していますか？</h3>
+        <p>エックスサーバー・ロリポップ・さくらのような大手のレンタルサーバーなら、PHPの修正はサーバー会社が行います。実際、22日の朝には、エックスサーバーとさくらが修正を終えたと発表しています。</p>
+        <p>一方、制作会社が自社のサーバーで管理しているケースもあります。この場合、対応したかどうかが塾長からは見えません。「どこか分からない」という場合も、ここに入ります。</p>
+        <h3>③ PHPのバージョンは8.2以上ですか？</h3>
+        <p>今回、修正版が出たのは8.2から上のバージョンです。8.1以前はサポートが終わっていて、IPAも「今回の修正は提供されない」としています。サーバー会社によっては古いバージョンにも独自に手当てをしているところがありますが、さくらは利用者に「PHP 8.3への切り替え」を呼びかけています。古いまま使い続ける理由は、もうないということです。</p>
+        <figure><img src="/assets/news/php-zeijakusei-juku-hp/06.jpg" alt="解説スライド：PHPは8.2以上？ 8.5・8.4・8.3・8.2は修正版あり、8.1・8.0・7.xはサポート終了（今回の修正なし）" loading="lazy" decoding="async"><figcaption>出典：IPA（2026年10月22日）をもとに作成</figcaption></figure>
+        <p>PHPのバージョンは、WordPressの管理画面で「ツール」→「サイトヘルス」→「情報」→「サーバー」と開くと確かめられます。</p>
+        <p>ここに落とし穴があります。PHPのバージョンを利用者が選べるサーバーでは、何年も前に作ったまま、古いPHPで動いていることがあるのです。実際、スマ塾の無料ホームページ診断に申し込んでくださった塾のサイトを外から確認できる範囲で見たところ、確認できた25件のうち19件がWordPressでした。PHPのバージョンが見えたサイトの中には、5.6と7.4という、どちらもサポートが終わった古いバージョンのものが1件ずつありました。もちろん、これだけで「危ない」とは言えません。ただ、「うちは関係ない」と思っている塾の中にも、確かめたほうがいいところはあります。</p>
+        <figure><img src="/assets/news/php-zeijakusei-juku-hp/07.jpg" alt="解説スライド：無料HP診断で外から確認できた25件中19件がWordPress。PHP 5.6とPHP 7.4が各1件" loading="lazy" decoding="async"><figcaption>スマ塾の無料HP診断で、外から確認できた範囲</figcaption></figure>
+        <p>古いPHPのバージョンを上げるときは、注意が一つあります。古いテーマやプラグインのままバージョンだけ上げると、ホームページの表示が崩れることがあります。自分で触る前にバックアップを取るか、作った人に頼むのが安全です。</p>
+        <h3>今回とは別に：プラグインの更新</h3>
+        <p>WordPressで見つかる弱点の多くは、PHP本体ではなくプラグインです。こちらはサーバー会社は直してくれません。ダッシュボードの「更新」で更新が残っていないかを見て、使っていないプラグインは止めるだけでなく削除しておくと安心です。</p>
+        <h2>塾として大切なこと：ホームページの「鍵」を塾長が持っておく</h2>
+        <p>教室の鍵を、業者さんしか持っていない塾はないはずです。ところがホームページになると、意外とそうなっている塾が多いのです。</p>
+        <ul>
+        <li>作ってもらったけれど、サーバーがどこか分からない</li>
+        <li>管理画面のパスワードを、制作会社しか知らない</li>
+        <li>作った人に、最近連絡がつかない</li>
+        </ul>
+        <p>こうした状態は、今回のようなことが起きたときに一番困ります。危ないかどうか以前に、確かめようがないからです。実はIPAも今回の注意喚起の中で、保守の体制や予算を確保できない場合は、保守を受けられるものへの移行や、公開の終了も含めて検討するよう書いています。放っておかれたホームページは、それくらい重く見られているということです。</p>
+        <figure><img src="/assets/news/php-zeijakusei-juku-hp/08.jpg" alt="解説スライド：HPの「鍵」を塾長が持っておく。①サーバーの契約 ②管理画面に入る方法 ③すぐ頼める人" loading="lazy" decoding="async"></figure>
+        <p>持っておきたい鍵は、3本です。</p>
+        <ol>
+        <li><strong>サーバーの契約</strong>：どこのサーバー会社と、誰の名義で契約しているか</li>
+        <li><strong>管理画面に入る方法</strong>：塾長自身が、いつでも入れる状態か</li>
+        <li><strong>すぐ頼める人</strong>：何かあったときに、返事をくれる制作会社や担当者がいるか</li>
+        </ol>
+        <p>塾のホームページには、問い合わせフォームや体験の申込フォームがあり、保護者のお名前や電話番号、お子さんの学年が入ってきます。塾はホームページを通じて、保護者の大事な情報を預かっているのです。ホームページは「作って終わり」の看板ではなく、教室と同じように塾長が責任を持って管理する場所だと考えています。今回のニュースを、年に1回「この3本の鍵を確かめる日」にしていただけたら、それだけで塾の守りはかなり変わります。</p>
+        <p>制作会社に確かめるときは、次のように送れば十分です。</p>
+        <blockquote><p>10月21日に公表されたPHPの脆弱性について、当塾のホームページのサーバーは対応済みでしょうか。あわせて、いま使っているPHPのバージョンと、WordPress・プラグインの更新状況を教えていただけますと助かります。</p></blockquote>
+        <h2>まとめ</h2>
+        <ul>
+        <li>10月21日、PHPに重大な脆弱性が見つかり、修正版が出た。大手のレンタルサーバーなら修正はサーバー会社が行うので、多くの塾は慌てなくてよい</li>
+        <li>WordPressで作っていて、サーバーが制作会社の管理だったり、どこか分からなかったりする場合、そしてPHPのバージョンが8.1以下の場合は、確かめる必要がある</li>
+        <li>一番大切なのは、ホームページの鍵（サーバーの契約・管理画面・頼める人）を塾長が把握しておくこと</li>
+        </ul>
+        <figure><img src="/assets/news/php-zeijakusei-juku-hp/09.jpg" alt="解説スライド：まとめ。大手のレンタルサーバーなら多くの塾は慌てなくてよい／WordPress・サーバー不明・PHP 8.1以下は確かめる／HPの鍵を塾長が持つ" loading="lazy" decoding="async"></figure>
+        <h2>塾のHP 5分チェックリスト（無料）</h2>
+        <p>この記事の内容を、塾長が5分で確かめられるチェックリスト（A4・2ページ）にまとめました。WordPressかどうかの見分け方、PHPのバージョンの見方、制作会社に聞くときの文例まで入っています。<a href="https://smart-juku.syuni.jp/shindan/?utm_source=sumajuku&amp;utm_medium=news&amp;utm_campaign=php2026-10" target="_blank" rel="noopener noreferrer">スマ塾の無料ホームページ診断</a>からお申し込みいただくと、チェックリストをメールでお送りします（ご希望の方には、ホームページを外から確認した診断レポートもお付けします）。こちらからお電話をかけることはしません。</p>
+        <p>なお、スマ塾が作るホームページは、PHPやWordPressを使わない作りです。今回のような「サーバーのPHPを急いで更新する」作業が、そもそも要りません。</p>
+        <p>※この記事は2026年10月22日時点の公開情報をもとにしています。サーバー会社の対応は変わることがあるので、最新の情報はご契約のサーバー会社のお知らせでご確認ください。</p>
+        <h3>参考資料</h3>
+        <ul>
+        <li>IPA（情報処理推進機構）「PHPの脆弱性対策について（CVE-2026-109618、CVE-2026-109619：PHP2shell）」（2026年10月22日）<a href="https://www.ipa.go.jp/security/security-alert/2026/alert20261022.html" target="_blank" rel="noopener noreferrer">https://www.ipa.go.jp/security/security-alert/2026/alert20261022.html</a></li>
+        <li>MBSニュース「さくらインターネットや関西私鉄4社、自治体などがwebサービス停止」（2026年10月22日）<a href="https://news.yahoo.co.jp/articles/28bc47a13b015d2d24ef635e5b33b1bde304f519" target="_blank" rel="noopener noreferrer">https://news.yahoo.co.jp/articles/28bc47a13b015d2d24ef635e5b33b1bde304f519</a></li>
+        <li>Tenable「php2shell（CVE-2026-109618／CVE-2026-109619）FAQ」<a href="https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote" target="_blank" rel="noopener noreferrer">https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote</a></li>
+        <li>エックスサーバー「PHPのバージョンについて」<a href="https://www.xserver.ne.jp/manual/man_program_php_ver.php" target="_blank" rel="noopener noreferrer">https://www.xserver.ne.jp/manual/man_program_php_ver.php</a></li>
+        </ul>
+
+        <h2>この記事は塾にどう効くか</h2>
+        <div class="answer">
+        <p>塾の授業や運営が変わる話ではありません。関係するのは塾のホームページです。大手のレンタルサーバーなら修正はサーバー会社が行うので、多くの塾は待てば大丈夫です。</p>
+        <p>確かめたいのは、WordPressで作っていて、サーバーが制作会社の管理だったり分からなかったりする塾と、PHPが8.1以下の塾です。</p>
+        </div>
+
+        <h3>保護者への説明材料になるか</h3>
+        <p>直接の説明材料にはなりません。保護者から聞かれる話題ではないからです。</p>
+        <p>ただ、塾のホームページの問い合わせフォームには、保護者の名前や電話番号が入ってきます。「保護者の情報を預かる場所として管理している」と言える状態にしておくことは、塾の信頼そのものです。</p>
+
+        <h3>塾のホームページ運営への影響</h3>
+        <p>あります。WordPressの塾は、記事の手順（WordPressか→サーバーはどこか→PHPは8.2以上か）で一度確かめてください。古いPHPを上げるときは、表示が崩れることがあるので、バックアップを取るか作った人に頼むのが安全です。</p>
+        <p>あわせて、サーバーの契約・管理画面に入る方法・すぐ頼める人という「3本の鍵」を塾長が把握しているかを見直す機会にしてください。年に1回確かめる日を決めておくだけでも、次に同じことが起きたときに慌てずに済みます。</p>
+
+        <h3>発信のネタとして使えるか</h3>
+        <p>塾の発信のネタとしては、あまり向きません。保護者にとっては関心の薄い技術の話だからです。</p>
+        <p>それよりも、「ホームページを作ったあと誰が管理しているか」を塾の中で確かめておくことのほうが大切です。制作会社に確かめるときの文例は、記事の中に載せています。</p>
+
+        <div class="share">
+          <p class="share-label">この記事を共有する</p>
+          <div class="share-btns">
+            <a class="share-btn sb-x" href="https://x.com/intent/post?text=%E9%89%84%E9%81%93%E3%82%82%E5%B8%82%E5%BD%B9%E6%89%80%E3%82%82%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E6%AD%A2%E3%82%81%E3%81%9F%E3%80%8CPHP%E3%81%AE%E8%84%86%E5%BC%B1%E6%80%A7%E3%80%8D%EF%BD%9C%E5%A1%BE%E3%81%AE%E3%83%9B%E3%83%BC%E3%83%A0%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AF%E9%96%A2%E4%BF%82%E3%81%82%E3%82%8B%EF%BC%9F&amp;url=https%3A%2F%2Fsmart-juku.syuni.jp%2Fnews%2Fphp-zeijakusei-juku-hp.html" target="_blank" rel="noopener noreferrer"><span class="sv-dot"></span>X</a>
+            <a class="share-btn sb-line" href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fsmart-juku.syuni.jp%2Fnews%2Fphp-zeijakusei-juku-hp.html" target="_blank" rel="noopener noreferrer"><span class="sv-dot"></span>LINE</a>
+            <a class="share-btn sb-fb" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsmart-juku.syuni.jp%2Fnews%2Fphp-zeijakusei-juku-hp.html" target="_blank" rel="noopener noreferrer"><span class="sv-dot"></span>Facebook</a>
+            <button class="share-btn sb-copy" type="button" data-url="https://smart-juku.syuni.jp/news/php-zeijakusei-juku-hp.html"><span class="sv-dot"></span><span class="sb-text">リンクをコピー</span></button>
+          </div>
+        </div>
+
+        <div class="article-cta">
+          <h2>塾のホームページ、今のままで大丈夫か診断します</h2>
+          <p>制度の変化を保護者に伝える場としても、ホームページは使えます。スマホ表示・問い合わせ導線・情報の鮮度を、塾専門の視点で無料チェックします。</p>
+          <a class="btn" href="/#contact">無料でHP診断を受ける</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="site-logo" href="/"><span class="dot"></span><span>スマ塾<small style="color:rgba(247,244,237,.55)">学習塾専門のWeb支援</small></span></a>
+        <p>個人塾・地域密着塾専門のWeb支援サービス<br>運営：<a href="https://syuni.jp/" target="_blank" rel="noopener noreferrer">合同会社SyUNi</a>（代表：小田 一勲）</p>
+      </div>
+      <nav class="foot-nav">
+        <a href="/case/">制作事例</a>
+        <a href="/guide/">塾HPの基礎知識</a>
+        <a href="/report/">調査レポート</a>
+        <a href="/news/">教育ニュース</a>
+        <a href="/#contact">無料相談</a>
+      </nav>
+    </div>
+    <div class="foot-copy">
+      <span>© 2026 合同会社SyUNi</span>
+      <span>
+        <a href="/privacy.html">プライバシーポリシー</a>
+        <a href="/tokushoho.html">特定商取引法に基づく表記</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
