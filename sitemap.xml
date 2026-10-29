@@ -122,6 +122,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://smart-juku.syuni.jp/news/hogosha-jukusagashi-ai.html</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://smart-juku.syuni.jp/news/kankandouritsu-goukakusha-shibori.html</loc>
     <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
