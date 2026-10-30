@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- 検索エンジンからの完全除外（robots.txt の Disallow: /r/ と併用） -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, max-snippet:0, max-image-preview:none, max-video-preview:0">
+<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot-news" content="noindex, nofollow">
+<meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="msnbot" content="noindex, nofollow">
+<meta name="slurp" content="noindex, nofollow">
+<meta name="duckduckbot" content="noindex, nofollow">
+<meta name="baiduspider" content="noindex, nofollow">
+<meta name="yandex" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#F4F2ED">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="/favicon.ico">
+<title>3つの新規事業 試算シート LINE版</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=Zen+Old+Mincho:wght@600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
+<style>
+/* レイアウト：1カラムの用紙（独立開業ツール群と同じ系列）。目立たせるのは「1日の時間割」の升目だけ。 */
+:root{
+  color-scheme:light;
+  --paper:#F4F2ED; --sheet:#FCFBF8; --sheet-2:#F0EEE8;
+  --ink:#2A2724; --ink-2:#66625C; --ink-3:#9B968E;
+  --line:#E2DED5; --line-2:#CBC5B9;
+  --ai:#43536B; --ai-2:#586a85; --ai-soft:#E9EBEF;
+  --shu:#8E4A3E; --shu-soft:#F0E6E2;
+  --kin:#856C33; --kin-soft:#EEE8DA;
+  --midori:#4B6A55; --midori-soft:#E4EAE4;
+  --bar:#34353A; --bar-ink:#F5F3EF; --bar-ink-2:#A7A39C;
+  --on-ai:#FFFFFF;
+  /* 事業ごとの色（時間割と表で共通） */
+  --c-kizon:#8F8A82; --c-kizon-soft:#E7E4DE;
+  --c-sho:#4B6A55;   --c-sho-soft:#E4EAE4;
+  --c-fs:#856C33;    --c-fs-soft:#EEE8DA;
+  --c-jp:#43536B;    --c-jp-soft:#E9EBEF;
+  --f-disp:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"BIZ UDPGothic","Hiragino Sans","Yu Gothic UI",system-ui,sans-serif;
+  --f-num:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --hair:0 1px 2px rgba(42,39,36,.04);
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--f-body);
+  font-size:14px; line-height:1.75; -webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px; margin:0 auto; padding-block:30px 64px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px))}
+a{color:var(--ai)}
+header.top{border-bottom:1px solid var(--line-2); padding-bottom:16px; margin-bottom:22px}
+.kicker{margin:0 0 4px; font-size:11px; letter-spacing:.14em; color:var(--ink-3); font-weight:700}
+h1{font-family:var(--f-disp); font-weight:600; font-size:clamp(21px,2.9vw,28px); line-height:1.35;
+  letter-spacing:.03em; margin:0 0 6px; text-wrap:balance}
+.lede{margin:0; color:var(--ink-2); font-size:12.5px; max-width:60ch}
+h2.sec{font-family:var(--f-disp); font-size:16px; font-weight:600; margin:32px 0 11px;
+  display:flex; align-items:baseline; gap:11px; flex-wrap:wrap; letter-spacing:.02em; text-wrap:balance}
+h1 .nb{display:inline-block}
+h1,h2.sec,.q,.case strong,.cta-card strong{word-break:auto-phrase}
+h2.sec em{font-style:normal; font-size:11.5px; color:var(--ink-2); font-family:var(--f-body); font-weight:400}
+
+/* ---------- 仮の値の札 ---------- */
+.tag{display:inline-block; font-size:10px; letter-spacing:.06em; font-weight:700; line-height:1.4;
+  padding:1px 6px; border:1px solid; white-space:nowrap}
+.tag.kari{color:var(--kin); border-color:#CDBF9C; background:var(--kin-soft)}
+.tag.hyo{color:var(--ai); border-color:#B9C1CD; background:var(--ai-soft)}
+.legend-tags{display:flex; flex-wrap:wrap; gap:6px 16px; margin:10px 0 0; font-size:11.5px; color:var(--ink-2)}
+.legend-tags span{display:flex; align-items:center; gap:6px}
+
+/* ---------- ウィザード ---------- */
+.prog{margin-bottom:14px}
+.prog-step{font-family:var(--f-num); font-size:11.5px; color:var(--ink-2); letter-spacing:.05em; display:block; margin-bottom:7px}
+.prog-step b{color:var(--ink); font-size:13.5px; font-weight:500}
+.prog-bar{height:3px; background:var(--line); overflow:hidden}
+.prog-bar i{display:block; height:100%; background:var(--ai); transition:width .2s ease}
+.stage{background:var(--sheet); border:1px solid var(--line-2); box-shadow:var(--hair);
+  padding:24px 26px 22px; display:flex; flex-direction:column; gap:16px}
+.eyebrow{display:flex; align-items:center; gap:9px; flex-wrap:wrap}
+.eyebrow .cat{font-size:10.5px; letter-spacing:.16em; font-weight:700; color:var(--ink-2); border:1px solid var(--line-2); padding:2px 9px}
+.eyebrow .dot{width:10px; height:10px; display:inline-block}
+.q{margin:0; font-size:clamp(17px,2.4vw,21px); font-weight:700; line-height:1.6; text-wrap:balance}
+.choice{display:flex; gap:10px; flex-wrap:wrap}
+.choice button{flex:1 1 200px; font-family:inherit; font-size:14.5px; font-weight:700; padding:13px 16px;
+  border:1px solid var(--line-2); background:var(--sheet-2); color:var(--ink-2); cursor:pointer; text-align:left}
+.choice button small{display:block; font-weight:400; font-size:11.5px; color:var(--ink-3); margin-top:3px; line-height:1.6}
+.choice button:hover{border-color:var(--ink-3)}
+.choice.pick button.on::before{content:"✓ "}
+.hint.warn{border-left-color:var(--shu); color:var(--shu)}
+.choice button.on{background:var(--ai); border-color:var(--ai); color:var(--on-ai)}
+.choice button.on small{color:rgba(255,255,255,.75)}
+.choice button:focus-visible,.seg button:focus-visible{outline:2px solid var(--shu); outline-offset:2px}
+.seg{display:inline-flex; align-self:flex-start; border:1px solid var(--line-2); flex-wrap:wrap}
+.seg button{font-family:inherit; font-size:12.5px; border:0; background:var(--sheet-2); color:var(--ink-2); padding:7px 14px; cursor:pointer}
+.seg button + button{border-left:1px solid var(--line-2)}
+.seg button.on{background:var(--ai); color:var(--on-ai); font-weight:700}
+.seg.multi{display:flex; flex-wrap:wrap; gap:6px; border:0}
+.seg.multi button{border:1px solid var(--line-2)}
+.seg.multi button + button{border-left:1px solid var(--line-2)}
+.seg.multi button.on{border-color:var(--ai)}
+.seg.multi button.on::before{content:"✓ "}
+.tag[hidden]{display:none}
+.grp{border-top:1px solid var(--line); padding-top:12px}
+.grp-h{margin:0 0 8px; font-size:10.5px; letter-spacing:.16em; color:var(--ink-3); font-weight:700}
+.flds{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px 20px}
+.fld{display:flex; flex-direction:column; gap:5px; min-width:0}
+.fld-top{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.fld-top label,.fld-top .lab{font-size:12.5px; color:var(--ink-2); font-weight:700}
+.box{display:flex; border:1px solid var(--line-2); background:var(--sheet-2); max-width:240px}
+.box:focus-within{border-color:var(--ai)}
+.box input{flex:1; min-width:0; width:100%; border:0; background:transparent; color:var(--ink); padding:7px 10px;
+  font-family:var(--f-num); font-size:17px; font-variant-numeric:tabular-nums; text-align:right}
+.box input:focus{outline:none}
+.box .u{display:flex; align-items:center; padding:0 10px; font-size:11.5px; color:var(--ink-2);
+  background:var(--sheet); border-left:1px solid var(--line); white-space:nowrap}
+.times{display:flex; align-items:center; gap:6px; flex-wrap:wrap}
+.times select{font-family:var(--f-num); font-size:16px; color:var(--ink); background:var(--sheet-2);
+  border:1px solid var(--line-2); padding:6px 8px}
+.times select:focus{outline:none; border-color:var(--ai)}
+.fld-note{margin:0; font-size:11px; color:var(--ink-3); line-height:1.65}
+.off .flds,.off .grp{opacity:.45}
+.hint{margin:0; background:var(--sheet-2); border-left:2px solid var(--line-2);
+  padding:11px 14px; font-size:12.5px; color:var(--ink-2); line-height:1.85}
+.hint b{color:var(--ink); font-weight:700}
+.live{border-top:1px solid var(--line); padding-top:12px; display:flex; flex-wrap:wrap; gap:4px 26px; font-size:12px; color:var(--ink-2)}
+.live b{font-family:var(--f-num); font-size:15px; font-weight:600; color:var(--ai); font-variant-numeric:tabular-nums}
+.live b.neg{color:var(--shu)}
+.nav{display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center; margin-top:16px}
+.nav .spacer{flex:1}
+.kbhint{font-size:11px; color:var(--ink-3); font-family:var(--f-num)}
+
+/* ---------- ボタン ---------- */
+.btn{font-family:inherit; font-size:13px; font-weight:700; color:var(--on-ai); background:var(--ai);
+  border:1px solid var(--ai); padding:10px 18px; cursor:pointer; display:inline-flex; align-items:center; gap:9px; transition:background .13s ease}
+.btn:hover{background:var(--ai-2); border-color:var(--ai-2)}
+.btn:disabled{opacity:.45; cursor:not-allowed}
+.btn:focus-visible{outline:2px solid var(--shu); outline-offset:2px}
+.btn.ghost{background:transparent; color:var(--ai); border-color:var(--line-2); font-weight:400}
+.btn.ghost:hover{background:var(--sheet-2)}
+.btn.small{font-size:12px; padding:6px 12px}
+.btn svg{width:14px; height:14px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round}
+
+/* ---------- 結果：まとめの数字 ---------- */
+.results{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; background:var(--line); border:1px solid var(--line)}
+.rcard{background:var(--sheet); padding:15px 17px; display:flex; flex-direction:column; gap:3px; min-width:0}
+.rcard .k{font-size:11px; letter-spacing:.08em; color:var(--ink-2); font-weight:700}
+.rcard .n{font-family:var(--f-num); font-size:26px; font-weight:500; line-height:1.15; font-variant-numeric:tabular-nums; overflow-wrap:anywhere}
+.rcard .n small{font-size:12.5px; margin-left:3px; font-family:var(--f-body); color:var(--ink-2)}
+.rcard .n.neg{color:var(--shu)}
+.rcard.main .n{color:var(--midori)}
+.rcard.main .n.neg{color:var(--shu)}
+.rcard .d{font-size:11.5px; color:var(--ink-2); line-height:1.65}
+@media (max-width:760px){ .results{grid-template-columns:repeat(2,minmax(0,1fr))} }
+
+/* ---------- 時間割（この試算の山場） ---------- */
+.tt-box{background:var(--sheet); border:1px solid var(--line-2); box-shadow:var(--hair); padding:16px 18px 14px}
+.tt-cap{margin:0 0 12px; font-size:12px; color:var(--ink-2); line-height:1.75}
+.tt{display:grid; grid-template-columns:minmax(96px,150px) minmax(0,1fr); row-gap:6px}
+.tt-scale{position:relative; height:18px; font-family:var(--f-num); font-size:10.5px; color:var(--ink-3)}
+.tt-scale span{position:absolute; transform:translateX(-50%); top:0}
+.tt-scale span.first{transform:none} .tt-scale span.last{transform:translateX(-100%)}
+.tt-lab{font-size:12px; font-weight:700; color:var(--ink); line-height:1.3; padding-right:8px; display:flex; flex-direction:column; justify-content:center; min-height:40px}
+.tt-lab small{font-weight:400; font-size:10.5px; color:var(--ink-3); font-family:var(--f-num)}
+.tt-track{position:relative; min-height:40px; border:1px solid var(--line-2); background-color:var(--sheet-2);
+  background-image:repeating-linear-gradient(to right, var(--line-2) 0 1px, transparent 1px calc(100% / 14));}
+.tt-noon{position:absolute; top:0; bottom:0; background:rgba(133,108,51,.06); pointer-events:none}
+.tt-blk{position:absolute; top:4px; bottom:4px; padding:3px 7px; font-size:11px; line-height:1.3; font-weight:700;
+  overflow:hidden; white-space:nowrap; text-overflow:ellipsis; border-left:3px solid; display:flex; align-items:center}
+.tt-blk.kizon{background:var(--c-kizon-soft); border-color:var(--c-kizon); color:var(--ink-2)}
+.tt-blk.sho{background:var(--c-sho-soft); border-color:var(--c-sho); color:var(--c-sho)}
+.tt-blk.fs{background:var(--c-fs-soft); border-color:var(--c-fs); color:var(--c-fs)}
+.tt-blk.jp{background:var(--c-jp-soft); border-color:var(--c-jp); color:var(--c-jp)}
+.tt-empty{position:absolute; inset:0; display:flex; align-items:center; padding-left:10px; font-size:11px; color:var(--ink-3)}
+@media (max-width:520px){ .tt-blk{color:transparent !important} }
+.tt-warn{margin:12px 0 0; padding:0; list-style:none; display:grid; gap:4px}
+.tt-warn li{font-size:12px; color:var(--shu); background:var(--shu-soft); padding:6px 10px; line-height:1.65}
+.tt-ok{margin:12px 0 0; font-size:12px; color:var(--midori)}
+
+/* ---------- 比べる表 ---------- */
+.tablewrap{overflow-x:auto; background:var(--sheet); border:1px solid var(--line-2)}
+table.cmp{border-collapse:collapse; width:100%; min-width:640px; font-size:12.5px}
+.cmp th,.cmp td{padding:8px 12px; border-bottom:1px solid var(--line); text-align:right; white-space:nowrap}
+.cmp thead th{background:var(--bar); color:var(--bar-ink); font-size:11.5px; font-weight:700; vertical-align:bottom; line-height:1.45}
+.cmp thead th i{display:inline-block; width:9px; height:9px; margin-right:6px; vertical-align:0}
+.cmp thead th small{display:block; font-weight:400; font-size:10px; color:var(--bar-ink-2)}
+.cmp th:first-child,.cmp td:first-child{text-align:left; position:sticky; left:0; z-index:1}
+.cmp tbody th{background:var(--sheet); color:var(--ink-2); font-weight:700; font-size:12px; white-space:normal; min-width:150px}
+.cmp thead th:first-child{background:var(--bar)}
+.cmp td{font-family:var(--f-num); font-variant-numeric:tabular-nums}
+.cmp td.txt{font-family:var(--f-body); font-size:12px; white-space:normal; min-width:8em}
+.cmp tfoot th small{display:block; font-weight:400; font-size:11px; color:var(--ink-2); margin-top:2px}
+.cmp tfoot td{white-space:nowrap; vertical-align:middle}
+.cmp td.tot{background:var(--sheet-2)}
+.cmp td.offc,.cmp tr.key td.offc{color:var(--ink-3); background:var(--sheet-2); font-weight:400}
+.cmp tr.key th,.cmp tr.key td{border-top:2px solid var(--line-2); font-weight:700; color:var(--ink)}
+.cmp tr.key td{font-size:14px}
+.cmp tr.sub th,.cmp tr.sub td{color:var(--ink-3); font-size:11.5px}
+.cmp td.neg{color:var(--shu)}
+.cmp tfoot th,.cmp tfoot td{background:var(--ai-soft); color:var(--ai); font-weight:700; border-bottom:1px solid #D5DAE2}
+.cmp tfoot th{position:sticky; left:0; font-size:12px; text-align:left; white-space:normal}
+.cmp tfoot tr.grand td{font-size:16px}
+.cmp tfoot td.neg{color:var(--shu)}
+.fixrow{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 0}
+
+/* ---------- 読み取れること・仮の値 ---------- */
+.obs-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px}
+.obs-card{background:var(--sheet); border:1px solid var(--line-2); border-top:3px solid var(--c); padding:14px 16px 15px; display:grid; gap:8px; align-content:start; min-width:0}
+.obs-h{margin:0; font-size:12.5px; font-weight:700; color:var(--c)}
+.obs-big{margin:0; font-family:var(--f-num); font-size:26px; font-weight:500; line-height:1.15; color:var(--midori); font-variant-numeric:tabular-nums}
+.obs-big.neg{color:var(--shu)}
+.obs-big small{font-family:var(--f-body); font-size:12px; color:var(--ink-2); margin-left:4px}
+.obs-dl{margin:0; display:grid; gap:8px; border-top:1px solid var(--line); padding-top:9px}
+.obs-dl dt{font-size:11px; color:var(--ink-3); font-weight:700; letter-spacing:.04em}
+.obs-dl dd{margin:0; font-size:14px; font-weight:700; color:var(--ink)}
+.obs-dl dd small{display:block; font-size:11.5px; font-weight:400; color:var(--ink-2); line-height:1.6}
+.obs-all{list-style:none; margin:12px 0 0; padding:0; display:grid; gap:1px; background:var(--line); border:1px solid var(--line)}
+.obs-all li{background:var(--sheet); padding:9px 14px; font-size:12.5px; color:var(--ink-2); line-height:1.75; display:grid; grid-template-columns:11em minmax(0,1fr); gap:4px 12px}
+.obs-all li b{color:var(--ink)}
+.obs-empty{margin:0; font-size:12.5px; color:var(--ink-2)}
+@media (max-width:560px){ .obs-all li{grid-template-columns:1fr} }
+.kari-list{display:grid; gap:12px}
+.kari-lede{margin:0; font-size:12.5px; color:var(--ink-2)}
+.kari-card{background:var(--sheet); border:1px solid var(--line-2); border-left:3px solid var(--c); padding:12px 16px 16px; display:grid; gap:10px; min-width:0}
+.kari-h{margin:0; font-size:12.5px; font-weight:700; color:var(--c)}
+.kari-card .flds{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+
+/* ---------- 実例・CTA・注記 ---------- */
+.case{background:var(--sheet); border:1px solid var(--line-2); border-left:3px solid var(--c-fs); padding:16px 20px; display:grid; gap:6px}
+.case .k{font-size:10.5px; letter-spacing:.14em; font-weight:700; color:var(--c-fs)}
+.case strong{font-family:var(--f-disp); font-size:17px; font-weight:600; line-height:1.5}
+.case p{margin:0; font-size:12.5px; color:var(--ink-2); line-height:1.85; max-width:66ch}
+.case a{font-size:12.5px; font-weight:700}
+.toolbar{display:flex; flex-wrap:wrap; align-items:center; gap:12px 18px; margin:20px 0}
+.vidgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px}
+.vid{display:flex; flex-direction:column; gap:8px; text-decoration:none; color:inherit; min-width:0;
+  background:var(--sheet); border:1px solid var(--line); padding:0 0 10px; transition:background .13s ease}
+.vid:hover{background:var(--sheet-2)}
+.vid:focus-visible{outline:2px solid var(--shu); outline-offset:2px}
+.vid .thumb{position:relative; display:block; aspect-ratio:16/9; max-width:100%; background:var(--sheet-2); overflow:hidden}
+.vid .thumb img{display:block; width:100%; height:100%; object-fit:cover}
+.vid .len{position:absolute; right:6px; bottom:6px; background:rgba(20,20,20,.82); color:#fff;
+  font-family:var(--f-num); font-size:11px; line-height:1; padding:3px 5px}
+.vid .t{padding:0 12px; font-size:12px; line-height:1.6; font-weight:700; min-width:0}
+.vid .t span{display:block; margin-top:2px; font-weight:400; color:var(--ink-2); font-size:10.5px; font-family:var(--f-num); letter-spacing:.02em}
+@media (max-width:520px){
+  .vidgrid{grid-template-columns:1fr; gap:10px}
+  .vid{flex-direction:row; align-items:flex-start; padding:0}
+  .vid .thumb{flex:none; width:132px}
+  .vid .t{padding:8px 10px 8px 0}
+}
+.chan{margin:10px 0 0; font-size:11.5px; color:var(--ink-2)}
+.note-inline{font-size:12px; color:var(--ink-2)}
+.note-inline.err{color:var(--shu); font-weight:700}
+.notes{margin-top:22px; display:grid; gap:1px; background:var(--line); border:1px solid var(--line)}
+.notes p{margin:0; background:var(--sheet); padding:11px 16px; font-size:12px; color:var(--ink-2); line-height:1.85}
+.notes p b{color:var(--ink); font-weight:700}
+.cta-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px}
+.cta-card{display:flex; flex-direction:column; gap:6px; text-decoration:none; color:inherit;
+  background:var(--sheet); border:1px solid var(--line-2); padding:17px 19px 15px; transition:background .13s ease}
+.cta-card:hover{background:var(--sheet-2)}
+.cta-card .k{font-size:10.5px; letter-spacing:.14em; font-weight:700; color:var(--ink-2)}
+.cta-card strong{font-family:var(--f-disp); font-size:17px; font-weight:600; line-height:1.45}
+.cta-card p{margin:0; font-size:12px; color:var(--ink-2); line-height:1.8; flex:1}
+.cta-card .go{align-self:flex-start; margin-top:5px; font-size:12px; font-weight:700; color:var(--on-ai); background:var(--ai); padding:7px 15px}
+.cta-card .go::after{content:" →"}
+.cta-card.line .go{background:#3B7A55}
+.cta-card[hidden],.btn[hidden]{display:none}
+.line-get{max-width:560px; margin:0 0 8px; border-left:3px solid #3B7A55}
+footer.foot{margin-top:24px; padding-top:14px; border-top:1px solid var(--line); font-size:11.5px; color:var(--ink-3); line-height:1.85}
+@media (max-width:640px){
+  .wrap{padding-block:20px 48px}
+  .stage{padding:18px 16px}
+  .tt-box{padding:14px 12px 12px}
+  .rcard .n{font-size:22px}
+}
+@media (prefers-reduced-motion:reduce){ *{transition:none !important} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <p class="kicker">新規事業提案セミナー 参加特典</p>
+    <h1><span class="nb">昼の空き時間で、</span><span class="nb">3つの新規事業を</span><span class="nb">始めたら</span></h1>
+    <p class="lede">小学生の受け入れ、フリースクール、日本語コース。ご自身の塾の月謝・生徒数・時間・人件費を入れると、事業ごとの月の売上・費用・増える利益と、3つの合計が出ます。数字は判断の材料としてお使いください。</p>
+    <div class="legend-tags">
+      <span><i class="tag kari">仮の値</i>目安として置いた数字です。ご自身の数字に直すと札が消えます</span>
+      <span><i class="tag hyo">料金表の値</i>すららの料金表（税抜）から入れた数字です。ご契約の内容で変わります</span>
+    </div>
+  </header>
+
+  <div id="wizard">
+    <div class="prog">
+      <span class="prog-step" id="progStep"></span>
+      <div class="prog-bar"><i id="progBar" style="width:0%"></i></div>
+    </div>
+    <div class="stage" id="stage"></div>
+    <div class="nav">
+      <button class="btn ghost" id="prev" type="button">← 戻る</button>
+      <button class="btn" id="next" type="button">次へ →</button>
+      <span class="spacer"></span>
+      <button class="btn ghost small" id="skip" type="button">仮の値のまま結果を見る</button>
+    </div>
+  </div>
+
+  <div id="result" hidden>
+    <div class="toolbar" style="margin:0 0 16px">
+      <button class="btn ghost" id="backEdit" type="button">← 条件を入力しなおす</button>
+    </div>
+
+    <h2 class="sec" style="margin-top:0">選んだ事業を始めた場合<em>合計・1か月あたり</em></h2>
+    <div class="results" id="summary"></div>
+
+    <h2 class="sec">1日の時間割<em>今の授業と、新しく入る時間</em></h2>
+    <div class="tt-box">
+      <p class="tt-cap">色の帯が教室を使う時間です。うすい黄色の帯は、小学校が終わる前の昼の時間（9:00〜15:00）を示しています。</p>
+      <div class="tt" id="tt"></div>
+      <div id="ttWarn"></div>
+    </div>
+
+    <h2 class="sec">事業を並べて比べる<em>1か月あたり・円</em></h2>
+    <div class="tablewrap"><table class="cmp" id="cmp"></table></div>
+    <div class="fixrow" id="fixrow"></div>
+
+    <h2 class="sec">数字から読み取れること<em>判断の材料として</em></h2>
+    <div id="obs"></div>
+
+    <h2 class="sec">まだ仮の値のままの項目<em>ご自身の数字に直すと、試算が塾の実態に近づきます</em></h2>
+    <div class="kari-list" id="kariList"></div>
+
+    <div class="toolbar">
+      <button class="btn" id="dl" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
+        Excel で書き出す
+      </button>
+      <button class="btn ghost" id="reset" type="button">仮の値に戻す</button>
+      <span class="note-inline" id="dlNote"></span>
+    </div>
+    <a class="cta-card line line-get" id="lineGet" href="https://liff.line.me/2009879529-HjsNyL9C/landing?follow=%40917wxvha&amp;lp=wAfbgA&amp;liff_id=2009879529-HjsNyL9C" target="_blank" rel="noopener" hidden>
+      <span class="k">公式LINE限定</span>
+      <strong>この試算を、Excelで保存できます</strong>
+      <p>すららネットの公式LINEに友だち追加すると、Excelで書き出せる版のページをお送りします。入力した条件のまま、LINEで相談もできます。</p>
+      <span class="go">友だち追加</span>
+    </a>
+
+    <h2 class="sec">参考になるEdu-Biz動画<em>Edu-Bizチャンネル by すららネット</em></h2>
+    <div class="vidgrid" id="vids"></div>
+    <p class="chan">すべて <a href="https://www.youtube.com/@Edu_Biz_Surala_juku" target="_blank" rel="noopener">Edu-Bizチャンネル by すららネット</a> の動画です。</p>
+
+    <h2 class="sec">塾＋フリースクールの実例<em>すららネットのセミナーより</em></h2>
+    <div class="case">
+      <span class="k">長野県・学び舎かなえ（株式会社未来 代表 安部映樹 様）</span>
+      <strong>塾の空き時間でフリースクール。生徒数150名を4年連続、開業6年で年商4,000万円。</strong>
+      <p>2018年に個別指導塾を開校し、その後フリースクールと通信制高校を開設。すららを使った出席扱いにも早くから取り組んでいます。開設の手順や売上の推移は、安部先生のセミナーで紹介しています。</p>
+      <a href="https://suralajuku.jp/seminar/jukufreeschool" target="_blank" rel="noopener">塾＋フリースクールのセミナー（11/11 録画配信・11/27 ライブ）→</a>
+    </div>
+
+    <div class="notes">
+      <p><b>計算のしかた</b>　売上＝月謝×生徒数。講師・スタッフ代＝人数×時給×（開く時間＋準備・片付け）×週の開講日数×52週÷12か月。すらら（1人あたりの分）＝1人あたりの月額×生徒数。事業ごとの利益から、3つで共通のすららの固定費（校舎あたりの月額。選んだ事業で共通なので1回だけ）を引いたものが、月に増える利益です。</p>
+      <p><b>塾長が見る場合</b>　人件費は0円で計算し、代わりに塾長が使う時間を出しています。「塾長の1時間あたり」は、その事業の利益を塾長の時間で割った額です。スタッフに任せた場合の時給と並べて比べられます。</p>
+      <p><b>黒字になる人数</b>　その事業の人件費とそのほかの費用を、1人あたりの（月謝−すらら）でまかなえる人数です。3つで共通のすららの月額は含めていません。</p>
+      <p><b>すららの料金</b>　塾を運営している場合は、フリースクールや小学生の受け入れを足しても、塾向けの料金体系（税抜）のままです。校舎あたりの月額は中学生版30,000円が基本で、小学校高学年版＋10,000円、小学校低学年版＋5,000円、高校生版＋10,000円。1人あたりは月2,500円です。中学生を受け入れず小学生の版だけで使う場合は、校舎あたり月30,000円・1人あたり月2,000円です。すららにほんご（N5＋N4）は1人あたり月1,500円で、校舎あたりの料金はかかりません。このシートでは、受け入れる学年から要る版を決め、今の契約にない版の分だけを足しています。すららを使っていない塾が日本語コースだけを始める場合は、すららにほんご単体の料金（校舎あたり月10,000円・初期30,000円・1人あたり2,500円）で計算しています。塾を運営せずにフリースクールだけで始める場合は、別の料金表になります。実際の額はご契約の内容で変わりますので、担当者にご確認ください。</p>
+      <p><b>入れていないもの</b>　税金、家賃（今の教室をそのまま使う前提）、パソコンなどの端末、入会金や季節講習の収入は含めていません。必要な場合は「そのほかの費用」「はじめにかかる費用」に足してください。</p>
+      <p><b>市場の数字</b>　不登校の児童生徒35万人超、外国籍で学齢相当の子ども約15万人は、セミナー案内ページの記載によります。フリースクールの月謝の目安は、文部科学省の調査（2015年）でフリースクール等の会費が月平均約3.3万円だったことを参考にしています。</p>
+      <p><b>ご注意</b>　現時点で入手できる情報をもとにした試算です。売上や利益を約束するものではありません。</p>
+    </div>
+
+    <h2 class="sec">数字を見ながら相談する<em>すららネット</em></h2>
+    <div class="cta-grid">
+      <a class="cta-card line" href="https://liff.line.me/2009879529-HjsNyL9C/landing?follow=%40917wxvha&amp;lp=wAfbgA&amp;liff_id=2009879529-HjsNyL9C" target="_blank" rel="noopener">
+        <span class="k">公式LINE</span>
+        <strong>この数字で始められそうですか？</strong>
+        <p>入力した条件のまま相談できます。どの事業から始めるか、すららの使い方もこちらから。</p>
+        <span class="go">友だち追加</span>
+      </a>
+      <a class="cta-card" href="https://suralajuku.jp/seminar/jukufreeschool" target="_blank" rel="noopener">
+        <span class="k">無料セミナー</span>
+        <strong>塾の空き時間でフリースクール</strong>
+        <p>学び舎かなえの安部先生が、開設の手順と売上の推移を紹介します。11/11 録画配信、11/27 ライブ。</p>
+        <span class="go">日程を見る</span>
+      </a>
+    </div>
+  </div>
+
+  <footer class="foot">すららネット 新規事業提案セミナー「子どもが3割減る時代の学習塾経営 〜3つの伸長市場へ展開のご提案〜」（2026年11月5日）参加特典。出典：すらら料金表（塾向け／すららにほんご 導入塾向け 2025年12月1日現在）、セミナー案内ページ（suralajuku.jp）。</footer>
+</div>
+
+<script>
+"use strict";
+/* 版の切り替え：false＝お礼メールで送る公開版（Excelの代わりに公式LINEの案内）、true＝公式LINEで案内する版（Excelで保存できる）。
+   line.html は build_line.py がこの1行を true にして作る */
+const LINE_EDITION = true;
+/* ============ 前提 ============ */
+const BIZ = [
+  { id:"sho", name:"小学生の受け入れ", short:"小学生", color:"var(--c-sho)" },
+  { id:"fs",  name:"フリースクール",   short:"フリースクール", color:"var(--c-fs)" },
+  { id:"jp",  name:"日本語コース",     short:"日本語コース", color:"var(--c-jp)" },
+];
+/* すららの料金（税抜）。塾向けの料金体系は中学生版が基本で、ほかの版を足していく */
+const PRICE = { base:30000, high:10000, low:5000, init:0, id:2500, jpId:1500,
+                elemOnly:30000, elemOnlyId:2000,   // 中学生を受け入れず、小学生の版だけで使う場合
+                jpSoloFixed:10000, jpSoloInit:30000, jpSoloId:2500 };
+const GRADE_LABEL = { low:"小学校低学年", high:"小学校高学年", jh:"中学生" };
+const GRADE_OPTS = { sho:[["low", "低学年（1〜3年）"], ["high", "高学年（4〜6年）"]],
+                     fs: [["low", "小学校低学年"], ["high", "小学校高学年"], ["jh", "中学生"]] };
+const DEF = {
+  common:{ surala:"使っていない", have:{ high:false, low:false }, kStart:17, kEnd:22, seats:16 },
+  sho:{ on:true, already:false, grades:{ low:true, high:true }, gessha:15000, nin:10, days:5, start:15,   end:17, who:"スタッフ", staffN:1, jikyu:1200, prep:0.5, idFee:2500, other:5000,  init:0 },
+  fs: { on:true, grades:{ low:false, high:true, jh:true }, gessha:30000, nin:5,  days:5, start:10,   end:15, who:"塾長",     staffN:1, jikyu:1200, prep:0.5, idFee:2500, other:10000, init:100000 },
+  jp: { on:true, gessha:12000, nin:3,  days:2, start:15.5, end:17, who:"塾長",     staffN:1, jikyu:1200, prep:0.5, idFee:1500, other:2000,  init:0 },
+};
+/* 札の種類：kari＝仮の値、hyo＝料金表の値 */
+const KIND = { gessha:"kari", nin:"kari", days:"kari", time:"kari", staffN:"kari", jikyu:"kari", prep:"kari",
+               other:"kari", init:"kari", idFee:"hyo", ktime:"kari", seats:"kari", grades:"kari" };
+const LABEL = { gessha:"月謝", nin:"生徒数", days:"週の開講日数", time:"開く時間", staffN:"スタッフの人数", jikyu:"時給",
+                prep:"準備・片付け", other:"そのほかの費用", init:"はじめにかかる費用", idFee:"すらら（1人あたり）",
+                ktime:"今の授業の時間", seats:"昼に使える席", grades:"受け入れる学年" };
+const HINT = {
+  sho:"共働き世帯が増え、<b>放課後の小学生を預かってほしい</b>という声が増えています。初期値は、小学校が終わってから今の授業が始まるまでの2時間を使う形です。<b>月謝15,000円・10名は仮の値</b>です。近くの学童や習い事の月謝を見て直してください。すららの1人あたりは月2,500円、中学生を受け入れず小学生の版だけで使う場合は月2,000円です（料金表）。",
+  fs:"不登校の児童生徒は<b>35万人を超え</b>、増え続けています。塾は昼の教室が空いていて、学習を見る力もあるので、居場所と学びを同時に用意できます。月謝の目安として、文部科学省の調査（2015年）ではフリースクール等の会費が<b>月平均約3.3万円</b>でした。<b>30,000円・5名は仮の値</b>です。初期値は、昼は塾長が見る形にしています。",
+  jp:"外国籍で学齢相当の子どもは<b>約15万人</b>。日本語の支援が足りていない地域は少なくありません。すららにほんご（N5・N4）を使う想定です。<b>週2回・月12,000円・3名は仮の値</b>です。塾ですららを使う場合、すららにほんごは1人あたり月1,500円で、校舎あたりの料金はかかりません（料金表）。すららを使っていない塾が<b>日本語コースだけ</b>を始める場合は、すららにほんご単体の料金（校舎あたり月10,000円・初期30,000円・1人あたり2,500円）で計算します。",
+};
+const S = JSON.parse(JSON.stringify(DEF));
+const touched = new Set();   // 塾長が自分で入れた項目（初期値の自動の入れ替えをしない）
+
+const el = (t, c, x) => { const n = document.createElement(t); if (c) n.className = c; if (x != null) n.textContent = x; return n; };
+const yen = v => Math.round(v).toLocaleString("ja-JP");
+const fmtT = h => `${Math.floor(h)}:${h % 1 ? "30" : "00"}`;
+const MONTH_WEEKS = 52 / 12;
+const bizOf = id => BIZ.find(b => b.id === id);
+
+function defOf(scope, key){
+  if (key === "idFee") return scope === "jp" ? suralaPlan().jpId : suralaPlan().id;
+  return DEF[scope][key];
+}
+function isDef(scope, key){
+  if (key === "grades") return JSON.stringify(S[scope].grades) === JSON.stringify(DEF[scope].grades);
+  if (key === "time") return S[scope].start === DEF[scope].start && S[scope].end === DEF[scope].end;
+  if (key === "ktime") return S.common.kStart === DEF.common.kStart && S.common.kEnd === DEF.common.kEnd;
+  return S[scope][key] === defOf(scope, key);
+}
+
+/* ============ すららの校舎あたりの料金 ============ */
+/* 受け入れる学年から要る版を決め、今の契約にない分だけを足す */
+function suralaPlan(){
+  const c = S.common, sho = S.sho, fs = S.fs;
+  const needLow  = (sho.on && sho.grades.low)  || (fs.on && fs.grades.low);
+  const needHigh = (sho.on && sho.grades.high) || (fs.on && fs.grades.high);
+  const items = [];
+  const needJh = fs.on && fs.grades.jh;
+  /* id：小学生・フリースクールの1人あたり、jpId：日本語コースの1人あたり */
+  const done = (mode, init, jpId, id = PRICE.id) => ({ items, fixed:items.reduce((s, x) => s + x[1], 0), init, id, jpId, mode });
+  if (c.surala === "使っていない"){
+    if ((sho.on || fs.on) && !needJh && (needLow || needHigh)){
+      items.push(["小学生版", PRICE.elemOnly]);
+      return done("elem", PRICE.init, PRICE.jpId, PRICE.elemOnlyId);
+    }
+    if (sho.on || fs.on){
+      items.push(["中学生版（基本）", PRICE.base]);
+      if (needHigh) items.push(["小学校高学年版", PRICE.high]);
+      if (needLow) items.push(["小学校低学年版", PRICE.low]);
+      return done("juku", PRICE.init, PRICE.jpId);
+    }
+    if (S.jp.on){
+      items.push(["すららにほんご（単体）", PRICE.jpSoloFixed]);
+      return done("jpSolo", PRICE.jpSoloInit, PRICE.jpSoloId);
+    }
+    return done("none", 0, PRICE.jpId);
+  }
+  if (needHigh && !c.have.high) items.push(["小学校高学年版を追加", PRICE.high]);
+  if (needLow && !c.have.low) items.push(["小学校低学年版を追加", PRICE.low]);
+  return done("added", 0, PRICE.jpId);
+}
+const planText = p => p.items.length ? p.items.map(([l, v]) => `${l} ${yen(v)}円`).join("＋") : "増える分なし";
+const GRADE_SHORT = { low:"小1〜3", high:"小4〜6", jh:"中学生" };
+function gradesText(id, short){
+  const g = S[id].grades;
+  if (!g) return "—";
+  const t = Object.keys(g).filter(k => g[k]).map(k => (short ? GRADE_SHORT : GRADE_LABEL)[k]);
+  return t.length ? t.join("・") : "選んでいない";
+}
+function syncDeps(){
+  const p = suralaPlan();
+  if (!touched.has("jp.idFee")) S.jp.idFee = p.jpId;
+  ["sho", "fs"].forEach(id => { if (!touched.has(id + ".idFee")) S[id].idFee = p.id; });
+}
+
+/* ============ 計算 ============ */
+function calcBiz(id){
+  const b = S[id];
+  const md = b.days * MONTH_WEEKS;
+  const h = Math.max(0, b.end - b.start);
+  const staff = b.who === "スタッフ";
+  const uriage = b.gessha * b.nin;
+  const jinken = staff ? b.staffN * b.jikyu * (h + b.prep) * md : 0;
+  const idCost = b.idFee * b.nin;
+  const rieki = uriage - jinken - idCost - b.other;
+  const juchoH = staff ? 0 : (h + b.prep) * md;
+  const unit = b.gessha - b.idFee;
+  const be = unit > 0 ? Math.max(0, Math.ceil((jinken + b.other) / unit - 1e-9)) : null;
+  return { id, on:b.on, uriage, jinken, idCost, other:b.other, rieki, juchoH,
+           perH: juchoH > 0 ? rieki / juchoH : null, be, h, md, init:b.init };
+}
+function calcAll(){
+  syncDeps();
+  const plan = suralaPlan();
+  const rs = BIZ.map(x => calcBiz(x.id));
+  const on = rs.filter(r => r.on);
+  const any = on.length > 0;
+  const sFixed = any ? plan.fixed : 0, sInit = any ? plan.init : 0;
+  const sum = k => on.reduce((a, r) => a + r[k], 0);
+  const rieki = sum("rieki") - sFixed;
+  const init = sum("init") + sInit;
+  return { rs, on, plan, sFixed, sInit, rieki, uriage:sum("uriage"), juchoH:sum("juchoH"), init,
+           payback: init <= 0 ? 0 : (rieki > 0 ? init / rieki : null) };
+}
+
+/* ============ 入力部品 ============ */
+function paintTag(tag, scope, key){
+  const kind = KIND[key];
+  const show = kind && isDef(scope, key);
+  tag.hidden = !show;
+  if (show){ tag.className = "tag " + kind; tag.textContent = kind === "hyo" ? "料金表の値" : "仮の値"; }
+}
+function numField(scope, key, label, unit, opt = {}){
+  const f = el("div", "fld");
+  const top = el("div", "fld-top");
+  const id = `in-${scope}-${key}`;
+  const lab = el("label", null, label); lab.htmlFor = id;
+  const tag = el("span", "tag");
+  top.append(lab, tag);
+  const box = el("div", "box");
+  const inp = document.createElement("input");
+  inp.id = id; inp.type = "number"; inp.min = 0; inp.step = opt.step || 1; inp.inputMode = "decimal";
+  inp.value = S[scope][key];
+  inp.addEventListener("input", () => {
+    const v = Number(inp.value);
+    if (inp.value === "" || !Number.isFinite(v) || v < 0) return;
+    S[scope][key] = v; touched.add(scope + "." + key); paintTag(tag, scope, key); drawLive();
+  });
+  box.append(inp, el("span", "u", unit));
+  f.append(top, box);
+  if (opt.note) f.appendChild(el("p", "fld-note", opt.note));
+  paintTag(tag, scope, key);
+  return f;
+}
+const HOURS = []; for (let h = 7; h <= 22; h += 0.5) HOURS.push(h);
+function timeField(scope, kStart, kEnd, label, tagKey){
+  const f = el("div", "fld");
+  const top = el("div", "fld-top");
+  const lab = el("span", "lab", label);
+  const tag = el("span", "tag");
+  top.append(lab, tag);
+  const row = el("div", "times");
+  const mkSel = (k, aria) => {
+    const s = document.createElement("select");
+    s.id = `in-${scope}-${k}`; s.setAttribute("aria-label", aria);
+    HOURS.forEach(h => { const o = document.createElement("option"); o.value = h; o.textContent = fmtT(h); s.appendChild(o); });
+    s.value = S[scope][k];
+    s.addEventListener("change", () => { S[scope][k] = Number(s.value); paintTag(tag, scope, tagKey); drawLive(); });
+    return s;
+  };
+  row.append(mkSel(kStart, label + "（始まり）"), el("span", null, "〜"), mkSel(kEnd, label + "（終わり）"));
+  f.append(top, row);
+  paintTag(tag, scope, tagKey);
+  return f;
+}
+function segField(label, opts, cur, onPick){
+  const f = el("div", "fld");
+  f.appendChild(el("div", "fld-top")).appendChild(el("span", "lab", label));
+  const seg = el("div", "seg");
+  opts.forEach(([v, t]) => {
+    const b = el("button", v === cur ? "on" : "", t); b.type = "button";
+    b.setAttribute("aria-pressed", v === cur);
+    b.addEventListener("click", () => onPick(v));
+    seg.appendChild(b);
+  });
+  f.appendChild(seg);
+  return f;
+}
+/* 複数を選べる切り替え（学年・契約に入っている版） */
+function multiField(label, opts, obj, tagScope, onPick){
+  const f = el("div", "fld");
+  const top = el("div", "fld-top");
+  top.appendChild(el("span", "lab", label));
+  const tag = tagScope ? el("span", "tag") : null;
+  if (tag){ top.appendChild(tag); paintTag(tag, tagScope, "grades"); }
+  f.appendChild(top);
+  const seg = el("div", "seg multi");
+  opts.forEach(([k, t]) => {
+    const b = el("button", obj[k] ? "on" : "", t); b.type = "button";
+    b.setAttribute("aria-pressed", !!obj[k]);
+    b.addEventListener("click", () => {
+      obj[k] = !obj[k];
+      b.className = obj[k] ? "on" : ""; b.setAttribute("aria-pressed", obj[k]);
+      if (tag) paintTag(tag, tagScope, "grades");
+      if (onPick) onPick(); else drawLive();
+    });
+    seg.appendChild(b);
+  });
+  f.appendChild(seg);
+  return f;
+}
+function group(title, kids){
+  const g = el("div", "grp");
+  g.appendChild(el("p", "grp-h", title));
+  const fl = el("div", "flds");
+  kids.forEach(k => fl.appendChild(k));
+  g.appendChild(fl);
+  return g;
+}
+
+/* ============ ウィザード ============ */
+/* 入力の画面は「今の塾」＋チェックした事業だけ */
+const steps = () => ["common", ...BIZ.filter(x => S[x.id].on).map(x => x.id)];
+const anyOn = () => BIZ.some(x => S[x.id].on);
+const stage = document.getElementById("stage");
+const wizard = document.getElementById("wizard");
+const resultEl = document.getElementById("result");
+let step = 0;
+
+function drawStage(){
+  syncDeps();
+  const ST = steps();
+  if (step >= ST.length) step = ST.length - 1;
+  const sc = ST[step];
+  stage.innerHTML = "";
+  const eb = el("div", "eyebrow");
+  if (sc === "common"){
+    eb.appendChild(el("span", "cat", "始めたい事業と今の塾"));
+    stage.append(eb, el("p", "q", "どの事業を始めたいですか？"));
+    const pick = el("div", "choice pick");
+    [["sho", "小学生の受け入れ", "放課後から授業前の時間に、共働き家庭の小学生を"],
+     ["fs", "フリースクール", "昼の空き教室で、学校に行けない子の居場所と学びを"],
+     ["jp", "日本語コース", "外国ルーツの子に、すららにほんごで日本語を"]].forEach(([id, t2, sm]) => {
+      const b = el("button", S[id].on ? "on" : "", t2); b.type = "button";
+      b.setAttribute("aria-pressed", S[id].on);
+      b.appendChild(el("small", null, sm));
+      b.addEventListener("click", () => { S[id].on = !S[id].on; drawStage(); });
+      pick.appendChild(b);
+    });
+    stage.appendChild(pick);
+    const ph = el("p", anyOn() ? "fld-note" : "hint warn",
+      anyOn() ? "チェックした事業だけ、次の画面から1つずつ入力します。いくつ選んでもかまいません。"
+              : "1つ以上選んでください。選んだ事業の入力画面が次に出ます。");
+    stage.appendChild(ph);
+    stage.appendChild(el("p", "grp-h", "今の塾について"));
+    const ch = el("div", "choice");
+    [["使っていない", "すららはまだ使っていない", "すららを新しく入れる費用も計算に入れます"],
+     ["使っている", "すららを使っている", "追加する分だけを計算します"]].forEach(([v, t, sm]) => {
+      const b = el("button", S.common.surala === v ? "on" : "", t); b.type = "button";
+      b.appendChild(el("small", null, sm));
+      b.addEventListener("click", () => {
+        S.common.surala = v;
+        drawStage();
+      });
+      ch.appendChild(b);
+    });
+    stage.appendChild(ch);
+    if (S.common.surala === "使っている"){
+      const hv = multiField("今の契約に入っている版（中学生版は入っている前提）",
+        [["high", "小学校高学年版"], ["low", "小学校低学年版"]], S.common.have);
+      hv.appendChild(el("p", "fld-note", "入っていない版が新しい事業で要るときだけ、その分を足して計算します。"));
+      stage.appendChild(group("すららの契約", [hv]));
+    }
+    stage.appendChild(group("教室", [
+      timeField("common", "kStart", "kEnd", "今の授業の時間", "ktime"),
+      numField("common", "seats", "昼に使える席", "席", { note:"新しい事業で同時に座れる席の数です。" }),
+    ]));
+    const h = el("p", "hint");
+    h.innerHTML = "子どもの数は10年後に<b>約3割減る</b>とされています。一方で、共働き家庭の小学生、学校に行けない子ども、日本語の支援が要る子どもは増えています。これらを、<b>今の教室の空いている時間</b>で受け入れたらどうなるかを計算します。";
+    stage.appendChild(h);
+  } else {
+    const b = S[sc], biz = bizOf(sc);
+    const dot = el("i", "dot"); dot.style.background = biz.color;
+    eb.append(dot, el("span", "cat", biz.name));
+    const more = sc === "sho" && b.already;
+    stage.append(eb, el("p", "q", more ? "小学生の受け入れを、どれだけ増やしますか？" : `${biz.name}を、どんな形で始めますか？`));
+    if (b.grades){
+      const kids = [];
+      if (sc === "sho") kids.push(segField("今、小学生を", [[false, "まだ受け入れていない"], [true, "すでに受け入れている"]], b.already,
+        v => { b.already = v; drawStage(); }));
+      kids.push(multiField("受け入れる学年", GRADE_OPTS[sc], b.grades, sc));
+      stage.appendChild(group("対象", kids));
+    }
+    stage.appendChild(group("売上", [
+      numField(sc, "gessha", "月謝（1人あたり）", "円", { step:1000 }),
+      numField(sc, "nin", more ? "増やす生徒数" : "生徒数", "名"),
+    ]));
+    stage.appendChild(group("時間", [
+      timeField(sc, "start", "end", "開く時間", "time"),
+      numField(sc, "days", "週の開講日数", "日", { step:1 }),
+      numField(sc, "prep", "準備・片付け（1日あたり）", "時間", { step:0.5 }),
+    ]));
+    const people = [segField("見る人", [["塾長", "塾長が見る"], ["スタッフ", "スタッフを雇う"]], b.who,
+      v => { b.who = v; drawStage(); })];
+    if (b.who === "スタッフ"){
+      people.push(numField(sc, "staffN", "スタッフの人数", "名"));
+      people.push(numField(sc, "jikyu", "時給", "円", { step:50, note:"交通費などを含めた目安で。" }));
+    }
+    stage.appendChild(group("見る人", people));
+    stage.appendChild(group("費用", [
+      numField(sc, "idFee", "すらら（1人あたり・月）", "円", { step:100 }),
+      numField(sc, "other", "そのほかの費用（月）", "円", { step:1000, note:"教材、おやつ、光熱費の増えた分、チラシなど。" }),
+      numField(sc, "init", "はじめにかかる費用", "円", { step:10000, note:"机や家具、内装の手直しなど。1回だけの費用です。" }),
+    ]));
+    if (more){
+      const hm = el("p", "hint");
+      hm.innerHTML = "<b>すでに受け入れている場合</b>は、今いる小学生の分は入れず、<b>増やす分だけ</b>を入れてください。時間・人・費用も、増える分だけで結構です。すららの小学生の版がすでに契約に入っていれば、最初の画面で選んでください。";
+      stage.appendChild(hm);
+    }
+    const h = el("p", "hint"); h.innerHTML = HINT[sc];
+    stage.appendChild(h);
+  }
+  const live = el("div", "live"); live.id = "live";
+  stage.appendChild(live);
+  drawLive();
+
+  document.getElementById("progStep").innerHTML =
+    `STEP <b>${step + 1}</b> / ${ST.length}　${sc === "common" ? "始めたい事業と今の塾" : bizOf(sc).name}`;
+  document.getElementById("progBar").style.width = `${((step + 1) / ST.length) * 100}%`;
+  document.getElementById("prev").disabled = step === 0;
+  document.getElementById("next").textContent = step === ST.length - 1 ? "結果を見る →" : "次へ →";
+  document.getElementById("next").disabled = !anyOn();
+  document.getElementById("skip").hidden = step === ST.length - 1 || !anyOn();
+}
+
+function drawLive(){
+  if (!resultEl.hidden){ refreshResult(); return; }   // 結果画面の「仮の値」欄で直したとき
+  const live = document.getElementById("live");
+  if (!live) return;
+  const a = calcAll();
+  const sc = steps()[step];
+  const neg = v => v < 0 ? "neg" : "";
+  let html = "";
+  if (sc !== "common"){
+    const r = calcBiz(sc);
+    html += `<span>この事業の売上 <b>${yen(r.uriage)}円</b></span>` +
+            `<span>この事業の利益 <b class="${neg(r.rieki)}">${yen(r.rieki)}円</b></span>`;
+    if (!S[sc].on) html += `<span>（試算に入れていません）</span>`;
+  }
+  html += `<span>すらら固定費（校舎あたり） <b>${yen(a.sFixed)}円</b></span>` +
+          `<span>月に増える利益（合計） <b class="${neg(a.rieki)}">${yen(a.rieki)}円</b></span>`;
+  live.innerHTML = html;
+}
+
+function goStep(d){
+  const nx = step + d;
+  if (nx < 0 || !anyOn()) return;
+  if (nx >= steps().length){ showResult(); return; }
+  step = nx; drawStage();
+  window.scrollTo({ top:0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+}
+function showResult(){
+  wizard.hidden = true; resultEl.hidden = false;
+  renderResult();
+  window.scrollTo({ top:0, behavior:"auto" });
+}
+function editStep(i){
+  step = i; resultEl.hidden = true; wizard.hidden = false; drawStage();
+  window.scrollTo({ top:0, behavior:"auto" });
+}
+document.getElementById("prev").addEventListener("click", () => goStep(-1));
+document.getElementById("next").addEventListener("click", () => goStep(1));
+document.getElementById("skip").addEventListener("click", showResult);
+document.getElementById("backEdit").addEventListener("click", () => editStep(0));
+document.addEventListener("keydown", e => {
+  if (wizard.hidden) return;
+  if (e.key === "Enter" && document.activeElement && document.activeElement.tagName === "INPUT"){ e.preventDefault(); goStep(1); }
+});
+document.getElementById("reset").addEventListener("click", () => {
+  const d = JSON.parse(JSON.stringify(DEF));
+  Object.keys(d).forEach(k => { S[k] = d[k]; });
+  touched.clear();
+  renderResult();
+});
+
+/* ============ 結果 ============ */
+function refreshResult(){
+  const a = calcAll();
+  drawSummary(a);
+  drawTimetable();
+  drawTable(a);
+  drawObs(a);
+}
+function renderResult(){ refreshResult(); drawKari(); }
+
+function drawSummary(a){
+  const box = document.getElementById("summary");
+  box.innerHTML = "";
+  const card = (cls, k, n, d, neg) => {
+    const c = el("div", "rcard " + cls);
+    c.appendChild(el("span", "k", k));
+    const nn = el("span", "n" + (neg ? " neg" : "")); nn.innerHTML = n;
+    c.appendChild(nn);
+    c.appendChild(el("span", "d", d));
+    box.appendChild(c);
+  };
+  const names = a.on.map(r => bizOf(r.id).short).join("・") || "なし";
+  card("main", "月に増える利益", `${yen(a.rieki)}<small>円</small>`,
+       a.sFixed > 0 ? `事業の利益 計${yen(a.rieki + a.sFixed)}円 − すらら固定費 ${yen(a.sFixed)}円（${names}）` : `選んだ事業：${names}`, a.rieki < 0);
+  card("", "月に増える売上", `${yen(a.uriage)}<small>円</small>`, `年にすると ${yen(a.uriage * 12)}円`);
+  card("", "塾長が使う時間", `${Math.round(a.juchoH)}<small>時間／月</small>`,
+       a.juchoH > 0 ? `週あたり 約${(a.juchoH / MONTH_WEEKS).toFixed(1)}時間` : "塾長が見る事業はありません");
+  card("", "はじめにかかる費用", `${yen(a.init)}<small>円</small>`,
+       a.init <= 0 ? "はじめの費用は入っていません"
+       : a.payback == null ? "この条件では、月の利益で取り戻せません"
+       : `月の利益で 約${Math.max(1, Math.ceil(a.payback))}か月で取り戻す計算`);
+}
+
+const T0 = 8, T1 = 22;
+const pos = h => ((Math.min(T1, Math.max(T0, h)) - T0) / (T1 - T0)) * 100;
+function drawTimetable(){
+  const tt = document.getElementById("tt");
+  tt.innerHTML = "";
+  tt.appendChild(el("span"));
+  const sc = el("div", "tt-scale");
+  for (let h = T0; h <= T1; h += 2){
+    const s = el("span", h === T0 ? "first" : h === T1 ? "last" : "", String(h));
+    s.style.left = pos(h) + "%";
+    sc.appendChild(s);
+  }
+  tt.appendChild(sc);
+  const rows = [{ cls:"kizon", lab:"今の授業", sub:"", s:S.common.kStart, e:S.common.kEnd, txt:"今の授業" }];
+  BIZ.filter(x => S[x.id].on).forEach(x => {
+    const b = S[x.id];
+    rows.push({ cls:x.id, lab:x.short, s:b.start, e:b.end,
+                sub:`週${b.days}日 ${fmtT(b.start)}〜${fmtT(b.end)}・${b.nin}名`, txt: b.who === "塾長" ? "塾長" : `スタッフ${b.staffN}名` });
+  });
+  rows.forEach(r => {
+    const lab = el("div", "tt-lab", r.lab);
+    if (r.sub) lab.appendChild(el("small", null, r.sub));
+    const tr = el("div", "tt-track");
+    const noon = el("div", "tt-noon"); noon.style.left = pos(9) + "%"; noon.style.width = (pos(15) - pos(9)) + "%";
+    tr.appendChild(noon);
+    if (r.off) tr.appendChild(el("div", "tt-empty", "今回は入れていません"));
+    else if (r.e > r.s){
+      const bk = el("div", "tt-blk " + r.cls, r.txt);
+      bk.style.left = pos(r.s) + "%"; bk.style.width = Math.max(1, pos(r.e) - pos(r.s)) + "%";
+      bk.title = `${r.lab} ${fmtT(r.s)}〜${fmtT(r.e)}`;
+      tr.appendChild(bk);
+    }
+    tt.append(lab, tr);
+  });
+  const w = document.getElementById("ttWarn");
+  const list = conflicts();
+  w.innerHTML = "";
+  if (list.length){
+    const ul = el("ul", "tt-warn");
+    list.forEach(t => ul.appendChild(el("li", null, t)));
+    w.appendChild(ul);
+  } else w.appendChild(el("p", "tt-ok", "時間の重なりと席の数に、気になる点はありません。"));
+}
+function conflicts(){
+  const out = [];
+  const k = S.common;
+  const act = BIZ.filter(x => S[x.id].on);
+  const ov = (a1, a2, b1, b2) => Math.min(a2, b2) - Math.max(a1, b1) > 0;
+  act.forEach(x => {
+    const b = S[x.id];
+    if (b.end <= b.start){ out.push(`${x.short}：終わりの時刻が、始まりと同じか前になっています。`); return; }
+    if (ov(b.start, b.end, k.kStart, k.kEnd))
+      out.push(`${x.short}が、今の授業（${fmtT(k.kStart)}〜${fmtT(k.kEnd)}）と重なっています。` +
+               (b.who === "塾長" ? "塾長が同じ時間に両方を見ることになります。" : "席と教室の使い分けを確かめてください。"));
+    if (b.nin > k.seats)
+      out.push(`${x.short}の生徒${b.nin}名が、昼に使える席（${k.seats}席）より多くなっています。全員が同じ時間に来る場合は席が足りません。`);
+  });
+  for (let i = 0; i < act.length; i++) for (let j = i + 1; j < act.length; j++){
+    const A = S[act[i].id], B = S[act[j].id];
+    if (A.end <= A.start || B.end <= B.start || !ov(A.start, A.end, B.start, B.end)) continue;
+    const pair = `${act[i].short}と${act[j].short}`;
+    if (A.who === "塾長" && B.who === "塾長")
+      out.push(`${pair}は時間が重なり、どちらも塾長が見る設定です。同じ曜日に開く場合は、どちらかを別の人に任せる必要があります。`);
+    if (A.nin + B.nin > k.seats)
+      out.push(`${pair}が重なる時間に、合わせて${A.nin + B.nin}名になります。昼に使える席（${k.seats}席）を超えます（同じ曜日に開く場合）。`);
+  }
+  return out;
+}
+
+function drawTable(a){
+  const t = document.getElementById("cmp");
+  t.innerHTML = "";
+  const thead = el("thead"), hr = el("tr");
+  hr.appendChild(el("th", null, "項目"));
+  BIZ.filter(x => S[x.id].on).forEach(x => {
+    const th = el("th");
+    const i = el("i"); i.style.background = x.color;
+    th.append(i, document.createTextNode(x.short));
+    hr.appendChild(th);
+  });
+  const tt = el("th", null, "合計");
+  hr.appendChild(tt);
+  thead.appendChild(hr); t.appendChild(thead);
+
+  const tb = el("tbody");
+  const rs = a.on;
+  const row = (label, cells, opt = {}) => {
+    const tr = el("tr", opt.cls || "");
+    tr.appendChild(el("th", null, label));
+    cells.forEach(c => tr.appendChild(el("td", (opt.txt ? "txt " : "") + (c.neg ? "neg" : ""), c.v)));
+    const tot = opt.total;
+    tr.appendChild(el("td", "tot" + (opt.txt ? " txt" : "") + (tot && tot.neg ? " neg" : ""), tot ? tot.v : ""));
+    tb.appendChild(tr);
+  };
+  const per = f => rs.map(r => f(r, S[r.id]));
+  row("生徒数", per((r, b) => ({ v:`${b.nin}名` })), { total:{ v:`${a.on.reduce((s, r) => s + S[r.id].nin, 0)}名` } });
+  row("月謝（1人あたり）", per((r, b) => ({ v:yen(b.gessha) })));
+  row("開く時間", per((r, b) => ({ v:`週${b.days}日 ${fmtT(b.start)}〜${fmtT(b.end)}` })), { txt:true });
+  row("見る人", per((r, b) => ({ v: b.who === "塾長" ? "塾長" : `スタッフ${b.staffN}名（時給${yen(b.jikyu)}円）` })), { txt:true });
+  row("受け入れる学年", per(r => ({ v:gradesText(r.id, true) })), { txt:true });
+  row("売上", per(r => ({ v:yen(r.uriage) })), { total:{ v:yen(a.uriage) } });
+  const mi = v => Math.round(v) ? "−" + yen(v) : "0";
+  const onSum = k => a.on.reduce((s, r) => s + r[k], 0);
+  row("講師・スタッフ代", per(r => ({ v:mi(r.jinken) })), { total:{ v:mi(onSum("jinken")) } });
+  row("すらら（1人あたりの分）", per(r => ({ v:mi(r.idCost) })), { total:{ v:mi(onSum("idCost")) } });
+  row("そのほかの費用", per(r => ({ v:mi(r.other) })), { total:{ v:mi(onSum("other")) } });
+  const sumR = a.on.reduce((s, r) => s + r.rieki, 0);
+  row("事業ごとの利益", per(r => ({ v:yen(r.rieki), neg:r.rieki < 0 })), { cls:"key", total:{ v:yen(sumR), neg:sumR < 0 } });
+  row("黒字になる人数", per(r => ({ v: r.be == null ? "月謝がすららの額以下" : `${r.be}名から` })), { cls:"sub", txt:true });
+  row("塾長が使う時間（月）", per(r => ({ v: r.juchoH ? `${Math.round(r.juchoH)}時間` : "—" })), { total:{ v: a.juchoH ? `${Math.round(a.juchoH)}時間` : "—" } });
+  row("塾長の1時間あたり", per(r => ({ v: r.perH == null ? "—" : `${yen(r.perH)}円`, neg: r.perH != null && r.perH < 0 })), { cls:"sub" });
+  row("はじめにかかる費用", per(r => ({ v:yen(r.init) })), { total:{ v:yen(a.on.reduce((s, r) => s + r.init, 0)) } });
+  t.appendChild(tb);
+
+  const tf = el("tfoot");
+  const frow = (label, v, cls, neg, sub) => {
+    const tr = el("tr", cls || "");
+    const th = el("th", null, label); th.colSpan = rs.length + 1;
+    if (sub) th.appendChild(el("small", null, sub));
+    tr.appendChild(th);
+    tr.appendChild(el("td", neg ? "neg" : "", v));
+    tf.appendChild(tr);
+  };
+  frow("すらら固定費（校舎あたり・月。選んだ事業で共通）", mi(a.sFixed), "", false, planText(a.plan));
+  if (a.sInit) frow("すららの初期導入料金（1回だけ）", yen(a.sInit));
+  frow("月に増える利益", yen(a.rieki), "grand", a.rieki < 0);
+  t.appendChild(tf);
+
+  const fx = document.getElementById("fixrow");
+  fx.innerHTML = "";
+  ["始めたい事業・今の塾", ...rs.map(r => bizOf(r.id).short)].forEach((t2, i) => {
+    const b = el("button", "btn ghost small", `${t2}の条件を直す`); b.type = "button";
+    b.addEventListener("click", () => editStep(i));
+    fx.appendChild(b);
+  });
+}
+
+function drawObs(a){
+  const box = document.getElementById("obs");
+  box.innerHTML = "";
+  if (!a.on.length){ box.appendChild(el("p", "obs-empty", "選んだ事業がありません。「条件を直す」から選んでください。")); return; }
+  /* 事業ごとの札：月の利益、黒字になる人数、塾長の時間 */
+  const grid = el("div", "obs-grid");
+  a.on.forEach(r => {
+    const x = bizOf(r.id), b = S[r.id];
+    const c = el("div", "obs-card"); c.style.setProperty("--c", x.color);
+    c.appendChild(el("p", "obs-h", x.short));
+    const big = el("p", "obs-big" + (r.rieki < 0 ? " neg" : ""));
+    big.innerHTML = `${r.rieki < 0 ? "−" : "＋"}${yen(Math.abs(r.rieki))}<small>円／月</small>`;
+    c.appendChild(big);
+    const dl = el("dl", "obs-dl");
+    const item = (k, v, note) => {
+      const d = el("div");
+      d.appendChild(el("dt", null, k));
+      const dd = el("dd", null, v);
+      if (note) dd.appendChild(el("small", null, note));
+      d.appendChild(dd); dl.appendChild(d);
+    };
+    item("黒字になる人数", r.be == null ? "月謝がすららの額以下" : `${r.be}名から`,
+         r.be == null ? "" : (b.nin >= r.be ? `今は${b.nin}名で、届いています` : `今は${b.nin}名で、あと${r.be - b.nin}名`));
+    const unit = b.gessha - b.idFee;
+    if (a.sFixed > 0 && unit > 0){
+      const beAll = Math.max(0, Math.ceil((r.jinken + b.other + a.sFixed) / unit - 1e-9));
+      item("すらら固定費もこの事業だけで持つなら", `${beAll}名から`,
+           `固定費 月${yen(a.sFixed)}円を足した場合。今は${b.nin}名で、${b.nin >= beAll ? "届いています" : `あと${beAll - b.nin}名`}`);
+    }
+    if (r.perH != null)
+      item("塾長の1時間あたり", `${yen(r.perH)}円`,
+           `月${Math.round(r.juchoH)}時間。スタッフを雇う場合の時給${yen(b.jikyu)}円より${r.perH >= b.jikyu ? "高い" : "低い"}`);
+    else
+      item("見る人", `スタッフ${b.staffN}名`, `人件費 月${yen(r.jinken)}円。塾長の時間は使いません`);
+    c.appendChild(dl);
+    grid.appendChild(c);
+  });
+  box.appendChild(grid);
+
+  /* 全体で見ておきたいこと */
+  const ul = el("ul", "obs-all");
+  const add = (k, v) => { const li = el("li"); li.appendChild(el("b", null, k)); li.appendChild(el("span", null, v)); ul.appendChild(li); };
+  if (a.on.length > 1){
+    const best = a.on.slice().sort((p1, p2) => p2.rieki - p1.rieki)[0];
+    add("利益がいちばん大きい", `${bizOf(best.id).short}（月${yen(best.rieki)}円）`);
+  }
+  const p = a.plan;
+  if (p.mode === "jpSolo")
+    add("すららの固定費", `日本語コースだけなので、すららにほんご単体の料金で計算しています（校舎あたり月${yen(a.sFixed)}円を合計から引いています。初期${yen(a.sInit)}円）。`);
+  else if (a.sFixed > 0)
+    add("すららの固定費", `校舎あたり月${yen(a.sFixed)}円を、合計から引いています（${planText(p)}）。各事業の札の利益には入っていません。` +
+        (p.mode === "juku" ? "中学生版は、今の中学生の授業にも使えます。"
+         : p.mode === "elem" ? "中学生を受け入れないので、小学生版の料金（1人あたり月2,000円）で計算しています。" : ""));
+  else if (p.mode === "added")
+    add("すららの固定費", "今の契約の版で足りるので、増えません。");
+  const cf = conflicts().length;
+  if (cf) add("時間割の確認", `時間の重なりや席の数で、確かめたい点が${cf}件あります（時間割の下に表示）。`);
+  const n = kariItems().reduce((s, g) => s + g.items.filter(i => i.kind === "kari").length, 0);
+  if (n) add("仮の値のまま", `${n}項目。月謝と生徒数を直すと、結果がいちばん大きく変わります。`);
+  if (ul.children.length) box.appendChild(ul);
+}
+
+function kariItems(){
+  const groups = [];
+  const cItems = [];
+  ["ktime", "seats"].forEach(k => {
+    if (isDef("common", k)) cItems.push({ k, kind:KIND[k] });
+  });
+  groups.push({ name:"今の塾", scope:"common", color:"var(--c-kizon)", items:cItems });
+  BIZ.forEach(x => {
+    if (!S[x.id].on) return;
+    const items = [];
+    const keys = (S[x.id].grades ? ["grades"] : []).concat(["gessha", "nin", "time", "days", "prep"]);
+    if (S[x.id].who === "スタッフ") keys.push("staffN", "jikyu");
+    keys.push("idFee", "other", "init");
+    keys.forEach(k => { if (isDef(x.id, k)) items.push({ k, kind:KIND[k] }); });
+    groups.push({ name:x.short, scope:x.id, color:x.color, items });
+  });
+  return groups;
+}
+const NUM_FIELD = { gessha:["月謝（1人あたり）", "円", 1000], nin:["生徒数", "名", 1], days:["週の開講日数", "日", 1],
+  prep:["準備・片付け（1日あたり）", "時間", 0.5], staffN:["スタッフの人数", "名", 1], jikyu:["時給", "円", 50],
+  idFee:["すらら（1人あたり・月）", "円", 100], other:["そのほかの費用（月）", "円", 1000],
+  init:["はじめにかかる費用", "円", 10000], seats:["昼に使える席", "席", 1] };
+function kariField(scope, k){
+  if (k === "ktime") return timeField("common", "kStart", "kEnd", "今の授業の時間", "ktime");
+  if (k === "time") return timeField(scope, "start", "end", "開く時間", "time");
+  if (k === "grades") return multiField("受け入れる学年", GRADE_OPTS[scope], S[scope].grades, scope);
+  const [label, unit, st] = NUM_FIELD[k];
+  return numField(scope, k, label, unit, { step:st });
+}
+function drawKari(){
+  const box = document.getElementById("kariList");
+  box.innerHTML = "";
+  const gs = kariItems().filter(g => g.items.length);
+  if (!gs.length){ box.appendChild(el("p", "kari-lede", "すべての項目が、ご自身の数字に置き換わっています。")); return; }
+  box.appendChild(el("p", "kari-lede", "ここで直すと、上の結果にすぐ反映されます。直した項目は札が消えます。"));
+  gs.forEach(g => {
+    const card = el("div", "kari-card"); card.style.setProperty("--c", g.color);
+    card.appendChild(el("p", "kari-h", g.name));
+    const fl = el("div", "flds");
+    g.items.forEach(i => fl.appendChild(kariField(g.scope, i.k)));
+    card.appendChild(fl);
+    box.appendChild(card);
+  });
+  /* 入力画面の欄と id が重ならないようにする */
+  box.querySelectorAll("[id]").forEach(n => { n.id = "k-" + n.id; });
+  box.querySelectorAll("label[for]").forEach(n => { n.htmlFor = "k-" + n.htmlFor; });
+}
+
+/* ============ 参考動画 ============ */
+const VIDS = [
+  { id:"oEkF7f7siP0", tag:"フリースクール", t:"「午後は学習塾」×「午前はフリースクール」で即黒字化する5つの理由", d:"2025-07-03", len:"13:23" },
+  { id:"yygnuTV7q94", tag:"フリースクール", t:"学習塾とフリースクール開業に必要な資金はいくら？200万円でスタートした実例（宮城県名取市・ペンギンエデュケーション）", d:"2025-10-09", len:"14:29" },
+  { id:"NMf1IoO5tZ0", tag:"フリースクール", t:"フリースクール補助金が全国拡大中！名古屋市は月3万円", d:"2026-03-22", len:"9:28" },
+  { id:"jrEGbRtP89w", tag:"フリースクール", t:"学び舎かなえ（長野県）の「学習塾×通信制×フリースクール」運営ノウハウ【完全版】", d:"2025-07-28", len:"1:33:56" },
+  { id:"HLOVKP7kleI", tag:"小学生", t:"保護者面談の極意と小学生集客の重要性を徹底解説", d:"2025-05-22", len:"7:00" },
+  { id:"SDw3pVIU1T0", tag:"日本語コース", t:"学習塾の新たな収益の柱「日本語教育」AI日本語教材「すららにほんご」の全貌", d:"2025-02-15", len:"12:27" },
+  { id:"gGaO8Ff4uuE", tag:"経営全体", t:"5年後・10年後を生き残る！少子化時代の学習塾経営戦略", d:"2025-04-09", len:"12:42" },
+];
+VIDS.forEach(v => {
+  const a = document.createElement("a");
+  a.className = "vid"; a.href = `https://www.youtube.com/watch?v=${v.id}`; a.target = "_blank"; a.rel = "noopener";
+  const th = el("span", "thumb");
+  const img = document.createElement("img");
+  img.src = `thumbs/${v.id}.jpg`; img.alt = ""; img.width = 320; img.height = 180; img.loading = "lazy";
+  th.append(img, el("span", "len", v.len));
+  a.appendChild(th);
+  const t = el("div", "t", v.t);
+  t.appendChild(el("span", null, `${v.tag} ・ ${v.d} 公開`));
+  a.appendChild(t);
+  document.getElementById("vids").appendChild(a);
+});
+
+drawStage();
+
+/* ============ Excel ============ */
+const ARGB = { white:"FFFFFFFF", line:"FFDCD8CF", head:"FF34353A", ai:"FF43536B",
+               aiSoft:"FFE9EBEF", gray:"FFF0EEE8", kin:"FFEEE8DA", green:"FFE4EAE4", red:"FFF0E6E2" };
+const thin = { style:"thin", color:{ argb:ARGB.line } };
+const allThin = { top:thin, left:thin, bottom:thin, right:thin };
+const dlBtn = document.getElementById("dl");
+if (LINE_EDITION) document.querySelector(".kicker").textContent = "新規事業提案セミナー 参加特典・公式LINE限定版";
+else { dlBtn.hidden = true; document.getElementById("lineGet").hidden = false; }
+const dlNote = document.getElementById("dlNote");
+
+async function buildWorkbook(){
+  const a = calcAll();
+  const wb = new ExcelJS.Workbook();
+  wb.creator = "3つの新規事業 試算シート"; wb.created = new Date();
+  const fill = c => ({ fill:{ type:"pattern", pattern:"solid", fgColor:{ argb:c } } });
+  const ws = wb.addWorksheet("試算");
+  ws.columns = [{ width:34 }, { width:22 }, { width:22 }, { width:22 }, { width:18 }];
+  const set = (r, c, v, st) => { const x = ws.getCell(r, c); x.value = v; if (st) Object.assign(x, st); return x; };
+  const body = { font:{ name:"Arial", size:10 }, border:allThin, alignment:{ vertical:"middle" } };
+  const num = { ...body, numFmt:"#,##0", alignment:{ horizontal:"right", vertical:"middle" } };
+  const head = { font:{ name:"Arial", size:10, bold:true, color:{ argb:ARGB.white } }, border:allThin,
+                 alignment:{ horizontal:"center", vertical:"middle", wrapText:true }, ...fill(ARGB.head) };
+  const sec = t => ({ font:{ name:"Arial", size:11, bold:true, color:{ argb:ARGB.ai } } });
+
+  set(1, 1, "3つの新規事業 試算シート", { font:{ name:"Arial", size:16, bold:true } });
+  ws.getRow(1).height = 26;
+  set(2, 1, "昼の空き時間で、小学生の受け入れ・フリースクール・日本語コースを始めた場合（1か月あたり）",
+      { font:{ name:"Arial", size:9, color:{ argb:"FF66625C" } } });
+
+  let r = 4;
+  set(r++, 1, "【今の塾・すらら】", sec());
+  [["すらら", S.common.surala === "使っている" ? "すでに使っている" : "まだ使っていない"],
+   ["今の授業の時間", `${fmtT(S.common.kStart)}〜${fmtT(S.common.kEnd)}`],
+   ["昼に使える席", `${S.common.seats}席`],
+   ["すらら固定費（校舎あたり・月）の内訳", planText(a.plan)],
+   ["すらら固定費（校舎あたり・月）", Math.round(a.sFixed)],
+   ["すらら 初期導入料金", Math.round(a.sInit)]].forEach(([k, v]) => {
+    set(r, 1, k, { ...body, ...fill(ARGB.gray), font:{ name:"Arial", size:10, bold:true } });
+    set(r, 2, v, typeof v === "number" ? num : { ...body, alignment:{ horizontal:"right" } });
+    r++;
+  });
+  r++;
+  set(r++, 1, "【始める事業を比べる】（円／月）", sec());
+  const rs = a.on;
+  const totC = rs.length + 2;
+  ["項目", ...rs.map(x => bizOf(x.id).short), "合計"].forEach((t, i) => set(r, i + 1, t, head));
+  r++;
+  const sumOn = k => a.on.reduce((s, x) => s + x[k], 0);
+  const lines = [
+    ["生徒数（名）", rs.map(x => S[x.id].nin), a.on.reduce((s, x) => s + S[x.id].nin, 0)],
+    ["月謝（1人あたり）", rs.map(x => S[x.id].gessha), ""],
+    ["開く時間", rs.map(x => { const b = S[x.id]; return `週${b.days}日 ${fmtT(b.start)}〜${fmtT(b.end)}`; }), ""],
+    ["見る人", rs.map(x => { const b = S[x.id]; return b.who === "塾長" ? "塾長" : `スタッフ${b.staffN}名・時給${b.jikyu}円`; }), ""],
+    ["受け入れる学年", rs.map(x => gradesText(x.id)), ""],
+    ["売上", rs.map(x => Math.round(x.uriage)), Math.round(a.uriage)],
+    ["講師・スタッフ代", rs.map(x => -Math.round(x.jinken)), -Math.round(sumOn("jinken"))],
+    ["すらら（1人あたりの分）", rs.map(x => -Math.round(x.idCost)), -Math.round(sumOn("idCost"))],
+    ["そのほかの費用", rs.map(x => -Math.round(x.other)), -Math.round(sumOn("other"))],
+    ["事業ごとの利益", rs.map(x => Math.round(x.rieki)), Math.round(sumOn("rieki")), true],
+    ["黒字になる人数", rs.map(x => x.be == null ? "—" : `${x.be}名から`), ""],
+    ["塾長が使う時間（時間／月）", rs.map(x => Math.round(x.juchoH)), Math.round(a.juchoH)],
+    ["塾長の1時間あたり", rs.map(x => x.perH == null ? "—" : Math.round(x.perH)), ""],
+    ["はじめにかかる費用", rs.map(x => Math.round(x.init)), Math.round(sumOn("init"))],
+  ];
+  lines.forEach(([k, vals, tot, key]) => {
+    set(r, 1, k, { ...body, ...fill(ARGB.gray), font:{ name:"Arial", size:10, bold:true } });
+    vals.forEach((v, i) => set(r, i + 2, v, typeof v === "number"
+      ? { ...num, font:{ name:"Arial", size:10, bold:!!key, color:{ argb:"FF2A2724" } } }
+      : { ...body, alignment:{ horizontal:"right", vertical:"middle" } }));
+    set(r, totC, tot, typeof tot === "number" ? { ...num, ...fill(ARGB.gray), font:{ name:"Arial", size:10, bold:!!key } } : { ...body, ...fill(ARGB.gray) });
+    r++;
+  });
+  set(r, 1, "すらら固定費（校舎あたり・月。選んだ事業で共通）", { ...body, ...fill(ARGB.aiSoft), font:{ name:"Arial", size:10, bold:true } });
+  ws.mergeCells(r, 1, r, totC - 1);
+  set(r, totC, -Math.round(a.sFixed), { ...num, ...fill(ARGB.aiSoft) }); r++;
+  set(r, 1, "月に増える利益", { ...body, ...fill(ARGB.aiSoft), font:{ name:"Arial", size:11, bold:true } });
+  ws.mergeCells(r, 1, r, totC - 1);
+  set(r, totC, Math.round(a.rieki), { ...num, ...fill(a.rieki >= 0 ? ARGB.green : ARGB.red), font:{ name:"Arial", size:12, bold:true } }); r++;
+  set(r, 1, "はじめにかかる費用（すららの初期費用を含む）", { ...body, ...fill(ARGB.aiSoft), font:{ name:"Arial", size:10, bold:true } });
+  ws.mergeCells(r, 1, r, totC - 1);
+  set(r, totC, Math.round(a.init), { ...num, ...fill(ARGB.aiSoft) }); r += 2;
+
+  set(r++, 1, "【まだ仮の値のままの項目】", sec());
+  kariItems().filter(g => g.items.length).forEach(g => {
+    set(r, 1, g.name, { ...body, ...fill(ARGB.gray), font:{ name:"Arial", size:10, bold:true } });
+    ws.mergeCells(r, 2, r, 5);
+    set(r, 2, g.items.map(i => LABEL[i.k] + (i.kind === "hyo" ? "（料金表）" : "（仮）")).join("、"), { ...body, ...fill(ARGB.kin), alignment:{ wrapText:true, vertical:"middle" } });
+    ws.getRow(r).height = 30;
+    r++;
+  });
+  r++;
+  ["※ 売上＝月謝×生徒数。講師・スタッフ代＝人数×時給×（開く時間＋準備・片付け）×週の開講日数×52÷12。",
+   "※ 塾長が見る事業は人件費0円で計算し、塾長が使う時間を出しています。",
+   "※ すららの料金は料金表（税抜）の額です。ご契約の内容で変わります。家賃・税金・端末は含めていません。",
+   "※ 現時点で入手できる情報をもとにした試算です。売上や利益を約束するものではありません。"].forEach(t => {
+    ws.mergeCells(r, 1, r, 5);
+    set(r, 1, t, { font:{ name:"Arial", size:8, italic:true, color:{ argb:"FF66625C" } }, alignment:{ wrapText:true, vertical:"middle" } });
+    ws.getRow(r).height = 18; r++;
+  });
+  return wb;
+}
+
+dlBtn.addEventListener("click", async () => {
+  dlBtn.disabled = true; dlNote.className = "note-inline"; dlNote.textContent = "作成中…";
+  try {
+    const wb = await buildWorkbook();
+    const buf = await wb.xlsx.writeBuffer();
+    const blob = new Blob([buf], { type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+    const a = calcAll();
+    const filename = `新規事業試算_月${Math.round(a.rieki / 10000)}万円.xlsx`;
+    const downloads = await window.claude?.use?.("downloads");
+    if (downloads){ await downloads.save({ filename, data:blob }); dlNote.textContent = "保存しました。"; }
+    else {
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url; link.download = filename; document.body.appendChild(link); link.click(); link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 4000);
+      dlNote.textContent = "";
+    }
+  } catch (err) {
+    const code = err && err.code;
+    if (code === "declined") dlNote.textContent = "";
+    else if (code === "rate_limited"){ dlNote.className = "note-inline err"; dlNote.textContent = "少し待ってからもう一度お試しください。"; }
+    else { dlNote.className = "note-inline err"; dlNote.textContent = "この画面では書き出せませんでした。"; }
+  } finally {
+    dlBtn.disabled = false;
+    setTimeout(() => { if (dlNote.textContent === "保存しました。") dlNote.textContent = ""; }, 4000);
+  }
+});
+</script>
+</body>
+</html>
