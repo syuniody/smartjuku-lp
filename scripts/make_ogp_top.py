@@ -10,7 +10,7 @@
 DESIGN.md の規約に従う：
   - 地色は白。クリーム（--paper）は「面」にだけ使う（右上の円）
   - 見出しは明朝、本文・ラベルはゴシック（make_ogp.py と同じヒラギノ）
-  - 赤ペン（--akapen）は「月額保守費0円」の丸つけ1か所だけ。装飾に使わない
+  - 赤ペン（--akapen）は「原稿づくり込み」の丸つけ1か所だけ。装飾に使わない（2026-10-31 料金改定で「月額保守費0円」から移した）
   - 蛍光マーカーは本文中の限定強調のみ。見出しには使わない（旧OGPは使っていた）
 """
 
@@ -194,12 +194,12 @@ def render(out_path: Path = OUT) -> None:
     small_dy = round((p_size - p_size * 0.68) * 0.62)  # 小書きの下端を揃える
 
     x = float(pad)
-    x = _track_text(d, (x, py), "55,000円", f_price, INK, p_track)
-    x = _track_text(d, (x, py + small_dy), "（税込）から", f_small, INK, p_size * 0.02)
-    x = _track_text(d, (x, py), "・買い切り・", f_price, INK, p_track)
+    x = _track_text(d, (x, py), "110,000円", f_price, INK, p_track)
+    x = _track_text(d, (x, py + small_dy), "（税込）", f_small, INK, p_size * 0.02)
+    x = _track_text(d, (x, py), "・", f_price, INK, p_track)
 
-    maru_text = "月額保守費0円"
-    maru_x0 = x + p_size * 0.22   # .maru の padding 0 .22em（丸が中黒に掛からない）
+    maru_text = "原稿づくり込み"
+    maru_x0 = x + p_size * 0.62   # 丸が中黒に掛からないよう、.maru の padding より広くとる
     maru_w = _track_width(d, maru_text, f_price, p_track)
     _track_text(d, (maru_x0, py), maru_text, f_price, INK, p_track)
 
