@@ -999,6 +999,113 @@ details .ans{color:var(--ink)}
 @media (max-width:860px){
   .hb-three h2{font-size:1.05rem}
 }
+
+/* ===== 2026-11-01 構成の組み直し：お悩み→探し方→原因→担当→理由→事例→料金→比べ方→流れ→FAQ→診断 ===== */
+/* 地色：紺（トップ）→グレー→白→紺→白→グレー→白→グレー→白→グレー→白→グレー→紺（フォーム）→白 */
+.nayami{background:var(--paper)}
+.sagashi{background:var(--white)}
+.genin{background:var(--blue-deep);color:#fff}
+.tantou{background:var(--white)}
+.riyuu{background:var(--paper)}
+.works{background:var(--white)}
+.price{background:var(--paper)}
+.compare{background:var(--white)}
+.flow{background:var(--paper)}
+.faq{background:var(--white)}
+.sample{background:var(--paper)}
+.sec-head--c{text-align:center}
+.sec-head--c .sec-lede{margin-left:auto;margin-right:auto}
+.sec-head--c .sec-label{justify-content:center}
+.ttl-box{display:inline-block;margin:0 .12em;padding:0 .3em;border:2px solid var(--blue-deep);border-radius:6px;line-height:1.4}
+.mid-cta{margin-top:30px;display:flex;justify-content:center}
+.mid-cta .btn{min-width:320px}
+/* お悩み：吹き出し */
+.nm-grid{list-style:none;margin:34px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px 18px}
+.nm-b{position:relative;background:var(--white);border:2px solid var(--blue-deep);border-radius:16px;padding:18px 20px;
+  font-size:1rem;line-height:1.75;text-align:center;font-weight:500}
+.nm-b b{font-weight:900;color:var(--blue-deep)}
+.nm-b::after{content:"";position:absolute;left:50%;bottom:-11px;width:18px;height:18px;margin-left:-9px;background:var(--white);
+  border-right:2px solid var(--blue-deep);border-bottom:2px solid var(--blue-deep);transform:rotate(45deg)}
+.nm-foot{margin-top:34px;text-align:center;font-size:1.05rem}
+.nm-foot b{background:linear-gradient(transparent 58%,var(--marker) 58%);padding:0 .12em}
+/* 保護者の探し方：数字のカード */
+.sg-stats{display:grid;grid-template-columns:1fr 1fr 1.6fr;gap:16px;margin-top:30px}
+.sg-card{border:2px solid var(--blue-deep);border-radius:10px;padding:18px 20px;background:var(--white)}
+.sg-k{font-size:.88rem;font-weight:700;line-height:1.6}
+.sg-n{margin-top:6px;font-weight:900;font-size:3rem;line-height:1;color:var(--blue-deep);letter-spacing:.01em}
+.sg-n small{font-size:.45em;margin-left:2px}
+.sg-bars{list-style:none;margin:12px 0 0;display:grid;gap:10px}
+.sg-bars li{display:grid;grid-template-columns:11.5em 1fr 3.4em;align-items:center;gap:10px;font-size:.88rem}
+.sg-bars .l small{font-size:.8em;color:var(--ink-soft)}
+.sg-bars .b{height:14px;background:var(--paper);border-radius:3px;overflow:hidden}
+.sg-bars .b i{display:block;height:100%;background:var(--blue-deep)}
+.sg-bars .v{font-weight:900;color:var(--blue-deep);text-align:right;font-variant-numeric:tabular-nums}
+.sg-point{margin-top:26px;font-size:1.05rem;line-height:1.95}
+.sg-point b{font-weight:900}
+.sg-src{margin-top:14px;font-size:.8rem;color:var(--ink-soft);line-height:1.8}
+/* 原因：紺の節 */
+.genin .sec-label{color:#fff}
+.genin .sec-label::before{background:#fff}
+.genin .sec-title{color:#fff}
+.genin .sec-lede{color:rgba(255,255,255,.9)}
+.gn-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:30px}
+.gn-card{background:#fff;color:var(--ink);border-radius:10px;padding:22px 18px;text-align:center}
+.gn-n{font-weight:900;font-size:3.2rem;line-height:1;color:var(--akapen)}
+.gn-n small{font-size:.45em;margin-left:2px}
+.gn-k{margin-top:10px;font-weight:900;font-size:1rem;line-height:1.6}
+.gn-m{margin-top:6px;font-size:.8rem;color:var(--ink-soft)}
+.gn-src{margin-top:16px;text-align:center;font-size:.8rem;color:rgba(255,255,255,.85)}
+.gn-src .inline-link{color:#fff}
+.genin .mid-cta .btn{background:var(--akapen);border-color:var(--akapen)}
+/* 担当者 */
+.tt-facts{list-style:none;margin:18px 0 0;border-top:1px solid var(--line)}
+.tt-facts li{padding:10px 2px;border-bottom:1px solid var(--line);font-size:.95rem;font-weight:700}
+/* 選ばれる4つの理由 */
+.ry-list{display:grid;gap:22px;margin-top:30px}
+.ry-item{border:2px solid var(--blue-deep);border-radius:10px;overflow:hidden;background:var(--white)}
+.ry-head{display:flex;align-items:center;gap:14px;padding:14px 24px;background:var(--blue-deep);color:#fff;
+  font-family:var(--sans);font-size:1.25rem;font-weight:900;letter-spacing:.03em}
+.ry-no{display:inline-flex;align-items:center;justify-content:center;min-width:2.4em;padding:2px 8px;border-radius:999px;
+  background:#fff;color:var(--blue-deep);font-family:var(--serif);font-size:.95rem}
+.ry-body{padding:22px 26px 24px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 36px;align-items:start}
+.ry-body>p{font-size:1rem;line-height:1.95}
+.ry-body>p b{font-weight:900;color:var(--blue-deep)}
+.ry-ul{list-style:none;margin:0;border-top:1px solid var(--line)}
+.ry-ul li{padding:10px 2px;border-bottom:1px solid var(--line);font-size:.92rem;line-height:1.7}
+.ry-svc{margin:0}
+.ry-body .svc-demo{grid-column:2}
+.ry-dl{margin:0;border-top:1px solid var(--line)}
+.ry-dl div{padding:10px 2px;border-bottom:1px solid var(--line)}
+.ry-dl dt{font-weight:900;color:var(--blue-deep);font-size:.95rem}
+.ry-dl dt small{font-size:.75em;margin-left:2px}
+.ry-dl dd{margin-top:4px;font-size:.9rem;line-height:1.75}
+.ry-note{grid-column:1 / -1;font-size:.8rem;color:var(--ink-soft)}
+/* 料金の中の月額サポート */
+.pr-monthly{margin-top:36px}
+.pr-monthly-title{font-size:1.15rem;font-weight:900;letter-spacing:.02em}
+.pr-monthly-lede{margin-top:8px;font-size:.95rem;line-height:1.9}
+.pr-monthly .details-plain{margin-top:14px}
+/* 流れの中の「先生がやること」 */
+.flow-yours{margin-top:40px}
+.pc-br{display:inline}
+@media (min-width:861px){ .hb-sub{display:none} }
+@media (max-width:860px){
+  .nm-grid{grid-template-columns:1fr 1fr}
+  .sg-stats{grid-template-columns:1fr 1fr}
+  .sg-card--bars{grid-column:1 / -1}
+  .ry-body{grid-template-columns:1fr}
+  .ry-body .svc-demo{grid-column:auto}
+  .pc-br{display:none}
+}
+@media (max-width:640px){
+  .nm-grid{grid-template-columns:1fr;gap:20px}
+  .sg-stats,.gn-stats{grid-template-columns:1fr}
+  .sg-bars li{grid-template-columns:1fr 3.4em;grid-template-areas:"l v" "b b";row-gap:4px}
+  .sg-bars .l{grid-area:l}.sg-bars .b{grid-area:b}.sg-bars .v{grid-area:v}
+  .ry-head{font-size:1.08rem;padding:12px 16px}
+  .ry-body{padding:18px 18px 20px}
+  .mid-cta .btn{min-width:0;width:100%}
+}
 </style>
 </head>
 <body>
@@ -1010,7 +1117,7 @@ details .ans{color:var(--ink)}
     <nav class="gnav">
       <a href="#sample">無料診断</a>
       <a class="gnav-extra" href="#works">制作事例</a>
-      <a class="gnav-extra" href="#services">サービス</a>
+      <a class="gnav-extra" href="#riyuu">選ばれる理由</a>
       <a href="#price">料金</a>
       <a class="gnav-extra" href="#compare">費用の比べ方</a>
       <a href="#faq">よくある質問</a>
@@ -1039,13 +1146,6 @@ details .ans{color:var(--ink)}
       </div>
     </div>
     <div class="hb-sub">
-      <div class="hb-three">
-        <div><h2><span>1</span>学習塾専門</h2><p>塾の集客を見てきた人間が、保護者が塾を選ぶ順番に沿って作ります。</p></div>
-        <div><h2><span>2</span><b class="nb">文章もデザインもおまかせ</b></h2><p>60分のお話から原稿を書き、デザインは塾ごとに一から。記事の引っ越しも込みです。</p></div>
-        <div><h2><span>3</span>作って終わりにしない</h2><p>公開後は毎月のレポートで、見に来た人数と問い合わせを一緒に確かめます。</p></div>
-        <div><h2><span>4</span>AIO・MEO対策も込み</h2><p>Googleマップの初期整備と、AI検索に正しく読み取られる作りまで、制作費に含みます。</p></div>
-      </div>
-      <p class="hb-promise">先生は<em class="hb-mark">確認するだけ</em>です。</p>
       <div class="hb-cta">
         <a class="btn" href="#diagnosis" data-cta-placement="hero" data-cta-type="diagnosis">無料診断で改善点3つを受け取る</a>
         <p class="hb-note">通常1営業日以内にメールでお届け。こちらから突然お電話することはありません。</p>
@@ -1053,10 +1153,157 @@ details .ans{color:var(--ink)}
     </div>
   </section>
 
-  <!-- 帯 -->
-  <div class="band">
-    <p>ホームページ制作<span>／</span>Googleマップ対策<span>／</span>AI検索対策<span>／</span>AI活用<span>—</span>ひとつの窓口でまとめて<span class="nb">相談できます</span></p>
-  </div>
+  <!-- お悩み：読み手（塾長）が「うちのことだ」と思う節。学びの森（森塾型）の吹き出しの組み方 -->
+  <section class="nayami" id="nayami">
+    <div class="wrap">
+      <div class="sec-head sec-head--c rv">
+        <h2 class="sec-title">こんな<span class="ttl-box">お悩み</span>、<span class="nb">ありませんか？</span></h2>
+      </div>
+      <ul class="nm-grid">
+        <li class="nm-b rv">ホームページが、<b>何年も前のまま</b>止まっている</li>
+        <li class="nm-b rv rv-d1">作ったのに、<b>問い合わせにつながっていない</b></li>
+        <li class="nm-b rv rv-d2">直すたびに業者に頼んで、<b>お金と時間がかかる</b></li>
+        <li class="nm-b rv">月額を払い続けているのに、<b>何をしてもらっているか分からない</b></li>
+        <li class="nm-b rv rv-d1"><b>Googleマップ</b>の写真や営業時間が、古いまま</li>
+        <li class="nm-b rv rv-d2"><b>文章を書く時間</b>が、どうしても取れない</li>
+      </ul>
+      <p class="nm-foot rv">ひとつでも当てはまれば、<b>無料HP診断</b>で、どこから手をつけるかを整理できます。</p>
+    </div>
+  </section>
+
+  <!-- 保護者の塾の探し方：AIで知り、Googleマップとホームページで確かめる（Edu-Biz 2026-10-27回の調査） -->
+  <section class="sagashi" id="sagashikata">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="sec-label">保護者の塾の探し方</p>
+        <h2 class="sec-title"><span class="nb">保護者はAIで塾を知り、</span><br><span class="nb">Googleマップと</span><span class="nb">ホームページで</span><span class="nb">確かめています。</span></h2>
+        <p class="sec-lede">2026年10月に公開された保護者向けの調査では、塾探しにAIを使った保護者の多くが、いつものGoogle検索の中でAIの答えを見ていました。そして<b>ほとんどの人が、AIの答えをそのまま信じずに調べ直しています</b>。</p>
+      </div>
+      <div class="sg-stats">
+        <div class="sg-card rv"><p class="sg-k">GoogleのAI（AIによる概要・AIモード）を使った</p><p class="sg-n">77.3<small>%</small></p></div>
+        <div class="sg-card rv rv-d1"><p class="sg-k">AIの答えのあと、別の情報源で調べ直した</p><p class="sg-n">95.0<small>%</small></p></div>
+        <div class="sg-card sg-card--bars rv rv-d2">
+          <p class="sg-k">調べ直した先（複数回答）</p>
+          <ul class="sg-bars">
+            <li><span class="l">塾の比較サイト</span><span class="b"><i style="width:51.3%"></i></span><span class="v">51.3%</span></li>
+            <li><span class="l">Googleマップ<small>（クチコミ・写真など）</small></span><span class="b"><i style="width:42.2%"></i></span><span class="v">42.2%</span></li>
+            <li><span class="l">塾の公式ホームページ</span><span class="b"><i style="width:39.2%"></i></span><span class="v">39.2%</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="sg-point rv">AIは塾を知る<b>入口</b>。入塾を決める<b>決め手</b>は、そのあとに見る<b>Googleマップのクチコミとホームページ</b>です。<br class="pc-br">どこを見ても同じ、新しい情報がそろっていることが、比べる候補に残る条件になります。</p>
+      <p class="sg-src rv">出典：株式会社カンリー「保護者の5割以上が塾探しでAIを利用！」（PR TIMES・2026年10月23日）。回答は塾探しにAIを使った保護者1,000人とみられます。調査の時期・方法は公表されていません。<br><a class="inline-link" href="https://youtu.be/ACISbVrB8qg" target="_blank" rel="noopener noreferrer">この調査の読み方は、動画でも解説しています（YouTube・8分36秒）</a></p>
+    </div>
+  </section>
+
+  <!-- 原因：3か所を整える人が塾にいない。当社の診断の実数で裏づける -->
+  <section class="genin" id="genin">
+    <div class="wrap">
+      <div class="sec-head sec-head--c rv">
+        <p class="sec-label">原因</p>
+        <h2 class="sec-title"><span class="nb">その3か所を整える人が、</span><br><span class="nb">塾にいない。</span></h2>
+        <p class="sec-lede">授業と面談で一日が終わるなかで、ホームページ・Googleマップ・AIでの見え方まで手を回すのは難しいことです。当社が学習塾のホームページを1件ずつ診断すると、こうでした。</p>
+      </div>
+      <div class="gn-stats">
+        <div class="gn-card rv"><p class="gn-n">51.5<small>%</small></p><p class="gn-k">Googleマップに<br>課題があった</p><p class="gn-m">追加確認した33塾</p></div>
+        <div class="gn-card rv rv-d1"><p class="gn-n">63.6<small>%</small></p><p class="gn-k">検索とAIでの見つかりやすさに<br>課題があった</p><p class="gn-m">追加確認した33塾</p></div>
+        <div class="gn-card rv rv-d2"><p class="gn-n">40.2<small>%</small></p><p class="gn-k">情報が古いまま<br>止まっていた</p><p class="gn-m">82塾</p></div>
+      </div>
+      <p class="gn-src rv">※当社の無料HP診断（2026年7〜8月）の集計です。母数は項目ごとに異なります。<a class="inline-link" href="/report/juku-hp-shindan-matome.html">診断の集計を見る</a></p>
+      <div class="mid-cta rv"><a class="btn" href="#diagnosis" data-cta-placement="genin" data-cta-type="diagnosis">うちの塾はどうか、無料で診断する</a></div>
+    </div>
+  </section>
+
+  <!-- 解決：スマ塾が塾のWeb担当になる（旧「運営者について」を上げた） -->
+  <section class="tantou" id="tantou">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="sec-label">この人が担当します</p>
+        <h2 class="sec-title"><span class="nb">スマ塾が、あなたの塾の</span><br><span class="nb">Web担当になります。</span></h2>
+      </div>
+      <div class="person-grid">
+        <div class="person-photo rv">
+          <img src="assets/oda.jpg" alt="スマ塾 代表・小田 一勲" width="900" height="1200" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <p class="ph-note" style="display:none">※代表・小田の写真（assets/oda.jpg）を配置してください</p>
+        </div>
+        <div class="person-body rv rv-d1">
+          <h3>小田 一勲</h3>
+          <span class="p-en">おだ・かずひろ／合同会社SyUNi 代表</span>
+          <p class="p-credit">教育ニュース解説<a class="inline-link" href="https://www.youtube.com/channel/UCYS6zWMZwBGCISTYcUFjqZg" target="_blank" rel="noopener noreferrer">「Edu-NEWS」</a>を運営（登録者3,480人・2026年8月時点）</p>
+          <p>塾の先生と直接話す仕事を続けてきました。ホームページの話になると、返ってくる言葉はだいたい二つです。手が回っていない。頼むと高い。どちらもそのとおりだと思います。授業と面談で一日が終わるなかで、更新まで手を伸ばすのは難しく、制作費が生徒何人分かに相当するなら、後回しになるのが自然です。</p>
+          <p>だから、原稿づくりから引き受けて、制作は110,000円、毎月の保守は2,200円にしました。作ったあとは、塾がご自身でも書き換えられます。</p>
+          <p>スマ塾は「業者に外注する」サービスではありません。塾業界を知る人間が、あなたの塾のWeb担当として隣に座ります。HP・Googleマップ・AI検索・AI活用、どこから相談してもらっても大丈夫です。</p>
+          <ul class="tt-facts">
+            <li>教育業界で10年以上、学習塾の集客を支援（代表個人の経歴）</li>
+            <li>学習塾82塾のホームページを1件ずつ診断（2026年7〜8月）</li>
+            <li>診断もレクチャーも、代表の小田が全部やります</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 選ばれる4つの理由（旧「公開したあとのこと」の中身を③④に吸収） -->
+  <section class="riyuu" id="riyuu">
+    <div class="wrap">
+      <div class="sec-head sec-head--c rv">
+        <p class="sec-label">選ばれる理由</p>
+        <h2 class="sec-title">スマ塾が選ばれる<span class="ttl-box">4つの理由</span></h2>
+      </div>
+      <div class="ry-list">
+        <article class="ry-item rv">
+          <h3 class="ry-head"><span class="ry-no">01</span><span class="ry-t">学習塾専門</span></h3>
+          <div class="ry-body">
+            <p>保護者が塾を選ぶ順番（スマホで開く→最初の画面→料金・対象学年→実績と先生の顔→問い合わせ）に沿って作ります。学習塾82塾を診断して分かった、<b>候補から外れやすいところ</b>を先に直します。</p>
+            <ul class="ry-ul">
+              <li>スマホで開いてすぐ、どこの・誰向けの塾か分かる</li>
+              <li>料金・対象学年・講習の案内を、画像ではなく文字で</li>
+              <li>塾長・講師の顔と、合格実績・成績の伸び</li>
+              <li>スマホから問い合わせまで、迷わない導線</li>
+            </ul>
+          </div>
+        </article>
+        <article class="ry-item rv">
+          <h3 class="ry-head"><span class="ry-no">02</span><span class="ry-t"><span class="nb">文章もデザインも</span><span class="nb">おまかせ</span></span></h3>
+          <div class="ry-body">
+            <p>60分のお話をもとに、<b>原稿はこちらで書きます</b>。デザインは型に当てはめず、塾ごとに一から作ります。今のホームページの記事も、本数の上限なく引っ越します。先生は、届いた原稿を確認するだけです。</p>
+            <ul class="ry-ul">
+              <li>ヒアリング60分から、各ページの原稿を作成</li>
+              <li>ご支給写真の選定と、足りない分の手配</li>
+              <li>旧サイトの記事の引っ越しと、旧URLからの転送</li>
+              <li>公開前の確認2往復・公開後のレクチャー60分</li>
+            </ul>
+          </div>
+        </article>
+        <article class="ry-item rv">
+          <h3 class="ry-head"><span class="ry-no">03</span><span class="ry-t"><span class="nb">作って終わりに</span><span class="nb">しない</span></span></h3>
+          <div class="ry-body">
+            <p>公開後は、管理画面から<b>塾ご自身で直せます</b>（回数無制限・0円）。毎月のGA4レポートで、見に来た人数・読まれたページ・問い合わせ数を一緒に確かめます。</p>
+            <ul class="svc-ul ry-svc">
+              <li><b>お知らせ</b>　講習の日程・休講・募集の締切。<span class="nb">告知の出し遅れを防げます</span></li>
+              <li><b>料金表</b>　金額・コース・対象学年。<span class="nb">料金が文字で読める状態を保てます</span></li>
+              <li><b>合格実績</b>　合格校と人数。<span class="nb">春に塾長ご自身で入れ替えられます</span></li>
+              <li><b>ブログ・成績事例・画像</b>　授業のようすや生徒の伸びた記録、教室・講師の写真の差し替え</li>
+              <li><b>よくある質問</b>　面談で毎回聞かれることを、<span class="nb">先に書いておけます</span></li>
+              <li><b>お問い合わせフォーム</b>　項目の追加や文言。<span class="nb">スマホから入塾の問い合わせへ</span><span class="nb">進める導線を保てます</span></li>
+            </ul>
+            <p class="svc-demo"><a class="inline-link" href="demo/sei/admin/index.html" target="_blank" rel="noopener">管理画面のイメージを開く</a>（※架空の塾で作ったモック画面です）</p>
+          </div>
+        </article>
+        <article class="ry-item rv">
+          <h3 class="ry-head"><span class="ry-no">04</span><span class="ry-t"><span class="nb">AIO・MEO対策も</span><span class="nb">込み</span></span></h3>
+          <div class="ry-body">
+            <p>保護者が調べ直す<b>Googleマップとホームページ</b>の情報を、そろえて整えます。制作費に含みます。</p>
+            <dl class="ry-dl">
+              <div><dt>Googleマップ<small>（MEO）</small></dt><dd>Googleビジネスプロフィールの初期整備（写真・営業時間・カテゴリ）／ホームページと塾名・住所・電話番号を完全にそろえる／クチコミを集める導線づくり</dd></div>
+              <div><dt>AI検索<small>（AIO）</small></dt><dd>料金・対象学年・住所・営業時間を、AIが読める文字で置く／よくある質問を、AIが答えの根拠に使える形で載せる／AIでの見え方を確かめる</dd></div>
+            </dl>
+            <p class="ry-note">※AIや地図で候補に出ることや、順位はお約束しません。読み取られやすい状態に整えるところまでを行います。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
   <!-- WORKS -->
   <section class="works" id="works">
@@ -1090,94 +1337,7 @@ details .ans{color:var(--ink)}
           <p class="work-demo"><a class="inline-link" href="case/souei-seminar.html">事例を読む</a><span class="case-url">実際のHP：<a class="inline-link" href="https://www.soueiseminar.jp/" target="_blank" rel="noopener">www.soueiseminar.jp</a></span></p>
         </article>
       </div>
-    </div>
-  </section>
-
-  <!-- SERVICES：塾自身で更新できることと、任せられる範囲 -->
-  <section class="services" id="services">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <p class="sec-label">公開したあとのこと</p>
-        <h2 class="sec-title"><span class="nb">料金もお知らせも、</span><span class="nb">塾長がスマホから</span><span class="nb">直せます。</span><br><span class="nb">手が回らないところだけ、</span><span class="nb">こちらで引き受けます。</span></h2>
-        <p class="sec-lede">公開して止まってしまうホームページにしないために、<b>塾ご自身で直せる範囲</b>を先に決めています。専門知識のいる設定と、時間のかかる運用だけを、必要になったときにお任せください。</p>
-      </div>
-
-      <div class="svc-feature rv">
-        <div>
-          <div class="svc-idx"><span class="cat">塾自身で更新できること</span></div>
-          <h3>管理画面から直せるもの</h3>
-          <p class="desc">文字を打ち替えて保存するだけです。パソコンでもスマートフォンでも直せます。ご自身で更新される分は、回数の制限も、そのつどの費用もありません。</p>
-          <ul class="svc-ul">
-            <li><b>お知らせ</b>　講習の日程・休講・募集の締切。<span class="nb">告知の出し遅れを防げます</span></li>
-            <li><b>料金表</b>　金額・コース・対象学年。<span class="nb">料金が文字で読める状態を保てます</span></li>
-            <li><b>合格実績</b>　合格校と人数。<span class="nb">春に塾長ご自身で入れ替えられます</span></li>
-            <li><b>ブログ・成績事例・画像</b>　授業のようすや生徒の伸びた記録、教室・講師の写真の差し替え</li>
-            <li><b>よくある質問</b>　面談で毎回聞かれることを、<span class="nb">先に書いておけます</span></li>
-            <li><b>お問い合わせフォーム</b>　項目の追加や文言。<span class="nb">スマホから入塾の問い合わせへ</span><span class="nb">進める導線を保てます</span></li>
-          </ul>
-          <p class="svc-demo"><a class="inline-link" href="demo/sei/admin/index.html" target="_blank" rel="noopener">管理画面のイメージを開く</a>（※架空の塾で作ったモック画面です）</p>
-        </div>
-      </div>
-
-      <p class="svc-rest-lead rv">ここから先は、専門の設定と、毎月の手間がかかる運用です。<b>Googleマップの初期整備とAI検索対応の基本設定は、制作費に込み</b>です。運用まで任せたい場合と、AIの使い方を相談したい場合は、同じ窓口で承ります。</p>
-      <div class="svc-rest">
-        <div class="svc-item rv">
-          <div>
-            <h3>Googleマップ対策<span style="font-size:.6em;font-weight:600">（MEO）</span></h3>
-          </div>
-          <div>
-            <p class="desc">「地域名＋塾」で探した保護者の画面には、ホームページより先に地図の枠が出ることがあります。そこに載る情報を、塾の実態と合った状態に整えます。</p>
-            <p class="svc-do">Googleビジネスプロフィールの初期整備（写真・営業時間・カテゴリ）／ホームページと塾名・住所・電話番号を完全に統一／口コミを集める導線づくりと、写真・投稿の運用サポート</p>
-          </div>
-        </div>
-        <div class="svc-item rv rv-d1">
-          <div>
-            <h3>AI検索対応<span style="font-size:.6em;font-weight:600">（AIO）</span></h3>
-          </div>
-          <div>
-            <p class="desc">ChatGPTなどのAIに塾を尋ねる保護者もいます。料金や対象学年が画像の中の文字だけだと、機械には読み取られにくくなります。<b>読み取られやすい状態まで整えるところまで</b>を行い、候補に出ることや順位はお約束しません。</p>
-            <p class="svc-do">料金・対象学年・住所・営業時間を、AIが読める文字情報として明示／よくある質問を、AIが答えの根拠に使える形で掲載／AI検索での見え方を定期的に確認し、古い情報や誤りが出ていないかをチェック</p>
-          </div>
-        </div>
-        <div class="svc-item rv rv-d2">
-          <div>
-            <h3>AI活用の相談窓口</h3>
-          </div>
-          <div>
-            <p class="desc">「AIが気になるけど、何から始めれば…」に応えます。難しい設定は不要。塾の実務でそのまま使える形にしてお渡しします。</p>
-            <p class="svc-do">保護者向け連絡文面・講習告知文をAIで時短作成／ブログ・お知らせの下書きを毎月のネタ付きで／面談準備・教材づくりに使える指示文（プロンプト）集</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 旧「保護者はいま、こう探しています」の節は、ここに短く畳んだ（既定は閉） -->
-      <details class="details-plain svc-check rv" id="selfcheck">
-        <summary>いまのご自身の塾で、3つだけ確かめてみる（1分）</summary>
-        <div class="check-list">
-          <div class="check-item">
-            <div>
-              <h3>Googleで塾名を検索したとき、マップに写真・営業時間・口コミへの返信は出ますか？</h3>
-              <p class="how"><b>確かめ方</b>スマホで塾名を検索し、右または上に出る地図の枠を見る（30秒）。</p>
-              <p class="dat">当社の診断では、Googleマップに課題があった塾は<b>51.5%</b>（33塾中）。</p>
-            </div>
-          </div>
-          <div class="check-item">
-            <div>
-              <h3>AIに「◯◯市 塾 おすすめ」と聞いたとき、貴塾の情報は正しく読み取られていますか？</h3>
-              <p class="how"><b>確かめ方</b>AIに市区名＋塾と聞いて、出てきた説明に書かれた内容を読む（1分）。</p>
-              <p class="dat">当社の診断では、検索とAIでの見つかりやすさに課題があった塾は<b>63.6%</b>（33塾中）。</p>
-            </div>
-          </div>
-          <div class="check-item">
-            <div>
-              <h3>スマホでホームページを開いて、料金・対象学年・今年の講習案内が3秒で見えますか？</h3>
-              <p class="how"><b>確かめ方</b>自分のスマホで開き、上から3画面ぶんだけ見る（30秒）。</p>
-              <p class="dat">当社の診断では、情報の鮮度に課題があった塾は<b>40.2%</b>、信頼要素（塾長の顔・実名・実績）に課題があった塾は<b>35.4%</b>（いずれも82塾中）。</p>
-            </div>
-          </div>
-        </div>
-        <p class="check-src">※数値は当社が学習塾のホームページを1件ずつ診断した集計です。母数は項目ごとに異なります（8月に診断項目を追加したため）。対象・時期の異なる集計なので、項目どうしの直接の比較ではありません。<a class="inline-link" href="/report/juku-hp-shindan-matome.html">診断の集計を見る</a></p>
-      </details>
+      <div class="mid-cta rv"><a class="btn" href="#diagnosis" data-cta-placement="works" data-cta-type="diagnosis">無料診断で改善点3つを受け取る</a></div>
     </div>
   </section>
 
@@ -1236,14 +1396,32 @@ details .ans{color:var(--ink)}
         </div>
       </div>
 
-      <div class="pr-yours rv">
-        <h3 class="pr-yours-title">先生がやることは、<em>3つだけ</em>です</h3>
-        <div class="pr-yours-grid">
-          <div class="pr-yours-item"><h4><span>1</span>お話を聞かせてください</h4><p>オンラインで60分ほど。塾の強みや、保護者によく聞かれることを伺います。</p></div>
-          <div class="pr-yours-item"><h4><span>2</span>原稿を確認してください</h4><p>届いた原稿と画面を読んで、直してほしいところを伝えるだけです（2回まで）。</p></div>
-          <div class="pr-yours-item"><h4><span>3</span>資料を送ってください</h4><p>写真・料金表・合格実績など、手元にあるものだけで大丈夫です。</p></div>
+      <div class="pr-monthly rv" id="monthly">
+        <h3 class="pr-monthly-title">公開後も任せたい方へ（月額サポート）</h3>
+        <p class="pr-monthly-lede">あんしん保守（月2,200円）は、<b>すべての塾さまにお付けします</b>。そのうえで、更新まで任せたい塾さまは、下の2つから選べます。どちらも<b>あんしん保守の内容を含みます</b>（二重にはかかりません）。</p>
+        <details class="details-plain rv" id="monthly-plans">
+        <summary>月額サポート3種を見る（<span class="nb">月2,200円〜</span>）</summary>
+        <div class="monthly-in">
+          <div class="rate-list">
+            <div class="rate-item rv">
+              <h4><span class="nb">あんしん保守</span>＋<span class="nb">毎月のGA4レポート</span>（全塾）</h4>
+              <span class="rate-price">月2,200円（税込）</span>
+              <p>毎月のサイト分析レポート、ドメイン更新の代行、毎日の死活監視、月次バックアップ、軽微な修正の代行（月1回・15分以内）。公開の翌月から、最初の12か月はご契約いただきます。</p>
+            </div>
+            <div class="rate-item rv">
+              <h4>更新おまかせ（月1回）</h4>
+              <span class="rate-price">月5,500円（税込）</span>
+              <p>あんしん保守の全内容に、更新の代行を月1回加えたプラン。1回は、お知らせ1つの入れ替えや、ページの一部の書き換え程度です。</p>
+            </div>
+            <div class="rate-item rv">
+              <h4>更新おまかせ（月4回）</h4>
+              <span class="rate-price">月10,780円（税込）</span>
+              <p>あんしん保守の全内容に、更新の代行（月4回まで）、月1回・1時間のオンライン打ち合わせ（その月の告知や講習の段取りを一緒に決めます）、春・夏・冬の講習ページの作り替え、四半期ごとのGoogleマップ・AI検索での見え方チェックを加えたプラン。使わなかった回数は繰り越さず、4回を超えた分は1回3,300円です。</p>
+            </div>
+          </div>
+          <p class="rate-note rv">※あんしん保守は、公開の翌月から最初の12か月をご契約いただき、以後は1年ごとの自動更新です（更新日の2か月前までのお申し出でおやめいただけます）。更新おまかせは最初の6か月をご継続いただき、以降は1か月前までのお申し出で解約できます。最初の契約期間の途中で解約される場合は、残りの期間分を申し受けます。おやめになった後も、ホームページとドメインは塾さまのものです。</p>
         </div>
-        <p class="pr-yours-note">文章を一から書く必要はありません。今のホームページがある場合は、その文章と記事をもとにこちらで整えます。</p>
+        </details>
       </div>
       <div class="plan-cost rv">
         <h3 class="plan-cost-title">必ず必要になる実費と、追加になる費用</h3>
@@ -1338,6 +1516,15 @@ details .ans{color:var(--ink)}
         <div class="flow-item rv rv-d1"><h3>オンライン相談<br>（希望者のみ）</h3><p>フォームで「相談も希望」を選ばれた方に、レポート送付時に予約リンクをお送りします。日時をお選びいただき、レポートの中身と進め方をご説明します。</p></div>
         <div class="flow-item rv rv-d2"><h3>ご提案・制作</h3><p>構成案とお見積りをお出しします。ご納得いただけたら制作枠を押さえ、着手日を決めて制作に入ります。</p></div>
         <div class="flow-item rv rv-d3"><h3>公開・レクチャー</h3><p>必要な素材がそろった日から10営業日（最短2週間）を目安に公開し、管理画面での更新のしかたを60分でお教えします。</p></div>
+      </div>
+      <div class="pr-yours rv flow-yours">
+        <h3 class="pr-yours-title">先生がやることは、<em>3つだけ</em>です</h3>
+        <div class="pr-yours-grid">
+          <div class="pr-yours-item"><h4><span>1</span>お話を聞かせてください</h4><p>オンラインで60分ほど。塾の強みや、保護者によく聞かれることを伺います。</p></div>
+          <div class="pr-yours-item"><h4><span>2</span>原稿を確認してください</h4><p>届いた原稿と画面を読んで、直してほしいところを伝えるだけです（2回まで）。</p></div>
+          <div class="pr-yours-item"><h4><span>3</span>資料を送ってください</h4><p>写真・料金表・合格実績など、手元にあるものだけで大丈夫です。</p></div>
+        </div>
+        <p class="pr-yours-note">文章を一から書く必要はありません。今のホームページがある場合は、その文章と記事をもとにこちらで整えます。</p>
       </div>
       <p class="flow-note rv">※無料HP診断のお申し込みは、制作のお申し込みではありません。診断のあとに、こちらから突然お電話することはありません。オンライン相談・日時の予約・制作のお申し込みは、それぞれ別の手続きです。</p>
     </div>
@@ -1567,64 +1754,6 @@ details .ans{color:var(--ink)}
     </div>
   </section>
 
-  <!-- MONTHLY：公開後も任せたい方へ（保守は全塾・更新おまかせは選べる）。フォームの後ろに置く -->
-  <section class="monthly" id="monthly">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <p class="sec-label">公開後も任せたい方へ</p>
-        <h2 class="sec-title">自分で更新できます。<br><span class="nb">それでも</span><span class="nb">手が回らない月は、</span><span class="nb">任せることもできます。</span></h2>
-        <p class="sec-lede">あんしん保守（月2,200円）は、<b>すべての塾さまにお付けします</b>。そのうえで、更新まで任せたい塾さまは、下の2つから選べます。どちらも<b>あんしん保守の内容を含みます</b>（二重にはかかりません）。</p>
-      </div>
-      <details class="details-plain rv" id="monthly-plans">
-        <summary>月額サポート3種を見る（<span class="nb">月2,200円〜</span>）</summary>
-        <div class="monthly-in">
-          <div class="rate-list">
-            <div class="rate-item rv">
-              <h4><span class="nb">あんしん保守</span>＋<span class="nb">毎月のGA4レポート</span>（全塾）</h4>
-              <span class="rate-price">月2,200円（税込）</span>
-              <p>毎月のサイト分析レポート、ドメイン更新の代行、毎日の死活監視、月次バックアップ、軽微な修正の代行（月1回・15分以内）。公開の翌月から、最初の12か月はご契約いただきます。</p>
-            </div>
-            <div class="rate-item rv">
-              <h4>更新おまかせ（月1回）</h4>
-              <span class="rate-price">月5,500円（税込）</span>
-              <p>あんしん保守の全内容に、更新の代行を月1回加えたプラン。1回は、お知らせ1つの入れ替えや、ページの一部の書き換え程度です。</p>
-            </div>
-            <div class="rate-item rv">
-              <h4>更新おまかせ（月4回）</h4>
-              <span class="rate-price">月10,780円（税込）</span>
-              <p>あんしん保守の全内容に、更新の代行（月4回まで）、月1回・1時間のオンライン打ち合わせ（その月の告知や講習の段取りを一緒に決めます）、春・夏・冬の講習ページの作り替え、四半期ごとのGoogleマップ・AI検索での見え方チェックを加えたプラン。使わなかった回数は繰り越さず、4回を超えた分は1回3,300円です。</p>
-            </div>
-          </div>
-          <p class="rate-note rv">※あんしん保守は、公開の翌月から最初の12か月をご契約いただき、以後は1年ごとの自動更新です（更新日の2か月前までのお申し出でおやめいただけます）。更新おまかせは最初の6か月をご継続いただき、以降は1か月前までのお申し出で解約できます。最初の契約期間の途中で解約される場合は、残りの期間分を申し受けます。おやめになった後も、ホームページとドメインは塾さまのものです。</p>
-        </div>
-      </details>
-    </div>
-  </section>
-
-  <!-- PERSON -->
-  <section class="person" id="person">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <p class="sec-label">運営者について</p>
-        <h2 class="sec-title">診断もレクチャーも、<br>代表の小田が<span class="nb">全部やります。</span></h2>
-      </div>
-      <div class="person-grid">
-        <div class="person-photo rv">
-          <img src="assets/oda.jpg" alt="スマ塾 代表・小田 一勲" width="900" height="1200" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <p class="ph-note" style="display:none">※代表・小田の写真（assets/oda.jpg）を配置してください</p>
-        </div>
-        <div class="person-body rv rv-d1">
-          <h3>小田 一勲</h3>
-          <span class="p-en">おだ・かずひろ／合同会社SyUNi 代表</span>
-          <p class="p-credit">教育ニュース解説<a class="inline-link" href="https://www.youtube.com/channel/UCYS6zWMZwBGCISTYcUFjqZg" target="_blank" rel="noopener noreferrer">「Edu-NEWS」</a>を運営（登録者3,480人・2026年8月時点）</p>
-          <p>塾の先生と直接話す仕事を続けてきました。ホームページの話になると、返ってくる言葉はだいたい二つです。手が回っていない。頼むと高い。どちらもそのとおりだと思います。授業と面談で一日が終わるなかで、更新まで手を伸ばすのは難しく、制作費が生徒何人分かに相当するなら、後回しになるのが自然です。</p>
-          <p>だから、原稿づくりから引き受けて、制作は110,000円、毎月の保守は2,200円にしました。作ったあとは、塾がご自身でも書き換えられます。</p>
-          <p>スマ塾は「業者に外注する」サービスではありません。塾業界を知る人間が、あなたの塾のWeb担当として隣に座ります。HP・Googleマップ・AI検索・AI活用、どこから相談してもらっても大丈夫です。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- お役立ち情報（記事一覧はセクション一覧ページに任せ、LPは入口の3リンクだけ） -->
   <section class="reading" id="reading">
     <div class="wrap">
@@ -1653,14 +1782,14 @@ details .ans{color:var(--ink)}
       <nav class="foot-nav">
         <a href="#sample">無料診断で届くもの</a>
         <a href="#works">制作事例</a>
-        <a href="#services">サービス</a>
+        <a href="#riyuu">選ばれる理由</a>
         <a href="#price">料金</a>
         <a href="#compare">費用の比べ方</a>
         <a href="#flow">ご相談の流れ</a>
         <a href="#faq">よくある質問</a>
         <a href="#diagnosis" data-cta-placement="footer" data-cta-type="diagnosis">無料HP診断・ご相談</a>
         <a href="#monthly">月額サポート</a>
-        <a href="#person">運営者</a>
+        <a href="#tantou">担当者</a>
         <a href="/shindan/">無料HP診断について</a>
         <a href="/case/">制作事例</a>
         <a href="/guide/">塾HPの基礎知識</a>
