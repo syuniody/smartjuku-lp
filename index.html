@@ -1199,6 +1199,18 @@ details .ans{color:var(--ink)}
 .case-btn:hover span{transform:translateX(3px)}
 .case-btn:focus-visible{outline:3px solid var(--marker);outline-offset:2px}
 .case .case-url{text-align:center}
+/* 11/1 「解約したら手元に残りますか？」を目立たせる：紺のベタ面＋白の大きな問い＋黄色マーカー */
+.ask-q{margin-top:36px;padding:34px 28px 30px;border-radius:12px;background:var(--blue-deep);color:#fff;text-align:center}
+.ask-q-k{display:inline-block;padding:4px 14px;border-radius:999px;background:#fff;color:var(--blue-deep);font-size:.92rem;font-weight:900;letter-spacing:.04em}
+.ask-q-q{margin-top:16px;font-family:var(--serif);font-weight:700;font-size:clamp(1.6rem,3.4vw,2.5rem);line-height:1.5;letter-spacing:.04em}
+.ask-q-q .mk{color:var(--marker)}
+.ask-q-a{margin-top:14px;font-size:1.05rem;line-height:1.8}
+.ask-q-a b{font-weight:900;color:var(--marker)}
+@media (max-width:640px){
+  .ask-q{padding:26px 18px 24px}
+  .ask-q-k{border-radius:8px}
+  .ask-q-q{font-size:1.5rem}
+}
 </style>
 </head>
 <body>
@@ -1627,8 +1639,10 @@ details .ans{color:var(--ink)}
           </table>
         </div>
       <p class="tbl-note rv">※A社〜C社は仮定の条件による計算例で、特定の会社を示すものではありません。解約時の扱いは各社の規約をご確認ください。<br>※C社のサーバー代は、制作会社に納品してもらう形で塾がサーバーを別に契約した場合の例です（月1,000〜4,400円×36か月を加算）。<br>※スマ塾はサーバー代がかかりません。独自ドメインの更新費（実費・年数千円程度）のみ別途かかります。</p>
-      <div class="prob-punch rv">
-        <p>商談で1つだけ聞いてほしい質問があります。<br>「そのHPは、解約したら手元に残りますか？」</p>
+      <div class="ask-q rv">
+        <p class="ask-q-k">他社と比べるとき、<span class="nb">商談で1つだけ聞いてほしい質問</span></p>
+        <p class="ask-q-q"><span class="nb">「そのHPは、</span><span class="nb mk">解約したら</span><span class="nb"><span class="mk">手元に残りますか？</span>」</span></p>
+        <p class="ask-q-a"><span class="nb">スマ塾は、</span><b class="nb">サイトもドメインも塾のもの。</b><span class="nb">保守をやめても、そのまま使えます。</span></p>
       </div>
       <div class="switch-inline rv">
         <p class="switch-lead">いま月額を払っている塾へ。無料HP診断のフォームで「いまの月額」をお選びいただければ、<b>3年でいくら払うことになるか</b>と、契約が残っている場合の乗り換えの順番（先に解約してはいけない理由、記事とドメインを失わない方法）を、診断レポートに1ページ足してお送りします。</p>
