@@ -1028,7 +1028,9 @@ details .ans{color:var(--ink)}
 .nm-b b{font-weight:900;color:var(--blue-deep)}
 .nm-b::after{content:"";position:absolute;left:50%;bottom:-11px;width:18px;height:18px;margin-left:-9px;background:var(--white);
   border-right:2px solid var(--blue-deep);border-bottom:2px solid var(--blue-deep);transform:rotate(45deg)}
-.nm-foot{margin-top:34px;text-align:center;font-size:1.05rem}
+.nm-person{display:flex;justify-content:center;margin-top:26px;border-bottom:2px solid var(--blue-deep)}
+.nm-person img{display:block;height:300px;width:auto}
+.nm-foot{margin-top:26px;text-align:center;font-size:1.05rem}
 .nm-foot b{background:linear-gradient(transparent 58%,var(--marker) 58%);padding:0 .12em}
 /* 保護者の探し方：数字のカード */
 .sg-stats{display:grid;grid-template-columns:1fr 1fr 1.75fr;gap:16px;margin-top:30px}
@@ -1115,6 +1117,8 @@ details .ans{color:var(--ink)}
 }
 @media (max-width:640px){
   .nm-grid{grid-template-columns:1fr;gap:20px}
+  .nm-person{margin-top:22px}
+  .nm-person img{height:220px}
   .sg-stats,.gn-stats{grid-template-columns:1fr}
   .dn{--size:132px}
   .dn--s{--size:92px}
@@ -1177,13 +1181,14 @@ details .ans{color:var(--ink)}
         <h2 class="sec-title">こんな<span class="ttl-box">お悩み</span>、<span class="nb">ありませんか？</span></h2>
       </div>
       <ul class="nm-grid">
-        <li class="nm-b rv">ホームページが、<b>何年も前のまま</b>止まっている</li>
-        <li class="nm-b rv rv-d1">作ったのに、<b>問い合わせにつながっていない</b></li>
-        <li class="nm-b rv rv-d2">直すたびに業者に頼んで、<b>お金と時間がかかる</b></li>
-        <li class="nm-b rv">月額を払い続けているのに、<b>何をしてもらっているか分からない</b></li>
-        <li class="nm-b rv rv-d1"><b>Googleマップ</b>の写真や営業時間が、古いまま</li>
-        <li class="nm-b rv rv-d2"><b>文章を書く時間</b>が、どうしても取れない</li>
+        <li class="nm-b rv"><span class="nb">ホームページが、</span><b class="nb">何年も前のまま</b><span class="nb">止まっている</span></li>
+        <li class="nm-b rv rv-d1"><span class="nb">作ったのに、</span><b class="nb">問い合わせに</b><b class="nb">つながっていない</b></li>
+        <li class="nm-b rv rv-d2"><span class="nb">直すたびに</span><span class="nb">業者に頼んで、</span><b class="nb">お金と時間がかかる</b></li>
+        <li class="nm-b rv"><span class="nb">月額を払い続けているのに、</span><b class="nb">何をしてもらっているか</b><b class="nb">分からない</b></li>
+        <li class="nm-b rv rv-d1"><span class="nb"><b>Googleマップ</b>の</span><span class="nb">写真や営業時間が、</span><span class="nb">古いまま</span></li>
+        <li class="nm-b rv rv-d2"><span class="nb"><b>文章を書く時間</b>が、</span><span class="nb">どうしても取れない</span></li>
       </ul>
+      <div class="nm-person rv"><img src="assets/oda-nayami.png" alt="あごに手を当てて考える、スマ塾代表の小田" width="545" height="640" loading="lazy" decoding="async"></div>
       <p class="nm-foot rv">ひとつでも当てはまれば、<b>無料HP診断</b>で、どこから手をつけるかを整理できます。</p>
     </div>
   </section>
