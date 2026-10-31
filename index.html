@@ -169,7 +169,7 @@
 </script>
 <style>
 :root{
-  --paper:#F7F4ED;
+  --paper:#F3F5F8;   /* 2026-10-31 クリーム（#F7F4ED）はAIっぽいので、紺に寄せた冷たいグレーに替えた */
   --white:#FFFFFF;
   --ink:#22252B;
   --ink-soft:#555962;
@@ -204,7 +204,7 @@ html{scroll-behavior:smooth}
 html.noanim{scroll-behavior:auto}
 body{
   font-family:var(--sans);
-  /* 地色は白。クリーム（--paper）は「面」にだけ置く（2026-09-04） */
+  /* 地色は白。薄いグレー（--paper）は「面」にだけ置く（2026-09-04。10/31にクリームから変更） */
   background:var(--white);
   color:var(--ink);
   font-size:16px;
@@ -475,7 +475,7 @@ section{padding:50px 0}   /* 節が2つ増えたぶんさらに詰め、全高�
 /* ①と②のあいだの「公開したら」の矢印 */
 .pr-then{display:flex;flex-direction:column;align-items:center;gap:2px;margin:10px 0;font-size:.86rem;font-weight:700;color:var(--blue)}
 .pr-then::after{content:"";width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:12px solid var(--blue)}
-.pr-total{margin-top:20px;padding:16px 22px;border-left:4px solid var(--blue-deep);background:var(--white);font-size:.95rem;line-height:1.95;text-wrap:pretty;box-shadow:inset 0 0 0 1px var(--line)}
+.pr-total{margin-top:20px;padding:16px 22px;border:1.5px solid var(--blue-deep);border-radius:10px;background:var(--white);font-size:.95rem;line-height:1.95;text-wrap:pretty}
 .pr-total b{font-weight:900}
 .pr-total .big{font-size:1.15rem;color:var(--blue-deep)}
 /* こちらでやること：紺のベタ帯の見出し＋白い一覧 */
@@ -921,7 +921,7 @@ details .ans{color:var(--ink)}
   text-align:center;font-weight:900;line-height:1.35;box-shadow:0 0 0 6px rgba(214,64,44,.15)}
 .hb-badge small{font-size:.8rem}
 .hb-badge b{font-size:1.45rem}
-.hb-who{position:absolute;left:8%;bottom:28px;max-width:52%;padding:14px 16px;background:#fff;border-left:4px solid var(--blue-deep);
+.hb-who{position:absolute;left:8%;bottom:28px;max-width:52%;padding:14px 16px;background:#fff;border-radius:6px;
   font-size:.82rem;line-height:1.7;color:var(--ink);box-shadow:0 1px 0 var(--line)}
 .hb-who b{display:block;font-size:.95rem;margin-bottom:2px}
 /* 下の段：3つの強み（森塾の「選ばれる3つの理由」の箱）＋丸つけの一文＋ボタン */
@@ -983,7 +983,7 @@ details .ans{color:var(--ink)}
     min-height:62px;padding:0 34px;border-radius:6px;background:var(--akapen);color:#fff;font-weight:900;font-size:1.08rem;
     letter-spacing:.04em;text-decoration:none;box-shadow:0 4px 0 rgba(0,0,0,.2)}
   .hb-name.hb-pc{display:block;position:absolute;right:4%;bottom:22px;z-index:2;padding:8px 14px;background:rgba(255,255,255,.96);
-    color:var(--ink);font-weight:900;font-size:.95rem;line-height:1.5;border-left:4px solid var(--akapen)}
+    color:var(--ink);font-weight:900;font-size:.95rem;line-height:1.5;border-radius:6px}
   .hb-name small{display:block;font-size:.76rem;font-weight:700;color:var(--ink-soft)}
   .hb-sub .hb-cta{display:none}
   .hb-promise{margin-top:22px}
