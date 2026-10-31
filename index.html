@@ -315,8 +315,8 @@ section{padding:50px 0}   /* 節が2つ増えたぶんさらに詰め、全高�
 /* 地色は白とクリームを1つおき（DESIGN.md）。services は白 */
 .services{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .svc-feature{
-  display:grid;grid-template-columns:1.3fr .8fr;gap:48px;align-items:start;
-  /* 節がクリームになったので、カードは白に反転する（クリームにクリームは輪郭が消える） */
+  display:grid;grid-template-columns:1fr;gap:48px;align-items:start;
+  /* 料金はすぐ下の料金の節だけに出すので、ここは1列（10/31）。節の地がグレーなので、カードは白にする */
   background:var(--white);border:1px solid var(--line);border-radius:var(--r-md);
   padding:40px 52px;position:relative;
 }
@@ -327,11 +327,6 @@ section{padding:50px 0}   /* 節が2つ増えたぶんさらに詰め、全高�
 /* 箇条書きはアイコンを使わず、月額プラン（.rate-item）と同じ罫線行にそろえる */
 .svc-ul{border-bottom:1px solid var(--line)}
 .svc-ul li{padding:11px 2px;border-top:1px solid var(--line);text-wrap:pretty}
-.svc-price{border-left:1px solid var(--line);padding-left:40px;align-self:stretch;display:flex;flex-direction:column;justify-content:center}
-.svc-price .n{font-weight:900;font-size:clamp(2.4rem,4vw,3.2rem);color:var(--blue);line-height:1.2;letter-spacing:.01em}
-.svc-price .n small{font-size:.5em}
-.svc-price .u{font-size:.86rem;font-weight:700;margin-top:6px}
-.svc-price .note{font-size:.8rem;color:var(--ink-soft);margin-top:14px}
 /* 3列の同形カードにしない（DESIGN.md 禁止）。左＝名前、右＝説明の罫線リスト1本にする */
 .svc-rest{margin-top:36px;border-bottom:1px solid var(--line)}
 .svc-item{display:grid;grid-template-columns:minmax(200px,250px) 1fr;gap:6px 44px;
@@ -748,7 +743,7 @@ details .ans{color:var(--ink)}
 
 /* 注記・キャプションは従来どおり補助色・小さめ */
 .check-src,.tbl-note,.rate-note,.price-foot,.works-note,.form-note,.form-hint,.form-lead,
-.svc-price .note,.diag-book-memo,
+.diag-book-memo,
 .form-row .opt,.form-check .opt,.consult-note{color:var(--ink-soft)}
 
 /* 小見出しは本文より一段上に保つ */
@@ -771,7 +766,6 @@ details .ans{color:var(--ink)}
   .panel-list{margin-top:14px}
   .panel-person{width:auto;height:88%;right:-16px}
   .svc-feature{grid-template-columns:1fr;gap:28px;padding:40px 32px}
-  .svc-price{border-left:none;border-top:1px solid var(--line);padding-left:0;padding-top:24px}
   .svc-item{grid-template-columns:1fr;gap:4px}
   .sample-grid{grid-template-columns:1fr;gap:32px}
   .sample-fig{max-width:520px}
@@ -1132,7 +1126,7 @@ details .ans{color:var(--ink)}
     <div class="wrap">
       <div class="sec-head rv">
         <p class="sec-label">公開したあとのこと</p>
-        <h2 class="sec-title">料金もお知らせも、<span class="nb">塾長がスマホから</span>直せます。<br>手が回らないところだけ、<span class="nb">こちらで引き受けます。</span></h2>
+        <h2 class="sec-title"><span class="nb">料金もお知らせも、</span><span class="nb">塾長がスマホから</span><span class="nb">直せます。</span><br><span class="nb">手が回らないところだけ、</span><span class="nb">こちらで引き受けます。</span></h2>
         <p class="sec-lede">公開して止まってしまうホームページにしないために、<b>塾ご自身で直せる範囲</b>を先に決めています。専門知識のいる設定と、時間のかかる運用だけを、必要になったときにお任せください。</p>
       </div>
 
@@ -1150,11 +1144,6 @@ details .ans{color:var(--ink)}
             <li><b>お問い合わせフォーム</b>　項目の追加や文言。<span class="nb">スマホから入塾の問い合わせへ</span><span class="nb">進める導線を保てます</span></li>
           </ul>
           <p class="svc-demo"><a class="inline-link" href="demo/sei/admin/index.html" target="_blank" rel="noopener">管理画面のイメージを開く</a>（※架空の塾で作ったモック画面です）</p>
-        </div>
-        <div class="svc-price">
-          <span class="n">110,000<small>円</small></span>
-          <span class="u">制作費（税込）・はじめに一度だけ</span>
-          <p class="note">文章も写真もデザインも、こちらで作ります（<span class="nb">標準8ページ</span>）。公開の翌月からは毎月2,200円のあんしん保守がつきます。<b>塾ご自身での更新は回数無制限で0円です。</b></p>
         </div>
       </div>
 
