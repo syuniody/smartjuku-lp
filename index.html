@@ -1175,6 +1175,21 @@ details .ans{color:var(--ink)}
   .pr-sum-n b{font-size:2.4rem}
   .pr-sum-f .sep{display:block;height:0;overflow:hidden}
 }
+/* 11/1 理由ごとに写真（左右交互）。本文と箇条は右の列にまとめる */
+.ry-body{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:20px 36px}
+.ry-item:nth-child(even) .ry-fig{order:2}
+.ry-fig{margin:0}
+.ry-fig img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+.ry-fig figcaption{margin-top:8px;font-size:.82rem;color:var(--ink-soft);text-align:center}
+.ry-txt>p{font-size:1rem;line-height:1.95}
+.ry-txt>p b{font-weight:900;color:var(--blue-deep)}
+.ry-txt .ry-ul,.ry-txt .ry-svc,.ry-txt .ry-dl{margin-top:14px}
+.ry-txt .svc-demo{margin-top:12px}
+.ry-txt .ry-note{margin-top:10px}
+@media (max-width:860px){
+  .ry-body{grid-template-columns:1fr}
+  .ry-item:nth-child(even) .ry-fig{order:0}
+}
 </style>
 </head>
 <body>
@@ -1336,51 +1351,63 @@ details .ans{color:var(--ink)}
         <article class="ry-item rv">
           <h3 class="ry-head"><span class="ry-no">01</span><span class="ry-t">学習塾専門</span></h3>
           <div class="ry-body">
-            <p>保護者が塾を選ぶ順番（スマホで開く→最初の画面→料金・対象学年→実績と先生の顔→問い合わせ）に沿って作ります。学習塾82塾を診断して分かった、<b>候補から外れやすいところ</b>を先に直します。</p>
-            <ul class="ry-ul">
-              <li>スマホで開いてすぐ、どこの・誰向けの塾か分かる</li>
-              <li>料金・対象学年・講習の案内を、画像ではなく文字で</li>
-              <li>塾長・講師の顔と、合格実績・成績の伸び</li>
-              <li>スマホから問い合わせまで、迷わない導線</li>
-            </ul>
+            <figure class="ry-fig"><img src="assets/ry/ry-01-design.jpg" alt="早英ゼミナールのホームページ（PCとスマホ）" width="960" height="621" loading="lazy" decoding="async"><figcaption>保護者が見る順に組んだトップ（早英ゼミナール）</figcaption></figure>
+            <div class="ry-txt">
+              <p>保護者が塾を選ぶ順番（スマホで開く→最初の画面→料金・対象学年→実績と先生の顔→問い合わせ）に沿って作ります。学習塾82塾を診断して分かった、<b>候補から外れやすいところ</b>を先に直します。</p>
+              <ul class="ry-ul">
+                <li>スマホで開いてすぐ、どこの・誰向けの塾か分かる</li>
+                <li>料金・対象学年・講習の案内を、画像ではなく文字で</li>
+                <li>塾長・講師の顔と、合格実績・成績の伸び</li>
+                <li>スマホから問い合わせまで、迷わない導線</li>
+              </ul>
+            </div>
           </div>
         </article>
         <article class="ry-item rv">
           <h3 class="ry-head"><span class="ry-no">02</span><span class="ry-t"><span class="nb">文章もデザインも</span><span class="nb">おまかせ</span></span></h3>
           <div class="ry-body">
-            <p>60分のお話をもとに、<b>原稿はこちらで書きます</b>。デザインは型に当てはめず、塾ごとに一から作ります。今のホームページの記事も、本数の上限なく引っ越します。先生は、届いた原稿を確認するだけです。</p>
-            <ul class="ry-ul">
-              <li>ヒアリング60分から、各ページの原稿を作成</li>
-              <li>ご支給写真の選定と、足りない分の手配</li>
-              <li>旧サイトの記事の引っ越しと、旧URLからの転送</li>
-              <li>公開前の確認2往復・公開後のレクチャー60分</li>
-            </ul>
+            <figure class="ry-fig"><img src="assets/ry/ry-02-design.jpg" alt="ダイレクトコーチングのホームページ（PCとスマホ）" width="960" height="621" loading="lazy" decoding="async"><figcaption>お話から原稿を書き、一から作ったデザイン（ダイレクトコーチング）</figcaption></figure>
+            <div class="ry-txt">
+              <p>60分のお話をもとに、<b>原稿はこちらで書きます</b>。デザインは型に当てはめず、塾ごとに一から作ります。今のホームページの記事も、本数の上限なく引っ越します。先生は、届いた原稿を確認するだけです。</p>
+              <ul class="ry-ul">
+                <li>ヒアリング60分から、各ページの原稿を作成</li>
+                <li>ご支給写真の選定と、足りない分の手配</li>
+                <li>旧サイトの記事の引っ越しと、旧URLからの転送</li>
+                <li>公開前の確認2往復・公開後のレクチャー60分</li>
+              </ul>
+            </div>
           </div>
         </article>
         <article class="ry-item rv">
           <h3 class="ry-head"><span class="ry-no">03</span><span class="ry-t"><span class="nb">作って終わりに</span><span class="nb">しない</span></span></h3>
           <div class="ry-body">
-            <p>公開後は、管理画面から<b>塾ご自身で直せます</b>（回数無制限・0円）。毎月のGA4レポートで、見に来た人数・読まれたページ・問い合わせ数を一緒に確かめます。</p>
-            <ul class="svc-ul ry-svc">
-              <li><b>お知らせ</b>　講習の日程・休講・募集の締切。<span class="nb">告知の出し遅れを防げます</span></li>
-              <li><b>料金表</b>　金額・コース・対象学年。<span class="nb">料金が文字で読める状態を保てます</span></li>
-              <li><b>合格実績</b>　合格校と人数。<span class="nb">春に塾長ご自身で入れ替えられます</span></li>
-              <li><b>ブログ・成績事例・画像</b>　授業のようすや生徒の伸びた記録、教室・講師の写真の差し替え</li>
-              <li><b>よくある質問</b>　面談で毎回聞かれることを、<span class="nb">先に書いておけます</span></li>
-              <li><b>お問い合わせフォーム</b>　項目の追加や文言。<span class="nb">スマホから入塾の問い合わせへ</span><span class="nb">進める導線を保てます</span></li>
-            </ul>
-            <p class="svc-demo"><a class="inline-link" href="demo/sei/admin/index.html" target="_blank" rel="noopener">管理画面のイメージを開く</a>（※架空の塾で作ったモック画面です）</p>
+            <figure class="ry-fig"><img src="assets/ry/ry-03-report.jpg" alt="毎月お届けするサイト分析レポートの見本" width="960" height="869" loading="lazy" decoding="async"><figcaption>毎月お届けするGA4レポート（見本）</figcaption></figure>
+            <div class="ry-txt">
+              <p>公開後は、管理画面から<b>塾ご自身で直せます</b>（回数無制限・0円）。毎月のGA4レポートで、見に来た人数・読まれたページ・問い合わせ数を一緒に確かめます。</p>
+              <ul class="svc-ul ry-svc">
+                <li><b>お知らせ</b>　講習の日程・休講・募集の締切。<span class="nb">告知の出し遅れを防げます</span></li>
+                <li><b>料金表</b>　金額・コース・対象学年。<span class="nb">料金が文字で読める状態を保てます</span></li>
+                <li><b>合格実績</b>　合格校と人数。<span class="nb">春に塾長ご自身で入れ替えられます</span></li>
+                <li><b>ブログ・成績事例・画像</b>　授業のようすや生徒の伸びた記録、教室・講師の写真の差し替え</li>
+                <li><b>よくある質問</b>　面談で毎回聞かれることを、<span class="nb">先に書いておけます</span></li>
+                <li><b>お問い合わせフォーム</b>　項目の追加や文言。<span class="nb">スマホから入塾の問い合わせへ</span><span class="nb">進める導線を保てます</span></li>
+              </ul>
+              <p class="svc-demo"><a class="inline-link" href="demo/sei/admin/index.html" target="_blank" rel="noopener">管理画面のイメージを開く</a>（※架空の塾で作ったモック画面です）</p>
+            </div>
           </div>
         </article>
         <article class="ry-item rv">
           <h3 class="ry-head"><span class="ry-no">04</span><span class="ry-t"><span class="nb">AIO・MEO対策も</span><span class="nb">込み</span></span></h3>
           <div class="ry-body">
-            <p>保護者が調べ直す<b>Googleマップとホームページ</b>の情報を、そろえて整えます。制作費に含みます。</p>
-            <dl class="ry-dl">
-              <div><dt>Googleマップ<small>（MEO）</small></dt><dd>Googleビジネスプロフィールの初期整備（写真・営業時間・カテゴリ）／ホームページと塾名・住所・電話番号を完全にそろえる／クチコミを集める導線づくり</dd></div>
-              <div><dt>AI検索<small>（AIO）</small></dt><dd>料金・対象学年・住所・営業時間を、AIが読める文字で置く／よくある質問を、AIが答えの根拠に使える形で載せる／AIでの見え方を確かめる</dd></div>
-            </dl>
-            <p class="ry-note">※AIや地図で候補に出ることや、順位はお約束しません。読み取られやすい状態に整えるところまでを行います。</p>
+            <figure class="ry-fig"><img src="assets/ry/ry-04-meo.jpg" alt="整っていないGoogleビジネスプロフィールと、整ったプロフィールの比較" width="960" height="547" loading="lazy" decoding="async"><figcaption>Googleマップのプロフィールを整える（見本・架空の塾）</figcaption></figure>
+            <div class="ry-txt">
+              <p>保護者が調べ直す<b>Googleマップとホームページ</b>の情報を、そろえて整えます。制作費に含みます。</p>
+              <dl class="ry-dl">
+                <div><dt>Googleマップ<small>（MEO）</small></dt><dd>Googleビジネスプロフィールの初期整備（写真・営業時間・カテゴリ）／ホームページと塾名・住所・電話番号を完全にそろえる／クチコミを集める導線づくり</dd></div>
+                <div><dt>AI検索<small>（AIO）</small></dt><dd>料金・対象学年・住所・営業時間を、AIが読める文字で置く／よくある質問を、AIが答えの根拠に使える形で載せる／AIでの見え方を確かめる</dd></div>
+              </dl>
+              <p class="ry-note">※AIや地図で候補に出ることや、順位はお約束しません。読み取られやすい状態に整えるところまでを行います。</p>
+            </div>
           </div>
         </article>
       </div>
