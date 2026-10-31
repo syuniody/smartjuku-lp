@@ -249,8 +249,8 @@ nav.gnav a:hover::after{width:100%}
 /* ---------- 見出し共通 ---------- */
 section{padding:50px 0}   /* 節が2つ増えたぶんさらに詰め、全高を14,000px以内に保つ（区切りは地色と罫線1本） */
 .sec-head{margin-bottom:28px}
-.sec-label{display:flex;align-items:center;gap:12px;font-size:.8rem;font-weight:700;letter-spacing:.2em;color:var(--blue);margin-bottom:18px}
-.sec-label::before{content:"";width:36px;height:1.5px;background:var(--blue)}
+/* 11/1 小さくて見えづらい→紺のベタ札に。線の飾りはやめる */
+.sec-label{display:flex;width:fit-content;align-items:center;padding:7px 18px;border-radius:4px;background:var(--blue-deep);color:#fff;font-size:1.12rem;font-weight:900;letter-spacing:.08em;line-height:1.5;margin-bottom:16px}
 .sec-title{font-family:var(--serif);font-weight:700;font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.5;letter-spacing:.04em}
 .sec-lede{font-size:1.02rem;line-height:2.1;max-width:720px;margin-top:14px;color:var(--ink-soft)}
 .sec-lede b{color:var(--ink)}
@@ -608,8 +608,7 @@ details .ans::before{content:"A";font-family:var(--serif);font-weight:700;color:
    これ以上大きくすると、着地直後の1画面から最初の入力欄が押し出される */
 #diagnosis{scroll-margin-top:116px}
 .cta-in{text-align:center}
-.cta .sec-label{justify-content:center;color:#fff}
-.cta .sec-label::before{background:#fff}
+.cta .sec-label{margin-inline:auto;background:#fff;color:var(--blue-deep)}
 .cta h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.6rem,3.8vw,2.7rem);line-height:1.6;margin-bottom:18px;letter-spacing:.04em}
 .cta p{font-size:.95rem;opacity:.9;max-width:640px;margin:0 auto 42px}
 /* 申込の直前は3行だけ（無料・改善点3つ・納期・メール・相談は希望者のみ）。
@@ -1017,7 +1016,7 @@ details .ans{color:var(--ink)}
 .sample{background:var(--paper)}
 .sec-head--c{text-align:center}
 .sec-head--c .sec-lede{margin-left:auto;margin-right:auto}
-.sec-head--c .sec-label{justify-content:center}
+.sec-head--c .sec-label{margin-inline:auto}
 .ttl-box{display:inline-block;margin:0 .12em;padding:0 .3em;border:2px solid var(--blue-deep);border-radius:6px;line-height:1.4}
 .mid-cta{margin-top:30px;display:flex;justify-content:center}
 .mid-cta .btn{min-width:320px}
@@ -1054,8 +1053,7 @@ details .ans{color:var(--ink)}
 .sg-point b{font-weight:900}
 .sg-src{margin-top:14px;font-size:.8rem;color:var(--ink-soft);line-height:1.8}
 /* 原因：紺の節 */
-.genin .sec-label{color:#fff}
-.genin .sec-label::before{background:#fff}
+.genin .sec-label{background:#fff;color:var(--blue-deep)}
 .genin .sec-title{color:#fff}
 .genin .sec-lede{color:rgba(255,255,255,.9)}
 .gn-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:30px}
