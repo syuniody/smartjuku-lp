@@ -1190,6 +1190,15 @@ details .ans{color:var(--ink)}
   .ry-body{grid-template-columns:1fr}
   .ry-item:nth-child(even) .ry-fig{order:0}
 }
+/* 11/1 「事例を読む」が見つけにくい→紺の枠のボタンに（申込の青ボタンとは形を分ける） */
+.case .work-demo{flex-direction:column;align-items:stretch;gap:10px}
+.case-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:13px 18px;border:2px solid var(--blue-deep);border-radius:8px;
+  background:#fff;color:var(--blue-deep);font-size:1.02rem;font-weight:900;letter-spacing:.04em;text-decoration:none;transition:background .2s,color .2s}
+.case-btn span{font-size:1.1em;transition:transform .2s}
+.case-btn:hover{background:var(--blue-deep);color:#fff}
+.case-btn:hover span{transform:translateX(3px)}
+.case-btn:focus-visible{outline:3px solid var(--marker);outline-offset:2px}
+.case .case-url{text-align:center}
 </style>
 </head>
 <body>
@@ -1432,7 +1441,7 @@ details .ans{color:var(--ink)}
           <h3>無料の「親子ゼミ」を、<span class="nb">最初の画面と専用ページに</span></h3>
           <p>教室を持たず、公共施設10会場で教えるコーチング塾。13年使った旧サイトを作り直し、親子ゼミの日程も内容も塾長が管理画面からいつでも更新します。</p>
           <p class="case-voice">「自分一人では絶対つくれない」完成度の高さ<span>中込 塾長</span></p>
-          <p class="work-demo"><a class="inline-link" href="case/direct-coaching.html">事例を読む</a><span class="case-url">実際のHP：<a class="inline-link" href="https://direct-coaching.jp/" target="_blank" rel="noopener">direct-coaching.jp</a></span></p>
+          <p class="work-demo"><a class="case-btn" href="case/direct-coaching.html">制作事例を詳しく読む<span aria-hidden="true">→</span></a><span class="case-url">実際のHP：<a class="inline-link" href="https://direct-coaching.jp/" target="_blank" rel="noopener">direct-coaching.jp</a></span></p>
         </article>
         <article class="case rv rv-d1">
           <div class="case-ba">
@@ -1443,7 +1452,7 @@ details .ans{color:var(--ink)}
           <h3>塾長ブログ224本を、<span class="nb">新しいHPに引き継ぐ</span></h3>
           <p>2001年開校の個別指導塾。月額制のサービスから塾名義の買い切りHPに切り替え、ブログ・お知らせ・料金は塾長が管理画面から更新します。</p>
           <p class="case-voice">「仕上がりには満足しかありません」<span>矢頭 塾長</span></p>
-          <p class="work-demo"><a class="inline-link" href="case/souei-seminar.html">事例を読む</a><span class="case-url">実際のHP：<a class="inline-link" href="https://www.soueiseminar.jp/" target="_blank" rel="noopener">www.soueiseminar.jp</a></span></p>
+          <p class="work-demo"><a class="case-btn" href="case/souei-seminar.html">制作事例を詳しく読む<span aria-hidden="true">→</span></a><span class="case-url">実際のHP：<a class="inline-link" href="https://www.soueiseminar.jp/" target="_blank" rel="noopener">www.soueiseminar.jp</a></span></p>
         </article>
       </div>
       <div class="mid-cta rv"><a class="btn" href="#diagnosis" data-cta-placement="works" data-cta-type="diagnosis">無料診断で改善点3つを受け取る</a></div>
