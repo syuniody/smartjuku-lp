@@ -842,19 +842,21 @@ details .ans{color:var(--ink)}
   .tbl--wide tbody tr.is-suma{background:#EDF2FA}
   .tbl--wide tbody th{order:1;width:100%;font-size:.95rem;font-weight:900;margin-bottom:10px}
   .tbl--wide tbody th.suma{color:var(--blue-deep)}
-  /* 主役＝3年で払う総額（4列目） */
-  .tbl--wide tbody td:nth-of-type(4){order:2;width:100%;margin-bottom:12px}
-  .tbl--wide tbody td:nth-of-type(4)::before{content:attr(data-label);display:block;font-size:.74rem;font-weight:700;color:var(--ink-soft);margin-bottom:2px}
-  .tbl--wide tbody td:nth-of-type(4) .mark{font-size:1.3rem;color:var(--blue-deep)}
-  /* 初期費用・月額・最低契約期間は小さく1行にまとめる（1〜3列目） */
-  .tbl--wide tbody td:nth-of-type(-n+3){order:3;display:flex;align-items:baseline;gap:4px;margin:0 14px 6px 0;font-size:.74rem;color:var(--ink-soft)}
-  .tbl--wide tbody td:nth-of-type(-n+3)::before{content:attr(data-label) "：";white-space:nowrap}
-  .tbl--wide tbody td:nth-of-type(-n+3) .mark{display:inline;font-size:.8rem;font-weight:700;color:var(--ink)}
-  .tbl--wide tbody td:nth-of-type(-n+3) small{display:inline;margin:0 0 0 4px}
-  /* 3年後にやめたら（5列目） */
-  .tbl--wide tbody td:nth-of-type(5){order:4;width:100%;margin-top:8px;padding-top:10px;border-top:1px solid var(--line)}
-  .tbl--wide tbody td:nth-of-type(5)::before{content:attr(data-label) "：";font-size:.74rem;font-weight:700;color:var(--ink-soft);margin-right:6px}
-  .tbl--wide tbody td:nth-of-type(5) .mark{display:inline;font-size:.86rem}
+  /* 主役＝3年で払う総額（5列目） */
+  .tbl--wide tbody td:nth-of-type(5){order:2;width:100%;margin-bottom:12px}
+  .tbl--wide tbody td:nth-of-type(5)::before{content:attr(data-label);display:block;font-size:.74rem;font-weight:700;color:var(--ink-soft);margin-bottom:2px}
+  .tbl--wide tbody td:nth-of-type(5) .mark{font-size:1.3rem;color:var(--blue-deep)}
+  /* 初期費用・月額・サーバー代・最低契約期間は小さくまとめる（1〜4列目） */
+  .tbl--wide tbody td:nth-of-type(-n+4){order:3;display:flex;align-items:baseline;gap:4px;margin:0 14px 6px 0;font-size:.74rem;color:var(--ink-soft)}
+  .tbl--wide tbody td:nth-of-type(-n+4)::before{content:attr(data-label) "：";white-space:nowrap}
+  .tbl--wide tbody td:nth-of-type(-n+4) .mark{display:inline;font-size:.8rem;font-weight:700;color:var(--ink)}
+  .tbl--wide tbody td:nth-of-type(-n+4) small{display:inline;margin:0 0 0 4px}
+  /* 3年後にやめたら（6列目） */
+  .tbl--wide tbody td:nth-of-type(6){order:4;width:100%;margin-top:8px;padding-top:10px;border-top:1px solid var(--line)}
+  .tbl--wide tbody td:nth-of-type(6)::before{content:attr(data-label) "：";font-size:.74rem;font-weight:700;color:var(--ink-soft);margin-right:6px}
+  .tbl--wide tbody td:nth-of-type(6) .mark{display:inline;font-size:.86rem}
+
+  .tbl--wide tbody th .th-s{display:inline;margin:0 0 0 8px}
 
   /* 単価メニュー：やりたいこと（左）＋費用（右）を1行目、補足はその下に小さく */
   .tbl--menu tbody tr{display:grid;grid-template-columns:1fr auto;gap:0 14px;align-items:baseline;padding:18px;border-bottom:1px solid var(--line)}
@@ -1029,17 +1031,23 @@ details .ans{color:var(--ink)}
 .nm-foot{margin-top:34px;text-align:center;font-size:1.05rem}
 .nm-foot b{background:linear-gradient(transparent 58%,var(--marker) 58%);padding:0 .12em}
 /* 保護者の探し方：数字のカード */
-.sg-stats{display:grid;grid-template-columns:1fr 1fr 1.6fr;gap:16px;margin-top:30px}
+.sg-stats{display:grid;grid-template-columns:1fr 1fr 1.75fr;gap:16px;margin-top:30px}
 .sg-card{border:2px solid var(--blue-deep);border-radius:10px;padding:18px 20px;background:var(--white)}
 .sg-k{font-size:.88rem;font-weight:700;line-height:1.6}
 .sg-n{margin-top:6px;font-weight:900;font-size:3rem;line-height:1;color:var(--blue-deep);letter-spacing:.01em}
 .sg-n small{font-size:.45em;margin-left:2px}
-.sg-bars{list-style:none;margin:12px 0 0;display:grid;gap:10px}
-.sg-bars li{display:grid;grid-template-columns:11.5em 1fr 3.4em;align-items:center;gap:10px;font-size:.88rem}
-.sg-bars .l small{font-size:.8em;color:var(--ink-soft)}
-.sg-bars .b{height:14px;background:var(--paper);border-radius:3px;overflow:hidden}
-.sg-bars .b i{display:block;height:100%;background:var(--blue-deep)}
-.sg-bars .v{font-weight:900;color:var(--blue-deep);text-align:right;font-variant-numeric:tabular-nums}
+.sg-card{display:flex;flex-direction:column}
+.dn{--size:150px;--hole:68%;position:relative;width:var(--size);aspect-ratio:1;margin:16px auto 4px;border-radius:50%;
+  background:conic-gradient(var(--blue-deep) 0 calc(var(--v) * 1%),#E3E8F1 0)}
+.dn::before{content:"";position:absolute;inset:calc((100% - var(--hole)) / 2);border-radius:50%;background:var(--white)}
+.dn span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:2.1rem;line-height:1;color:var(--blue-deep);letter-spacing:.01em;font-variant-numeric:tabular-nums}
+.dn small{font-size:.5em;margin-left:1px}
+.dn--s{--size:104px;--hole:64%;margin:12px auto 8px}
+.dn--s span{font-size:1.25rem}
+.sg-pies{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;text-align:center}
+.sg-pies p{font-size:.86rem;font-weight:700;line-height:1.5}
+.sg-pies p small{display:block;font-size:.78em;font-weight:500;color:var(--ink-soft)}
 .sg-point{margin-top:26px;font-size:1.05rem;line-height:1.95}
 .sg-point b{font-weight:900}
 .sg-src{margin-top:14px;font-size:.8rem;color:var(--ink-soft);line-height:1.8}
@@ -1058,6 +1066,14 @@ details .ans{color:var(--ink)}
 .gn-src .inline-link{color:#fff}
 .genin .mid-cta .btn{background:var(--akapen);border-color:var(--akapen)}
 /* 担当者 */
+.th-s{display:block;font-size:.78em;font-weight:500;color:var(--ink-soft);margin-top:2px}
+.tt-yt{margin-top:18px}
+@media (max-width:860px){.tt-yt{max-width:400px}}
+.tt-yt-k{font-size:.88rem;font-weight:900;color:var(--blue-deep)}
+.tt-yt ul{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tt-yt a img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line)}
+.tt-yt a:hover img{opacity:.85}
+.tt-yt .tt-yt-more{display:inline-block;margin-top:10px;font-size:.86rem;font-weight:700;color:var(--blue-deep);text-underline-offset:3px}
 .tt-facts{list-style:none;margin:18px 0 0;border-top:1px solid var(--line)}
 .tt-facts li{padding:10px 2px;border-bottom:1px solid var(--line);font-size:.95rem;font-weight:700}
 /* 選ばれる4つの理由 */
@@ -1092,7 +1108,7 @@ details .ans{color:var(--ink)}
 @media (max-width:860px){
   .nm-grid{grid-template-columns:1fr 1fr}
   .sg-stats{grid-template-columns:1fr 1fr}
-  .sg-card--bars{grid-column:1 / -1}
+  .sg-card--pies{grid-column:1 / -1}
   .ry-body{grid-template-columns:1fr}
   .ry-body .svc-demo{grid-column:auto}
   .pc-br{display:none}
@@ -1100,8 +1116,9 @@ details .ans{color:var(--ink)}
 @media (max-width:640px){
   .nm-grid{grid-template-columns:1fr;gap:20px}
   .sg-stats,.gn-stats{grid-template-columns:1fr}
-  .sg-bars li{grid-template-columns:1fr 3.4em;grid-template-areas:"l v" "b b";row-gap:4px}
-  .sg-bars .l{grid-area:l}.sg-bars .b{grid-area:b}.sg-bars .v{grid-area:v}
+  .dn{--size:132px}
+  .dn--s{--size:92px}
+  .dn--s span{font-size:1.1rem}
   .ry-head{font-size:1.08rem;padding:12px 16px}
   .ry-body{padding:18px 18px 20px}
   .mid-cta .btn{min-width:0;width:100%}
@@ -1180,14 +1197,14 @@ details .ans{color:var(--ink)}
         <p class="sec-lede">2026年10月に公開された保護者向けの調査では、塾探しにAIを使った保護者の多くが、いつものGoogle検索の中でAIの答えを見ていました。そして<b>ほとんどの人が、AIの答えをそのまま信じずに調べ直しています</b>。</p>
       </div>
       <div class="sg-stats">
-        <div class="sg-card rv"><p class="sg-k">GoogleのAI（AIによる概要・AIモード）を使った</p><p class="sg-n">77.3<small>%</small></p></div>
-        <div class="sg-card rv rv-d1"><p class="sg-k">AIの答えのあと、別の情報源で調べ直した</p><p class="sg-n">95.0<small>%</small></p></div>
-        <div class="sg-card sg-card--bars rv rv-d2">
+        <div class="sg-card rv"><p class="sg-k">GoogleのAI（AIによる概要・AIモード）を使った</p><div class="dn" style="--v:77.3" role="img" aria-label="GoogleのAIを使った 77.3%"><span>77.3<small>%</small></span></div></div>
+        <div class="sg-card rv rv-d1"><p class="sg-k">AIの答えのあと、別の情報源で調べ直した</p><div class="dn" style="--v:95.0" role="img" aria-label="別の情報源で調べ直した 95.0%"><span>95.0<small>%</small></span></div></div>
+        <div class="sg-card sg-card--pies rv rv-d2">
           <p class="sg-k">調べ直した先（複数回答）</p>
-          <ul class="sg-bars">
-            <li><span class="l">塾の比較サイト</span><span class="b"><i style="width:51.3%"></i></span><span class="v">51.3%</span></li>
-            <li><span class="l">Googleマップ<small>（クチコミ・写真など）</small></span><span class="b"><i style="width:42.2%"></i></span><span class="v">42.2%</span></li>
-            <li><span class="l">塾の公式ホームページ</span><span class="b"><i style="width:39.2%"></i></span><span class="v">39.2%</span></li>
+          <ul class="sg-pies">
+            <li><div class="dn dn--s" style="--v:51.3" role="img" aria-label="塾の比較サイト 51.3%"><span>51.3<small>%</small></span></div><p>塾の比較サイト</p></li>
+            <li><div class="dn dn--s" style="--v:42.2" role="img" aria-label="Googleマップ 42.2%"><span>42.2<small>%</small></span></div><p>Googleマップ<small>クチコミ・写真など</small></p></li>
+            <li><div class="dn dn--s" style="--v:39.2" role="img" aria-label="塾の公式ホームページ 39.2%"><span>39.2<small>%</small></span></div><p>塾の公式<span class="nb">ホームページ</span></p></li>
           </ul>
         </div>
       </div>
@@ -1222,9 +1239,21 @@ details .ans{color:var(--ink)}
         <h2 class="sec-title"><span class="nb">スマ塾が、あなたの塾の</span><br><span class="nb">Web担当になります。</span></h2>
       </div>
       <div class="person-grid">
-        <div class="person-photo rv">
+        <div class="person-col rv">
+        <div class="person-photo">
           <img src="assets/oda.jpg" alt="スマ塾 代表・小田 一勲" width="900" height="1200" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
           <p class="ph-note" style="display:none">※代表・小田の写真（assets/oda.jpg）を配置してください</p>
+        </div>
+          <div class="tt-yt">
+            <p class="tt-yt-k">教育ニュースを、YouTubeで毎週解説しています</p>
+            <ul>
+            <li><a href="https://youtu.be/lcyCpxQtqUc" target="_blank" rel="noopener noreferrer"><img src="assets/yt/lcyCpxQtqUc.jpg" alt="Edu-NEWSの動画「関関同立ショック」" width="640" height="360" loading="lazy" decoding="async"></a></li>
+            <li><a href="https://youtu.be/SvMtJGB7qxc" target="_blank" rel="noopener noreferrer"><img src="assets/yt/SvMtJGB7qxc.jpg" alt="Edu-NEWSの動画「総合型選抜を増やす大学26％」" width="640" height="360" loading="lazy" decoding="async"></a></li>
+            <li><a href="https://youtu.be/8fktsMzMBFU" target="_blank" rel="noopener noreferrer"><img src="assets/yt/8fktsMzMBFU.jpg" alt="Edu-NEWSの動画「デジタル教科書は紙が中心に」" width="640" height="360" loading="lazy" decoding="async"></a></li>
+            <li><a href="https://youtu.be/DwP6eTGhGSo" target="_blank" rel="noopener noreferrer"><img src="assets/yt/DwP6eTGhGSo.jpg" alt="Edu-NEWSの動画「高校無償化でも残る隠れ教育費」" width="640" height="360" loading="lazy" decoding="async"></a></li>
+            </ul>
+            <a class="tt-yt-more" href="https://www.youtube.com/channel/UCYS6zWMZwBGCISTYcUFjqZg" target="_blank" rel="noopener noreferrer">Edu-NEWS の動画一覧を見る</a>
+          </div>
         </div>
         <div class="person-body rv rv-d1">
           <h3>小田 一勲</h3>
@@ -1477,22 +1506,22 @@ details .ans{color:var(--ink)}
       <div class="sec-head rv">
         <p class="sec-label">費用の比べ方</p>
         <h2 class="sec-title">「月◯円」ではなく、<br>「終わるまでにいくら払うか」で<span class="nb">比べてください。</span></h2>
-        <p class="sec-lede">ここまでで、スマ塾の総額・含まれる範囲・公開後に何が塾さまのものとして残るかをお伝えしました。そのうえで、月額制のサービスを仮に<b>「初期0円・月8,800円・36か月契約」</b>で契約した場合と並べます。<b>下の表はいずれも条件を置いた計算例で、特定の会社の実際の価格ではありません。</b></p>
+        <p class="sec-lede">ここまでで、スマ塾の総額・含まれる範囲・公開後に何が塾さまのものとして残るかをお伝えしました。そのうえで、よくある料金の形を<b>A社・B社（月額制）、C社（制作会社）</b>として並べます。<b>サーバー代も含めた3年の総額</b>で見てください。<b>A社〜C社は条件を置いた計算例で、特定の会社の実際の価格ではありません。</b></p>
       </div>
         <div class="tbl rv tbl-scroll tbl--wide">
           <table>
             <thead>
-              <tr><th></th><th>初期費用</th><th>月額</th><th>最低<span class="nb">契約期間</span></th><th>3年で払う総額（ドメイン実費を除く）</th><th>3年後に<span class="nb">やめたら</span></th></tr>
+              <tr><th></th><th>初期費用</th><th>月額</th><th>サーバー代</th><th>最低<span class="nb">契約期間</span></th><th>3年で払う総額<small class="th-s">サーバー代込み・<span class="nb">ドメイン実費を除く</span></small></th><th>3年後に<span class="nb">やめたら</span></th></tr>
             </thead>
             <tbody>
-              <tr><th>月額制の計算例①</th><td data-label="初期費用"><span class="mark">0円</span></td><td data-label="月額"><span class="mark">8,800円</span></td><td data-label="最低契約期間"><span class="mark">36か月</span></td><td data-label="3年で払う総額（ドメイン実費を除く）"><span class="mark">316,800円</span></td><td data-label="3年後にやめたら"><span class="mark">契約条件に<span class="nb">よります</span></span></td></tr>
-              <tr><th>月額制の計算例②</th><td data-label="初期費用"><span class="mark">5,000円</span></td><td data-label="月額"><span class="mark">9,800円</span></td><td data-label="最低契約期間"><span class="mark">36か月</span></td><td data-label="3年で払う総額（ドメイン実費を除く）"><span class="mark">357,800円</span></td><td data-label="3年後にやめたら"><span class="mark">契約条件に<span class="nb">よります</span></span></td></tr>
-              <tr><th>制作会社型の<span class="nb">計算例</span></th><td data-label="初期費用"><span class="mark nb">30〜100万円</span></td><td data-label="月額"><span class="mark nb">5,000〜30,000円</span></td><td data-label="最低契約期間"><span class="mark">—</span></td><td data-label="3年で払う総額（ドメイン実費を除く）"><span class="mark">48〜208万円</span></td><td data-label="3年後にやめたら"><span class="mark">契約条件に<span class="nb">よります</span></span></td></tr>
-              <tr class="is-suma"><th class="suma">スマ塾</th><td class="suma" data-label="初期費用"><span class="mark">110,000円</span><small>税込・<span class="nb">標準8ページ・</span><span class="nb">原稿込み</span></small></td><td class="suma" data-label="月額"><span class="mark">2,200円</span><small><span class="nb">毎月の報告・</span><span class="nb">保守込み</span></small></td><td class="suma" data-label="最低契約期間"><span class="mark">12か月</span></td><td class="suma" data-label="3年で払う総額（ドメイン実費を除く）"><span class="mark">189,200円</span></td><td class="suma" data-label="3年後にやめたら"><span class="mark">サイトもドメインも<span class="nb">塾のもの</span></span><small><span class="nb">保守をやめても、</span><span class="nb">そのまま使えます</span></small></td></tr>
+              <tr><th>A社<small class="th-s">月額制</small></th><td data-label="初期費用"><span class="mark">0円</span></td><td data-label="月額"><span class="mark">8,800円</span></td><td data-label="サーバー代"><span class="mark">月額に含む</span></td><td data-label="最低契約期間"><span class="mark">36か月</span></td><td data-label="3年で払う総額（サーバー代込み・ドメイン実費を除く）"><span class="mark">316,800円</span></td><td data-label="3年後にやめたら"><span class="mark">契約条件に<span class="nb">よります</span></span></td></tr>
+              <tr><th>B社<small class="th-s">月額制</small></th><td data-label="初期費用"><span class="mark">5,000円</span></td><td data-label="月額"><span class="mark">9,800円</span></td><td data-label="サーバー代"><span class="mark">月額に含む</span></td><td data-label="最低契約期間"><span class="mark">36か月</span></td><td data-label="3年で払う総額（サーバー代込み・ドメイン実費を除く）"><span class="mark">357,800円</span></td><td data-label="3年後にやめたら"><span class="mark">契約条件に<span class="nb">よります</span></span></td></tr>
+              <tr><th>C社<small class="th-s">制作会社</small></th><td data-label="初期費用"><span class="mark nb">30〜100万円</span></td><td data-label="月額"><span class="mark nb">5,000〜30,000円</span></td><td data-label="サーバー代"><span class="mark"><span class="nb">月1,000〜</span><span class="nb">4,400円</span></span><small>保守とは別に実費</small></td><td data-label="最低契約期間"><span class="mark">—</span></td><td data-label="3年で払う総額（サーバー代込み・ドメイン実費を除く）"><span class="mark nb">約52〜224万円</span></td><td data-label="3年後にやめたら"><span class="mark">契約条件に<span class="nb">よります</span></span></td></tr>
+              <tr class="is-suma"><th class="suma">スマ塾</th><td class="suma" data-label="初期費用"><span class="mark">110,000円</span><small>税込・<span class="nb">標準8ページ・</span><span class="nb">原稿込み</span></small></td><td class="suma" data-label="月額"><span class="mark">2,200円</span><small><span class="nb">毎月の報告・</span><span class="nb">保守込み</span></small></td><td class="suma" data-label="サーバー代"><span class="mark">0円</span><small>保守に含みます</small></td><td class="suma" data-label="最低契約期間"><span class="mark">12か月</span></td><td class="suma" data-label="3年で払う総額（サーバー代込み・ドメイン実費を除く）"><span class="mark">189,200円</span></td><td class="suma" data-label="3年後にやめたら"><span class="mark">サイトもドメインも<span class="nb">塾のもの</span></span><small><span class="nb">保守をやめても、</span><span class="nb">そのまま使えます</span></small></td></tr>
             </tbody>
           </table>
         </div>
-      <p class="tbl-note rv">※計算例は仮定の条件によるもので、特定の会社を示すものではありません。解約時の扱いは各社の規約をご確認ください。<br>※当社の場合、サーバー代はかかりません。独自ドメインの更新費（実費・年数千円程度）のみ別途かかります。他社のサーバー代・ドメイン代の扱いはご確認ください。</p>
+      <p class="tbl-note rv">※A社〜C社は仮定の条件による計算例で、特定の会社を示すものではありません。解約時の扱いは各社の規約をご確認ください。<br>※C社のサーバー代は、制作会社に納品してもらう形で塾がサーバーを別に契約した場合の例です（月1,000〜4,400円×36か月を加算）。<br>※スマ塾はサーバー代がかかりません。独自ドメインの更新費（実費・年数千円程度）のみ別途かかります。</p>
       <div class="prob-punch rv">
         <p>商談で1つだけ聞いてほしい質問があります。<br>「そのHPは、解約したら手元に残りますか？」</p>
       </div>
