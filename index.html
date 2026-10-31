@@ -257,118 +257,6 @@ section{padding:50px 0}   /* 節が2つ増えたぶんさらに詰め、全高�
 /* 1文字だけ次行に残るのを防ぐ。語のまとまりごと折り返す（DESIGN.md「折り返し」） */
 .nb{white-space:nowrap}
 
-/* ---------- Signature：赤ペンの丸つけ ----------
-   このページで唯一の「大胆な一点」。塾の世界の道具（採点の赤ペン）を借りて、
-   商品の核心（先生は確認するだけ）を、先生が正解に丸をつけるように示す。
-   他の場所で赤ペンを装飾として使わないこと。 */
-.maru{position:relative;display:inline-block;white-space:nowrap;padding:0 .22em}
-.maru-ink{
-  position:absolute;left:-.6em;top:50%;width:calc(100% + 1.2em);height:auto;aspect-ratio:280/74;
-  transform:translateY(-50%);overflow:visible;pointer-events:none;
-}
-/* 等倍スケール（preserveAspectRatio を既定のまま）にしないと pathLength の
-   正規化が効かず、dasharray が画面px基準になって線が破線化する */
-.maru-ink path{
-  fill:none;stroke:var(--akapen);stroke-width:3.2;
-  stroke-linecap:round;stroke-linejoin:round;
-  stroke-dasharray:100;stroke-dashoffset:100;
-  animation:maru-draw 1s cubic-bezier(.6,.05,.3,1) .5s forwards;
-}
-@keyframes maru-draw{to{stroke-dashoffset:0}}
-@media (prefers-reduced-motion:reduce){
-  .maru-ink path{animation:none;stroke-dashoffset:0}
-  .m-cta{transition:none}
-}
-html.noanim .maru-ink path{animation:none;stroke-dashoffset:0}
-
-/* ---------- hero ----------
-   左＝白地に見出しと赤ペン、右＝紺（--blue-deep）の面に担当者。
-   面には出席簿の横罫を敷き、人物の切り抜きを面からはみ出させて置く。
-   色トークンは足していない（白＝--white／紺＝--blue-deep）。 */
-.hero{position:relative;padding:0;overflow:hidden;background:var(--white);border-bottom:1px solid var(--line)}
-/* 面を画面の右端まで伸ばすため、版面の右パディングを外す。
-   左のコピーは --max の左端に揃えたまま */
-.hero .wrap{max-width:none;margin:0;
-  padding:0 0 0 max(24px,calc((100% - var(--max))/2 + 24px))}
-.hero-grid{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1fr);gap:40px;align-items:stretch}
-.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:132px 0 44px}
-.hero .sec-label{margin-bottom:22px}
-.hero h1{
-  font-family:var(--serif);font-weight:800;
-  font-size:clamp(1.9rem,3.35vw,3rem);
-  line-height:1.44;letter-spacing:.04em;
-  text-wrap:balance;
-}
-/* 語が行をまたぐと1文字だけ次行に残る。語ごと折り返す */
-.hero h1 .nb,.hero h1 .maru{white-space:nowrap}
-/* 価格は見出しの下に1行。枠を付けずゴシックで置く。赤ペンの丸はここだけ */
-.hero-price{
-  font-family:var(--sans);font-weight:700;
-  font-size:1.7rem;line-height:1.7;letter-spacing:.03em;
-  margin-top:26px;color:var(--ink);white-space:nowrap;
-}
-.hero-price small{font-size:.68em;font-weight:700;letter-spacing:.02em}
-/* 何が11万円かを言い切ったあとに、面談でいつも言う一文を置く。赤ペンの丸はこの行だけ */
-.hero-promise{margin-top:6px;font-family:var(--sans);font-weight:700;
-  font-size:1.22rem;line-height:1.9;letter-spacing:.02em;color:var(--ink)}
-/* 丸の線が前後の「は」「です」に掛からないよう、丸の外に余白をとる */
-.hero-promise .maru{margin:0 .5em 0 .55em}
-.hero-sub{margin-top:20px;font-size:clamp(.98rem,1.5vw,1.12rem);max-width:640px;color:var(--ink-soft)}
-.hero-sub b{color:var(--ink)}
-.hero-ctas{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
-/* CTAの直下に置く安心材料（納期・連絡手段・電話をしないこと）。注記なので --ink-soft */
-.hero-note{margin-top:14px;font-size:var(--fs-3);line-height:1.8;color:var(--ink-soft);max-width:520px}
-/* 副導線はボタンではなく小さなテキストリンク（ボタンは1ページ1文言に統一） */
-.hero-sublink{margin-top:10px;font-size:.86rem}
-
-/* ---- 紺の面：ヘッダー直下からヒーロー下端まで。右端は画面端まで ---- */
-.hero-visual{
-  position:relative;display:flex;flex-direction:column;overflow:visible;
-  margin-top:76px;                    /* ヘッダーの高さぶん下げる＝ヘッダー直下から */
-  padding:0;
-  background-color:var(--blue-deep);
-  /* 出席簿の横罫：白14%・1px・間隔30px */
-  background-image:repeating-linear-gradient(to bottom,
-      rgba(255,255,255,.14) 0 1px, transparent 1px 30px);
-  background-position:0 30px;
-}
-/* 左に細い縦罫1本（出席簿の綴じ側） */
-.hero-visual::before{content:"";position:absolute;left:36px;top:0;bottom:0;width:1px;
-  background:rgba(255,255,255,.14)}
-
-/* 面の上の文言。人物と重ならない左側に組む。
-   幅は「見出しが2行に収まる」ことから決めている（1行目15字・2行目16字ぶん） */
-.panel-in{position:relative;z-index:2;display:flex;flex-direction:column;
-  padding:34px 0 40px 56px;max-width:386px;min-height:100%}
-/* 札・見出し・根拠・氏名をひとかたまりにして下寄せ。人物の下端にそろえる */
-.panel-in{justify-content:flex-end}
-.panel-body{margin-top:18px}
-.hero-visual .sec-label{color:#fff;margin-bottom:0;flex:0 0 auto}
-.hero-visual .sec-label::before{background:#fff}
-/* <br> で2行に固定してあるので balance は掛けない（掛けると2行が割れる） */
-.panel-h{font-family:var(--serif);font-weight:700;color:#fff;
-  font-size:clamp(1.1rem,1.32vw,1.2rem);line-height:1.66;letter-spacing:.02em}
-.panel-list{list-style:none;margin:16px 0 0}
-.panel-list li{color:#fff;font-size:.86rem;line-height:1.66;letter-spacing:.01em;
-  padding:9px 0;border-top:1px solid rgba(255,255,255,.16);text-wrap:pretty}
-.panel-list li:last-child{border-bottom:1px solid rgba(255,255,255,.16)}
-.panel-name{margin-top:14px;color:#fff;font-size:.95rem;font-weight:700;letter-spacing:.04em}
-
-/* 人物：面の右下。切り抜きの下端を面の下端にそろえ、右は画面端から少しはみ出す。
-   四角にはまった感じを消す役目は右端のはみ出しに持たせ、文言との重なりゼロを優先した。
-   大きさは高さではなく幅で決める（写真が腰から上＝縦長なので、高さ基準だと痩せて見える）。
-   47% は「文言の右端より内側に入らない最大」で、面の幅から決めている */
-.panel-person{position:absolute;right:-28px;bottom:0;width:47%;height:auto;max-width:none;
-  z-index:1;pointer-events:none}
-
-/* 2カラムのまま幅だけ狭まる範囲。面が縮むと人物が文言に寄るので、
-   文字カラムと人物を一段ずつ小さくして重なりを0に保つ */
-@media(min-width:961px) and (max-width:1280px){
-  .panel-in{max-width:340px;padding-left:44px}
-  .panel-person{width:46%;right:-40px}
-  .hero-visual::before{left:26px}
-}
-
 /* ---------- 帯 ---------- */
 /* 右カラムと同じ紺がそのまま帯に続くと重いので、帯は白地・紺文字に反転する */
 .band{background:var(--white);color:var(--blue-deep);padding:20px 0;text-align:center;
@@ -1004,6 +892,120 @@ details .ans{color:var(--ink)}
   .panel-person{width:68%}
 }
 </style>
+
+<style>
+/* ===== トップ（2026-10-31 組み直し）：森塾型の組み方。紺のベタ面＋太いゴシック＋丸バッジ＋3つの強みの箱 ===== */
+.hb{position:relative;background:var(--white);padding-top:76px;border-bottom:1px solid var(--line)}
+.hb-main{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);min-height:560px}
+.hb-left{position:relative;background:var(--blue-deep);color:#fff;
+  padding:56px 48px 52px max(24px,calc((100vw - 1160px)/2));
+  display:flex;flex-direction:column;justify-content:center}
+.hb-kicker{display:inline-flex;align-self:flex-start;gap:8px;padding:6px 14px;border-radius:4px;
+  background:#fff;color:var(--blue-deep);font-size:.88rem;font-weight:900;letter-spacing:.04em}
+.hb-h1{margin-top:22px;font-family:var(--sans);font-weight:900;color:#fff;
+  font-size:clamp(2.2rem,3.9vw,3.4rem);line-height:1.36;letter-spacing:.03em}
+.hb-h1 .y{color:var(--marker)}
+.hb-lead{margin-top:18px;font-size:1.12rem;font-weight:700;line-height:1.8;color:#fff}
+.hb-price{margin-top:24px;display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;align-self:flex-start;
+  padding:12px 20px;border-radius:6px;background:#fff;color:var(--blue-deep);font-weight:900}
+.hb-price .k{font-size:1rem;color:var(--ink)}
+.hb-price .n{font-size:2.6rem;line-height:1;letter-spacing:.01em}
+.hb-price .y{font-size:1.2rem}
+.hb-price .t{font-size:.86rem;color:var(--ink-soft);font-weight:700}
+.hb-right{position:relative;overflow:hidden;
+  background-color:#F1F5FB;
+  background-image:repeating-linear-gradient(to bottom,rgba(27,61,120,.10) 0 1px,transparent 1px 30px)}
+.hb-person{position:absolute;right:6%;bottom:0;height:96%;width:auto;max-width:none}
+.hb-badge{position:absolute;left:8%;top:40px;width:150px;height:150px;border-radius:50%;
+  background:var(--akapen);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;font-weight:900;line-height:1.35;box-shadow:0 0 0 6px rgba(214,64,44,.15)}
+.hb-badge small{font-size:.8rem}
+.hb-badge b{font-size:1.45rem}
+.hb-who{position:absolute;left:8%;bottom:28px;max-width:52%;padding:14px 16px;background:#fff;border-left:4px solid var(--blue-deep);
+  font-size:.82rem;line-height:1.7;color:var(--ink);box-shadow:0 1px 0 var(--line)}
+.hb-who b{display:block;font-size:.95rem;margin-bottom:2px}
+/* 下の段：3つの強み（森塾の「選ばれる3つの理由」の箱）＋丸つけの一文＋ボタン */
+.hb-sub{max-width:1160px;margin:0 auto;padding:30px max(16px,24px) 36px}
+.hb-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.hb-three div{border:2px solid var(--blue-deep);border-radius:8px;overflow:hidden;background:#fff}
+.hb-three h2{display:flex;align-items:center;gap:10px;padding:10px 16px;background:var(--blue-deep);color:#fff;
+  font-family:var(--sans);font-size:1.08rem;font-weight:900;letter-spacing:.03em}
+.hb-three h2 span{font-family:var(--serif);font-size:1.3rem}
+.hb-three p{padding:12px 16px 14px;font-size:.92rem;line-height:1.8}
+.hb-promise{margin-top:26px;text-align:center;font-weight:900;font-size:clamp(1.15rem,2vw,1.45rem);line-height:1.8}
+.hb-mark{font-style:normal;padding:0 .12em;margin:0 .1em;background:linear-gradient(transparent 58%,var(--marker) 58%)}
+.hb-cta{margin-top:16px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.hb-cta .btn{min-width:340px;font-size:1.05rem}
+.hb-note{font-size:.84rem;color:var(--ink-soft);text-align:center}
+@media (max-width:860px){
+  .hb-main{grid-template-columns:1fr}
+  .hb{padding-top:112px}
+  .hb-k2{display:none}
+  .hb-left{padding:30px 20px 30px}
+  .hb-right{min-height:380px}
+  .hb-person{right:2%;height:94%}
+  .hb-badge{width:118px;height:118px;left:20px;top:22px}
+  .hb-badge b{font-size:1.15rem}
+  .hb-who{left:20px;max-width:56%;bottom:18px}
+  .hb-three{grid-template-columns:1fr}
+  .hb-cta .btn{min-width:0;width:100%}
+}
+
+/* ===== 案B2：上部は全面紺。写真は紺の上に立たせる ===== */
+.hb-main{background-color:var(--blue-deep);
+  background-image:repeating-linear-gradient(to bottom,rgba(255,255,255,.10) 0 1px,transparent 1px 30px);
+  max-width:none}
+.hb-left{background:transparent}
+.hb-right{background:transparent}
+.hb-who{background:rgba(255,255,255,.96)}
+@media (min-width:861px){
+  .hb-main{grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);padding-right:max(0px,calc((100vw - 1160px)/2))}
+  .hb-h1{font-size:clamp(2rem,3.3vw,3.05rem)}
+  .hb-person{right:4%;height:98%}
+  .hb-badge{left:4%}
+  .hb-who{left:4%}
+}
+@media (max-width:860px){
+  .hb-right{border-top:1px solid rgba(255,255,255,.18)}
+}
+
+/* ===== 案B4：B2の配置のまま、PCの最初の画面に置く文字を減らす ===== */
+.hb-pc{display:none}
+@media (min-width:861px){
+  .hb-sp{display:none}
+  .hb-pc{display:inline}
+  .hb-left{padding-top:64px;padding-bottom:60px}
+  .hb-kicker{font-size:.95rem;padding:7px 16px}
+  .hb-h1{font-size:clamp(2.4rem,3.9vw,3.5rem);margin-top:24px}
+  .hb-lead{font-size:1.2rem;margin-top:20px}
+  .hb-price{margin-top:28px}
+  .hb-fv-btn.hb-pc{display:flex;align-self:flex-start;align-items:center;justify-content:center;margin-top:16px;
+    min-height:62px;padding:0 34px;border-radius:6px;background:var(--akapen);color:#fff;font-weight:900;font-size:1.08rem;
+    letter-spacing:.04em;text-decoration:none;box-shadow:0 4px 0 rgba(0,0,0,.2)}
+  .hb-name.hb-pc{display:block;position:absolute;right:4%;bottom:22px;z-index:2;padding:8px 14px;background:rgba(255,255,255,.96);
+    color:var(--ink);font-weight:900;font-size:.95rem;line-height:1.5;border-left:4px solid var(--akapen)}
+  .hb-name small{display:block;font-size:.76rem;font-weight:700;color:var(--ink-soft)}
+  .hb-sub .hb-cta{display:none}
+  .hb-promise{margin-top:22px}
+}
+
+/* ===== 案B5：強みを4つに（AIO・MEO）。最初の画面の料金は枠をやめ、ボタンと分けて見せる ===== */
+@media (min-width:861px){
+  .hb-three{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .hb-three h2{font-size:.98rem;padding:10px 14px;white-space:nowrap}
+  .hb-three h2 span{font-size:1.2rem}
+  .hb-three p{font-size:.88rem;padding:12px 14px 14px}
+  .hb-price{background:transparent;padding:0;margin-top:30px;color:#fff;gap:2px 12px}
+  .hb-price .k{color:#fff;font-size:1.05rem}
+  .hb-price .n{color:var(--marker);font-size:3.1rem}
+  .hb-price .y{color:var(--marker);font-size:1.35rem}
+  .hb-price .t{color:rgba(255,255,255,.85);font-size:.9rem}
+  .hb-fv-btn.hb-pc{margin-top:26px}
+}
+@media (max-width:860px){
+  .hb-three h2{font-size:1.05rem}
+}
+</style>
 </head>
 <body>
 <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2147777948929240&ev=PageView&noscript=1"/></noscript>
@@ -1025,37 +1027,34 @@ details .ans{color:var(--ink)}
 </header>
 
 <main id="top">
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <p class="sec-label">個人塾・地域密着塾の先生へ</p>
-          <h1><span class="nb">塾の強みが伝わり、</span><span class="nb">入塾につながる</span><span class="nb">ホームページへ。</span></h1>
-          <p class="hero-price"><span class="nb">制作費 110,000円</span><small class="nb">（税込・はじめに一度だけ）</small></p>
-          <p class="hero-promise">文章も写真もデザインも、こちらで。<span class="nb">先生は<span class="maru">確認するだけ<svg class="maru-ink" viewBox="0 0 280 74" aria-hidden="true" focusable="false"><path pathLength="100" d="M260 24 C 246 10, 186 3, 134 5 C 64 7, 17 20, 18 38 C 20 56, 87 66, 151 65 C 221 64, 266 51, 267 33 C 269 23, 256 16, 239 11"/></svg></span>です。</span></p>
-          <p class="hero-sub">まずは、いまのホームページを小田が確認し、<b>問い合わせにつながりやすい改善点3つ</b>を<span class="nb">無料レポート</span>でお届けします。</p>
-          <div class="hero-ctas">
-            <a class="btn" href="#diagnosis" data-cta-placement="hero" data-cta-type="diagnosis">無料診断で改善点3つを受け取る</a>
-          </div>
-          <p class="hero-note">公開の翌月からは、毎月2,200円のあんしん保守（毎月のGA4レポートつき）。サーバー代はかかりません（独自ドメインの更新費のみ実費）。<br>診断は無料・通常1営業日以内にメールでお届け。<span class="nb">相談は希望者のみで、</span><span class="nb">こちらから突然お電話することはありません。</span></p>
-          <p class="hero-sublink"><a class="inline-link" href="#diagnosis" data-prefill-consult="true" data-cta-placement="hero" data-cta-type="consult">まずは無料で相談したい方はこちら</a></p>
-        </div>
-        <div class="hero-visual">
-          <div class="panel-in">
-            <p class="sec-label panel-label">この人が担当します</p>
-            <div class="panel-body">
-              <h3 class="panel-h">塾の集客を10年見てきた人間が、<br>あなたの塾のWeb担当に<span class="nb">なります。</span></h3>
-              <ul class="panel-list">
-                <li class="pl-career">教育業界で10年以上、<span class="nb">学習塾の集客支援</span>（<span class="nb">代表個人の経歴</span>）</li>
-                <li>教育ニュース解説「<span class="nb">Edu-NEWS</span>」<span class="nb">登録者3,480人</span>・<span class="nb">月間視聴2,000時間以上</span>（<span class="nb">2026年8月時点</span>）</li>
-                <li><span class="nb">学習塾82塾</span>のホームページを診断（<span class="nb">2026年7〜8月</span>）</li>
-              </ul>
-              <p class="panel-name"><span class="nb">合同会社SyUNi 代表</span>　<span class="nb">小田 一勲</span></p>
-            </div>
-          </div>
-          <img class="panel-person" src="assets/oda-cutout.png" alt="スマ塾 代表・小田 一勲" width="800" height="1213" decoding="async">
-        </div>
+  <!-- HERO（2026-10-31 組み直し：全面紺＋写真・強み4つ。PCとスマホで文字の量を変える） -->
+  <section class="hb">
+    <div class="hb-main">
+      <div class="hb-left">
+        <p class="hb-kicker"><span class="nb hb-sp">個人塾・地域密着塾の先生へ</span><span class="nb hb-pc">学習塾専門のホームページ制作</span></p>
+        <h1 class="hb-h1"><span class="nb">塾の強みが伝わり、</span><br><span class="y nb">入塾につながる</span><br><span class="nb">ホームページへ。</span></h1>
+        <p class="hb-lead"><span class="nb">文章も写真もデザインも、</span><span class="nb">こちらで作ります。</span><span class="hb-sp"><br><span class="nb">公開したあとも、</span><span class="nb">毎月の数字を見ながら</span><span class="nb">一緒に直します。</span></span></p>
+        <p class="hb-price"><span class="k">制作費</span><span class="n">110,000</span><span class="y">円</span><span class="t">税込・はじめに一度だけ</span></p>
+        <a class="hb-fv-btn hb-pc" href="#diagnosis" data-cta-placement="hero" data-cta-type="diagnosis">いまのHPを無料で診断する</a>
+      </div>
+      <div class="hb-right">
+        <img class="hb-person" src="assets/oda-cutout.png" alt="スマ塾 代表・小田 一勲" width="800" height="1213">
+        <div class="hb-badge"><small>いまのHPを</small><b>無料診断</b><small>受付中</small></div>
+        <p class="hb-name hb-pc">担当　小田 一勲<small>合同会社SyUNi 代表</small></p>
+        <p class="hb-who hb-sp"><b><span class="nb">担当：小田 一勲</span><span class="nb">（合同会社SyUNi 代表）</span></b>塾の集客を10年以上。Edu-NEWS 登録者3,480人。学習塾82塾のHPを診断。</p>
+      </div>
+    </div>
+    <div class="hb-sub">
+      <div class="hb-three">
+        <div><h2><span>1</span>学習塾専門</h2><p>塾の集客を見てきた人間が、保護者が塾を選ぶ順番に沿って作ります。</p></div>
+        <div><h2><span>2</span><b class="nb">文章もデザインもおまかせ</b></h2><p>60分のお話から原稿を書き、デザインは塾ごとに一から。記事の引っ越しも込みです。</p></div>
+        <div><h2><span>3</span>作って終わりにしない</h2><p>公開後は毎月のレポートで、見に来た人数と問い合わせを一緒に確かめます。</p></div>
+        <div><h2><span>4</span>AIO・MEO対策も込み</h2><p>Googleマップの初期整備と、AI検索に正しく読み取られる作りまで、制作費に含みます。</p></div>
+      </div>
+      <p class="hb-promise">先生は<em class="hb-mark">確認するだけ</em>です。</p>
+      <div class="hb-cta">
+        <a class="btn" href="#diagnosis" data-cta-placement="hero" data-cta-type="diagnosis">無料診断で改善点3つを受け取る</a>
+        <p class="hb-note">通常1営業日以内にメールでお届け。こちらから突然お電話することはありません。</p>
       </div>
     </div>
   </section>
@@ -1741,7 +1740,7 @@ details .ans{color:var(--ink)}
   // スマホの固定CTA（≤640px）：ファーストビューを通過したら出し、
   // 着地先の #diagnosis が画面内にある間は引っ込める。IntersectionObserver で監視する。
   var mCta=document.getElementById('mCta');
-  var hero=document.querySelector('.hero');
+  var hero=document.querySelector('.hb');
   // 主CTAの着地先（診断セクション）。無ければ従来の #contact。
   var contact=document.getElementById('diagnosis')||document.getElementById('contact');
   if(mCta&&hero&&contact&&'IntersectionObserver' in window){
