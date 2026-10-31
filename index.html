@@ -1127,6 +1127,56 @@ details .ans{color:var(--ink)}
   .ry-body{padding:18px 18px 20px}
   .mid-cta .btn{min-width:0;width:100%}
 }
+/* ===== 11/1 料金の下半分：文字を減らしてカードに ===== */
+.pr-sum{margin-top:22px;padding:20px 24px;border-radius:10px;background:var(--blue-deep);color:#fff;text-align:center}
+.pr-sum-k{font-size:.92rem;font-weight:700;letter-spacing:.06em}
+.pr-sum-n{margin-top:2px;font-weight:900;font-size:1.3rem;line-height:1.2}
+.pr-sum-n b{font-size:2.9rem;letter-spacing:.01em;margin-right:2px}
+.pr-sum-n small{font-size:.8rem;font-weight:700;margin-left:4px}
+.pr-sum-f{margin-top:6px;font-size:.92rem}
+.pr-sum-f b{color:var(--marker)}
+.pr-sum-f .sep{margin:0 .6em;opacity:.6}
+.inc-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.inc-grid li{position:relative;padding:12px 12px 12px 40px;border:1px solid var(--line);border-radius:8px;font-size:.98rem;line-height:1.5;background:var(--white)}
+.inc-grid li::before{content:"";position:absolute;left:12px;top:50%;width:18px;height:18px;margin-top:-9px;border-radius:50%;background:var(--blue-deep)}
+.inc-grid li::after{content:"";position:absolute;left:17px;top:50%;width:8px;height:4px;margin-top:-3px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg)}
+.inc-grid li b{font-weight:900;color:var(--blue-deep)}
+.inc-pages{margin-top:12px;font-size:.8rem;color:var(--ink-soft)}
+.pr-monthly-title{font-size:1.25rem;font-weight:900;letter-spacing:.03em;color:var(--ink)}
+.pr-monthly-lede{margin-top:6px;font-size:.95rem}
+.mp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:16px}
+.mp-card{display:flex;flex-direction:column;border:2px solid var(--blue-deep);border-radius:10px;overflow:hidden;background:var(--white)}
+.mp-head{display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;background:var(--blue-deep);color:#fff;font-size:1rem;font-weight:900}
+.mp-tag{padding:1px 8px;border-radius:999px;background:#fff;color:var(--blue-deep);font-size:.74rem}
+.mp-price{padding:16px 14px 6px;text-align:center;font-weight:900;color:var(--blue-deep);font-size:1.05rem}
+.mp-price b{font-size:2.3rem;margin:0 2px;letter-spacing:.01em}
+.mp-list{list-style:none;margin:0 18px;padding:0;flex:1}
+.mp-list li{padding:7px 0;border-bottom:1px solid var(--line);font-size:.92rem;text-align:center}
+.mp-list li:last-child{border-bottom:none}
+.mp-term{margin:8px 14px 14px;padding:5px;border-radius:6px;background:var(--paper);text-align:center;font-size:.8rem;font-weight:700;color:var(--ink-soft)}
+.mp-more{margin-top:12px}
+.cost-wrap{margin-top:40px}
+.cost-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}
+.cost-card{padding:16px 18px;border:1px solid var(--line);border-radius:10px;background:var(--white);text-align:center}
+.cost-card--perk{border:2px solid var(--blue-deep)}
+.cost-k{font-size:.9rem;font-weight:700;color:var(--ink-soft)}
+.cost-v{margin-top:4px;font-size:1.15rem;font-weight:900;color:var(--blue-deep)}
+.cost-v b{font-size:1.7rem;margin:0 2px}
+.cost-v s{font-size:.95rem;color:var(--ink-soft);font-weight:700}
+.cost-v small{display:block;font-size:.76rem;font-weight:700;color:var(--ink-soft)}
+.cost-s{margin-top:4px;font-size:.84rem}
+.cost-s b{background:linear-gradient(transparent 58%,var(--marker) 58%)}
+.cost-note{margin-top:10px;font-size:.84rem;color:var(--ink-soft);text-align:center}
+@media (max-width:860px){
+  .inc-grid{grid-template-columns:1fr 1fr}
+  .mp-grid,.cost-cards{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .inc-grid{grid-template-columns:1fr}
+  .inc-grid li{padding:10px 10px 10px 38px;font-size:.95rem}
+  .pr-sum-n b{font-size:2.4rem}
+  .pr-sum-f .sep{display:block;height:0;overflow:hidden}
+}
 </style>
 </head>
 <body>
@@ -1410,66 +1460,82 @@ details .ans{color:var(--ink)}
         </div>
       </div>
 
-      <p class="pr-total rv">3年でお支払いいただく総額は <b class="big">110,000円＋2,200円×36か月＝189,200円（税込）</b>。サーバー代はかかりません（独自ドメインの更新費のみ実費・年数千円程度）。このほか<b>ドメイン・移転の初期設定 11,000円（税込）</b>がかかりますが、<b>無料HP診断の結果をお送りした日から1週間以内</b>のお申し込みなら無料です。</p>
+      <!-- 11/1 細かい文字を減らす：総額の帯 → こちらでやること（チェックの升目）→ 月額サポート3段（常に見せる）→ 別にかかる費用3枚 -->
+      <div class="pr-sum rv">
+        <p class="pr-sum-k">3年でお支払いいただく総額</p>
+        <p class="pr-sum-n"><b>189,200</b>円<small>（税込）</small></p>
+        <p class="pr-sum-f">110,000円＋2,200円×36か月<span class="sep">／</span><b>サーバー代 0円</b></p>
+      </div>
 
       <div class="pr-box rv">
         <p class="pr-box-head">こちらでやること<span class="nb">（制作費に含まれます）</span></p>
         <div class="pr-box-body">
-          <p class="plan-common-pages"><b>標準の8ページ</b>：トップ／コース・料金／講師／合格実績／よくある質問／お知らせ・ブログ／アクセス／<span class="nb">お問い合わせ</span>（<span class="nb">9ページ目から</span><span class="nb">1ページ8,800円</span>）</p>
-          <ul class="plan-common-list">
-            <li>スマホ対応・問い合わせフォーム</li>
-            <li>管理画面から塾自身で更新</li>
-            <li><span class="nb">Googleビジネスプロフィールの</span><span class="nb">初期整備</span></li>
-            <li>AI検索対応（構造化データ）</li>
-            <li>アクセス解析（GA4）の設定</li>
-            <li>公開前の確認2往復</li>
-            <li>公開後のレクチャー60分</li>
-            <li><span class="nb">素材がそろってから</span><span class="nb">10営業日で公開</span></li>
-            <li>サーバー代0円</li>
+          <ul class="inc-grid">
+            <li><b>標準8ページ</b></li>
+            <li><b>スマホ対応</b>・問い合わせフォーム</li>
+            <li><b>管理画面</b>で塾自身が更新</li>
+            <li><b>Googleマップ</b>の初期整備</li>
+            <li><b>AI検索</b>対応</li>
+            <li><b>アクセス解析</b>（GA4）の設定</li>
+            <li>公開前の<b>確認2往復</b></li>
+            <li>公開後の<b>レクチャー60分</b></li>
+            <li>素材がそろって<b>10営業日で公開</b></li>
           </ul>
+          <p class="inc-pages">8ページ＝トップ／コース・料金／講師／合格実績／よくある質問／お知らせ・ブログ／アクセス／お問い合わせ</p>
         </div>
       </div>
 
       <div class="pr-monthly rv" id="monthly">
-        <h3 class="pr-monthly-title">公開後も任せたい方へ（月額サポート）</h3>
-        <p class="pr-monthly-lede">あんしん保守（月2,200円）は、<b>すべての塾さまにお付けします</b>。そのうえで、更新まで任せたい塾さまは、下の2つから選べます。どちらも<b>あんしん保守の内容を含みます</b>（二重にはかかりません）。</p>
-        <details class="details-plain rv" id="monthly-plans">
-        <summary>月額サポート3種を見る（<span class="nb">月2,200円〜</span>）</summary>
-        <div class="monthly-in">
-          <div class="rate-list">
-            <div class="rate-item rv">
-              <h4><span class="nb">あんしん保守</span>＋<span class="nb">毎月のGA4レポート</span>（全塾）</h4>
-              <span class="rate-price">月2,200円（税込）</span>
-              <p>毎月のサイト分析レポート、ドメイン更新の代行、毎日の死活監視、月次バックアップ、軽微な修正の代行（月1回・15分以内）。公開の翌月から、最初の12か月はご契約いただきます。</p>
-            </div>
-            <div class="rate-item rv">
-              <h4>更新おまかせ（月1回）</h4>
-              <span class="rate-price">月5,500円（税込）</span>
-              <p>あんしん保守の全内容に、更新の代行を月1回加えたプラン。1回は、お知らせ1つの入れ替えや、ページの一部の書き換え程度です。</p>
-            </div>
-            <div class="rate-item rv">
-              <h4>更新おまかせ（月4回）</h4>
-              <span class="rate-price">月10,780円（税込）</span>
-              <p>あんしん保守の全内容に、更新の代行（月4回まで）、月1回・1時間のオンライン打ち合わせ（その月の告知や講習の段取りを一緒に決めます）、春・夏・冬の講習ページの作り替え、四半期ごとのGoogleマップ・AI検索での見え方チェックを加えたプラン。使わなかった回数は繰り越さず、4回を超えた分は1回3,300円です。</p>
-            </div>
+        <h3 class="pr-monthly-title">公開後の月額サポート</h3>
+        <p class="pr-monthly-lede"><b>あんしん保守はすべての塾にお付けします</b>。更新まで任せたい塾は、<span class="nb">月5,500円か月10,780円に</span><span class="nb">切り替えられます</span>（保守の内容を含みます）。</p>
+        <div class="mp-grid" id="monthly-plans">
+          <div class="mp-card">
+            <p class="mp-head">あんしん保守<span class="mp-tag">全塾</span></p>
+            <p class="mp-price">月<b>2,200</b>円</p>
+            <ul class="mp-list"><li>毎月のGA4レポート</li><li>表示確認・バックアップ</li><li>小さな修正 月1回</li></ul>
+            <p class="mp-term">最初の12か月</p>
           </div>
-          <p class="rate-note rv">※あんしん保守は、公開の翌月から最初の12か月をご契約いただき、以後は1年ごとの自動更新です（更新日の2か月前までのお申し出でおやめいただけます）。更新おまかせは最初の6か月をご継続いただき、以降は1か月前までのお申し出で解約できます。最初の契約期間の途中で解約される場合は、残りの期間分を申し受けます。おやめになった後も、ホームページとドメインは塾さまのものです。</p>
+          <div class="mp-card">
+            <p class="mp-head">更新おまかせ 月1回</p>
+            <p class="mp-price">月<b>5,500</b>円</p>
+            <ul class="mp-list"><li>あんしん保守の全部</li><li>更新の代行 月1回</li></ul>
+            <p class="mp-term">最初の6か月</p>
+          </div>
+          <div class="mp-card">
+            <p class="mp-head">更新おまかせ 月4回</p>
+            <p class="mp-price">月<b>10,780</b>円</p>
+            <ul class="mp-list"><li>あんしん保守の全部</li><li>更新の代行 月4回</li><li>月1回・1時間の打ち合わせ</li><li>講習ページの作り替え 年3回</li></ul>
+            <p class="mp-term">最初の6か月</p>
+          </div>
         </div>
+        <details class="details-plain mp-more">
+          <summary>契約期間と解約のきまり</summary>
+          <div class="monthly-in">
+            <p class="rate-note">あんしん保守は、公開の翌月から最初の12か月をご契約いただき、以後は1年ごとの自動更新です（更新日の2か月前までのお申し出でおやめいただけます）。更新おまかせは最初の6か月をご継続いただき、以降は1か月前までのお申し出で解約できます。最初の契約期間の途中で解約される場合は、残りの期間分を申し受けます。更新おまかせ（月4回）は、四半期ごとのGoogleマップ・AI検索での見え方チェックつきで、使わなかった回数は繰り越さず、4回を超えた分は1回3,300円です。おやめになった後も、ホームページとドメインは塾さまのものです。表示はすべて税込です。</p>
+          </div>
         </details>
       </div>
-      <div class="plan-cost rv">
-        <h3 class="plan-cost-title">必ず必要になる実費と、追加になる費用</h3>
-        <dl class="plan-cost-list">
-          <div class="plan-cost-row"><dt><span class="nb">独自ドメインの</span><span class="nb">更新費</span></dt><dd>実費のみ塾さまのご負担です（<span class="nb">年数千円程度</span>）。<span class="nb">サーバー代はかかりません。</span>ドメインは塾さま名義で、当社との取引が終わってもそのままお使いいただけます。</dd></div>
-          <div class="plan-cost-row"><dt><span class="nb">ドメイン・移転の</span><span class="nb">初期設定</span></dt><dd><b>11,000円（税込）</b>。既存サイトからの移転（ドメイン移管・旧URL転送）または新規ドメインの取得・DNS・SSL設定。<span class="nb">診断結果をお送りした日から</span><span class="nb">1週間以内のお申し込みは無料</span>で、期限を過ぎたお申し込みは申し受けます。</dd></div>
-          <div class="plan-cost-row"><dt>9ページ目から</dt><dd><b>1ページ8,800円（税込）</b>。標準は8ページです。ページを増やしても月額は増えません。</dd></div>
-        </dl>
-      </div>
-      <!-- 特典は値引きにせず、正価の項目を1つだけ無料で足す形にする（DESIGN.md）。罫線1本の帯。赤ペン・バッジ・ピルは使わない -->
-      <div class="plan-perk rv">
-        <h3 class="plan-perk-title">制作をご検討の方へ（お申し込み特典）</h3>
-        <p class="plan-perk-body">制作をお決めになる段階で、お読みください。<b>無料HP診断の結果をお送りした日から1週間以内</b>にお申し込みの塾さまは、<span class="nb">着手枠を優先して確保し、</span>ドメイン・移転の初期設定（<span class="nb">11,000円・税込</span>）を<span class="nb">無料でお付けします。</span></p>
-        <p class="plan-perk-note">※<b>無料HP診断だけを受けて終えていただいてかまいません。</b>制作をご検討でない場合、この特典を気にしていただく必要はありません。特典期間を過ぎたお申し込みは、初期設定11,000円を<span class="nb">申し受けます。</span></p>
+
+      <div class="cost-wrap rv">
+        <h3 class="pr-monthly-title">このほかにかかる費用</h3>
+        <div class="cost-cards">
+          <div class="cost-card">
+            <p class="cost-k">ドメインの更新費</p>
+            <p class="cost-v">実費<small>年数千円程度</small></p>
+            <p class="cost-s">ドメインは塾さま名義です</p>
+          </div>
+          <div class="cost-card cost-card--perk">
+            <p class="cost-k">ドメイン・移転の初期設定</p>
+            <p class="cost-v"><s>11,000円</s> → <b>0円</b></p>
+            <p class="cost-s">無料診断の結果から<b>1週間以内</b>のお申し込みで</p>
+          </div>
+          <div class="cost-card">
+            <p class="cost-k">9ページ目から</p>
+            <p class="cost-v">1ページ<b>8,800</b>円</p>
+            <p class="cost-s">ページを増やしても月額は同じ</p>
+          </div>
+        </div>
+        <p class="cost-note">※無料HP診断だけで終えていただいてかまいません。</p>
       </div>
       <div class="plan-act rv">
         <a class="btn" href="#diagnosis" data-cta-placement="price" data-cta-type="diagnosis">無料診断で改善点3つを受け取る</a>
