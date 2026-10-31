@@ -292,7 +292,7 @@ section{padding:50px 0}   /* 節が2つ増えたぶんさらに詰め、全高�
 
 /* ---------- 無料診断で届くもの（見本を冒頭の次に置く） ---------- */
 /* 節はクリーム。見本の画像は白い面に乗せる（クリームにクリームは輪郭が消える） */
-.sample{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sample{background:var(--white);border-top:1px solid var(--line)}
 .sample-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1fr);gap:48px;align-items:start}
 .sample-fig{background:var(--white);border:1px solid var(--line);border-radius:var(--r-md);padding:18px 18px 16px}
 .sample-fig img{width:100%;height:auto;border-radius:var(--r-sm);border:1px solid var(--line)}
@@ -1058,34 +1058,6 @@ details .ans{color:var(--ink)}
     <p>ホームページ制作<span>／</span>Googleマップ対策<span>／</span>AI検索対策<span>／</span>AI活用<span>—</span>ひとつの窓口でまとめて<span class="nb">相談できます</span></p>
   </div>
 
-  <!-- SAMPLE：無料診断で届くもの。証拠を冒頭のすぐ次に置く -->
-  <section class="sample" id="sample">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <p class="sec-label">無料診断で届くもの</p>
-        <h2 class="sec-title">総合点より、<span class="nb">良い点と、</span><br>いま<span class="nb">特に効く改善3つ</span><span class="nb">が分かります。</span></h2>
-        <p class="sec-lede">点数をつけて終わりにはしません。いまのホームページを1件ずつ開いて、<b>すでに効いている良い点</b>と、<b>直すと問い合わせにつながりやすい改善点3つ</b>を、1枚のレポートにしてお送りします。</p>
-      </div>
-      <div class="sample-grid">
-        <figure class="sample-fig rv">
-          <img src="assets/shindan-sample.jpg" alt="診断レポートの見本。上から総合スコア、拝見しての所感、良い点、8項目の評価（スマホ表示・ファーストビュー・問い合わせ導線・情報の鮮度）が並ぶ" width="1200" height="1560" loading="lazy" decoding="async">
-          <figcaption>※見本用に作成した<b>架空の塾</b>のレポートです。塾名・住所・電話番号・掲載画像は実在のものではありません。</figcaption>
-        </figure>
-        <div class="sample-body rv rv-d1">
-          <dl class="sample-list">
-            <div class="sample-row"><dt>届くまで</dt><dd>通常1営業日以内。お申し込みが集中する時期は2営業日以内にお送りします。</dd></div>
-            <div class="sample-row"><dt>届き方</dt><dd>ご入力のメールアドレスへ。スマートフォンで読めるWeb版でお送りします（印刷用のPDFもご用意できます）。</dd></div>
-            <div class="sample-row"><dt>診断のあと</dt><dd>こちらから突然お電話することはありません。オンライン相談は、フォームで希望された塾さまにだけご案内します。</dd></div>
-          </dl>
-          <p class="sample-link"><a class="inline-link" href="/shindan/">診断8項目の見方を読む</a>（何を、どう見ているかを説明しています）</p>
-          <div class="sample-act">
-            <a class="btn" href="#diagnosis" data-cta-placement="sample" data-cta-type="diagnosis">無料診断で改善点3つを受け取る</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- WORKS -->
   <section class="works" id="works">
     <div class="wrap">
@@ -1435,6 +1407,31 @@ details .ans{color:var(--ink)}
     </div>
   </section>
 
+  <!-- SAMPLE：無料診断で届くもの。申込フォームの直前に置く（10/31 トップ直後から移動。詳しい説明は /shindan/） -->
+  <section class="sample" id="sample">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <p class="sec-label">無料診断で届くもの</p>
+        <h2 class="sec-title">総合点より、<span class="nb">良い点と、</span><br>いま<span class="nb">特に効く改善3つ</span><span class="nb">が分かります。</span></h2>
+        <p class="sec-lede">点数をつけて終わりにはしません。いまのホームページを1件ずつ開いて、<b>すでに効いている良い点</b>と、<b>直すと問い合わせにつながりやすい改善点3つ</b>を、1枚のレポートにしてお送りします。</p>
+      </div>
+      <div class="sample-grid">
+        <figure class="sample-fig rv">
+          <img src="assets/shindan-sample.jpg" alt="診断レポートの見本。上から総合スコア、拝見しての所感、良い点、8項目の評価（スマホ表示・ファーストビュー・問い合わせ導線・情報の鮮度）が並ぶ" width="1200" height="1560" loading="lazy" decoding="async">
+          <figcaption>※見本用に作成した<b>架空の塾</b>のレポートです。塾名・住所・電話番号・掲載画像は実在のものではありません。</figcaption>
+        </figure>
+        <div class="sample-body rv rv-d1">
+          <dl class="sample-list">
+            <div class="sample-row"><dt>届くまで</dt><dd>通常1営業日以内。お申し込みが集中する時期は2営業日以内にお送りします。</dd></div>
+            <div class="sample-row"><dt>届き方</dt><dd>ご入力のメールアドレスへ。スマートフォンで読めるWeb版でお送りします（印刷用のPDFもご用意できます）。</dd></div>
+            <div class="sample-row"><dt>診断のあと</dt><dd>こちらから突然お電話することはありません。オンライン相談は、フォームで希望された塾さまにだけご案内します。</dd></div>
+          </dl>
+          <p class="sample-link"><a class="inline-link" href="/shindan/">診断8項目の見方を読む</a>（何を、どう見ているかを説明しています）</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================================================
        無料HP診断フォーム（メインCV）
        ------------------------------------------------------------
@@ -1447,6 +1444,7 @@ details .ans{color:var(--ink)}
          2) Formspree の Webhook 送信先を「＜GASの/exec＞?token=＜SHARED_SECRET＞」に設定
        ============================================================ -->
   <div id="contact" aria-hidden="true" style="position:relative;top:-80px;height:0;overflow:hidden"></div>
+
 
   <section class="cta diagnosis" id="diagnosis">
     <div class="wrap cta-in">
