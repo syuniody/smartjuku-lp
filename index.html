@@ -1211,6 +1211,39 @@ details .ans{color:var(--ink)}
   .ask-q-k{border-radius:8px}
   .ask-q-q{font-size:1.5rem}
 }
+/* 11/1 CTAを2つに：無料診断（青・主）＋個別相談（白地に紺の枠・TimeRexの予約ページ） */
+.cta2{display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;gap:12px}
+.cta2 .btn{min-width:300px}
+.btn-sub{background:#fff;color:var(--blue-deep);border:2px solid var(--blue-deep);display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:0;line-height:1.35}
+.btn-sub small{font-size:.74rem;font-weight:700;opacity:.8}
+.btn-sub:hover{background:var(--blue-deep);border-color:var(--blue-deep);color:#fff}
+.genin .cta2 .btn.btn-sub{background:transparent;color:#fff;border-color:#fff;box-shadow:none}
+.genin .cta2 .btn.btn-sub:hover{background:#fff;color:var(--blue-deep)}
+.plan-act .cta2 .btn{min-width:300px}
+.header-ctas{display:flex;gap:8px;align-items:center}
+.header-cta--sub{background:#fff;color:var(--blue-deep);border:1.5px solid var(--blue-deep)}
+.header-cta--sub:hover{background:var(--blue-deep);color:#fff}
+.hb-fv-row{display:none}
+@media (min-width:861px){
+  .hb-fv-row.hb-pc{display:flex;flex-wrap:wrap;align-items:stretch;gap:12px;margin-top:16px}
+  .hb-fv-row .hb-fv-btn.hb-pc{margin-top:0}
+  .hb-fv-sub{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:62px;padding:0 26px;border:2px solid #fff;border-radius:6px;
+    color:#fff;font-weight:900;font-size:1rem;letter-spacing:.04em;text-decoration:none;line-height:1.35}
+  .hb-fv-sub small{font-size:.74rem;font-weight:700;opacity:.85}
+  .hb-fv-sub:hover{background:#fff;color:var(--blue-deep)}
+}
+.header-ctas .header-cta{margin:0}
+@media (max-width:860px){
+  .header-ctas{margin:0 24px}
+}
+@media (max-width:640px){
+  .cta2{flex-direction:column;align-items:stretch}
+  .cta2 .btn{min-width:0;width:100%}
+  .header-ctas{display:none}
+  .m-cta{justify-content:stretch;gap:8px}
+  .m-cta .btn{flex:1 1 0;padding:11px 8px;font-size:.92rem;text-align:center;justify-content:center}
+  .m-cta .btn-sub{flex-direction:row}
+}
 </style>
 </head>
 <body>
@@ -1228,7 +1261,7 @@ details .ans{color:var(--ink)}
       <a href="#faq">よくある質問</a>
       <a href="#reading">お役立ち情報</a>
     </nav>
-    <a class="btn header-cta" href="#diagnosis" data-cta-placement="header" data-cta-type="diagnosis">無料診断で改善点3つを</a>
+    <div class="header-ctas"><a class="btn header-cta header-cta--sub" href="https://timerex.net/s/oda_d465_d8f9/441d345c" target="_blank" rel="noopener noreferrer" data-cta-placement="header" data-cta-type="consult">個別相談</a><a class="btn header-cta" href="#diagnosis" data-cta-placement="header" data-cta-type="diagnosis">無料診断で改善点3つを</a></div>
   </div>
 </header>
 
@@ -1241,7 +1274,7 @@ details .ans{color:var(--ink)}
         <h1 class="hb-h1"><span class="nb">塾の強みが伝わり、</span><br><span class="y nb">入塾につながる</span><br><span class="nb">ホームページへ。</span></h1>
         <p class="hb-lead"><span class="nb">文章も写真もデザインも、</span><span class="nb">こちらで作ります。</span><span class="hb-sp"><br><span class="nb">公開したあとも、</span><span class="nb">毎月の数字を見ながら</span><span class="nb">一緒に直します。</span></span></p>
         <p class="hb-price"><span class="k">制作費</span><span class="n">110,000</span><span class="y">円</span><span class="t">税込・はじめに一度だけ</span></p>
-        <a class="hb-fv-btn hb-pc" href="#diagnosis" data-cta-placement="hero" data-cta-type="diagnosis">いまのHPを無料で診断する</a>
+        <div class="hb-fv-row hb-pc"><a class="hb-fv-btn hb-pc" href="#diagnosis" data-cta-placement="hero" data-cta-type="diagnosis">いまのHPを無料で診断する</a><a class="hb-fv-sub" href="https://timerex.net/s/oda_d465_d8f9/441d345c" target="_blank" rel="noopener noreferrer" data-cta-placement="hero" data-cta-type="consult">個別相談を予約する<small>オンライン・無料</small></a></div>
       </div>
       <div class="hb-right">
         <img class="hb-person" src="assets/oda-cutout.png" alt="スマ塾 代表・小田 一勲" width="800" height="1213">
@@ -1252,7 +1285,7 @@ details .ans{color:var(--ink)}
     </div>
     <div class="hb-sub">
       <div class="hb-cta">
-        <a class="btn" href="#diagnosis" data-cta-placement="hero" data-cta-type="diagnosis">無料診断で改善点3つを受け取る</a>
+        <div class="cta2"><a class="btn" href="#diagnosis" data-cta-placement="hero" data-cta-type="diagnosis">無料診断で改善点3つを受け取る</a><a class="btn btn-sub" href="https://timerex.net/s/oda_d465_d8f9/441d345c" target="_blank" rel="noopener noreferrer" data-cta-placement="hero" data-cta-type="consult">個別相談を予約する<small>オンライン・無料</small></a></div>
         <p class="hb-note">通常1営業日以内にメールでお届け。こちらから突然お電話することはありません。</p>
       </div>
     </div>
@@ -1316,7 +1349,7 @@ details .ans{color:var(--ink)}
         <div class="gn-card rv rv-d2"><p class="gn-n">40.2<small>%</small></p><p class="gn-k">情報が古いまま<br>止まっていた</p><p class="gn-m">82塾</p></div>
       </div>
       <p class="gn-src rv">※当社の無料HP診断（2026年7〜8月）の集計です。母数は項目ごとに異なります。<a class="inline-link" href="/report/juku-hp-shindan-matome.html">診断の集計を見る</a></p>
-      <div class="mid-cta rv"><a class="btn" href="#diagnosis" data-cta-placement="genin" data-cta-type="diagnosis">うちの塾はどうか、無料で診断する</a></div>
+      <div class="mid-cta cta2 rv"><a class="btn" href="#diagnosis" data-cta-placement="genin" data-cta-type="diagnosis">うちの塾はどうか、無料で診断する</a><a class="btn btn-sub" href="https://timerex.net/s/oda_d465_d8f9/441d345c" target="_blank" rel="noopener noreferrer" data-cta-placement="genin" data-cta-type="consult">個別相談を予約する<small>オンライン・無料</small></a></div>
     </div>
   </section>
 
@@ -1467,7 +1500,7 @@ details .ans{color:var(--ink)}
           <p class="work-demo"><a class="case-btn" href="case/souei-seminar.html">制作事例を詳しく読む<span aria-hidden="true">→</span></a><span class="case-url">実際のHP：<a class="inline-link" href="https://www.soueiseminar.jp/" target="_blank" rel="noopener">www.soueiseminar.jp</a></span></p>
         </article>
       </div>
-      <div class="mid-cta rv"><a class="btn" href="#diagnosis" data-cta-placement="works" data-cta-type="diagnosis">無料診断で改善点3つを受け取る</a></div>
+      <div class="mid-cta cta2 rv"><a class="btn" href="#diagnosis" data-cta-placement="works" data-cta-type="diagnosis">無料診断で改善点3つを受け取る</a><a class="btn btn-sub" href="https://timerex.net/s/oda_d465_d8f9/441d345c" target="_blank" rel="noopener noreferrer" data-cta-placement="works" data-cta-type="consult">個別相談を予約する<small>オンライン・無料</small></a></div>
     </div>
   </section>
 
@@ -1584,7 +1617,7 @@ details .ans{color:var(--ink)}
         <p class="cost-note">※無料HP診断だけで終えていただいてかまいません。</p>
       </div>
       <div class="plan-act rv">
-        <a class="btn" href="#diagnosis" data-cta-placement="price" data-cta-type="diagnosis">無料診断で改善点3つを受け取る</a>
+        <div class="cta2"><a class="btn" href="#diagnosis" data-cta-placement="price" data-cta-type="diagnosis">無料診断で改善点3つを受け取る</a><a class="btn btn-sub" href="https://timerex.net/s/oda_d465_d8f9/441d345c" target="_blank" rel="noopener noreferrer" data-cta-placement="price" data-cta-type="consult">個別相談を予約する<small>オンライン・無料</small></a></div>
         <p class="plan-act-link"><a class="inline-link" href="#menu">単価の内訳を見る</a></p>
       </div>
       <p class="price-foot rv">※価格はすべて税込・2026年10月31日時点のものです。制作したホームページは資産として残せます。</p>
@@ -1737,7 +1770,7 @@ details .ans{color:var(--ink)}
         </details>
       </div>
       <div class="plan-act rv">
-        <a class="btn" href="#diagnosis" data-cta-placement="faq" data-cta-type="diagnosis">無料診断で改善点3つを受け取る</a>
+        <div class="cta2"><a class="btn" href="#diagnosis" data-cta-placement="faq" data-cta-type="diagnosis">無料診断で改善点3つを受け取る</a><a class="btn btn-sub" href="https://timerex.net/s/oda_d465_d8f9/441d345c" target="_blank" rel="noopener noreferrer" data-cta-placement="faq" data-cta-type="consult">個別相談を予約する<small>オンライン・無料</small></a></div>
       </div>
     </div>
   </section>
@@ -1956,8 +1989,8 @@ details .ans{color:var(--ink)}
 </footer>
 
 <div class="m-cta" id="mCta">
-  <p class="m-cta-note">無料・1営業日以内</p>
-  <a class="btn" href="#diagnosis" data-cta-placement="sticky" data-cta-type="diagnosis">無料診断で改善点3つを</a>
+  <a class="btn" href="#diagnosis" data-cta-placement="sticky" data-cta-type="diagnosis">無料HP診断</a>
+  <a class="btn btn-sub" href="https://timerex.net/s/oda_d465_d8f9/441d345c" target="_blank" rel="noopener noreferrer" data-cta-placement="sticky" data-cta-type="consult">個別相談</a>
 </div>
 
 <script>
