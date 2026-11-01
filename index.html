@@ -1039,7 +1039,7 @@ details .ans{color:var(--ink)}
 .sg-n small{font-size:.45em;margin-left:2px}
 .sg-card{display:flex;flex-direction:column}
 .dn{--size:150px;--hole:68%;position:relative;width:var(--size);aspect-ratio:1;margin:16px auto 4px;border-radius:50%;
-  background:conic-gradient(var(--blue-deep) 0 calc(var(--v) * 1%),#E3E8F1 0)}
+  --p:var(--v);background:conic-gradient(var(--blue-deep) 0 calc(var(--p) * 1%),#E3E8F1 0)}
 .dn::before{content:"";position:absolute;inset:calc((100% - var(--hole)) / 2);border-radius:50%;background:var(--white)}
 .dn span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   font-weight:900;font-size:2.1rem;line-height:1;color:var(--blue-deep);letter-spacing:.01em;font-variant-numeric:tabular-nums}
@@ -1250,6 +1250,19 @@ nav.gnav a,.logo span,.logo small,.header-cta{white-space:nowrap}
 @media(max-width:1240px){
   nav.gnav a.gnav-extra{display:none}
 }
+/* 円グラフ：画面に入ったらメーターが0から伸び、伸び切ってから数字を出す。
+   --p を @property で数値として登録して、conic-gradient の角度をなめらかに動かす。
+   JS が html に dn-anim を付けたときだけ動かす（JSなし・?noanim・動きを減らす設定では最初から満ちた状態） */
+@property --p{syntax:'<number>';inherits:false;initial-value:0}
+html.dn-anim .dn{--p:0}
+html.dn-anim .dn span{opacity:0;transform:scale(.82)}
+/* 動きは .on が付いたときだけ（dn-anim を付けた瞬間に、満ちた円が0へ縮む動きを見せない） */
+html.dn-anim .dn.on{--p:var(--v);transition:--p 1.3s cubic-bezier(.25,.7,.25,1) .25s}
+html.dn-anim .dn.on span{opacity:1;transform:none;transition:opacity .45s ease 1.45s,transform .45s cubic-bezier(.3,1.5,.5,1) 1.45s}
+html.dn-anim .sg-pies li:nth-child(2) .dn.on{transition-delay:.45s}
+html.dn-anim .sg-pies li:nth-child(2) .dn.on span{transition-delay:1.65s}
+html.dn-anim .sg-pies li:nth-child(3) .dn.on{transition-delay:.65s}
+html.dn-anim .sg-pies li:nth-child(3) .dn.on span{transition-delay:1.85s}
 </style>
 </head>
 <body>
@@ -2019,6 +2032,17 @@ nav.gnav a,.logo span,.logo small,.header-cta{white-space:nowrap}
     els.forEach(function(el){io.observe(el)});
   }else{
     els.forEach(function(el){el.classList.add('on')});
+  }
+
+  // 円グラフ：見えたらメーターを伸ばし、そのあと数字を出す（CSS は html.dn-anim .dn.on）
+  var dns=document.querySelectorAll('.dn');
+  var calm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(dns.length&&'IntersectionObserver' in window&&!calm&&!document.documentElement.classList.contains('noanim')){
+    document.documentElement.classList.add('dn-anim');
+    var dio=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');dio.unobserve(e.target)}});
+    },{threshold:.6});
+    dns.forEach(function(el){dio.observe(el)});
   }
 
   // 折りたたみへのアンカー（#menu の単価表など）は、開いた状態で見せる
