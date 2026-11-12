@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>データの削除について｜スマ塾</title>
+<meta name="description" content="スマ塾 AI相談で連携したGoogle・Meta・X・LINEのデータを削除する方法（連携の解除と削除の依頼）。">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F4ED;--white:#FFF;--ink:#22252B;--ink-soft:#555962;
+  --blue:#24519E;--blue-deep:#1B3D78;--line:rgba(34,37,43,.16);--max:840px;
+  --serif:"Shippori Mincho",serif;--sans:"Zen Kaku Gothic New",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.9;-webkit-font-smoothing:antialiased}
+a{color:var(--blue);text-underline-offset:2px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+header{border-bottom:1px solid var(--line);background:rgba(247,244,237,.92);backdrop-filter:blur(10px);position:sticky;top:0;z-index:10}
+.header-in{max-width:var(--max);margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-weight:900;font-size:1.25rem;letter-spacing:.08em;display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none}
+.logo .dot{width:11px;height:11px;background:var(--blue);border-radius:50%}
+.logo small{display:block;font-size:.6rem;font-weight:700;letter-spacing:.14em;color:var(--ink-soft);line-height:1.4}
+.back{font-size:.85rem;font-weight:700;color:var(--ink);text-decoration:none}
+.back:hover{color:var(--blue)}
+main{padding:64px 0 90px}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.6rem,4vw,2.2rem);letter-spacing:.04em;margin-bottom:14px}
+.lead{font-size:.92rem;color:var(--ink-soft);margin-bottom:40px}
+.tbl{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--white)}
+dl{margin:0}
+.row{display:grid;grid-template-columns:230px 1fr;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none}
+dt{background:var(--paper);font-weight:700;font-size:.88rem;padding:20px 22px;border-right:1px solid var(--line)}
+dd{padding:20px 22px;font-size:.9rem;color:var(--ink)}
+dd .todo{color:#b4441f;font-weight:700}
+.note{margin-top:26px;font-size:.8rem;color:var(--ink-soft);line-height:2}
+/* 条文（tokushoho は表組みのみなので、こちらで見出し・本文・箇条書きを定義する） */
+h2{font-family:var(--serif);font-weight:700;font-size:1.12rem;letter-spacing:.04em;
+  margin:48px 0 14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+main h3{font-weight:700;font-size:.98rem;margin:26px 0 10px}
+main p{font-size:.94rem;margin-bottom:14px}
+main ul{margin:0 0 14px;padding-left:1.4em;list-style:disc}
+main li{font-size:.94rem;margin-bottom:6px}
+main li::marker{color:var(--ink-soft)}
+footer{border-top:1px solid var(--line);padding:30px 0;font-size:.78rem;color:var(--ink-soft)}
+.foot-in{max-width:var(--max);margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.foot-in a{color:var(--ink-soft);white-space:nowrap}
+@media(max-width:640px){
+  .row{grid-template-columns:1fr}
+  dt{border-right:none;border-bottom:1px solid var(--line)}
+  main{padding:44px 0 70px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-in">
+    <a class="logo" href="index.html"><span class="dot"></span><span>スマ塾<small>学習塾専門のWeb支援</small></span></a>
+    <a class="back" href="index.html">← サービスページに戻る</a>
+  </div>
+</header>
+
+<main>
+    <div class="wrap">
+      <h1>データの削除について</h1>
+      <p class="lead">スマ塾 AI相談　制定日：2026年11月12日</p>
+
+      <p>スマ塾 AI相談（以下「AI相談」）で連携したGoogle・Meta（Facebook・Instagram）・X・LINEのデータは、次のどちらかの方法で削除できます。</p>
+
+      <h2>1. 連携を外す</h2>
+      <p>AI相談の「設定」から、サービスごとに「連携を外す」を押してください。連携のための鍵（アクセストークン）はその場で削除し、受け取った情報は30日以内に削除します。</p>
+      <p>各サービスの画面からも、いつでも連携を外せます。</p>
+      <ul>
+      <li><strong>Meta</strong>：Facebookの「設定とプライバシー」→「設定」→「ビジネス統合」で「スマ塾」（SyUNI-Ads）を削除。Metaビジネスポートフォリオで当社にアクセスを付与している場合は、パートナーから合同会社SyUNiを削除</li>
+      <li><strong>Google</strong>：Googleアカウントの「データとプライバシー」→「サードパーティのアプリとサービス」で接続を解除。Googleビジネスプロフィールで当社を管理者に追加している場合は、「ユーザーとアクセス権」から削除</li>
+      <li><strong>X</strong>：「設定とプライバシー」→「セキュリティとアカウントアクセス」→「アプリとセッション」で連携を解除</li>
+      <li><strong>LINE</strong>：LINE Developersで、AI相談に登録したチャネルアクセストークンを無効にする</li>
+      </ul>
+
+      <h2>2. 削除を依頼する</h2>
+      <p>次の内容を書いて、<a href="mailto:oda@syuni.jp?subject=%E3%83%87%E3%83%BC%E3%82%BF%E5%89%8A%E9%99%A4%E3%81%AE%E4%BE%9D%E9%A0%BC">oda@syuni.jp</a> へお送りください。</p>
+      <ul>
+      <li>件名：データ削除の依頼</li>
+      <li>塾名・お名前</li>
+      <li>削除してほしいサービス（すべて／Google／Meta／X／LINE）</li>
+      </ul>
+      <p>受け付けた日から30日以内に削除し、完了をメールでお知らせします。削除の確認番号をお伝えしますので、状況のお問い合わせにお使いください。</p>
+
+      <h2>3. 削除しないもの</h2>
+      <p>請求・契約に関する記録は、法令で定められた期間保存します。削除の対象は、外部サービスから受け取った情報と、AI相談で作成した下書き・履歴です。</p>
+
+      <p class="note">個人情報の取り扱い全体は<a href="/privacy.html">プライバシーポリシー</a>をご覧ください。<br>お問い合わせ：合同会社SyUNi　<a href="mailto:oda@syuni.jp">oda@syuni.jp</a></p>
+    </div>
+  </main>
+
+<footer>
+  <div class="foot-in">
+    <span>© 2026 合同会社SyUNi</span>
+    <span><a href="index.html">サービスページ</a>　/　<a href="/privacy.html">プライバシーポリシー</a>　/　<a href="terms.html">利用規約</a>　/　<a href="data-deletion.html">データの削除</a></span>
+  </div>
+</footer>
+</body>
+</html>

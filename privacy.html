@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>プライバシーポリシー｜スマ塾</title>
-<meta name="description" content="スマ塾（運営：合同会社SyUNi）のプライバシーポリシーです。営業メールの送信と配信停止についても記載しています（2026年9月4日改定）。">
+<meta name="description" content="スマ塾（運営：合同会社SyUNi）のプライバシーポリシーです。営業メールの送信と配信停止、スマ塾 AI相談でのGoogle・Meta等との連携データの取り扱いについても記載しています（2026年11月12日改定）。">
 <meta name="robots" content="noindex, follow">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -42,13 +42,14 @@ dd .todo{color:#b4441f;font-weight:700}
 /* 条文（tokushoho は表組みのみなので、こちらで見出し・本文・箇条書きを定義する） */
 h2{font-family:var(--serif);font-weight:700;font-size:1.12rem;letter-spacing:.04em;
   margin:48px 0 14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+main h3{font-weight:700;font-size:.98rem;margin:26px 0 10px}
 main p{font-size:.94rem;margin-bottom:14px}
 main ul{margin:0 0 14px;padding-left:1.4em;list-style:disc}
 main li{font-size:.94rem;margin-bottom:6px}
 main li::marker{color:var(--ink-soft)}
 footer{border-top:1px solid var(--line);padding:30px 0;font-size:.78rem;color:var(--ink-soft)}
 .foot-in{max-width:var(--max);margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.foot-in a{color:var(--ink-soft)}
+.foot-in a{color:var(--ink-soft);white-space:nowrap}
 @media(max-width:640px){
   .row{grid-template-columns:1fr}
   dt{border-right:none;border-bottom:1px solid var(--line)}
@@ -67,7 +68,7 @@ footer{border-top:1px solid var(--line);padding:30px 0;font-size:.78rem;color:va
 <main>
     <div class="wrap">
       <h1>プライバシーポリシー</h1>
-      <p class="lead">制定日：2026年4月16日<br>改定日：2026年9月4日</p>
+      <p class="lead">制定日：2026年4月16日<br>改定日：2026年11月12日</p>
 
       <h2>1. 事業者情報</h2>
       <p>合同会社SyUNi（以下「当社」）は、スマ塾（以下「本サービス」）を通じてお客様からお預かりする個人情報の取り扱いについて、以下のとおりプライバシーポリシーを定めます。</p>
@@ -126,6 +127,39 @@ footer{border-top:1px solid var(--line);padding:30px 0;font-size:.78rem;color:va
       <p>配信停止をご希望の場合は、メール本文のリンク、または <a href="mailto:oda@syuni.jp">oda@syuni.jp</a> までご連絡ください。<strong>受け付けた時点で直ちに送信を停止します。</strong></p>
       <p>メールアドレスの取得元と取得日は記録しています。取得元の確認をご希望の場合も、上記の連絡先までご連絡ください。</p>
 
+
+      <h2>11. スマ塾 AI相談での外部サービスとの連携</h2>
+      <p>スマ塾 AI相談（学習塾向けのダッシュボードと相談サービス。以下「AI相談」）では、塾長の許可を得て、塾が利用している外部サービスのアカウントと連携します。連携は塾長が各サービスの画面でログインして許可する方式で、当社がパスワードを預かることはありません。</p>
+
+      <h3>受け取る情報</h3>
+      <ul>
+      <li><strong>Google</strong>：Googleビジネスプロフィール（店舗情報・投稿・クチコミ・表示回数や電話・経路検索の回数）、Googleアナリティクス（ホームページのアクセス数）</li>
+      <li><strong>Meta（Facebook・Instagram）</strong>：Facebookページ・Instagramのプロアカウント（投稿・反応の数）、広告アカウント（広告の設定・予算・成果）。塾長が許可した場合は、広告のフォームから届いたお申込みの内容</li>
+      <li><strong>X・LINE</strong>：投稿の結果と反応の数、LINE公式アカウントの送信数・友だち数</li>
+      </ul>
+      <p>生徒の成績・名簿などの個人情報は、AI相談では扱いません。</p>
+
+      <h3>利用目的</h3>
+      <ul>
+      <li>ダッシュボードに数字を表示し、集客の改善点を示すため</li>
+      <li>塾長が確認・承認した投稿や広告の作成・変更・停止を行うため</li>
+      <li>AIによる助言や文案を作るため</li>
+      </ul>
+      <p>上記以外の目的（当社の広告への利用、他社への販売など）には使いません。</p>
+
+      <h3>委託先</h3>
+      <p>AI相談の運営には次のサービスを利用しており、必要な範囲で情報を預けています。</p>
+      <ul>
+      <li>Cloudflare（サーバーとデータの保管）</li>
+      <li>Anthropic（AIによる文章の作成。同社はAPIで受け取ったデータを、AIの学習に利用しないとしています）</li>
+      </ul>
+
+      <h3>保存期間と削除</h3>
+      <p>連携を外したとき、またはご契約が終わったときは、連携のための鍵（アクセストークン）をただちに削除し、外部サービスから受け取った情報を30日以内に削除します。手順は<a href="data-deletion.html">データの削除について</a>をご覧ください。</p>
+
+      <h3>各サービスの決まりの遵守</h3>
+      <p>Google APIから受け取った情報の利用と他のアプリへの移転は、限定的使用（Limited Use）の要件を含む<a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>に従います。Metaから受け取った情報は、<a href="https://developers.facebook.com/terms/" target="_blank" rel="noopener noreferrer">Metaのプラットフォーム利用規約</a>に従って取り扱います。</p>
+
       <p class="note">
         本ポリシーの内容は予告なく変更する場合があります。最新の内容は本ページに掲載します。
       </p>
@@ -135,7 +169,7 @@ footer{border-top:1px solid var(--line);padding:30px 0;font-size:.78rem;color:va
 <footer>
   <div class="foot-in">
     <span>© 2026 合同会社SyUNi</span>
-    <span><a href="index.html">サービスページ</a>　/　<a href="/privacy.html" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a></span>
+    <span><a href="index.html">サービスページ</a>　/　<a href="/privacy.html">プライバシーポリシー</a>　/　<a href="terms.html">利用規約</a>　/　<a href="data-deletion.html">データの削除</a></span>
   </div>
 </footer>
 </body>
