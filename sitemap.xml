@@ -128,6 +128,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://smart-juku.syuni.jp/news/kyoin-menkyo-shakaijin-1nen.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://smart-juku.syuni.jp/news/rikou-joshiwaku-42daigaku.html</loc>
     <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
