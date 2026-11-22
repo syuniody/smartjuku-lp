@@ -128,7 +128,7 @@ def render(out_path: Path = OUT) -> None:
     small_dy = round((p_size - p_size * 0.68) * 0.62)  # 小書きの下端を揃える
 
     x = float(pad)
-    x = _track_text(d, (x, py), "制作費110,000円", f_price, INK, p_track)
+    x = _track_text(d, (x, py), "制作費0円・月14,800円", f_price, INK, p_track)
     x = _track_text(d, (x, py + small_dy), "（税込）", f_small, INK, p_size * 0.02)
     x = _track_text(d, (x, py), "・先生は", f_price, INK, p_track)
 
